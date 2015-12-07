@@ -1,4 +1,4 @@
-# Alexander Grebenyuk
+# About Me
 
 Software developer from Moscow specializing in mobile apps for iOS. I have an experience of working for both small startups and huge internet companies. Of particular interest to me is Swift, which I started to experiment with from the day it was introduced. I've committed to the Open Source development and I've personally authored [multiple frameworks](https://github.com/kean).
 
