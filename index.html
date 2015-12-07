@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Alexander Grebenyuk&#39;s Resume : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Alexander Grebenyuk&#39;s Resume</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kean">View on GitHub</a>
+
+          <h1 id="project_title">Alexander Grebenyuk&#39;s Resume</h1>
+          <h2 id="project_tagline"></h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>About Me</h1>
+
+<p>Software developer from Moscow specializing in mobile apps for iOS. I have an experience of working for both small startups and huge internet companies. Of particular interest to me is Swift, which I started to experiment with from the day it was introduced. I've committed to the Open Source development and I've personally authored <a href="https://github.com/kean">multiple frameworks</a>.</p>
+
+<h1>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contents</h1>
+
+<ol>
+<li><a href="#h_projects">Projects</a></li>
+<li><a href="#h_open_source">Open Source</a></li>
+<li><a href="#h_experience">Experience</a></li>
+<li><a href="#h_skils">Skills</a></li>
+<li><a href="#h_other_interests">Other Interests</a></li>
+<li><a href="#h_contacts">Contacts</a></li>
+</ol>
+
+<h1>
+<a id="projects" class="anchor" href="#projects" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_projects"></a>Projects</h1>
+
+<h3>
+<a id="fitness-app-by-cleverbits-objective-c" class="anchor" href="#fitness-app-by-cleverbits-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fitness App by CleverBits (Objective-C)<a name="fitmeup"></a>
+</h3>
+
+<p>Workout tracker and personal assistant. Under development.</p>
+
+<h3>
+<a id="my-world-by-mailru-objective-c" class="anchor" href="#my-world-by-mailru-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://itunes.apple.com/ru/app/moj-mir/id598556821?mt=8">My World</a> by Mail.Ru (Objective-C)<a name="my_world"></a>
+</h3>
+
+<p>Our team was responsible for developing from the ground up a full featured (150k+ SLOC) iOS client for a social network. In this time period, we shipped a number of major releases. Some of my more notable contributions include:</p>
+
+<ul>
+<li>
+<em>Photosafe</em> (cloud photo storage), which I drove end-to-end as lead of iOS developer group. I've designed an app architecture and made major contributions to web API and UX. This project required a lot of complex decisions. Photosafe had to work offline and we needed fast and reliable sync with the server. I've suggested an API based on delta updates, similar to the one used by <a href="https://www.dropbox.com/developers-v1/core/docs#delta">Dropbox</a>. We went with this approach and had a single endpoint to construct an initial snapshot and keep it up to date. We've faced a lot of other challenges including: setting up concurrent Core Data and optimizing it to handle 50k+ entries, clustering photos to display them on a map, indexing and autouploading user assets and more.</li>
+<li>Instant Messenger on top of <a href="https://en.wikipedia.org/wiki/Comet_(programming)">Comet</a> with text, custom emojis, images. We shipped this feature in just one month. The most challenging part was optimizing it to work smoothly on iPhone 4 (most common device at the time). I've optimized custom attributed label to render multiple image attachments - we had to render custom emojis, added some memoization, moved layout calculations to the background.</li>
+<li>I personally drove multiple media features. The most prominent one was Photo Albums, which had a complex and rich UX. Another major and technically advanced feature was Image Editor. I implemented it from the ground up. All edits were non-destructive, it was very performant due to caching of intermediate results. It featured multiple image adjustments including Core Image filters, text on top of images, etc. Some of my other notable media features included multi-format Publisher, Photo Gallery with custom presentations, Image Picker based on Photos Kit.</li>
+<li>I authored multiple internal modules used throughout the project including ImageManager that was later <a href="#df_image_manager">open sourced</a>, UploadKit, MediaKit, CollectionViewKit, verification module etc.</li>
+</ul>
+
+<p>Video and couple of screenshots of the features that I was involved with:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1567433/11615532/6e80e376-9c74-11e5-8ed6-5243292a349b.png" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615534/adfdaa66-9c74-11e5-840f-165d3ea7301b.png" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615535/b1c3ecdc-9c74-11e5-968b-6289e1a5e066.png" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615537/bacedf94-9c74-11e5-97f9-dd3e63a4df5e.png" width="20%">
+<a href="https://youtu.be/efUWPsO4WUg"><img src="https://cloud.githubusercontent.com/assets/1567433/11615511/c6c27b18-9c73-11e5-9d98-1492a27d3b50.png" width="61%"></a></p>
+
+<h3>
+<a id="storymaker-by-mailru-objective-c" class="anchor" href="#storymaker-by-mailru-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Storymaker by Mail.Ru (Objective-C)<a name="storymaker"></a>
+</h3>
+
+<p>Over the last 4 months at Mail.Ru I was involved in prototyping an experimental blogging app for iOS. We've completed most of the core functionality for the project, but it was never released.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1567433/11615662/f4bb9d5c-9c77-11e5-8d7a-aedbc8fa223d.jpg" width="61%"></p>
+
+<h3>
+<a id="vincent-decor-by-aplica-objective-c-c" class="anchor" href="#vincent-decor-by-aplica-objective-c-c" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://itunes.apple.com/ru/app/vincent-decor/id480639136?mt=8">Vincent Decor</a> by Aplica (Objective-C, C#)<a name="vincent_decor"></a>
+</h3>
+
+<p>One of the most intriguing features of this app is <em>Decorator</em>. It allows users to take a picture of their room and "magically" add decorative effects on the walls. This feature was built using OpenGL ES 2.0. This was my first experience with OpenGL. I've quickly got familiar with the basics, and I've also incorporated some performance best practices including VAO, VBO, mipmapping. I was also responsible for some of the back-end development on C#.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1567433/11615744/41d426de-9c7a-11e5-928a-664335ce9119.PNG" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615746/42155a3c-9c7a-11e5-8582-c74de2b98b2a.PNG" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615748/421a9be6-9c7a-11e5-85d3-5af315182079.PNG" width="20%">
+<img src="https://cloud.githubusercontent.com/assets/1567433/11615745/42152832-9c7a-11e5-9042-c1e8c6507021.PNG" width="20%"></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1567433/11615747/42179ed2-9c7a-11e5-8e2d-386eae2d875d.PNG" width="40.5%"></p>
+
+<h1>
+<a id="open-source" class="anchor" href="#open-source" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_open_source"></a>Open Source</h1>
+
+<h3>
+<a id="nuke-swift" class="anchor" href="#nuke-swift" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/kean/Nuke">Nuke</a> (Swift)<a name="nuke"></a>
+</h3>
+
+<p>Advanced Swift framework for loading, processing, caching, displaying and preheating images. This framework takes full advantage of Swift features, including generics, protocols, protocol extensions, enums with associated values etc. I've authored several <a href="https://github.com/kean/Nuke/wiki">development guides</a> for this project, as well as a rich playground.</p>
+
+<h3>
+<a id="dfimagemanager-objective-c" class="anchor" href="#dfimagemanager-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/kean/DFImageManager">DFImageManager</a> (Objective-C)<a name="df_image_manager"></a>
+</h3>
+
+<p>Framework for image loading, processing, caching and preheating. I've started working on this project to improve image loading capabilities in <a href="#my_world">My World</a> app. It had some major advantages over existing frameworks like <a href="https://github.com/rs/SDWebImage">SDWebImage</a>: uses <code>NSURLSession</code>, has optional <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> and <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> integrations, automates <a href="https://github.com/kean/Nuke/wiki/Image-Preheating-Guide">image preheating</a>.</p>
+
+<h3>
+<a id="dfjpegturbo-objective-c" class="anchor" href="#dfjpegturbo-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/kean/DFJPEGTurbo">DFJPEGTurbo</a> (Objective-C)</h3>
+
+<p>Objective-C <a href="http://www.libjpeg-turbo.org">libjpeg-turbo</a> wrapper (JPEG codec that uses SIMD instructions to accelerate baseline JPEG compression and decompression). This project allowed <a href="#my_world">My World</a> app to enjoy about ~50% improvements in JPEG decompression speed. It has later become obsolete due to iOS improvements.</p>
+
+<h3>
+<a id="dfcache-objective-c" class="anchor" href="#dfcache-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/kean/DFCache">DFCache</a> (Objective-C)</h3>
+
+<p>Composite LRU cache with fast metadata built on top of UNIX extended file attributes</p>
+
+<h1>
+<a id="experience" class="anchor" href="#experience" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_experience"></a>Experience</h1>
+
+<ul>
+<li>iOS Developer at CleverBits, June 2015 - Present</li>
+<li>iOS Developer at Mail.Ru, February 2013 - May 2015 (2 years 4 months)</li>
+<li>iOS Developer at Aplica, July 2012 - February 2013 (8 months)</li>
+<li>Senior Quality Engineer at Performance Lab, March 2011 - May 2012 (1 year 3 months)</li>
+</ul>
+
+<h1>
+<a id="skils" class="anchor" href="#skils" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_skils"></a>Skils</h1>
+
+<p><strong>Languages</strong></p>
+
+<ul>
+<li>Swift</li>
+<li>Objective-C</li>
+<li>C</li>
+<li>C#</li>
+</ul>
+
+<p><strong>Technologies</strong></p>
+
+<ul>
+<li>Xcode</li>
+<li>Git, SVN (Cornerstone)</li>
+<li>CocoaPods, Carthage</li>
+<li>Can use Shell and write some basic scripts</li>
+<li>Auto Layout (VFL, <a href="https://github.com/PureLayout/PureLayout">PureLayout</a>)</li>
+<li>ARC/MRC, GCD, Core Data, Core Animation, Core Image, Photos Kit, Core Text, Keychain Services, XCTest, Core Motion, AVFoundation, etc</li>
+<li>Aware of RxSwift and ReactiveCocoa</li>
+<li>OpenGL ES 2.0</li>
+<li>Wireshark</li>
+</ul>
+
+<p><strong>Interests</strong></p>
+
+<ul>
+<li>Functional programming</li>
+<li>Scheme</li>
+<li>Haskell</li>
+</ul>
+
+<h1>
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_education"></a>Education</h1>
+
+<ul>
+<li>RSUH, Moscow - Specialist in Information Security, 2007 - 2012.</li>
+</ul>
+
+<p>Courses:</p>
+
+<ul>
+<li>Bauman MSTU, Moscow - "Programming and Databases", 2010</li>
+<li>Bauman MSTU, Moscow - "The C Programming Language", 2010</li>
+</ul>
+
+<h1>
+<a id="other-interests" class="anchor" href="#other-interests" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_other_interests"></a>Other Interests</h1>
+
+<p>In additional to technical activities I enjoy traveling, and photography - you can find some of my photos at <a href="https://www.flickr.com/photos/agrebenyuk/">flickr</a>.</p>
+
+<h1>
+<a id="contacts" class="anchor" href="#contacts" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="h_contacts"></a>Contacts</h1>
+
+<ul>
+<li><a href="mailto:grebenyuk.alexander@gmail.com">grebenyuk.alexander@gmail.com</a></li>
+<li><a href="https://ru.linkedin.com/in/alexander-grebenyuk-3a0b4383">linkedin</a></li>
+<li><a href="https://github.com/kean">github</a></li>
+<li><a href="https://twitter.com/a_grebenyuk">twitter</a></li>
+<li><a href="https://www.facebook.com/agrebenyuk">facebook</a></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
