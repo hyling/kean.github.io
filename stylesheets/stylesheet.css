@@ -50,25 +50,25 @@ Theme Styles
 
 body {
   box-sizing: border-box;
-  color:#373737;
+  color:#333333;
   background: #212121;
-  font-size: 16px;
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-family: 'Helvetica Nueue', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
-  font-weight: 700;
+  font-weight: 400;
   color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Nueue','Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
 
 h1 {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h2 {
@@ -355,7 +355,7 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #f2f2f2;
+  background: #FFFFFF;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
