@@ -21,6 +21,7 @@ a:hover { color: rgb(0, 126, 223); text-decoration: underline; }
 h1 {
   font-size: 3rem;
   font-weight: 300;
+  line-height: 3rem;
   margin-bottom: 8px;
 }
 
