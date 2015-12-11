@@ -39,6 +39,10 @@ li {
   margin-top: 4px;
 }
 
+div.hoverable img:hover {
+    opacity: .75;
+  }
+
 @media print {
   html {
     font: normal 16px/1.4 Arial;
