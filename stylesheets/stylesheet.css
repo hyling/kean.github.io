@@ -36,5 +36,15 @@ p {
 }
 
 li {
-  margin-top: 8px;
+  margin-top: 4px;
+}
+
+@media print {
+  html {
+    font: normal 16px/1.4 Arial;
+    font-size: 1rem;
+  }
+  img {
+    display:none !important;
+  }
 }
