@@ -1,0 +1,58 @@
+{
+    "projects" : [
+        {
+            "title" : "Nuke",
+            "link" : "http://kean.github.io/Nuke/",
+            "languages" : "Swift",
+            "description" : "Image loading, processing, caching and preheating"
+        },
+        {
+            "title" : "Arranged",
+            "link" : "https://github.com/kean/Arranged",
+            "languages" : "Swift",
+            "description" : "Open source replacement of UIStackView for iOS 8"
+        },
+        {
+            "title" : "Promise",
+            "link" : "https://github.com/kean/Promise",
+            "languages" : "Swift",
+            "description" : "Micro Promise/A+ under 100 sloc"
+        },
+        {
+            "title" : "Preheat",
+            "link" : "https://github.com/kean/Preheat",
+            "languages" : "Swift",
+            "description" : "Automates prefetching of content in UITableView and UICollectionView"
+        },
+        {
+            "title" : "DFCache",
+            "link" : "https://github.com/kean/DFCache.git",
+            "languages" : "Objective-C",
+            "description" : "LRU cache with fast metadata built on top of UNIX extended file attributes"
+        },
+        {
+            "title" : "DFImageManager",
+            "link" : "https://github.com/kean/DFImageManager",
+            "languages" : "Objective-C",
+            "description" : "Image loading, processing, caching and preheating"
+        },
+        {
+            "title" : "DFJPEGTurbo",
+            "link" : "https://github.com/kean/DFJPEGTurbo",
+            "languages" : "Objective-C",
+            "description" : "<a href=\"http://www.libjpeg-turbo.org\">libjpeg-turbo</a> wrapper (accelerates baseline JPEG compression using SIMD)"
+        },
+        {
+            "title" : "Nuke Alamofire Plugin",
+            "link" : "https://github.com/kean/Nuke-Alamofire-Plugin",
+            "languages" : "Swift",
+            "description" : "Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that replaces networking stack with <a href=\"https://github.com/Alamofire/Alamofire\">Alamofire</a>"
+        },
+        {
+            "title" : "Nuke AnimatedImage Plugin",
+            "link" : "https://github.com/kean/Nuke-AnimatedImage-Plugin",
+            "languages" : "Swift",
+            "description" : "Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that uses <a href=\"https://github.com/Flipboard/FLAnimatedImage\">FLAnimatedImage</a> to enable GIF support"
+        }
+    ]
+}

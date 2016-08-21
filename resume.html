@@ -5,21 +5,12 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta name="description" content="Alexander Grebenyuk, professional software developer (Swift, Objective-C) from Moscow.">
+  <meta name="description" content="Alexander Grebenyuk. Software developer from Moscow. Programming in Swift, Objective-C and more.">
   <meta name="keywords" content="swift, objective-c, ios, objc">
   <meta name="author" content="Alexander Grebenyuk">
 
   <link rel="stylesheet" type="text/css" media="all" href="stylesheets/stylesheet.css">
   <title>Alexander Grebenyuk&#39;s Resume</title>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49849401-2', 'auto');
-  ga('send', 'pageview');
-  </script>
 </head>
 
 <body>
@@ -27,136 +18,114 @@
 <h1>Alexander Grebenyuk</h1>
 
 <div>
-  
+
 <h2 id="h_about-me">About Me</h2>
 
-<p>Software developer from Moscow. I have experience of working for both small startups and huge internet companies. Of particular interest to me is Swift, which I started to experiment with from the day one. I am committed to the open source development and I've personally authored <a href="https://github.com/kean">multiple frameworks</a>.</p>
-
-<h2 id="h_contents">Contents</h2>
-
-<ol>
-  <li><a href="#h_projects">Projects</a></li>
-  <li><a href="#h_open_source">Open Source</a></li>
-  <li><a href="#h_experience">Experience</a></li>
-  <li><a href="#h_skils">Skills</a></li>
-  <li><a href="#h_other_interests">Other Interests</a></li>
-  <li><a href="#h_contacts">Contacts</a></li>
-</ol>
+<p>Software developer from Moscow. I have experience of working for both small startups and large internet companies. Of particular interest to me is Swift, which I started to experiment with from the day one. I am committed to the open source development and I've personally authored <a href="https://github.com/kean">multiple frameworks</a>.</p>
 
 <h2 id="h_projects">Projects</h2>
 
-<h3 id="fitmeup">Fitness App by CleverBits (Objective-C)</h3>
+<h3 id="fitmeup"><a href="http://www.fitmeup.ru">Fitmeup</a> by CleverBits (Objective-C)</h3>
 
-<p>Workout tracker and personal assistant. Under development.</p>
+<p>My contribution included some of the most complex screens, session management, storage, <a href="https://kean.github.io/blog/core-data-progressive-migrations">migrations</a>, support for in-app purchases and auto-renewable subscriptions, and more. I've also set up a continuous delivery for this project using <a href="https://fastlane.tools">Fastlane</a>.</p>
 
 <h3 id="my_world"><a href="https://itunes.apple.com/ru/app/moj-mir/id598556821?mt=8">My World</a> by Mail.Ru (Objective-C)</h3>
 
-<p>Our team was responsible for developing from the ground up a full featured (150k+ SLOC) iOS client for a social network. In this time period, we shipped a number of major releases. Some of my more notable contributions include:</p>
+<p>Our team was responsible for developing from the ground up a full featured iOS client for a social network. Some of my more notable contributions include:</p>
 
 <ul>
 <li>
-<em>Photosafe</em> (cloud photo storage), which I drove end-to-end as lead of iOS developer group. I've designed an app architecture and made major contributions to web API and UX. This project required a lot of complex decisions. Photosafe had to work offline and we needed fast and reliable sync with the server. I've suggested an API based on delta updates, similar to the one used by <a href="https://www.dropbox.com/developers-v1/core/docs#delta">Dropbox</a>. We went with this approach and had a single endpoint to construct an initial snapshot and keep it up to date. We've faced a lot of other challenges including: setting up concurrent Core Data and optimizing it to handle 50k+ entries, clustering photos to display them on a map, indexing and autouploading user assets and more.</li>
-<li>Instant Messenger on top of <a href="https://en.wikipedia.org/wiki/Comet_(programming)">Comet</a> with text, custom emojis, images. We shipped this feature in just one month. The most challenging part was optimizing it to work smoothly on iPhone 4 (most common device at the time). I've optimized custom attributed label to render multiple image attachments - we had to render custom emojis, added some memoization, moved layout calculations to the background.</li>
-<li>I personally drove multiple media features. The most prominent one was Photo Albums, which had a complex and rich UX. Another major and technically advanced feature was Image Editor. I implemented it from the ground up. All edits were non-destructive, it was very performant due to caching of intermediate results. It featured multiple image adjustments including Core Image filters, text on top of images, etc. Some of my other notable media features included multi-format Publisher, Photo Gallery with custom presentations, Image Picker based on Photos Kit.</li>
-<li>I authored multiple internal modules used throughout the project including ImageManager that was later <a href="#df_image_manager">open sourced</a>, UploadKit, MediaKit, CollectionViewKit, verification module etc.</li>
+<em>Photosafe</em> (cloud photo storage), which I drove end-to-end as lead of iOS developer group. One of its most challenging requirements was offline support with fast and reliable sync. My suggestion - which we went with - was to use <a href="https://www.dropbox.com/developers-v1/core/docs#delta">delta updates</a> with a single endpoint. We also faced other challenges like setting up concurrent Core Data and optimizing it for large datasets, clustering photos on a map, and more.</li>
+<li><i>Instant Messenger</i> on top of <a href="https://en.wikipedia.org/wiki/Comet_(programming)">Comet</a>. It had to be optimized for an iPhone 4 - common at the time. The solution included background layout calculations and memoization. We shipped it in just over a month.</li>
+<li>I personally drove most of the media features. The most prominent one was <i>Image Editor</i> which I made from the ground up. It featured non-destructive edits, intermediate cache, multiple adjustments including Core Image filters, etc.</li>
+<li>I authored multiple modules used in the project including an image loader that was later <a href="#df_image_manager">open sourced</a>.</li>
 </ul>
-
-<p>Video and couple of screenshots of the features that I was involved with:</p>
-
-<div class="hoverable">
-<p>
-  <a href="./images/screenshots/my/01.png" target="_blank"><img src="./images/screenshots/my/01.png" width="23%"></a>
-  <a href="./images/screenshots/my/02.png" target="_blank"><img src="./images/screenshots/my/02.png" width="23%"></a>
-  <a href="./images/screenshots/my/03.png" target="_blank"><img src="./images/screenshots/my/03.png" width="23%"></a>
-  <a href="./images/screenshots/my/04.png" target="_blank"><img src="./images/screenshots/my/04.png" width="23%"></a>
-  <div class="video-container">
-    <iframe width="480" height="360" src="https://www.youtube.com/embed/efUWPsO4WUg?rel=0" frameborder="0" allowfullscreen></iframe>
-  </div>
-</p>
-</div>
 
 <h3 id="storymaker">Storymaker by Mail.Ru (Objective-C)</h3>
 
-<p>Over the last 4 months at Mail.Ru I was involved in prototyping an experimental blogging app for iOS. We've completed most of the core functionality for the project, but it was never released.</p>
-
-<div class="hoverable">
-<p><a href="./images/screenshots/storymaker/01.jpg" target="_blank"><img src="./images/screenshots/storymaker/01.jpg" width="70.5%"></a></p>
-</div>
+<p>Over the last 4 months at Mail.Ru I was involved in prototyping a new blogging app. We've completed most of the core functionality, but it was never released to the public.</p>
 
 <h3 id="vincent_decor"><a href="https://itunes.apple.com/ru/app/vincent-decor/id480639136?mt=8">Vincent Decor</a> by Aplica (Objective-C, C#)</h3>
 
-<p>One of the most intriguing features of this app is <em>Decorator</em>. It allows users to take a picture of their room and "magically" add decorative effects on the walls. This feature was built using OpenGL ES 2.0. This was my first experience with OpenGL. I've quickly got familiar with the basics, and I've also incorporated some performance best practices including VAO, VBO, mipmapping. I was also responsible for some of the back-end development on C#.</p>
+<p>One of its most intriguing features was <i>Decorator</i>. The user would take a picture of a room and the app would automagically put decorative effects on the walls. It was built using OpenGL ES 2.0 which I had no prior experience with. I quickly got familiar with it and even incorporated some performance best practices including VAO, VBO, mipmapping.</p>
 
-<div class="hoverable">
-<p>
-  <a href="./images/screenshots/vd/01.png" target="_blank"><img src="./images/screenshots/vd/01.png" width="23%"></a>
-  <a href="./images/screenshots/vd/02.png" target="_blank"><img src="./images/screenshots/vd/02.png" width="23%"></a>
-  <a href="./images/screenshots/vd/03.png" target="_blank"><img src="./images/screenshots/vd/03.png" width="23%"></a>
-  <a href="./images/screenshots/vd/04.png" target="_blank"><img src="./images/screenshots/vd/04.png" width="23%"></a>
-</p>
-<p>
-  <a href="./images/screenshots/vd/05.png" target="_blank"><img src="./images/screenshots/vd/05.png" width="47%"></a>
-</p>
-</div>
+<p>I was also responsible for some of the back-end development using C#.</p>
 
 <h2 id="h_open_source">Open Source</h2>
 
 <h3 id="nuke"><a href="https://github.com/kean/Nuke">Nuke</a> (Swift)</h3>
+<p>Image loading, processing, caching and preheating</p>
 
-<p>Advanced Swift framework for loading, processing, caching, displaying and preheating images. This framework takes full advantage of Swift features, including generics, protocols, protocol extensions, enums with associated values etc. I've authored several <a href="https://github.com/kean/Nuke/wiki">development guides</a> for this project, as well as a rich playground.</p>
+<h3><a href="https://github.com/kean/Arranged">Arranged</a> (Swift)</h3>
+<p>Open source replacement of UIStackView for iOS 8</p>
 
-<h3 id="df_image_manager"><a href="https://github.com/kean/DFImageManager">DFImageManager</a> (Objective-C)</h3>
+<h3><a href="https://github.com/kean/Promise">Promise</a> (Swift)</h3>
+<p>Micro Promise/A+ under 100 sloc</p>
 
-<p>Framework for image loading, processing, caching and preheating. I've started working on this project to improve image loading capabilities in <a href="#my_world">My World</a> app. It had some major advantages over existing frameworks like <a href="https://github.com/rs/SDWebImage">SDWebImage</a>: uses <code>NSURLSession</code>, has optional <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> and <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> integrations, automates <a href="https://github.com/kean/Nuke/wiki/Image-Preheating-Guide">image preheating</a>.</p>
-
-<h3><a href="https://github.com/kean/DFJPEGTurbo">DFJPEGTurbo</a> (Objective-C)</h3>
-
-<p>Objective-C <a href="http://www.libjpeg-turbo.org">libjpeg-turbo</a> wrapper (JPEG codec that uses SIMD instructions to accelerate baseline JPEG compression and decompression). This project allowed <a href="#my_world">My World</a> app to enjoy about ~50% improvements in JPEG decompression speed. It has later become obsolete due to iOS improvements.</p>
+<h3><a href="https://github.com/kean/Preheat">Preheat</a> (Swift)</h3>
+<p>Automates prefetching of content in UITableView and UICollectionView</p>
 
 <h3><a href="https://github.com/kean/DFCache">DFCache</a> (Objective-C)</h3>
+<p>LRU cache with fast metadata built on top of UNIX extended file attributes</p>
 
-<p>Composite LRU cache with fast metadata built on top of UNIX extended file attributes</p>
+<h3 id="df_image_manager"><a href="https://github.com/kean/DFImageManager">DFImageManager</a> (Objective-C)</h3>
+<p>Image loading, processing, caching and preheating</a>.</p>
+
+<h3><a href="https://github.com/kean/DFJPEGTurbo">DFJPEGTurbo</a> (Objective-C)</h3>
+<a href=\"http://www.libjpeg-turbo.org\">libjpeg-turbo</a> wrapper (accelerates baseline JPEG compression using SIMD)</p>
+
+<h3 id="nuke-alamofire-pluginhttpsgithubcomkeannuke-alamofire-plugin-swift"><a href="https://github.com/kean/Nuke-Alamofire-Plugin">Nuke Alamofire Plugin</a> (Swift)</h3>
+<p>Plugin for <a href="https://github.com/kean/Nuke">Nuke</a> that replaces networking stack with <a href="https://github.com/Alamofire/Alamofire">Alamofire</a></p>
+
+<h3 id="nuke-animatedimage-pluginhttpsgithubcomkeannuke-animatedimage-plugin-swift"><a href="https://github.com/kean/Nuke-AnimatedImage-Plugin">Nuke AnimatedImage Plugin</a> (Swift)</h3>
+Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that uses <a href=\"https://github.com/Flipboard/FLAnimatedImage\">FLAnimatedImage</a> to enable GIF support</p>
 
 <h2 id="h_experience">Experience</h2>
 
 <ul>
-<li>iOS Developer at CleverBits, June 2015 - Present</li>
-<li>iOS Developer at Mail.Ru, February 2013 - May 2015 (2 years 4 months)</li>
-<li>iOS Developer at Aplica, July 2012 - February 2013 (8 months)</li>
-<li>Senior Quality Engineer at Performance Lab, March 2011 - May 2012 (1 year 3 months)</li>
+    <li>iOS Developer at CleverBits, June 2015 - Present</li>
+    <li>iOS Developer at Mail.Ru, February 2013 - May 2015 (2 years 4 months)</li>
+    <li>iOS Developer at Aplica, July 2012 - February 2013 (8 months)</li>
+    <li>Senior Quality Engineer at Performance Lab, March 2011 - May 2012 (1 year 3 months)</li>
 </ul>
 
-<h2 id="h_skils">Skils</h2>
-
-<p><strong>Languages</strong></p>
+<h2 id="h_languages">Languages</h2>
 
 <ul>
-  <li>Swift</li>
-  <li>Objective-C</li>
-  <li>C</li>
-  <li>C#</li>
+  <li>Russian</li>
+  <li>English</li>
 </ul>
 
-<p><strong>Technologies</strong></p>
+<h2 id="h_skils">Skills</h2>
+
+<p><strong>Primary</strong></p>
+
+<ul>
+  <li>Swift, Objective-C</li>
+</ul>
 
 <ul>
   <li>Xcode</li>
-  <li>Git, SVN (Cornerstone)</li>
+  <li>Git</li>
+  <li>Fastlane</li>
   <li>CocoaPods, Carthage</li>
-  <li>Can use Shell and write some basic scripts</li>
-  <li>Auto Layout (VFL, <a href="https://github.com/PureLayout/PureLayout">PureLayout</a>)</li>
-  <li>ARC/MRC, GCD, Core Data, Core Animation, Core Image, Photos Kit, Core Text, Keychain Services, XCTest, Core Motion, AVFoundation, etc</li>
-  <li>Aware of RxSwift and ReactiveCocoa</li>
-  <li>OpenGL ES 2.0</li>
-  <li>Wireshark</li>
+  <li>Core Data</li>
+  <li>Auto Layout (VFL, PureLayout)</li>
+  <li>IAP Purchases, GCD, Core Animation, Core Image, Photos Kit, Core Text, Core Graph, Keychain Services, XCTest, Core Motion, AVFoundation, ARC/MRC, etc</li>
+  <li>IoC Containers</li>
+  <li>RxSwift, ReactiveCocoa</li>
 </ul>
 
-<p><strong>Interests</strong></p>
-
+<p><strong>Secondary</strong></p>
 <ul>
-  <li>Functional programming</li>
-  <li>Scheme</li>
-  <li>Haskell</li>
+  <li>C, C++, C#</li>
+  <li>Ruby, Bash</li>
+</ul>
+<ul>
+  <li>Wireshark</li>
+  <li>OpenGL ES 2.0</li>
+  <li>Web (HTML, CSS)</li>
+  <li>Jekyll</li>
 </ul>
 
 <h2 id="h_education">Education</h2>
@@ -174,18 +143,18 @@
 
 <h2 id="h_other_interests">Other Interests</h2>
 
-<p>In additional to technical activities I enjoy traveling, and photography - you can find some of my photos at <a href="https://www.flickr.com/photos/agrebenyuk/">flickr</a>.</p>
+<p>In addition to technical activities I enjoy traveling, and <a href="https://www.flickr.com/photos/agrebenyuk/">photography</a>.</p>
 
 <h2 id="h_contacts">Contacts</h2>
 
 <ul>
   <li><a href="mailto:grebenyuk.alexander@gmail.com">grebenyuk.alexander@gmail.com</a></li>
-  <li><a href="https://ru.linkedin.com/in/alexander-grebenyuk-3a0b4383">linkedin</a></li>
+  <li><a href="https://kean.github.io">homepage</a></li>
   <li><a href="https://github.com/kean">github</a></li>
   <li><a href="https://twitter.com/a_grebenyuk">twitter</a></li>
-  <li><a href="https://www.facebook.com/agrebenyuk">facebook</a></li>
+  <li><a href="https://ru.linkedin.com/in/alexander-grebenyuk-3a0b4383">linkedin</a></li>
 </ul>
-    
+
 </div>
 </body>
 </html>

@@ -1,116 +1,51 @@
+---
+layout: default
+---
+
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Alexander Grebenyuk</title>
-  <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta name="description" content="Alexander Grebenyuk, professional software developer (Swift, Objective-C) from Moscow.">
-  <meta name="keywords" content="swift, objective-c, ios, objc">
-  <meta name="author" content="Alexander Grebenyuk">
-  <style>
-  html {
-    background: #FFFFFF;
-    color: rgb(51, 51, 51);
-    font-weight: 300;
-    font-size: 2rem;
-    padding: 8px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
-    position: relative;
-    min-height: 100%;
-  }
-  body {
-    margin-bottom: 120px;
-  }
-  div.content { 
-    max-width: 900px;
-    margin: 0 auto
-  }
-  a:link { color: rgb(0, 126, 223); text-decoration: none;  }
-  a:active { color: rgb(0, 126, 223); text-decoration: none; }
-  a:visited { color: rgb(0, 126, 223); text-decoration: none; }
-  a:hover { color: rgb(0, 126, 223); text-decoration: underline; }
-  h1 {
-    padding: 0.3rem 0.5rem;
-    font-size: 50px;
-    font-weight: 300;
-    line-height: 2.3rem;
-    margin: 0;
-  }
-  #avatar * {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 1.8rem;
-  }
-  #header * {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 0.8rem;
-  }
-  #tags {
-    margin-top: 0.0rem;
-    font-size: 0.85rem;
-  }
-  #summary {
-    margin-top: 0.8rem;
-    font-size: 0.6rem;
-    line-height: 0.9rem;
-  }
-  #bop {
-    margin-top: 0.8rem;
-    font-size: 0.8rem;
-  }
-  footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    padding-bottom: 1rem;
-  }
-  div.button img:hover {
-    opacity: .75;
-  }
-  footer img {
-    height: 50px;
-    margin: 70px 15px 0px 15px;
-  }
-  @media (max-width: 480px) {
-    footer img {
-      height: 50px;
-      margin: 70px 15px 0px 15px;
-    }
-  }
-  </style>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49849401-2', 'auto');
-  ga('send', 'pageview');
-  </script>
-</head>
-
 <body>
-  <div class="content">
-    <center id='avatar'><img src='images/avatar.png' height="110"></center>
-    <center id='header'><h1>Alexander Grebenyuk</h1></center>
-    <center id='tags'>iOS <span style="color: rgb(240, 81, 56)">/</span> Swift <span style="color: rgb(240, 81, 56)">/</span> Objective-C</center>
-    <center id='summary'>Software developer from Moscow. I have experience of working for both small startups and huge internet companies. Of particular interest to me is Swift, which I started to experiment with from the day one. I am committed to the open source development and I've personally authored multiple frameworks.</center>
-    <center id='bop'><a href='./resume.html'>Resume</a></center>
-  </div>
-</body>
 
-<footer>
-  <center>
-    <div class="button">
-      <a href='https://github.com/kean'><img src='./images/GitHub-Mark-120px-plus.png'></a>
-      <a href='https://twitter.com/a_grebenyuk'><img src='./images/03-twitter.svg'></a>
-      <a href='https://www.linkedin.com/pub/alexander-grebenyuk/83/b43/3a0'><img src='./images/11-linkedin.svg'></a>
-    </div>
-  </center>
-</footer>
+<div class="content">
+
+<h1 class="home-section-title">Alexander Grebenyuk</h1>
+
+<p>Software developer from Moscow. I have experience of working for both small startups and large internet companies. Of particular interest to me is Swift, which I started to experiment with from the day one. I am committed to the open source development and I've personally authored <a href="https://github.com/kean">multiple frameworks</a>. I also <a href="https://kean.github.io/blog/">blog</a> about programming infrequently. In addition to technical activities I enjoy traveling and <a href='https://www.flickr.com/photos/agrebenyuk/'>photography</a>.</p>
+    
+<p class="home-resume-button"><a href='./resume.html'>Resume HTML</a> / <a href='./resources/resume_grebenyuk_alexander.pdf'>Resume PDF</a></p>
+
+
+<hr class="home-divider">
+
+<h1 class="home-section-title">Open Source</h1>
+
+<ul class="open-source-list">
+{% for project in site.data.open-source.projects %}
+  <li>
+    <h2 class="post-link-container">
+      <a class="post-link" href="{{ project.link }}">{{ project.title }}</a> <span class="post-meta">{{ project.languages }}</span>
+    </h2>
+    <p class="post-excerpt">{{ project.description }}</p>
+    <p>
+  </li>
+{% endfor %}
+</ul>
+
+
+<hr class="home-divider">
+
+<h1 class="home-section-title">Contacts</h1>
+
+<ul class="social-media-list">
+<li>{% include icon-github.html username=site.github_username %}</li>
+<li>{% include icon-twitter.html username=site.twitter_username %}</li>
+<li><a href="https://ru.linkedin.com/in/alexander-grebenyuk-3a0b4383">linkedin</a></li>
+<li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+</ul>
+
+</div>
+
+</body>
 
 </html>
