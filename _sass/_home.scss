@@ -1,20 +1,11 @@
 
 .home-avatar {
-    margin-top: $spacing-unit;
-
-    @include media-query($on-laptop) {
-        margin-top: $spacing-unit * 0.25;
-    }
+    border-radius: 50%;
+    max-width: 140px;
 }
 
-.home-resume-button {
-    text-align: center;
-    font-size: 20px;
-    margin: $spacing-unit * 0.5 0;
-
-    @include media-query($on-laptop) {
-        margin: $spacing-unit * 0.5 0;
-    }
+.home-resume {
+    font-size: 22px;
 }
 
 .home-divider {
@@ -28,15 +19,26 @@
     }
 }
 
-.home-section-title {
-    text-align: center;
-    font-size: 34px;
+.home-title {
+    font-size: 42px;
     font-weight: 700;
-    margin-top: $spacing-unit;
+    margin-top: 0.5 * $spacing-unit;
     margin-bottom: 0.5 * $spacing-unit;
-    line-height: 1.1;
+    line-height: 1;
 
     @include media-query($on-palm) {
-        font-size: 30px;
+        font-size: 40px;
+    }
+}
+
+.home-section-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 1.5 * $spacing-unit;
+    margin-bottom: 0.5 * $spacing-unit;
+    line-height: 1;
+
+    @include media-query($on-palm) {
+        font-size: 36px;
     }
 }

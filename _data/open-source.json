@@ -41,30 +41,6 @@
             "link" : "https://github.com/kean/DFJPEGTurbo",
             "languages" : "Objective-C",
             "description" : "<a href=\"http://www.libjpeg-turbo.org\">libjpeg-turbo</a> wrapper (accelerates baseline JPEG compression using SIMD)"
-        },
-        {
-            "title" : "Nuke Alamofire Plugin",
-            "link" : "https://github.com/kean/Nuke-Alamofire-Plugin",
-            "languages" : "Swift",
-            "description" : "Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that replaces networking stack with <a href=\"https://github.com/Alamofire/Alamofire\">Alamofire</a>"
-        },
-        {
-            "title" : "Nuke Gifu Plugin",
-            "link" : "https://github.com/kean/Nuke-Gifu-Plugin",
-            "languages" : "Swift",
-            "description" : "Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that uses <a href=\"https://github.com/kaishin/Gifu\">Gifu</a> to enable GIF support"
-        },
-        {
-            "title" : "Nuke Toucan Plugin",
-            "link" : "https://github.com/kean/Nuke-Toucan-Plugin",
-            "languages" : "Swift",
-            "description" : "<a href=\"https://github.com/gavinbunney/Toucan\">Toucan</a> plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that extends it with a simple API for processing images"
-        },
-        {
-            "title" : "Nuke FLAnimatedImage Plugin",
-            "link" : "https://github.com/kean/Nuke-AnimatedImage-Plugin",
-            "languages" : "Swift",
-            "description" : "Plugin for <a href=\"https://github.com/kean/Nuke\">Nuke</a> that uses <a href=\"https://github.com/Flipboard/FLAnimatedImage\">FLAnimatedImage</a> to enable GIF support"
         }
     ]
 }

@@ -8,12 +8,12 @@ html {
   padding: 8px;
   border: 0;
   vertical-align: baseline;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  font-family: Georgia, serif, "Times New Roman", Helvetica, "Helvetica Neue";
   color: rgb(51, 51, 51);
-  max-width: 760px;
+  max-width: 660px;
   margin: 0 auto;
 }
 

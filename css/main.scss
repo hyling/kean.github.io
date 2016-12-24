@@ -3,8 +3,8 @@
 ---
 @charset "utf-8";
 
-$base-font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif, Arial;
-$base-font-size: 17px;
+$base-font-family: Georgia, serif, "Times New Roman", Helvetica, "Helvetica Neue";
+$base-font-size: 18px;
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.6;
@@ -20,10 +20,10 @@ $background-color: #fdfdfd;
 $brand-color: #1A25FB;
 
 // Width of the content area
-$content-width: 680px;
+$content-width: 640px;
 
-$on-palm: 600px;
-$on-laptop: 740px;
+$on-palm: 560px;
+$on-laptop: 600px;
 
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
@@ -36,6 +36,3 @@ $on-laptop: 740px;
         "layout",
         "home"
 ;
-
-// Import fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic);
