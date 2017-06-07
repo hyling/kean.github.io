@@ -8,13 +8,13 @@ permalink: /rxswift-testing
 uuid: cdddbe85-b27a-4ba3-8336-340919e3cf04
 ---
 
-One of my favorite features of RxSwift is a testing infrastructure built around it, RxTest. And it's an undersold one too, it's barely mentioned on a [Why](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) RxSwift page. Let's take at look at it on a real world example - paging in a scroll view.
+One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it's barely mentioned on a [Why](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) RxSwift page. Let's take at look at it on a real world example - paging in a scroll view.
 
 > Requirements: Xcode 8.3, Swift 3.1, RxSwift 3.5
 
 # Paging
 
-One of the main component responsible for paging in our app is `PagingScrollViewModel` which is defined like this:
+One of the main components responsible for paging in our app is `PagingScrollViewModel` which is defined like this:
 
 ```swift
 final class PagingScrollViewModel<Page> {
@@ -34,7 +34,7 @@ As you can see it is initialized with a paging service and two observable sequen
 
 One of the scenarios that I'd like to capture by unit tests is this:
 
-> When the user scrolls to the bottom of the scroll view automatically start loading a next page (if there is one) and display a footer view with an activity indicator. If the request for the next page fails show a footer view with an error message and a "Retry" button.
+> When the user scrolls to the bottom of the scroll view automatically start loading a next page and display a footer view with an activity indicator. If the request for the next page fails show a footer view with an error message and a "Retry" button.
 
 It's a relatively complex scenario which would normally seem hard to test. But it's actually really easy using RxTest. Let's first take a quick look at RxTest and then jump right into the test file.
 
