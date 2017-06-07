@@ -27,20 +27,21 @@
 
 .post-link {
     display: inline-block;
-    font-size: 28px;
+    font-size: 32px;
     max-width:100%;
     color: black;
     line-height: 1.0;
     letter-spacing: -1px;
 
     &:visited {
-        color: black;
+        color: #333;
     }
 }
 
 .post-meta {
     color: $grey-color;
     font-size: 15px;
+    font-weight: 400;
     margin-top: 0.125 * $spacing-unit;
 }
 
@@ -78,9 +79,9 @@ img.post-twitter-icon:hover {
     margin-bottom: 1.5 * $spacing-unit;
 
     .post-link {
-        font-size: 52px;
+        font-size: 56px;
         @include media-query($on-laptop) {
-            font-size: 40px;
+            font-size: 44px;
         }
     }
 }
@@ -105,9 +106,4 @@ img.post-twitter-icon:hover {
     @include media-query($on-palm) {
         width: 100%;
     }
-}
-
-.home-avatar {
-    border-radius: 50%;
-    max-width: 160px;
 }

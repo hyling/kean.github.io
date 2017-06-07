@@ -8,6 +8,10 @@ dl, dd, ol, ul, figure, main, aside {
     padding: 0;
 }
 
+h1, h2, h3 {
+
+    font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
 /**
  * Basic styling
@@ -169,7 +173,6 @@ code {
     font-size: 13px;
     line-height: 18px;
     letter-spacing: -0.2px;
-    border: 0.5px solid $grey-color-light;
     border-radius: 8px;
     background-color: #F4F4F4;
 }

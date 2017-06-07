@@ -10,7 +10,7 @@ uuid: 5236b644-6093-4896-9318-def1e4ffaf80
 
 I used to be a person who would never touch any of the GUI tools like Interface Builder. However the recent changes to IB made me change my mind about it. I was completely sold on the _Preview_ feature which allows you to test the UI in portrait or landscape format, and on different screen sizes. Let's see how to make the best use of this feature.
 
-<img src="{{ site.url }}/blog/images/ib_designable/ib_screen_01.png" class="screenshot">
+<img src="{{ site.url }}/images/ib_designable/ib_screen_01.png" class="screenshot">
 
 # Using Interface Builder
 
