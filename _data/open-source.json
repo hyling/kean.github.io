@@ -24,23 +24,5 @@
             "languages" : "Swift",
             "description" : "Automates prefetching of content in UITableView and UICollectionView"
         },
-        {
-            "title" : "DFCache",
-            "link" : "https://github.com/kean/DFCache.git",
-            "languages" : "Objective-C",
-            "description" : "LRU cache with fast metadata built on top of UNIX extended file attributes"
-        },
-        {
-            "title" : "DFImageManager",
-            "link" : "https://github.com/kean/DFImageManager",
-            "languages" : "Objective-C",
-            "description" : "Image loading, processing, caching and preheating"
-        },
-        {
-            "title" : "DFJPEGTurbo",
-            "link" : "https://github.com/kean/DFJPEGTurbo",
-            "languages" : "Objective-C",
-            "description" : "<a href=\"http://www.libjpeg-turbo.org\">libjpeg-turbo</a> wrapper (accelerates baseline JPEG compression using SIMD)"
-        }
     ]
 }

@@ -9,10 +9,12 @@
 title: Alexander Grebenyuk
 email: grebenyuk.alexander@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Software developer from Moscow. Programming in Swift, Objective-C and more.
-url: "https://kean.github.io" # the base hostname & protocol for your site
+  Programming: Swift, Objective-C, and more.
 twitter_username: a_grebenyuk
 github_username: kean
 
 # Build settings
 markdown: kramdown
+
+# Site specific
+featured_post: "RxSwift Testing"

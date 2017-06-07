@@ -9,7 +9,6 @@ dl, dd, ol, ul, figure, main, aside {
 }
 
 
-
 /**
  * Basic styling
  */
@@ -25,9 +24,6 @@ body {
     font-kerning: normal;
 }
 
-h1, h2, h3 {
-    line-height: 1;
-}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -36,28 +32,53 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+    margin-top: $spacing-unit / 2;
 }
+
+h1, h2, h3
+%vertical-rhythm {
+    margin-top: $spacing-unit * 1.5;
+    @include media-query($on-palm) {
+        margin-top: $spacing-unit * 1;
+    }
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.1;
+}
+
+
+// main {
+//     max-width: 100%;
+//     float: right;
+//
+//     @include media-query($on-laptop) {
+//         max-width: 100%;
+//     }
+// }
 
 
 /**
  * Sidebar
  */
-
 main {
-    max-width: 75%;
+    max-width: 68%;
     float: right;
 
-    @include media-query($on-palm) {
+    @include media-query($on-laptop) {
         max-width: 100%;
     }
 }
 
 aside {
-    max-width: 20%;
+    max-width: 24%;
     float: left;
+    padding: $spacing-unit * 0.5;
+    background: #F4F4F4;
+    border: 0.5px solid $grey-color-light;
+    border-radius: 8px;
 
-    @include media-query($on-palm) {
+    @include media-query($on-laptop) {
         display: none;
     }
 }
@@ -72,7 +93,6 @@ img {
 }
 
 
-
 /**
  * Figures
  */
@@ -83,7 +103,6 @@ figure > img {
 figcaption {
     font-size: $small-font-size;
 }
-
 
 
 /**
@@ -101,14 +120,12 @@ li {
 }
 
 
-
 /**
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: $base-font-weight;
+    font-weight: 700;
 }
-
 
 
 /**
@@ -128,21 +145,19 @@ a {
 }
 
 
-
 /**
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-
-    > :last-child {
-        margin-bottom: 0;
+    font-size: 16px;
+    color: $grey-color-dark;
+    border-left: 3px solid $brand-color;
+    margin: 0;
+    @include media-query($on-palm) {
+        font-size: 15px;
     }
+    padding: 0 0.5 * $spacing-unit;
 }
-
 
 
 /**
@@ -150,16 +165,17 @@ blockquote {
  */
 pre,
 code {
-    font-family: Menlo, Courier, Consolas, "Liberation Mono", monospace;
+    font-family: Menlo, monospace, Courier, Consolas, "Liberation Mono", monospace;
     font-size: 13px;
-    line-height: 17px;
+    line-height: 18px;
+    letter-spacing: -0.2px;
     border: 0.5px solid $grey-color-light;
-    border-radius: 4px;
-    background-color: #F8F8F8;
+    border-radius: 8px;
+    background-color: #F4F4F4;
 }
 
 code {
-    padding: 1px 5px;
+    padding: 3px 5px;
 }
 
 pre {
@@ -174,7 +190,6 @@ pre {
 }
 
 
-
 /**
  * Wrapper
  */
@@ -187,14 +202,13 @@ pre {
     padding-left: $spacing-unit;
     @extend %clearfix;
 
-    @include media-query($on-laptop) {
+    @include media-query($on-palm) {
         max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
         max-width:         calc(#{$content-width} - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
 }
-
 
 
 /**
@@ -208,7 +222,6 @@ pre {
         clear: both;
     }
 }
-
 
 
 /**
@@ -228,18 +241,36 @@ pre {
     }
 }
 
+
+/**
+ * Other
+ */
+
+.hr-divider {
+    margin: $spacing-unit * 0.5 0 $spacing-unit 0;
+    border-top: 1px solid #e0e0e0;
+    transform: scaleY(0.5);
+    width: 100%;
+}
+
+
 /**
  *Share page
  */
 .media-buttons-container {
-    text-align: center;
+    margin: $spacing-unit 0;
 
     a {
-        font-weight: 400;
-        margin-left: 10px;
-
-        &:hover {
-            border-bottom: 1px dashed #fff;
-        }
+        font-weight: 600;
     }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
 }

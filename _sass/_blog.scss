@@ -1,0 +1,146 @@
+
+/**
+ * Content
+ */
+.post-header {
+    margin: 0.5 * $spacing-unit 0;
+}
+
+.post-title {
+    letter-spacing: -1px;
+    line-height: 1.0;
+    display: inline-block;
+    max-width:100%;
+    margin: 0;
+
+    font-size: 52px;
+    @include media-query($on-laptop) {
+        font-size: 40px;
+    }
+}
+
+.post-content {
+    h2 {
+        font-size: 30px;
+
+        margin-bottom: $spacing-unit / 2;
+        margin-top: $spacing-unit;
+
+        @include media-query($on-laptop) {
+            font-size: 26px;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+
+        margin-bottom: $spacing-unit / 3;
+        margin-top: $spacing-unit / 2;
+
+        @include media-query($on-laptop) {
+            font-size: 22px;
+        }
+    }
+}
+
+
+/**
+ * Post Footer
+ */
+.post-footer {
+  h2 {
+    color: $grey-color;
+  }
+}
+
+img.screenshot-stackview {
+    height: auto;
+    width: 405px;
+}
+
+img.screenshot {
+    margin-bottom: $spacing-unit;
+    margin-top: $spacing-unit / 2;
+    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/**
+ * Sidebar
+ */
+.post-sidebar {
+    h2 {
+        font-size: 23px;
+        margin-top: 14px; // Manually align by baseline. TODO: Find a better way.
+        margin-bottom: 12px;
+    }
+}
+
+.post-sidebar-block {
+    margin: 0 0 $spacing-unit 0;
+}
+
+.post-sidebar-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        border-top: 1px solid $grey-color-light;
+    }
+
+    > li:first-child {
+        margin-top: 0;
+        border-top: none;
+    }
+}
+
+.post-sidebar-link-container {
+    margin: 0.25 * $spacing-unit 0;
+    a {
+        font-size: 16px;
+    }
+}
+
+
+.post-sidebar-block {
+    p {
+      font-size: 16px;
+    }
+}
+
+.post-sidebar-preview-container {
+    border-top: 1px solid lightgray;
+    margin: 0 0 0.5 * $spacing-unit 0;
+    width: 100%;
+
+    .post-link {
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+    }
+}
+
+.post-sidebar-block {
+  .section-title {
+      margin-top: $spacing-unit * 1.5;
+      color: $grey-color;
+      font-size: 24px;
+   }
+}
+
+
+.open-source-list {
+     margin-left: 0;
+     list-style: none;
+
+     > li {
+         border-top: 1px solid $grey-color-light;
+         margin-bottom: 15px;
+     }
+
+     > li:first-child {
+         border-top: none;
+     }
+ }

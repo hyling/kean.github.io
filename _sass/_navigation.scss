@@ -1,0 +1,80 @@
+/**
+ * Site header
+ */
+.site-header {
+    position: relative;
+    margin-top: 0.5 * $spacing-unit;
+}
+
+.site-logo-icon {
+    margin: 0;
+    float: left;
+    width: 32px;
+    height: 32px;
+}
+
+.site-about {
+    font-size: 13px;
+    font-family:  Georgia, Menlo, Courier, monospace;
+    float: right;
+    color: $brand-color;
+    line-height: 1.0;
+    text-align: right;
+
+    &,
+    &:visited {
+        color: $brand-color;
+    }
+}
+
+
+/**
+ * Navigation
+ */
+.site-nav {
+    float: right;
+    line-height: 56px;
+}
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+    padding: $spacing-unit / 2 0;
+    border-top: 1px solid #eee;
+}
+
+.footer-wrapper {
+    font-size: 13px;
+    color: $grey-color;
+    margin-left: -$spacing-unit / 2;
+    @extend %clearfix;
+    text-align: center;
+    margin-bottom: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        color: lighten($brand-color, 10%)
+    }
+}
+
+
+/**
+ * Page content
+ */
+.page-content {
+    padding: $spacing-unit 0;
+
+    @include media-query($on-palm) {
+        padding: $spacing-unit / 2 0;
+    }
+}
+
+.page-heading {
+    font-size: 20px;
+}

@@ -1,0 +1,40 @@
+<div class="post-sidebar-block">
+
+  <img src="images/avatar.jpg" class="home-avatar">
+
+  <h2>Alexander<br/>Grebenyuk</h2>
+
+  <p>Software developer from Moscow programming in Swift, Objective-C. Of particular interest to me is Swift, which I started to experiment with from the day one.</p>
+
+  <ul class="social-media-list">
+      <li><a href="https://github.com/kean">github</a></li>
+      <li><a href="https://twitter.com/a_grebenyuk">twitter</a></li>
+      <li><a href="https://www.linkedin.com/in/alexander-grebenyuk">linkedin</a></li>
+  </ul>
+
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="post-sidebar-list">
+        {% for post in site.posts limit:4 %}
+            {% if post.title != page.title %}
+            <div class="post-sidebar-preview-container">
+                {% include post_preview.html %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+<h2 class="section-title">Open Source</h2>
+
+<div class="post-sidebar-list">
+{% for project in site.data.open-source.projects %}
+  <div class="post-sidebar-preview-container">
+    <h2 class="post-link-container">
+      <a class="post-link" href="{{ project.link }}">{{ project.title }}</a> <span class="post-meta">{{ project.languages }}</span>
+    </h2>
+    <p class="post-excerpt">{{ project.description }}</p>
+    <p>
+  </div>
+{% endfor %}
+</div>
+
+</div>

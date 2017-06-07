@@ -3,7 +3,7 @@
 ---
 @charset "utf-8";
 
-$base-font-family: Georgia, serif, "Times New Roman", Helvetica, "Helvetica Neue";
+$base-font-family: Georgia, sans-serif, Helvetica, "Helvetica Neue", Helvetica, sans-serif, Arial;
 $base-font-size: 18px;
 $base-font-weight: 400;
 $small-font-size: $base-font-size * 0.875;
@@ -15,24 +15,38 @@ $grey-color: #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark: darken($grey-color, 25%);
 
-$text-color: #111;
+$text-color: #333;
 $background-color: #fdfdfd;
+$background-color-light-grey: lighten($grey-color, 46%);
 $brand-color: #1A25FB;
 
 // Width of the content area
-$content-width: 640px;
+$content-width: 1140px;
 
-$on-palm: 560px;
-$on-laptop: 600px;
+$on-palm: 680px;
+$on-laptop: 900px;
 
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
         @content;
     }
 }
 
+
+// Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
-        "layout",
-        "home"
+        "icons",
+        "home",
+        "navigation",
+        "blog",
+        "syntax-highlighting"
 ;

@@ -2,44 +2,41 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html>
+<main>
 
-<body>
+<div class="home">
 
-<div class="content">
+<div class="branch-container">
 
-<img src="images/avatar.jpg" class="home-avatar">
 
-<h1 class="home-title">Alexander<br/>Grebenyuk</h1>
 
-<p>Software developer from Moscow programming in Swift, Objective-C. I have experience of working for both small startups and large internet companies. Of particular interest to me is Swift, which I started to experiment with from the day one. I am committed to the open source development and I've personally authored <a href="https://github.com/kean">multiple frameworks</a>. I also <a href="https://kean.github.io/blog/">blog</a> about programming occasionally. In addition to technical activities I enjoy traveling and <a href='https://www.flickr.com/photos/agrebenyuk/'>photography</a>.</p>
-
-<h1 class="home-section-title">Contacts</h1>
-
-<ul class="social-media-list">
-    <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-    <li><a href="https://github.com/kean">github</a></li>
-    <li><a href="https://twitter.com/a_grebenyuk">twitter</a></li>
-    <li><a href="https://www.linkedin.com/in/alexander-grebenyuk">linkedin</a></li>
-</ul>
-
-<h1 class="home-section-title">Open Source</h1>
-
-<ul class="open-source-list">
-{% for project in site.data.open-source.projects %}
-  <li>
-    <h2 class="post-link-container">
-      <a class="post-link" href="{{ project.link }}">{{ project.title }}</a> <span class="post-meta">{{ project.languages }}</span>
-    </h2>
-    <p class="post-excerpt">{{ project.description }}</p>
-    <p>
-  </li>
+{% for post in site.posts %}
+{% if post.title == site.featured_post %}
+<div class="post-featured-container">
+    {% include post_preview.html %}
+</div>
+{% endif %}
 {% endfor %}
-</ul>
+
+<div class="post-preview-list-container">
+{% for post in site.posts %}
+{% if post.title != site.featured_post %}
+<div class="post-preview-container">
+    {% include post_preview.html %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
 
 </div>
 
-</body>
+</div> <!--home!-->
 
-</html>
+</main>
+
+
+<aside class="post-sidebar">
+
+{% include sidebar-home.html %}
+
+</aside>
