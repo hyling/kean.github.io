@@ -4,7 +4,7 @@ title:  "Interface Builder: UI Testing"
 date:   2017-05-01 10:00:00 +0300
 category: programming
 tags: ios
-permalink: /interface-builder-ui-testing
+permalink: /post/interface-builder-ui-testing
 uuid: 5236b644-6093-4896-9318-def1e4ffaf80
 ---
 

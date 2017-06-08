@@ -4,7 +4,7 @@ title:  "Preheating Images"
 date:   2016-01-12 20:30:05 +0300
 category: programming
 tags: swift, ios, nuke
-permalink: /image-preheating
+permalink: /post/image-preheating
 uuid: 7ca6cd36-1cb2-4825-93af-3c8e291b9960
 ---
 

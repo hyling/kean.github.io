@@ -4,7 +4,7 @@ title:  "Immutability and Builder Pattern"
 date:   2016-01-10 19:30:05 +0300
 category: programming
 tags: objective-c, ios, patterns
-permalink: /immutability-and-builder-pattern
+permalink: /post/immutability-and-builder-pattern
 uuid: 944811d2-f3f0-425c-8178-e317873e74cf
 ---
 
@@ -123,7 +123,7 @@ Let's dive straight into implementation but this time we will start with a base 
 @end
 {% endhighlight %}
 
-`Entity` class has no mutable counterpart which means that defensive copying is no longer required. We also used just two lines of code for an `ID` property. 
+`Entity` class has no mutable counterpart which means that defensive copying is no longer required. We also used just two lines of code for an `ID` property.
 
 
 ## References

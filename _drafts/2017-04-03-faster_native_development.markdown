@@ -4,7 +4,7 @@ title:  "Native Development is Fast"
 date:   2017-04-03 10:00:00 +0300
 category: programming
 tags: ios
-permalink: /native-development-is-fast
+permalink: /post/native-development-is-fast
 uuid: 0d40647d-74cb-4ea1-97b4-3acfea271ba6
 ---
 

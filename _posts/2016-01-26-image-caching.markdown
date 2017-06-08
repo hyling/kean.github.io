@@ -4,7 +4,7 @@ title:  "Image Caching"
 date:   2016-01-26 15:30:05 +0300
 category: programming
 tags: swift, ios, http, nsurlsession
-permalink: /image-caching
+permalink: /post/image-caching
 uuid: d9cd6b09-75ec-4873-a9ef-c7457cc40b34
 ---
 
