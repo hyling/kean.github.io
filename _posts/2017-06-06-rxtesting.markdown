@@ -8,7 +8,7 @@ permalink: /post/rxswift-testing
 uuid: cdddbe85-b27a-4ba3-8336-340919e3cf04
 ---
 
-One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it's barely mentioned on a [Why](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) RxSwift page. Let's take at look at it on a real world example - paging in a scroll view.
+One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it isn't even mentioned on a [Why RxSwift](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) page. Let's take at look at it on a real world example - paging in a scroll view.
 
 > Requirements: Xcode 8.3, Swift 3.1, RxSwift 3.5
 
@@ -151,7 +151,7 @@ Because RxSwift is such a generic abstraction which provides a unified interface
 
 There are other ways to write RxSwift tests one of which is called "[marble tests](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/UnitTests.md#testing-operator-compositions-view-models-components)". The idea is to use "marble notation" to define expected events. There is an example of marble tests in an RxSwift repo.
 
-The downside of this approach is that you have to make sure that everything happens on a `TestScheduler`. And if there is any "uncontrolled" asynchronous code which gets executed as part of your tests then you'll still [end up writing asynchronous tests](http://rx-marin.com/post/rxswift-rxtests-unit-tests-part-2/). 
+The downside of this approach is that you have to make sure that everything happens on a `TestScheduler`. And if there is any "uncontrolled" asynchronous code which gets executed as part of your tests then you'll still [end up writing asynchronous tests](http://rx-marin.com/post/rxswift-rxtests-unit-tests-part-2/).
 
 # Links
 
