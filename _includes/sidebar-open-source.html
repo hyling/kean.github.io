@@ -1,0 +1,13 @@
+<h2 class="section-title">Open Source</h2>
+
+<div class="sidebar-list">
+{% for project in site.data.open-source.projects %}
+  <div class="sidebar-preview-container">
+    <h2 class="post-link-container">
+      <a class="post-link" href="{{ project.link }}">{{ project.title }}</a> <span class="post-meta">{{ project.languages }}</span>
+    </h2>
+    <p class="post-excerpt">{{ project.description }}</p>
+    <p>
+  </div>
+{% endfor %}
+</div>

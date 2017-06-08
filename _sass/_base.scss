@@ -9,7 +9,6 @@ dl, dd, ol, ul, figure, main, aside {
 }
 
 h1, h2, h3 {
-
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -27,7 +26,6 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
 }
-
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -47,24 +45,11 @@ h1, h2, h3
     }
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
+    font-weight: 700;
 }
 
-
-// main {
-//     max-width: 100%;
-//     float: right;
-//
-//     @include media-query($on-laptop) {
-//         max-width: 100%;
-//     }
-// }
-
-
-/**
- * Sidebar
- */
 main {
     max-width: 68%;
     float: right;
@@ -77,8 +62,8 @@ main {
 aside {
     max-width: 24%;
     float: left;
-    padding: $spacing-unit * 0.5;
-    background: #F4F4F4;
+    padding: $spacing-unit * 0.75 $spacing-unit * 0.5;
+    background: $grey-backgrould-light-color;
     border: 0.5px solid $grey-color-light;
     border-radius: 8px;
 
@@ -87,19 +72,11 @@ aside {
     }
 }
 
-
-/**
- * Images
- */
 img {
     max-width: 100%;
     vertical-align: middle;
 }
 
-
-/**
- * Figures
- */
 figure > img {
     display: block;
 }
@@ -108,10 +85,6 @@ figcaption {
     font-size: $small-font-size;
 }
 
-
-/**
- * Lists
- */
 ul, ol {
     margin-left: $spacing-unit;
 }
@@ -123,18 +96,6 @@ li {
     }
 }
 
-
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-}
-
-
-/**
- * Links
- */
 a {
     color: $brand-color;
     text-decoration: none;
@@ -148,10 +109,6 @@ a {
     }
 }
 
-
-/**
- * Blockquotes
- */
 blockquote {
     font-size: 16px;
     color: $grey-color-dark;
@@ -163,18 +120,15 @@ blockquote {
     padding: 0 0.5 * $spacing-unit;
 }
 
-
-/**
- * Code formatting
- */
 pre,
 code {
     font-family: Menlo, monospace, Courier, Consolas, "Liberation Mono", monospace;
     font-size: 13px;
     line-height: 18px;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.4px;
     border-radius: 8px;
-    background-color: #F4F4F4;
+    background-color: $grey-backgrould-light-color;
+    border: 0.5px solid $grey-color-light;
 }
 
 code {
@@ -182,7 +136,7 @@ code {
 }
 
 pre {
-    padding: 8px 12px;
+    padding: 12px 12px;
     overflow-x: auto;
 
     > code {
@@ -192,10 +146,6 @@ pre {
     }
 }
 
-
-/**
- * Wrapper
- */
 .wrapper {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
     max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
@@ -213,10 +163,6 @@ pre {
     }
 }
 
-
-/**
- * Clearfix
- */
 %clearfix {
 
     &:after {
@@ -226,10 +172,6 @@ pre {
     }
 }
 
-
-/**
- * Icons
- */
 .icon {
 
     > svg {
@@ -244,11 +186,6 @@ pre {
     }
 }
 
-
-/**
- * Other
- */
-
 .hr-divider {
     margin: $spacing-unit * 0.5 0 $spacing-unit 0;
     border-top: 1px solid #e0e0e0;
@@ -256,22 +193,11 @@ pre {
     width: 100%;
 }
 
-
-/**
- *Share page
- */
-.media-buttons-container {
-    margin: $spacing-unit 0;
-
-    a {
-        font-weight: 600;
-    }
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
 }
+
 th, td {
   padding: 0.25rem;
   text-align: left;

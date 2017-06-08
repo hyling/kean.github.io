@@ -1,0 +1,10 @@
+<h2 class="section-title">Latest Posts</h2>
+<div class="sidebar-list">
+    {% for post in site.posts limit:4 %}
+        {% if post.title != page.title %}
+        <div class="sidebar-preview-container">
+            {% include post_preview.html %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>

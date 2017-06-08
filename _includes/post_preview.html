@@ -3,4 +3,4 @@
     <p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}</span></p>
 </header>
 <p class="post-excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
-<p><a class="post-continue-reading" href="{{ post.url | prepend: site.baseurl }}">Read more &#xbb;</a></p>
+<p class="post-continue-reading"><a href="{{ post.url | prepend: site.baseurl }}">Read more &#xbb;</a></p>
