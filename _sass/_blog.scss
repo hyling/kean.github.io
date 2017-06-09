@@ -45,13 +45,16 @@
 
 
 .media-buttons-container {
-    margin: $spacing-unit 0;
+    margin: $spacing-unit * 1.25 0;
+
+    .icon {
+        margin: 0 3px;
+    }
 
     a {
         font-weight: 600;
     }
 }
-
 
 
 /**

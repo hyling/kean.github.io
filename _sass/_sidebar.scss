@@ -67,3 +67,26 @@ h2.sidebar-title {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+.sidebar-contacts {
+    margin: $spacing-unit * 0.5 0;
+
+    .icon {
+        width: 23px;
+        height: 23px;
+        margin: 0 3px;
+        opacity: 0.6;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.sidebar-open-source {
+    .icon-swift {
+        opacity: 0.33;
+        width: 16px;
+        height: 16px;
+    }
+}

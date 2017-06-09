@@ -39,7 +39,7 @@ ul, ol, dl, figure,
 
 h1, h2, h3
 %vertical-rhythm {
-    margin-top: $spacing-unit * 1.5;
+    margin-top: $spacing-unit * 1.25;
     @include media-query($on-palm) {
         margin-top: $spacing-unit * 1;
     }
