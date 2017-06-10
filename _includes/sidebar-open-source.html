@@ -1,14 +1,14 @@
 <h2 class="section-title">Open Source</h2>
 
-<div class="sidebar-open-source">
+<div class="sidebar-oss-container">
     <div class="sidebar-list">
     {% for project in site.data.open-source.projects %}
-      <div class="sidebar-preview-container">
-        <h2 class="post-link-container">
-          <a class="post-link" href="{{ project.link }}">{{ project.title }}</a>
+      <div class="sidebar-oss-project-container">
+        <h2>
+          <a class="sidebar-oss-link" href="{{ project.link }}">{{ project.title }}</a>
           <div class="icon icon-swift"></div>
         </h2>
-        <p class="post-excerpt">{{ project.description }}</p>
+        <p class="sidebar-oss-excerpt">{{ project.description }}</p>
         <p>
       </div>
     {% endfor %}

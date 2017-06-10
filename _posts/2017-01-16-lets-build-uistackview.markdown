@@ -9,7 +9,7 @@ redirect_from: /blog/lets-build-uistackview
 uuid: 89038ab2-a19b-4be3-9a3f-7ab2d58530d6
 ---
 
-One of the great showcases of [Auto Layout]((https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/)) is [UIStackView](https://developer.apple.com/reference/uikit/uistackview) which is implemented entirely with constraints. Knowing those constraints makes building an [open source replacement](https://github.com/kean/Arranged) easier. Even if you're not in business of building `UIStackView` this article should still be useful to you: you'll get a better understanding of how `UIStackView` interacts with Auto Layout.
+[`UIStackView`](https://developer.apple.com/reference/uikit/uistackview) is a great showcase of Auto Layout. It's built using constraints which makes building an [open source replacement](https://github.com/kean/Arranged) easier. If you're not in business of building one this article will give you a better understanding of how `UIStackView` interacts with Auto Layout.
 
 The plan is simple. I'm going to create an instance of `UIStackView`, try different configurations, take screenshots, and print all of the constraints that affect the stack view layout. I'm going to discuss each of those configurations a bit. After that implementing a replacement of `UIStackView` should be as simple as translating those constraints into code. In fact I've already done that in a library named [Arranged](https://github.com/kean/Arranged) (which I've built more than 10 months ago, this follow-up post is a bit late).
 

@@ -99,13 +99,17 @@ img.screenshot {
     margin: $spacing-unit * 0.5;
     width: 44.333333%;
     @include media-query($on-palm) {
-        width: 100%;
+        margin: $spacing-unit * 0.25;
     }
 }
 
 .post-navigation-prev-next-button {
     h2 {
         margin-top: 0;
+        font-size: 22px;
+        @include media-query($on-palm) {
+            font-size: 16px;
+        }
     }
     a {
         color: $grey-color;
@@ -123,5 +127,16 @@ img.screenshot {
     margin-top: $spacing-unit * 0.25;
     .post-title-container {
         margin: 0;
+    }
+
+    .post-link {
+        font-size: 26px;
+        @include media-query($on-palm) {
+            font-size: 18px;
+        }
+    }
+
+    .post-meta {
+        margin-top: 0;
     }
 }

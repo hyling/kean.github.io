@@ -27,11 +27,15 @@
 
 .post-link {
     display: inline-block;
-    font-size: 34px;
     max-width:100%;
     color: $text-color;
     line-height: 1.0;
     letter-spacing: -1px;
+
+    font-size: 34px;
+    @include media-query($on-palm) {
+        font-size: 28px;
+    }
 
     &:visited {
         color: $text-color;
@@ -53,24 +57,24 @@
     font-size: 16px;
 }
 
-/**
- * Post (Featured)
- */
+// Post (Featured)
+// ============================================================
+
 .post-featured-container {
     margin: 0.5 * $spacing-unit 0;
     margin-bottom: 1.5 * $spacing-unit;
 
     .post-link {
         font-size: 56px;
-        @include media-query($on-laptop) {
+        @include media-query($on-palm) {
             font-size: 44px;
         }
     }
 }
 
-/**
- * Post (Preview)
- */
+// Post (Preview)
+// ============================================================
+
  .home-post-preview-list-container {
      display: flex;
      justify-content: space-between;

@@ -28,21 +28,7 @@
     }
 }
 
-
 .sidebar-block {
-    p {
-      font-size: 16px;
-    }
-}
-
-.sidebar-preview-container {
-    border-top: 1px solid lightgray;
-    margin: 0 0 0.5 * $spacing-unit 0;
-    width: 100%;
-
-    .post-link {
-      font-size: 24px;
-    }
     p {
       font-size: 16px;
     }
@@ -50,11 +36,27 @@
 
 .sidebar-block {
   .section-title {
-      margin-top: $spacing-unit * 1.5;
+      margin-top: $spacing-unit * 1.25;
       margin-bottom: $spacing-unit * 0.5;
       color: $grey-color;
-      font-size: 26px;
+      font-size: 20px;
    }
+}
+
+
+// Header
+// ===================================================================
+
+.sidebar-header {
+    p {
+        margin-top: $spacing-unit * 0.25;
+    }
+}
+
+.sidebar-contacts {
+    p {
+        font-size: 14px;
+    }
 }
 
 .sidebar-avatar {
@@ -62,31 +64,56 @@
     max-width: 180px;
 }
 
-h2.sidebar-title {
-    font-size: 26px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
+// Post
+// ===================================================================
 
-.sidebar-contacts {
-    margin: $spacing-unit * 0.5 0;
+.sidebar-preview-container {
+    border-top: 1px solid lightgray;
+    margin: 0 0 0.5 * $spacing-unit 0;
+    width: 100%;
 
-    .icon {
-        width: 23px;
-        height: 23px;
-        margin: 0 3px;
-        opacity: 0.6;
-
-        &:hover {
-            opacity: 1;
-        }
+    .post-link {
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+    .post-meta {
+        font-size: 15px;
+        margin-top: 0 * $spacing-unit;
     }
 }
 
-.sidebar-open-source {
+// Open Source
+// ===================================================================
+
+.sidebar-oss-container {
     .icon-swift {
         opacity: 0.33;
         width: 16px;
         height: 16px;
     }
+}
+
+.sidebar-oss-project-container {
+    border-top: 1px solid lightgray;
+    width: 100%;
+
+    h2 {
+        margin-bottom: $spacing-unit * 0.125;
+    }
+}
+
+.sidebar-oss-link {
+    font-size: 20px;
+    max-width:100%;
+    color: $text-color;
+    line-height: 1.0;
+    letter-spacing: -0.5px;
+
+    &:visited {
+        color: $text-color;
+    }
+}
+
+.sidebar-oss-excerpt {
+    margin-top: 0;
 }
