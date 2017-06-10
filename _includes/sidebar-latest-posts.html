@@ -3,7 +3,7 @@
     {% for post in site.posts limit:4 %}
         {% if post.title != page.title %}
         <div class="sidebar-preview-container">
-            {% include post_preview.html %}
+            {% include post-mini-preview.html %}
         </div>
         {% endif %}
     {% endfor %}

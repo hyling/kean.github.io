@@ -26,10 +26,10 @@ layout: default
             {% assign post = page.previous %}
             <div class="post-navigation-preview-container">
                 <div class="post-navigation-prev-next-button">
-                    <a href="{{ page.next.url }}"><h2>◀ Previous Post</h2></a>
+                    <a href="{{ page.previous.url }}"><h2>Previous</h2></a>
                 </div>
                 <div class="post-navigation-preview">
-                    {% include post_preview.html %}
+                    {% include post-mini-preview.html %}
                 </div>
             </div>
         {% endif %}
@@ -38,10 +38,10 @@ layout: default
             {% assign post = page.next %}
             <div class="post-navigation-preview-container">
                 <div class="post-navigation-prev-next-button">
-                    <a href="{{ page.next.url }}"><h2>Next Post ▶</h2></a>
+                    <a href="{{ page.next.url }}"><h2>Next</h2></a>
                 </div>
                 <div class="post-navigation-preview">
-                    {% include post_preview.html %}
+                    {% include post-mini-preview.html %}
                 </div>
             </div>
         {% endif %}
