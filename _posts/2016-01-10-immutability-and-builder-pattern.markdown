@@ -5,6 +5,7 @@ date:   2016-01-10 19:30:05 +0300
 category: programming
 tags: objective-c, ios, patterns
 permalink: /post/immutability-and-builder-pattern
+redirect_from: /blog/immutability-and-builder-pattern
 uuid: 944811d2-f3f0-425c-8178-e317873e74cf
 ---
 

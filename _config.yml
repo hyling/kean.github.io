@@ -18,3 +18,6 @@ markdown: kramdown
 
 # Site specific
 featured_post: "RxSwift Testing"
+
+gems:
+  - jekyll-redirect-from
