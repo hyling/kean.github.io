@@ -3,9 +3,9 @@
 }
 
 /**
- * Branch
+ * Posts Container
  */
-.branch-container {
+.home-posts-container {
     h3 { // Recent, etc
         margin: $spacing-unit * 1.5 0 0.5 * $spacing-unit 0;
     }
@@ -68,11 +68,10 @@
     }
 }
 
-
 /**
  * Post (Preview)
  */
- .post-preview-list-container {
+ .home-post-preview-list-container {
      display: flex;
      justify-content: space-between;
      flex-flow: row wrap;
@@ -80,7 +79,7 @@
      margin-top: 0.5 * $spacing-unit;
  }
 
-.post-preview-container {
+.home-post-preview-container {
     border-top: 1px solid lightgray;
     margin: 0 0 1 * $spacing-unit 0;
 

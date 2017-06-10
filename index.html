@@ -7,29 +7,27 @@ redirect_from: /blog/
 
 <div class="home">
 
-<div class="branch-container">
-
-
+<div class="home-posts-container">
 
 {% for post in site.posts %}
-{% if post.title == site.featured_post %}
-<div class="post-featured-container">
-    {% include post_preview.html %}
-</div>
-{% endif %}
+	{% if post.title == site.featured_post %}
+	<div class="post-featured-container">
+	    {% include post_preview.html %}
+	</div>
+	{% endif %}
 {% endfor %}
 
-<div class="post-preview-list-container">
+<div class="home-post-preview-list-container">
 {% for post in site.posts %}
-{% if post.title != site.featured_post %}
-<div class="post-preview-container">
-    {% include post_preview.html %}
-</div>
-{% endif %}
+	{% if post.title != site.featured_post %}
+	<div class="home-post-preview-container">
+	    {% include post_preview.html %}
+	</div>
+	{% endif %}
 {% endfor %}
 </div>
 
-</div>
+</div> <!--home-posts-container!-->
 
 </div> <!--home!-->
 

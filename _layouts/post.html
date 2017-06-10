@@ -21,16 +21,31 @@ layout: default
 
     {% include media-buttons.html %}
 
-    <h2>Random Posts</h2>
-    <div class="post-preview-list-container">
-    {% assign shuffled_posts = site.posts | sample:2 %}
-    {% for post in shuffled_posts %}
-        {% if post.title != page.title %}
-        <div class="post-preview-container">
-            {% include post_preview.html %}
-        </div>
+    <div class="post-navigation-container">
+        {% if page.previous %}
+            {% assign post = page.previous %}
+            <div class="post-navigation-preview-container">
+                <div class="post-navigation-prev-next-button">
+                    <a href="{{ page.next.url }}"><h2>◀ Previous Post</h2></a>
+                </div>
+                <div class="post-navigation-preview">
+                    {% include post_preview.html %}
+                </div>
+            </div>
         {% endif %}
-    {% endfor %}
+
+        {% if page.next %}
+            {% assign post = page.next %}
+            <div class="post-navigation-preview-container">
+                <div class="post-navigation-prev-next-button">
+                    <a href="{{ page.next.url }}"><h2>Next Post ▶</h2></a>
+                </div>
+                <div class="post-navigation-preview">
+                    {% include post_preview.html %}
+                </div>
+            </div>
+        {% endif %}
+
     </div>
 
     <a name="comment-section"></a>

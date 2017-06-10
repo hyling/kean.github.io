@@ -45,7 +45,8 @@
 
 
 .media-buttons-container {
-    margin: $spacing-unit * 1.25 0;
+    margin-top: $spacing-unit * 1.25;
+    margin-bottom: 0;
 
     .icon {
         margin: 0 3px;
@@ -61,9 +62,7 @@
  * Post Footer
  */
 .post-footer {
-  h2 {
-    color: $grey-color;
-  }
+
 }
 
 img.screenshot-stackview {
@@ -75,4 +74,42 @@ img.screenshot {
     margin-bottom: $spacing-unit;
     margin-top: $spacing-unit / 2;
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/**
+ * Post Navigation
+ */
+ .post-navigation-container {
+     display: flex;
+     justify-content: space-between;
+     flex-flow: row wrap;
+     margin-left: 0;
+     margin-bottom: $spacing-unit * 1;
+ }
+
+.post-navigation-preview-container {
+    width: 48.333333%;
+    @include media-query($on-palm) {
+        width: 100%;
+    }
+}
+
+.post-navigation-prev-next-button {
+    a {
+        color: $grey-color;
+        &:visited {
+            color: $grey-color;
+        }
+        &:hover {
+            color: #333;
+            text-decoration: none;
+        }
+    }
+}
+
+.post-navigation-preview {
+    margin-top: $spacing-unit * 0.5;
+    border-top: 1px solid lightgray;
 }
