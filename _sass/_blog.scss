@@ -140,3 +140,14 @@ img.screenshot {
         margin-top: 0;
     }
 }
+
+
+// Post-Specific
+// ============================================================
+
+.introducing-rxnuke-logo {
+    width: 442px;
+    @include media-query($on-palm) {
+        width: 100%;
+    }
+}

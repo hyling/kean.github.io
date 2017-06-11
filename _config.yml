@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: "RxSwift Testing"
+featured_post: "Introducing RxNuke"
 
 gems:
   - jekyll-redirect-from

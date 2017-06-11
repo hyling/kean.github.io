@@ -2,9 +2,15 @@
     "projects" : [
         {
             "title" : "Nuke",
-            "link" : "http://kean.github.io/Nuke/",
+            "link" : "https://kean.github.io/nuke",
             "languages" : "Swift",
             "description" : "Image loading, processing, caching and preheating"
+        },
+        {
+            "title" : "RxNuke",
+            "link" : "https://github.com/kean/RxNuke",
+            "languages" : "Swift",
+            "description" : "RxSwift extensions for Nuke"
         },
         {
             "title" : "Arranged",
@@ -16,13 +22,13 @@
             "title" : "Pill",
             "link" : "https://github.com/kean/Promise",
             "languages" : "Swift",
-            "description" : "Micro Promise/A+ under 100 sloc"
+            "description" : "Micro Promise/A+"
         },
         {
             "title" : "Preheat",
             "link" : "https://github.com/kean/Preheat",
             "languages" : "Swift",
-            "description" : "Automates prefetching of content in UITableView and UICollectionView"
+            "description" : "Automates prefetching for table and collection views"
         },
     ]
 }

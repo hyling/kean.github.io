@@ -1,6 +1,6 @@
 .nuke-logo {
-    height: 200px;
-    margin: $spacing-unit 0 0.5 * $spacing-unit 0;
+    height: 180px;
+    margin: 23px 0 0.5 * $spacing-unit 0;
 
     @include media-query($on-palm) {
         margin: 0.33 * $spacing-unit 0 0.33 * $spacing-unit 0;
@@ -31,8 +31,7 @@
 // ===========================================================================
 
 .nuke-share-container {
-    margin: 25px 0 20px 0;
-    margin: $spacing-unit 0;
+    margin-top: $spacing-unit;
     display: flex;
     justify-content: center;
     @include media-query($on-palm) {
@@ -90,7 +89,8 @@
 }
 
 .nuke-featurette-block {
-    width: 300px;
+    width: 320px;
+    margin-right: $spacing-unit * 0.125;
 
     strong {
         font-size: 26px;
