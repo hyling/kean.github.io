@@ -9,7 +9,7 @@
 title: Alexander Grebenyuk
 email: grebenyuk.alexander@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Programming: Swift, Objective-C, and more.
+  Programming in Swift, Objective-C.
 twitter_username: a_grebenyuk
 github_username: kean
 
@@ -21,3 +21,21 @@ featured_post: "Introducing RxNuke"
 
 gems:
   - jekyll-redirect-from
+  - jekyll-seo-tag
+
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /images/avatar.jpeg
+        height: 400
+        width: 400
+      social:
+        name: "Alexander Grebenyuk"
+        links:
+          - https://twitter.com/a_grebenyuk
+          - https://www.linkedin.com/in/alexander-grebenyuk
+          - https://github.com/kean
+          - https://www.flickr.com/photos/agrebenyuk/
