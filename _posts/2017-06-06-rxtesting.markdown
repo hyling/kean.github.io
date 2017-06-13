@@ -11,7 +11,7 @@ redirect_from:
 uuid: cdddbe85-b27a-4ba3-8336-340919e3cf04
 ---
 
-One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it isn't even mentioned on a [Why RxSwift](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) page. Let's take at look at it on a real world example - paging in a scroll view.
+One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it's not even mentioned on a [Why RxSwift](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) page. Let's take at look at it on a real world example - paging in a scroll view.
 
 > Requirements: Xcode 8.3, Swift 3.1, RxSwift 3.5
 

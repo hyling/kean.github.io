@@ -10,17 +10,17 @@ uuid: 687bb115-e04c-4c6f-9990-786793ba8685
 
 I'm excited to introduce a new addition to Nuke - [RxNuke](https://github.com/kean/RxNuke) which brings the power of [RxSwift](https://github.com/ReactiveX/RxSwift) to your image loading pipelines.
 
-Nuke's design has always prioritized simplicity, reliability and performance. The core framework has a small API surface and only contains a minimum number of features to built on top. This is great for many reasons, but unfortunately that left a gap between what Nuke supports out of the box and what users need. I received many requests about particular use cases like these:
+Nuke's design has always prioritized simplicity, reliability and performance. The core framework has a small API surface and only contains a minimum number of features to built upon. This is great for many reasons, but unfortunately that left a gap between what Nuke supports out of the box and what users need. I received many requests about particular use cases like these:
 
 > - "show stale response while validating the image"
 > - "wait until N images are loaded and only then proceed"
 > - "show low-res image while loading a high-res one".
 
-Each app has a different idea about how to configure their image loading pipeline. It's not feasible to support all of them in a single framework. [RxNuke](https://github.com/kean/RxNuke) aims at bridging this gap by leveraging the power of reactive programming to serve all of the aforementioned use cases, as well as many-many others.
+Each app has a different idea about how to configure their image loading pipeline. It's not feasible to support all of them in a single framework. [RxNuke](https://github.com/kean/RxNuke) aims at bridging this gap by leveraging the power of reactive programming to serve all of the aforementioned use cases, as well as many others.
 
 # Introduction
 
-In order to get started with RxNuke you should already be familiar with the basics of RxSwift. However even if you don't you can already start taking advantage of RxNuke powerful features thanks to a number of [examples of common use cases](https://github.com/kean/RxNuke#use-cases) available in an RxNuke documentation.
+In order to get started with RxNuke you should be familiar with the basics of RxSwift. Even if you don't you can already start taking advantage of RxNuke powerful features thanks to a number of [examples of common use cases](https://github.com/kean/RxNuke#use-cases) available in an RxNuke documentation.
 
 Let's starts with the basics. The initial version of RxNuke adds a single new `Loading` protocol with a set of methods which returns `Singles`.
 
@@ -34,9 +34,7 @@ public protocol Loading {
 
 > A `Single` is a variation of `Observable` that, instead of emitting a series of elements, is always guaranteed to emit either a single element or an error. The common use case of `Single` is to wrap HTTP requests. See [Traits](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Traits.md#single) for more info.
 
-One of the Nuke's types that implement new `Loading` protocol is `Nuke.Manager`. The first thing that `Nuke.Manager` does when you subscribe to an observable returned by one of the methods from a new `Loading` protocol is check if the image is stored in its memory cache. If it is the manager synchronously returns `.just(image)`. If the image is not cached, the manager asynchronously loads an image using an underlying image loader (see `Nuke.Loading` protocol).
-
-Here's a small example of can start a request by subscribing to a single and then display an image if the request finished successfully:
+One of the Nuke's types that implement new `Loading` protocol is `Nuke.Manager`. Here's an example of how to start a request using one of the new APIs and then display an image if the request is finished successfully:
 
 ```swift
 Nuke.Manager.shared.loadImage(with: url)
@@ -44,6 +42,8 @@ Nuke.Manager.shared.loadImage(with: url)
     .subscribe(onSuccess: { imageView.image = $0 })
     .disposed(by: disposeBag)
 ```
+
+The first thing that `Nuke.Manager` does when you subscribe to an observable is check if the image is stored in its memory cache. If it is the manager synchronously successfully finishes the request. If the image is not cached, the manager asynchronously loads an image using an underlying image loader (see `Nuke.Loading` protocol).
 
 This looks simple enough. Now let's see what makes this new addition to Nuke so powerful.
 
@@ -169,12 +169,11 @@ Here's how you can integrate the code provided in the previous examples into you
 final class ImageCell: UICollectionViewCell {
 
     private var imageView: UIImageView!
-    private var loader: RxNuke.Loading = Nuke.Manager.shared
     private var disposeBag = DisposeBag()
 
     // <.. create an image view using your preferred way ..>
 
-    func setImage(_ url: URL) {
+    func display(_ image: Single<Image>) {
 
         // Create a new dispose bag, previous dispose bag gets deallocated
         // and cancels all previous subscriptions.
@@ -183,8 +182,7 @@ final class ImageCell: UICollectionViewCell {
         imageView.image = nil
 
         // Load an image and display the result on success.
-        loader.loadImage(with: url)
-            .subscribeOn(MainScheduler.instance)
+        image.subscribeOn(MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] image in
                 self?.imageView.image = image
             }).disposed(by: disposeBag)
@@ -195,7 +193,7 @@ final class ImageCell: UICollectionViewCell {
 
 # Conclusion
 
-I hope that `RxNuke` becomes a valuable addition to Nuke. It brings power to solve many common use cases which are hard to implement without Rx. `RxNuke` is still very early stage. As it evolves it's going to bring more examples, and more `Nuke` extensions to give you power to build the exact image loading pipelines that you want.
+I hope that `RxNuke` becomes a valuable addition to Nuke. It brings power to solve many common use cases which are hard to implement without Rx. `RxNuke` is still very early stage. As it evolves it's going to bring some new powerful features made possible by Rx, more examples of common use cases, and more `Nuke` extensions to give you power to build the exact image loading pipelines that you want.
 
 > If you have any questions, additions or corrections to the examples from the article please feel free to leave a comment below, or hit me up on [Twitter](https://twitter.com/a_grebenyuk).
 
