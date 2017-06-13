@@ -53,6 +53,19 @@
     }
 }
 
+.sidebar-title {
+    color: $text-color;
+    &:visited {
+        color: $text-color;
+    }
+    &:hover {
+        color: $text-color;
+    }
+}
+
+.sidebar-header-about {
+}
+
 .sidebar-contacts {
     p {
         font-size: 14px;
