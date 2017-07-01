@@ -89,6 +89,10 @@ ul, ol {
     margin-left: $spacing-unit;
 }
 
+li > ul {
+    margin-top: 0;
+}
+
 li {
     > ul,
     > ol {

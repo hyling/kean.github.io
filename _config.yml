@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: "Introducing RxNuke"
+featured_post: "API Client in Swift"
 
 gems:
   - jekyll-redirect-from

@@ -21,25 +21,17 @@
 
 .post-content {
     h2 {
-        font-size: 30px;
+        font-size: 22px;
 
         margin-bottom: $spacing-unit / 2;
-        margin-top: $spacing-unit;
-
-        @include media-query($on-laptop) {
-            font-size: 26px;
-        }
+        margin-top: $spacing-unit / 1.5;
     }
 
     h3 {
-        font-size: 24px;
+        font-size: 18px;
 
         margin-bottom: $spacing-unit / 3;
         margin-top: $spacing-unit / 2;
-
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
     }
 }
 
