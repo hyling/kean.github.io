@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: "API Client in Swift"
+featured_post: "Smart Retry"
 
 gems:
   - jekyll-redirect-from
