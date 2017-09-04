@@ -6,6 +6,18 @@
     margin-top: 0.5 * $spacing-unit;
 }
 
+.site-header {
+    .wrapper {
+        display: none;
+
+        @include media-query($on-laptop) {
+            display: block;
+        }
+    }
+}
+
+
+
 .site-logo-icon {
     margin: 0;
     float: left;
