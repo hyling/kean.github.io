@@ -18,6 +18,8 @@ Each of those had its own good and bad parts. I'm not going to do a full retrosp
 
 In this article I'd like to share my latest networking stack. It has a minimalistic yet powerful API, type-safe authorization scopes, endpoints are modeled in type-safe, declarative and concise way, support for OAuth 2 "refresh access token" dance. And it takes full advantage of the open source frameworks to achieve all of those powerful features 
 
+> All of the code from the post is [available here](https://gist.github.com/kean/64b9fc0963fd430594fdb3eb848bccf3) (requires Swift 4).
+
 * TOC
 {:toc}
 
@@ -47,6 +49,11 @@ Let's start with dependencies. As Swift ecosystem grows it becomes increasingly 
 
 ## 3. Using a JSON mapper
 
+**Update!** Swift 4 [has been released](https://swift.org/blog/swift-4-0-released/). The new [Swift Encoders and Decoders](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md) are the way to go for the majority of the apps now!
+
+> The rest of this section is kept for history.
+
+
 I don't think that it's that important which one of the JSON mappers to use unless you actually use one. It's [tedious and error-prone](https://developer.apple.com/swift/blog/?id=37) to map JSON to your model objects only using built-in language features.
 
 The things that I'm looking for in a JSON mapper are:
@@ -64,8 +71,6 @@ The things that I'm looking for in a JSON mapper are:
 - **[NO]** [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper) - forces to change model objects, no Swift error handling, uses custom operators
 - **[NO]** [Gloss](https://github.com/hkellaway/Gloss) - forces to change model objects, no Swift error handling
 
-> With the release of Swift 4 the new [Swift Encoding](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md) features are going to come into play.
-
 
 # Endpoint
 
@@ -80,12 +85,12 @@ final class Endpoint<Response> {
     let method: Method
     let path: Path
     let parameters: Parameters?
-    let decode: (JSON) throws -> Response
+    let decode: (Data) throws -> Response
 
     init(method: Method = .get,
          path: Path,
          parameters: Parameters? = nil,
-         decode: @escaping (JSON) throws -> Response) {
+         decode: @escaping (Data) throws -> Response) {
         self.method = method
         self.path = path
         self.parameters = parameters
@@ -95,28 +100,24 @@ final class Endpoint<Response> {
 
 typealias Parameters = [String: Any]
 typealias Path = String
-typealias JSON = Any
 
 enum Method {
     case get, post, put, patch, delete
 }
 ```
 
-> There are no prefixes to make code more concise. In reality, you would either add them, or put those types in a seprate module.
+> There are no prefixes to make code more concise. In reality, you would either add them, or put those types in a separate module.
 
 To make endpoint initializers more concise `decode` closures can be inferred automatically (depends on the JSON mapper being used):
 
 ```swift
-extension Endpoint where Response: Decodable {
+extension Endpoint where Response: Swift.Decodable {
     convenience init(method: Method = .get,
                      path: Path,
                      parameters: Parameters? = nil) {
-        self.init(
-            method: method,
-            path: path,
-            parameters: parameters,
-            decode: Response.decode
-        )
+        self.init(method: method, path: path, parameters: parameters) {
+            try JSONDecoder().decode(Response.self, from: $0)
+        }
     }
 }
 
@@ -184,13 +185,8 @@ This approach closely resembles the way REST models resources, but it has it's d
 The next question is how to actually perform the requests for those endpoints - `Client`. It takes an endpoint parameters, fills the rest of the defails including access token, base URL, etc, and carry out the request using an underlying `Alamofire.SessionManager`:
 
 ```swift
-protocol ClientProtocol {
-    func request<Response>(_ endpoint: Endpoint<Response>) -> Single<Response>
-}
-
 final class Client: ClientProtocol {
     private let manager: Alamofire.SessionManager
-    private let retrier: OAuth2Retrier
     private let baseURL = URL(string: "<your_server_base_url>")!
     private let queue = DispatchQueue(label: "<your_queue_label>")
 
@@ -216,16 +212,21 @@ final class Client: ClientProtocol {
             )
             request
                 .validate()
-                .responseJSON(queue: self.queue) { response in
-                    let object = response.result
-                        .flatMap(JSON.init)
-                        .flatMap(endpoint.decode)
-                    observer(Result(object).toEvent)
+                .responseData(queue: self.queue) { response in
+                    let result = response.result.flatMap(endpoint.decode)
+                    switch result {
+                    case let .success(val): observer(.success(val))
+                    case let .failure(err): observer(.error(err))
+                    }
             }
             return Disposables.create {
                 request.cancel()
             }
         }
+    }
+
+    private func url(path: Path) -> URL {
+        return baseURL.appendingPathComponent(path)
     }
 }
 ```
@@ -238,7 +239,6 @@ The `OAuth2Retrier` type is responsible for refreshing access tokens:
 
 ```swift
 private class OAuth2Retrier: Alamofire.RequestRetrier {
-
     func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
         if (error as? AFError)?.responseCode == 401 {
             // TODO: implement your Auth2 refresh flow
@@ -407,6 +407,8 @@ Great, this works just as expected! This approach is nothing new, e.g. [RxSwift 
 I hope you've enjoyed this! Please keep in mind that all of those decisions were made in the context of the app and the web service for which it was implemented. I would advise against adopting any of the described decisions without careful consideration.
 
 It's hard to imagine now that there was a time when the only relatively easy-to-use tool for iOS developers to do networking was `ASIHTTPRequest`. It's just amazing that we now have so many great tools at our disposal. It's now up to us to make the best use of them.
+
+> All of the code from the post is [available here](https://gist.github.com/kean/64b9fc0963fd430594fdb3eb848bccf3) (requires Swift 4).
 
 # References
 
