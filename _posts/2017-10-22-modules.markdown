@@ -1,0 +1,100 @@
+---
+layout: post
+title:  "Modules"
+date:   2017-10-22 10:00:00 +0300
+category: programming
+tags: ios
+permalink: /post/modules
+uuid: bc07d764-41b4-436d-96b0-bd0062561c81
+---
+
+Traditionally in Objective-C there was very little incentive to split your app's project into modules. This is no longer true in Swift.
+
+* TOC
+{:toc}
+
+# Modules
+
+> I use terms modules and frameworks interchangeably in this article even though it's not accurate. When I say modules what I mean in most cases is frameworks.
+
+## Why?
+
+**Pros:**
+
+- Improve compile times. Working on smaller targets feels as fast as working on a newly created project.
+- Unlike an app, frameworks can be imported in Playgrounds.
+- Small cohesive modules are easier to maintain than a single monolith one.
+- Namespaces in Swift are per module.
+- One day you might need to add support for other platforms, write an app extension, or maybe even entirely new app for the same service. The project carefully split into modules from day one would enable all of those cases.
+
+**Cons:**
+
+- Complicates project setup.
+- Might be hard to define boundaries between modules.
+- Slower app's [start time](https://useyourloaf.com/blog/slow-app-startup-times/) (will no longer be a concern with introduction of [Swift static libraries](https://bugs.swift.org/browse/SR-4564)).
+
+## How?
+
+My initial concern about splitting my app into modules was the fact that Xcode never had great support for managing separate targets. Most of the common actions used to require multiple steps. I even considered using CocoaPods for managing my internal frameworks. Fortunately, this is no longer true. In Xcode 9 most of the common operations with modules are single click actions:
+
+- **Creating targets**. When you create a new framework target inside a project Xcode automatically updates your app to embed and link against your new framework, and add it to all necessary build phases. No extra manual steps required.
+- **Moving files between targets**. With a single drag and drop you can move file from your app's target to a framework's target. Xcode automatically moves the file on disk, and updates the target which it belongs too. So, single step action, fantastic.
+- **Setting up dependencies between targets**. Just add a framework to `Linked Frameworks`.
+
+Where Xcode 9 falls shorts is managing third party dependencies. [Swift Package Manager](https://github.com/apple/swift-package-manager) is on a horizon, but for now we have to stick with community made tools like [CocoaPods](https://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage). I personally prefer CocoaPods because it comes with source distribution out of the box. I appreciate the simplicity of Carthage but the lack of source distribution is a deal breaker to me, especially when it comes to Swift (which still lacks ABI stability).
+
+## Principles
+
+Creating small, cohesive components is basically what good software design is all about. Splitting your app into modules is no exception. By far the hardest problem in doing that is not due to technical difficulties of creating separate targets, but rather deciding which targets to create and what should belong there.
+
+As usual there is no single answer here. If would largely depend on your project and your team.
+
+There are a lot of interesting ideas shared in [Framework Oriented Programming](http://frameworkoriented.io/#principles) article. I'd definitely recommend to check it out. However, it does seems maybe a bit too elaborate, especially for smaller teams and projects.
+
+There are also quite a few open source Swift projects which are built from multiple modules.
+
+
+# Playgrounds
+
+One of the main reasons why you would want to extract some your app's code into modules is to use it in Playgrounds. Unfortunately, there is a bit of a problem with CocoaPods which prevents you from doing so without some extra configuration.
+
+## Importing Frameworks Added Using CocoaPods
+
+Importing modules that were added using CocoaPods or modules that depend on such modules require a bit of extra configuration. Starting with CocoaPods all frameworks are now "scoped":
+
+> Pods are built by default in another scoping level of the build products directory identified by their name to prevent name clashes among dependencies.
+> [#4146](https://github.com/CocoaPods/CocoaPods/pull/4146)
+
+This changes effectively breaks Playgrounds because they are not able to find frameworks in those subdirectories. And as of now there is no way to to customize framework search paths for Playgrounds. Fortunately, [there is a workaround](https://github.com/CocoaPods/CocoaPods/issues/5334#issuecomment-223444937) which works for majority of the projects. All you need to do is effectively disable the changes made by #4146 by adding this post install hook in your Podfile:
+
+```ruby
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    # This eliminates warnings linker warnings.
+    target.new_shell_script_build_phase.shell_script = "mkdir -p \"$PODS_CONFIGURATION_BUILD_DIR/#{target.name}\""
+    target.build_configurations.each do |config|
+      # Allows to use frameworks in Playgrounds.
+      # For more info see https://github.com/CocoaPods/CocoaPods/issues/5334
+      config.build_settings['CONFIGURATION_BUILD_DIR'] = '$PODS_CONFIGURATION_BUILD_DIR'
+    end
+  end
+end
+```
+
+Now all of the frameworks are again built in a single folder and Playgrounds are able to find them.
+
+## Usage
+
+One of the primary use cases for Playgrounds for me was to quickly build new UI components for the app. I do so without using Interface Builder. This approach has its pros and cons, but most of the downsides are alleviated if you code your UI in Playgrounds. Overall I think Playgrounds are a more powerful tool than unwieldy Interface Builder could ever be.
+
+The other great use case is to add a few Playground page with the components that are either used most frequently and/or changed more frequently in the app. This way you can make changes to those components and instantly see the results.
+
+> One downside of using Playgrounds for editing framework's code is that you need to remember to keep building your targets each time you make a change, otherwise you won't see any of those changes in Playgrounds. I hope that someday Xcode would alleviate the need to manually doing so for us.
+
+# Links
+
+- [Framework Oriented Programming](http://frameworkoriented.io)
+
+- [Swift Talk #51: Playground-Driven Development at Kickstarter](https://talk.objc.io/episodes/S01E51-playground-driven-development-at-kickstarter). Brandon from Kickstarter uses playgrounds to prototype and style individual view controllers. Great demo of Playgrounds, also showcases a few modern iOS tools like trait collection and preferred font styles.
+
+- [Firefox iOS App Repo](https://github.com/mozilla-mobile/firefox-ios) this is a great example of a relatively large (more then 70k lines of Swift code) project which is split into multiple modules.
