@@ -29,6 +29,7 @@ Traditionally in Objective-C there was very little incentive to split your app's
 
 **Cons:**
 
+- System of imports is terrible in Swift.
 - Complicates project setup.
 - Might be hard to define boundaries between modules.
 - Slower app's [start time](https://useyourloaf.com/blog/slow-app-startup-times/) (will no longer be a concern with introduction of [Swift static libraries](https://bugs.swift.org/browse/SR-4564)).
@@ -52,6 +53,10 @@ As usual there is no single answer here. If would largely depend on your project
 There are a lot of interesting ideas shared in [Framework Oriented Programming](http://frameworkoriented.io/#principles) article. I'd definitely recommend to check it out. However, it does seems maybe a bit too elaborate, especially for smaller teams and projects.
 
 There are also quite a few open source Swift projects which are built from multiple modules.
+
+## Problems
+
+TODO: Disamiguating imports
 
 
 # Playgrounds
