@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='1. Safely Decoding Arrays'/>
+        <page name='2. Id Type and Single Value Container'/>
+        <page name='3. Safely Decoding Enums'/>
+        <page name='4.1. Getting Rid of Explicit Type Parameters'/>
+        <page name='4.2.Using Separate Decoding Scheme'/>
+        <page name='5. Encoding Patch Parameters'/>
+    </pages>
+</playground>

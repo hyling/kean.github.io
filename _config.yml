@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: "Smart Retry"
+featured_post: "Codable: Tips and Tricks"
 
 gems:
   - jekyll-redirect-from
