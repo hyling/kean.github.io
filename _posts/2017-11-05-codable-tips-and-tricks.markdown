@@ -22,7 +22,7 @@ In the real world though things get very *complicated* very *quickly*. Trying to
 
 One of the major downsides of `Codable` is that as soon a you need custom decoding logic - even for a single key - you have to provide custom everything: manually define all the *coding keys*, and implementing an entire `init(from decoder: Decoder) throws` initializer by hand. This isn't ideal. But it is at least as good (or bad) as third-party JSON libraries in Swift. Having one built into the standard library is definitely a win.
 
-So if you'd like to start using `Codable` in your app (and you are already familiar with all the basics) here are some tips and tricks that yu might find helpful:
+So if you'd like to start using `Codable` in your app (and you are already familiar with all the basics) here are some tips and tricks that you may find helpful:
 
 * TOC
 {:toc}
