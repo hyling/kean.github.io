@@ -8,7 +8,7 @@ permalink: /post/codable-tips-and-tricks
 uuid: 8b6a08fa-ba58-4f9a-b607-7bd4d1171f7f
 ---
 
-I've learned a few tricks and developed some best practices while adopting [Codable](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization) in my app. I'd like to share some of them with you in this article.
+I've migrated our app to [Codable](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization). I'd like to share with you some of the tips and tricks that I've come up with along the way.
 
 > <a href="{{ site.url }}/playgrounds/codable.playground.zip">**Swift Playground**</a> with all of the code from this article:
 
