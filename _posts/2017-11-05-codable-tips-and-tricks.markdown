@@ -98,7 +98,7 @@ do {
 }
 ```
 
-> Keep in mind that `decode([Safe<Post>].self, from:...` call is going to throw an error if the data doesn't contain an array. In general errors like that should be catched on a higher level. The common API contract is to always return an empty array if there are no elements to return.
+> Keep in mind that `decode([Safe<Post>].self, from:...` call is going to throw an error if the data doesn't contain an array. In general errors like that should be caught on a higher level. The common API contract is to always return an empty array if there are no elements to return.
 
 # 2. Id Type and a Single Value Container
 
@@ -314,6 +314,34 @@ self.webURL = map.decodeSafelyIfPresent(.webURL)
 
 It would try to decode a URL (only in case it's present). If a URL isn't valid it would fail safely and send a report.
 
+Another "safe" functions that would be nice to have is the one for safely decoding array of elements:
+
+```swift
+extension KeyedDecodingContainer {
+    public func decodeSafelyArray<T: Decodable>(of type: T.Type, forKey key: KeyedDecodingContainer.Key) -> [T] {
+        let array = decodeSafely([Safe<T>].self, forKey: key)
+        return array?.flatMap { $0.raw } ?? []
+    }
+}
+
+extension JSONDecoder {
+    public func decodeSafelyArray<T: Decodable>(of type: T.Type, from data: Data) -> [T] {
+        guard let array = try? decode([Decoded<T>].self, from: data) else { return [] }
+        return array.flatMap { $0.raw }
+    }
+}
+
+
+// Usage:
+
+let posts: [Post] = JSONDecoder().decodeSafelyArray(of: Post.self, from: data)
+
+init(from decoder: Decoder) throws {
+    let map = try decoder.container(keyedBy: CodingKeys.self)
+    self.posts = map.decodeSafelyArray(of: Post.self, forKey: .posts)
+}
+```
+
 
 ## 4.2. Using Separate Decoding Scheme
 
@@ -358,6 +386,10 @@ One way to implement this using `Codable` involves another new custom `Parameter
 public enum Parameter<Base: Swift.Codable>: Swift.Encodable {
     case null // parameter set to `null`
     case value(Base)
+
+    public init(_ value: Base?) {
+        self = value.map(Parameter.value) ?? .null
+    }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
