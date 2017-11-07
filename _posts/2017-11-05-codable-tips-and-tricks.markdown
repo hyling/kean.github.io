@@ -10,7 +10,7 @@ uuid: 8b6a08fa-ba58-4f9a-b607-7bd4d1171f7f
 
 I've migrated our app to [Codable](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization). I'd like to share with you some of the tips and tricks that I've come up with along the way.
 
-> <a href="{{ site.url }}/playgrounds/codable.playground.zip">**Swift Playground**</a> with all of the code from this article:
+> <a href="{{ site.url }}/playgrounds/codable.playground.zip">Swift Playground</a> with all of the code from this article:
 
 <a href="{{ site.url }}/playgrounds/codable.playground.zip"><img src="{{ site.url }}/images/posts/codable_screen_01.png" class="screenshot"></a>
 
@@ -103,6 +103,8 @@ do {
 # 2. Id Type and a Single Value Container
 
 In the previous example I've used a special `Id<Post>` type. The `Id` type gets parametrized with a generic parameter `Entity` which isn't actually used by the `Id` itself but is used by compiler when comparing different types of `Id`s. This way the compiler ensures that I can't accidentally pass `Id<Media>` where `Id<Image>` is expected.
+
+> Another place where I used *phantom types* for type safety is my <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> post.
 
 The `Id` type itself is very simple, it's just a wrapper on top of a raw `String`:
 

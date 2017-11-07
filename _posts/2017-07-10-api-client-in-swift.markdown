@@ -20,6 +20,8 @@ In this article I'd like to share my latest networking stack. It has a minimalis
 
 > All of the code from the post is [available here](https://gist.github.com/kean/64b9fc0963fd430594fdb3eb848bccf3) (requires Swift 4).
 
+> Check out <a href="{{ site.url }}/post/smart-retry">**Smart Rerty**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
+
 * TOC
 {:toc}
 

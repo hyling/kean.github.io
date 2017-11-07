@@ -18,7 +18,9 @@ The requirements are fairly straightforward. Let's say you have an observable se
 
 This sounds like a tall order for a single `retryWhen` operator, but it's actually flexible enough to support all of those requirements. In this post I'm going to create a new custom `retry` operator which would wrap this entire logic.
 
-> The complete implementation is available [here](https://gist.github.com/kean/95b69ef1a90bb62e9b81e924a0a71437)
+> The complete implementation is available [here](https://gist.github.com/kean/95b69ef1a90bb62e9b81e924a0a71437).
+
+> Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
 
 # Usage
 

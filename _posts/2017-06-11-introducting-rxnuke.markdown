@@ -20,6 +20,8 @@ Nuke's design has always prioritized simplicity, reliability and performance. Th
 
 Each app has a different idea about how to configure their image loading pipeline. It's not feasible to support all of them in a single framework. [RxNuke](https://github.com/kean/RxNuke) aims at bridging this gap by leveraging the power of reactive programming to serve all of the aforementioned use cases, as well as many others.
 
+> Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> for more awesome use-cases of RxSwift. You could also find <a href="{{ site.url }}/post/smart-retry">**Smart Rerty**</a> useful. It can automatically retry image requests for you.
+
 # Introduction
 
 In order to get started with RxNuke you should be familiar with the basics of RxSwift. Even if you don't you can already start taking advantage of RxNuke powerful features thanks to a number of [examples of common use cases](https://github.com/kean/RxNuke#use-cases) available in an RxNuke documentation.
@@ -126,7 +128,7 @@ Observable.concat(loader.loadImage(with: cacheRequest).orEmpty,
     .disposed(by: disposeBag)
 ```
 
-> See [Image Caching](https://kean.github.io/post/image-caching) to learn more about HTTP cache
+> See [**Image Caching**](https://kean.github.io/post/image-caching) to learn more about HTTP cache
 
 
 ### <a name="huc_auto_retry"></a>Auto Retry

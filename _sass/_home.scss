@@ -3,6 +3,27 @@
 }
 
 /**
+ * Header which we only dispaly on mobile.
+ */
+.home-header-mobile {
+    padding: $spacing-unit * 0.75 $spacing-unit * 0.5;
+    margin-bottom: 0.5 * $spacing-unit;
+    background: $grey-backgrould-light-color;
+    border: 0.5px solid $grey-color-light;
+    border-radius: 8px;
+    display: none;
+
+    h2 {
+        margin-top: 0.5 * $spacing-unit;
+    }
+
+    @include media-query($on-laptop) {
+        display: inline-block;
+    }
+}
+
+
+/**
  * Posts Container
  */
 .home-posts-container {

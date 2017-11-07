@@ -39,7 +39,7 @@
       margin-top: $spacing-unit * 1.25;
       margin-bottom: $spacing-unit * 0.5;
       color: $grey-color;
-      font-size: 20px;
+      font-size: 18px;
    }
 }
 
@@ -82,15 +82,21 @@
 
 .sidebar-preview-container {
     border-top: 1px solid lightgray;
-    margin: 0 0 0.5 * $spacing-unit 0;
     width: 100%;
 
+    .post-title-container {
+        margin-top: 0.25 * $spacing-unit;
+        margin-bottom: 0.33 * $spacing-unit;
+    }
+
     .post-link {
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 600;
       letter-spacing: -0.5px;
     }
     .post-meta {
         font-size: 15px;
+        line-height: 1.2;
         margin-top: 0 * $spacing-unit;
     }
 }
@@ -109,17 +115,19 @@
 .sidebar-oss-project-container {
     border-top: 1px solid lightgray;
     width: 100%;
+    margin: 0.33 * $spacing-unit 0;
 
     h2 {
-        margin-bottom: $spacing-unit * 0.125;
+        margin-top: 0.25 * $spacing-unit;
+        margin-bottom: 0.1 * $spacing-unit;
     }
 }
 
 .sidebar-oss-link {
-    font-size: 20px;
-    max-width:100%;
+    font-size: 18px;
+    font-weight: 600;
+    max-width: 100%;
     color: $text-color;
-    line-height: 1.0;
     letter-spacing: -0.5px;
 
     &:visited {
@@ -129,4 +137,5 @@
 
 .sidebar-oss-excerpt {
     margin-top: 0;
+    line-height: 1.4;
 }
