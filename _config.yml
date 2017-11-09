@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: "Codable: Tips and Tricks"
+featured_post: 00e90200-1ef8-479e-aea7-62b98a148c2e
 
 gems:
   - jekyll-redirect-from
