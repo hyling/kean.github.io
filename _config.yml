@@ -17,7 +17,7 @@ github_username: kean
 markdown: kramdown
 
 # Site specific
-featured_post: 00e90200-1ef8-479e-aea7-62b98a148c2e
+featured_post: 8b6a08fa-ba58-4f9a-b607-7bd4d1171f7f
 
 gems:
   - jekyll-redirect-from
