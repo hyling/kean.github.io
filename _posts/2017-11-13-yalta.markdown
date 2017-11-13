@@ -30,7 +30,7 @@ So rather then pulling in a library I decided to write my own. The goal was to h
 Yalta has quite a few advantages over other frameworks.
 
 - Yalta strives for clarity and simplicity by following [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Although most of the APIs are compact, it is a *non-goal* to enable the most concise syntax possible.
-- Yalta's APIs are fluent - methods form a grammatical phrases - that's what makes Swift and Objective-C stand out for me.
+- Yalta has a fluent API that makes use sites form grammatical English phrases. That's what makes Swift code really stand out for me.
 - It's extremely small and simple with just a single file with under 250 lines of code (compare with 1000 lines over 27 files in Cartography).
 - There are no custom operators and thus no unexpected surprises like an [increasing in your app's compile time](https://github.com/robb/Cartography/issues/215).
 - Yalta is designed to be approachable by new developers which benefits seasoned ones as well.
@@ -40,58 +40,54 @@ Yalta has quite a few advantages over other frameworks.
 
 # Quick Overview
 
-## Stack and Spacers
+### Stack and Spacers
 
 [`UIStackView`](https://developer.apple.com/documentation/uikit/uistackview) is king when it comes to aligning and distributing multiple views at the same time. Yalta doesn't try to compete with stacks - it complements them: 
 
 ```swift
-// Creating stack views with Yalta require much less boilerplate:
+// There are two concise ways to create stack in Yalta:
 let labels = Stack([title, subtitle], axis: .vertical)
-let stack = Stack([image, labels], spacing: 15, alignment: .top)
+let stack = Stack(image, labels) {
+    $0.spacing = 15
+    $0.alignment = .top
+}
 
-// You also get a convenience of Spacers (including flexible ones):
+// You also get convenient Spacers (including flexible ones):
 Stack(title, Spacer(minWidth: 16), subtitle) // alt syntax
 ```
 
 > Check out [Let's Build UIStackView](https://kean.github.io/post/lets-build-uistackview) to learn how stacks work under the hood (it's constraints all the way down).
 
-## Fill and Center
 
-It's time to add stack to a view hierarchy. Yalta has some high-level functions for that:
+### Anchors
+
+It's time to add a stack to a view hierarchy and lay it out. In Yalta you start by selecting an **anchor** or a **collection of anchors** of a view (or a layout guide). Then use anchor's methods to create constraints.
+
+> Anchors represent layout attributes of a view including **edges**, **dimensions**, **axis** and **baselines**.
+
+The best way to access anchors is by using a special `addSubview(_:constraints:)` method (supports up to 4 views):
 
 ```swift
-view.addSubview(stack)
+view.addSubview(stack) {
+    $0.edges.pinToSuperview() // pins the edges to fill the superview
+    $0.edges.pinToSuperview(insets: Insets(10)) // with insets
+    $0.edges.pinToSuperviewMargins() // or margins
 
-// You may want your stack to fill the superview:
-stack.al.fillSuperview()
-stack.al.fillSuperview(insets: Insets(10)) // with insets
-stack.al.fillSuperviewMargins() // or margins
-
-// Or only fill along a particular axis and center along the other:
-stack.al.fillSuperview(alongAxis: .horizontal)
-stack.al.centerInSuperview(alongAxis: .vertical)
+    $0.edges(.left, .right).pinToSuperview() // fill along horizontal axis
+    $0.centerY.alignWithSuperview() // center along vertical axis
+}
 ```
 
-These are more **filling** and **centering** functions with more options available.
+> With `addSubview(_:constraints:)` method you define a view hierarchy and layout views at the same time. It encourages splitting layout code into logical blocks and prevents programmer errors (e.g. trying to add constraints to views not in view hierarchy). 
 
 
-## Anchors
-
-Stacks and `fill(...)` functions are great for laying out entire views, however sometime you have to think in terms of individual **anchors**. Each anchor represents either **edge**, **dimension** or **axis** of a view.
-
-You can access anchors via `.al` extension however a recommended way is to create a `Constraints` group instead:
+Each anchor and collection of anchors have methods which make sense for that particular kind of anchor:
 
 ```swift
-Constraints(for: title, subtitle) { title, subtitle in
-    // Start with a `UIView` (or `UILayoutGuide`) and select one of the object's
-    // anchors. Use anchor's methods to create constraints:
-    title.top.pinToSuperview()
-
-    // Yalta has a fluent API which read like grammatical phrase:
+view.addSubview(title, subtitle) { title, subtitle in
     subtitle.top.align(with: title.bottom, offset: 10)
 
     title.centerX.alignWithSuperview()
-    subtitle.centerX.align(with: title.centerX)
 
     title.width.set(100)
     subtitle.width.match(title.width)
@@ -99,11 +95,11 @@ Constraints(for: title, subtitle) { title, subtitle in
     // You can change a priority of constraints inside a group:
     subtitle.bottom.pinToSuperview().priority = UILayoutPriority(999)
 }
+
+title.al.top.pinToSuperview() // all anchors are also accessible via `.al` proxy
 ```
 
-> As you've probably noticed `Constraints` group allows you to get rid of `.al` prefix. More importantly, it encourages you to split constraints into small logical groups. Make sure that you do!
-
-In some cases you might want to operate on multiple anchors at the same time:
+In addition to `addSubview(_:constraints:)` method there is a `Constraints` type which allows you to operate on an existing view hierarchy:
 
 ```swift
 Constraints(for: a, b) { a, b in
@@ -111,3 +107,5 @@ Constraints(for: a, b) { a, b in
     a.size.match(b.size)
 }
 ```
+
+> Yalta has full test coverage. If you'd like to learn about which constraints (`NSLayoutConstraint`) Yalta creates each time you call one of its methods, test cases are a great place to start.

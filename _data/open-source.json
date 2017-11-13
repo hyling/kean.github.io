@@ -7,10 +7,10 @@
             "description" : "Image loading, processing, caching and preheating"
         },
         {
-            "title" : "RxNuke",
-            "link" : "https://github.com/kean/RxNuke",
+            "title" : "Yalta",
+            "link" : "https://github.com/kean/Yalta",
             "languages" : "Swift",
-            "description" : "RxSwift extensions for Nuke"
+            "description" : "An intuitive and powerful Auto Layout library"
         },
         {
             "title" : "Arranged",
