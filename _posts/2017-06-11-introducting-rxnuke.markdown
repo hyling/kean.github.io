@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Introducing RxNuke"
-date:   2017-06-11 21:00:00 +0300
+title: "Introducing RxNuke"
+subtitle: "I'm excited to introduce a new addition to Nuke - <a href='https://github.com/kean/RxNuke'>RxNuke</a> which brings the power of <a href='https://github.com/ReactiveX/RxSwift'>RxSwift</a> to your image loading pipelines"
+date: 2017-06-11 21:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/introducing-rxnuke

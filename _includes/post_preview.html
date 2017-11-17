@@ -1,6 +1,6 @@
 <header class="post-title-container">
+	<p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}</span></p>
     <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-    <p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}</span></p>
 </header>
-<p class="post-excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
+<p class="post-excerpt">{{ post.subtitle }}</p>
 <p class="post-continue-reading"><a href="{{ post.url | prepend: site.baseurl }}">Read more &#xbb;</a></p>

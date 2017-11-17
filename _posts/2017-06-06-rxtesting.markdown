@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "RxSwift Testing"
-date:   2017-06-06 10:00:00 +0300
+title: "RxSwift Testing"
+subtitle: "Unit testing paging in a scroll view using <a href='https://github.com/ReactiveX/RxSwift'>RxSwift</a> testing infrastructure - <a href='https://github.com/ReactiveX/RxSwift/blob/master/Documentation/UnitTests.md'>RxTest</a>"
+date: 2017-06-06 10:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/rxswift-testing

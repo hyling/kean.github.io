@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "API Client in Swift"
-date:   2017-07-10 9:00:00 +0300
+title: "API Client in Swift"
+subtitle: "How to implement a declarative and powerful API client using <a href='https://github.com/Alamofire/Alamofire'>Alamofire</a>, <a href='https://github.com/ReactiveX/RxSwift'>RxSwift</a> and <a href='https://kean.github.io/post/codable-tips-and-tricks'>Codable</a>"
+date: 2017-07-10 9:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/api-client

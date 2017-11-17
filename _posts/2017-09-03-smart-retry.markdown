@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Smart Retry"
-date:   2017-09-03 10:00:00 +0300
+title: "Smart Retry"
+subtitle: "Combining <a href='http://reactivex.io/documentation/operators/retry.html'>retryWhen</a> operator with <a href='https://developer.apple.com/library/content/samplecode/Reachability/Introduction/Intro.html'>Reachability</a> and delay options inspired by <a href='https://github.com/RxSwiftCommunity/RxSwiftExt'>RxSwiftExt</a> to implement an effective retry strategy"
+date: 2017-09-03 10:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/smart-retry

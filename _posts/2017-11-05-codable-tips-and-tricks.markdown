@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Codable: Tips and Tricks"
-date:   2017-11-05 10:00:00 +0300
+title: "Codable: Tips and Tricks"
+subtitle: "Codable was introduces in Swift 4 with a <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>motivation</a> to replace old NSCoding APIs. Unlike NSCoding is also features first class JSON support"
+date: 2017-11-05 10:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/codable-tips-and-tricks
@@ -14,7 +15,7 @@ I've migrated our app to [Codable](https://developer.apple.com/documentation/swi
 
 <a href="{{ site.url }}/playgrounds/codable.playground.zip"><img src="{{ site.url }}/images/posts/codable_screen_01.png" class="screenshot"></a>
 
-`Codable` was introduces in Swift 4 with a [motivation](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation) to provide a Swift replacement for old `NSCoding` APIs. Unlike `NSCoding` has a first class JSON support which makes it a promising option for consuming JSON APIs.
+`Codable` was introduces in Swift 4 with a [motivation](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation) to replace old `NSCoding` APIs. Unlike `NSCoding` has a first class JSON support which makes it a promising option for consuming JSON APIs.
 
 `Codable` is great for its intended purpose of `NSCoding` replacement. If you just need to encode and decode some local data which you have full control over you might even be able to take advantage of [automatic encoding and decoding](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
 
