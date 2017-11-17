@@ -26,9 +26,15 @@ redirect_from: /blog/
 <div class="home-post-preview-list-container">
 {% for post in site.posts %}
 	{% if post.uuid != site.featured_post %}
+	{% if post.cover != NULL %}
+	<div class="home__post-preview-with-cover__container">
+	    {% include post_preview_with_cover.html %}
+	</div>
+	{% else %}
 	<div class="home-post-preview-container">
 	    {% include post_preview.html %}
 	</div>
+	{% endif %}
 	{% endif %}
 {% endfor %}
 </div>

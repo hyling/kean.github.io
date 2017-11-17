@@ -1,12 +1,13 @@
 ---
 layout: post
 title: "Codable: Tips and Tricks"
-subtitle: "Codable was introduces in Swift 4 with a <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>motivation</a> to replace old NSCoding APIs. Unlike NSCoding is also features first class JSON support"
+subtitle: "Introduced in Swift 4 to <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>replace NSCoding APIs</a>, Codable also features first class JSON support"
 date: 2017-11-05 10:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/codable-tips-and-tricks
 uuid: 8b6a08fa-ba58-4f9a-b607-7bd4d1171f7f
+cover: /images/posts/codable_cover.png
 ---
 
 I've migrated our app to [Codable](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization). I'd like to share with you some of the tips and tricks that I've come up with along the way.

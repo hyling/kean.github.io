@@ -40,7 +40,8 @@
  * Post
  */
 .post-title-container {
-    margin: 0.25 * $spacing-unit 0;
+    margin-top: 0.5 * $spacing-unit;
+    margin-bottom: 0.25 * $spacing-unit;
     h2 {
         display: inline;
     }
@@ -108,7 +109,39 @@
     border-top: 1px solid #e0e0e0;
     margin: 0 0 1 * $spacing-unit 0;
 
-    width: 48.333333%;
+    width: 47.8%;
+    @include media-query($on-palm) {
+        width: 100%;
+    }
+}
+
+// Post (Preview with Cover)
+// ============================================================
+
+.home__post-preview-with-cover__container {
+    margin: 0 0 1 * $spacing-unit 0;
+
+    width: 100%;
+
+    img {
+        margin: 0.25 * $spacing-unit 0;
+        border-radius: 8px;
+    }
+
+    padding: $spacing-unit * 0.5 $spacing-unit * 0.5 $spacing-unit * 0.5 $spacing-unit * 0.5;
+    background: $background-color-light-grey;
+    border: 0.5px solid $grey-color-light;
+    border-radius: 8px;
+}
+
+.home__post-preview-with-cover__flex_container {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.home__post-preview-with-cover__flex_item {
+    width: 47.8%;
     @include media-query($on-palm) {
         width: 100%;
     }
