@@ -2,7 +2,7 @@
 layout: post
 title: "Yalta: Intuitive Auto Layout"
 subtitle: "I'm thrilled to introduce a new intuitive and powerful Auto Layout library <a href='https://github.com/kean/Yalta'>Yalta</a> which is perfect for both new and seasoned developers"
-date:   2017-11-13 10:00:00 +0300
+date: 2017-11-17 18:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/yalta

@@ -2,7 +2,7 @@
 layout: post
 title: "Codable: Tips and Tricks"
 subtitle: "Introduced in Swift 4 to <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>replace NSCoding APIs</a>, Codable also features first class JSON support"
-date: 2017-11-05 10:00:00 +0300
+date: 2017-11-10 18:00:00 +0300
 category: programming
 tags: ios
 permalink: /post/codable-tips-and-tricks
