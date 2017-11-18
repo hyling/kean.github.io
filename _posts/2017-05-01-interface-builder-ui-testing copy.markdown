@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Interface Builder: UI Testing"
+title: "Interface Builder: Previews"
 subtitle: "Using <a href='https://developer.apple.com/xcode/interface-builder/'>Interace Builder</a> to quickly preview features on different screen sizes and in different orientations"
 date: 2017-05-01 10:00:00 +0300
 category: programming

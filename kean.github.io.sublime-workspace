@@ -1,0 +1,577 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"ali",
+				"vertical-align"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"bak",
+				"background-color"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"fat",
+				"fact-iter"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/kean/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 250,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Test"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Bench"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/Rust/Rust.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust/Rust.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Run Release"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Test"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Bench"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Release"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Document"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Clippy"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Script"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Rust/Rust.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Scheme/Scheme.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Scheme/Scheme.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 227.0,
+		"last_filter": "preview",
+		"selected_items":
+		[
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Markdo",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"Ins Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"set sy rust",
+				"Set Syntax: Rust"
+			],
+			[
+				"set sy sche",
+				"Set Syntax: Scheme"
+			],
+			[
+				"Makd",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"SublimR: sche",
+				"SublimeREPL: Scheme"
+			],
+			[
+				"repl ",
+				"SublimeREPL: Scheme"
+			],
+			[
+				"repl: sch",
+				"SublimeREPL: Scheme"
+			],
+			[
+				"Instal ",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Previe",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Mak Pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"PM",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"Mak",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 420.0
+	},
+	"console":
+	{
+		"height": 62.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kean/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_home.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_layouts/post.html",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/footer.html",
+		"/Users/kean/Develop/Source/kean.github.io/.sass-cache/37ecbec3b0966e526869cc9b6be97ca60dd5f749/_home.scssc",
+		"/Users/kean/Develop/Source/kean.github.io/.sass-cache/37ecbec3b0966e526869cc9b6be97ca60dd5f749/_layout.scssc",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/post_preview.html",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/post_preview_with_cover.html",
+		"/Users/kean/Develop/Source/kean.github.io/_site/css/main.css",
+		"/Users/kean/Develop/Source/kean.github.io/_site/index.html",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-07-10-api-client-in-swift.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/index.html",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-11-05-codable-tips-and-tricks.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-09-03-smart-retry.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-05-01-interface-builder-ui-testing copy.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/css/main.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_sidebar.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_nuke.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-11-13-yalta.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2016-01-10-immutability-and-builder-pattern.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2016-01-15-image-preheating.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2016-01-26-image-caching.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2016-06-18-core-data-progressive-migrations.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-01-16-lets-build-uistackview.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-06-11-introducting-rxnuke.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-06-06-rxtesting.markdown",
+		"/Users/kean/Develop/Source/Yalta/Docs/Guide.md",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-11-09-yalta.markdown",
+		"/Users/kean/Develop/Source/Yalta/README.md",
+		"/Users/kean/Develop/Source/YALE/LICENSE",
+		"/Users/kean/Develop/Source/YALE/CHANGELOG.md",
+		"/Users/kean/Develop/Source/YALE/README.md",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/sidebar-header.html",
+		"/Users/kean/Develop/Source/kean.github.io/_config.yml",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/head.html",
+		"/Users/kean/Develop/Source/YALE/Yalta.podspec",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-11-04-codable-tips-and-tricks.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_base.scss",
+		"/Users/kean/Develop/Source/Acorn-iOS-app/AcornTests/FxCategoriesTest01.json",
+		"/Users/kean/Develop/Source/kean.github.io/_drafts/2017-10-22-modules.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-10-22-modules.markdown",
+		"/Users/kean/Develop/Source/Acorn-iOS-app/Acorn.xcodeproj/project.pbxproj",
+		"/Users/kean/Develop/Source/Acorn-iOS-app/Acorn.xcworkspace/contents.xcworkspacedata",
+		"/Users/kean/1.0",
+		"/Users/kean/Desktop/benchmarks",
+		"/Users/kean/Desktop/inn",
+		"/Users/kean/Desktop/Cities Skylines.app/Contents/MacOS/run.sh",
+		"/Users/kean/Develop/Source/kean.github.io/_drafts/2017-10-21-modules.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-10-21-modules.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_drafts/2017-10-20-modules.markdown",
+		"/Users/kean/Develop/Source/Acorn-iOS-app/Podfile",
+		"/Users/kean/Documents/vacation.txt",
+		"/Users/kean/Desktop/Nuke 6",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-07-06-api-client-in-swift.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_layouts/page.html",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_blog.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_posts/2017-07-05-api-client-in-swift.markdown",
+		"/Users/kean/Develop/Source/kean.github.io/_data/open-source.json",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/sidebar-open-source.html",
+		"/Users/kean/Develop/Source/kean.github.io/nuke/index.html",
+		"/Users/kean/Develop/Source/kean.github.io/_site/nuke.html",
+		"/Users/kean/Develop/Source/kean.github.io/.sass-cache/37ecbec3b0966e526869cc9b6be97ca60dd5f749/_nuke.scssc",
+		"/Users/kean/Develop/Source/RxNuke/.gitignore",
+		"/Users/kean/Develop/Source/Nuke-Alamofire-Plugin/.gitignore",
+		"/Users/kean/Develop/Source/RxNuke/CHANGELOG.md",
+		"/Users/kean/Develop/Source/RxNuke/RxNuke.podspec",
+		"/Users/kean/Develop/Source/kean.github.io/_sass/_icons.scss",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/post-mini-preview.html",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/sidebar-latest-posts.html",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/sidebar-home.html",
+		"/Users/kean/Develop/Source/kean.github.io/_includes/sidebar.html",
+		"/Users/kean/Develop/Source/kean.github.io/images/avatar.jpg",
+		"/Users/kean/Develop/Source/blog/_posts/2017-06-06-rxtesting.markdown",
+		"/Users/kean/Develop/Source/blog/_posts/2017-04-01-interface-builder-ui-testing.markdown",
+		"/Users/kean/Downloads/switch",
+		"/Users/kean/Develop/Source/blog/_config.yml",
+		"/Users/kean/Develop/Source/blog/_posts/2017-04-01-ibdesignable.markdown",
+		"/Users/kean/Develop/Source/blog/_posts/2017-04-01-faster_native_development.markdown",
+		"/Users/kean/Documents/ib_tdd.markdown",
+		"/Users/kean/Documents/ib_tdd",
+		"/Users/kean/Desktop/DONE",
+		"/Users/kean/Desktop/точка",
+		"/Users/kean/Desktop/fitmeup.md",
+		"/Users/kean/Desktop/banners",
+		"/Users/kean/Develop/Source/SICP/Chapter 1/sicp-exercise-1-16.scm",
+		"/Users/kean/Develop/Source/SICP/Chapter 1/sicp-exercise-1-32.scm",
+		"/Users/kean/Develop/Source/SICP/Chapter 1/sicp-exercise-1-07.scm",
+		"/Users/kean/Develop/Source/SICP/Chapter 1/sicp-exercise-1-03.scm",
+		"/Users/kean/Desktop/auth",
+		"/Users/kean/Develop/Source/Nuke/docs.json",
+		"/Users/kean/Downloads/test_images/overview.svg",
+		"/Users/kean/Develop/Source/blog/_posts/2017-03-01-functional.markdown",
+		"/Users/kean/Develop/Source/SICP/Chapter 1/sicp-exercise-1-01.scm",
+		"/Users/kean/Develop/Source/Nuke/Documentation/Guides/Third Party Libraries.md",
+		"/Users/kean/Develop/Source/Scheme/e001.scm",
+		"/Users/kean/Develop/Source:Scheme",
+		"/Users/kean/Develop/Source/Nuke/README.md",
+		"/Users/kean/Desktop/opentable-notes",
+		"/Users/kean/Develop/Source/blog/_posts/2017-01-16-lets-build-uistackview.markdown",
+		"/Users/kean/Develop/Source/blog/_posts/2017-02-04-rate-limiter.markdown",
+		"/Users/kean/Develop/Source/blog/_posts/2016-01-15-image-preheating.markdown",
+		"/Users/kean/.bash_profile",
+		"/Users/kean/Google Drive/config/k_config.txt",
+		"/Users/kean/Develop/Source/Nuke/Package.swift"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 115.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/kean/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 250,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								247,
+								247
+							]
+						],
+						"settings":
+						{
+							"edit_settings_other_view_id": 51,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 41.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 262.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "kean.github.io.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ra",
+				"2017-02-04-rate-limiter.markdown"
+			],
+			[
+				"im",
+				"2016-01-15-image-preheating.markdown"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 223.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

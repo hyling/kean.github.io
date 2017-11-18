@@ -17,21 +17,21 @@ redirect_from: /blog/
 
 {% for post in site.posts %}
 	{% if post.uuid == site.featured_post %}
-	<div class="post-featured-container">
+	<div class="blog__post-preview-featured__container">
 	    {% include post_preview.html %}
 	</div>
 	{% endif %}
 {% endfor %}
 
-<div class="home-post-preview-list-container">
+<div class="blog__post-preview__list-container">
 {% for post in site.posts %}
 	{% if post.uuid != site.featured_post %}
 	{% if post.cover != NULL %}
-	<div class="home__post-preview-with-cover__container">
+	<div class="blog__post-preview-with-cover__container">
 	    {% include post_preview_with_cover.html %}
 	</div>
 	{% else %}
-	<div class="home-post-preview-container">
+	<div class="blog__post-preview__container">
 	    {% include post_preview.html %}
 	</div>
 	{% endif %}
@@ -46,7 +46,7 @@ redirect_from: /blog/
 </main>
 
 
-<aside class="sidebar">
+<aside class="sidebar base__card">
 
 {% include sidebar-home.html %}
 

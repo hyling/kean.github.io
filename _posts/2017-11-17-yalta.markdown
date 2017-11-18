@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Yalta: Intuitive Auto Layout"
-subtitle: "I'm thrilled to introduce a new intuitive and powerful Auto Layout library <a href='https://github.com/kean/Yalta'>Yalta</a> which is perfect for both new and seasoned developers"
+subtitle: "I'm thrilled to introduce a new intuitive and powerful Auto Layout library - <a href='https://github.com/kean/Yalta'>Yalta</a>"
 date: 2017-11-17 18:00:00 +0300
 category: programming
 tags: ios
@@ -32,7 +32,7 @@ Yalta has quite a few advantages over other frameworks.
 
 - Yalta strives for clarity and simplicity by following [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Although most of the APIs are compact, it is a *non-goal* to enable the most concise syntax possible.
 - Yalta has a fluent API that makes use sites form grammatical English phrases. That's what makes Swift code really stand out for me.
-- It's extremely small and simple with just a single file with under 250 lines of code (compare with 1000 lines over 27 files in Cartography).
+- It's extremely small and simple with less than 250 line of code (compare with 1000 lines over 27 files in Cartography).
 - There are no custom operators and thus no unexpected surprises like an [increasing in your app's compile time](https://github.com/robb/Cartography/issues/215).
 - Yalta is designed to be approachable by new developers which benefits seasoned ones as well.
 
