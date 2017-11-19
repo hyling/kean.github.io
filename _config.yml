@@ -29,9 +29,9 @@ defaults:
       path: ""
     values:
       image:
-        path: /images/avatar.jpeg
-        height: 400
-        width: 400
+        path: /images/avatar.jpg
+        height: 440
+        width: 330
       social:
         name: "Alexander Grebenyuk"
         links:
