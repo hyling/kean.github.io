@@ -15,9 +15,10 @@ github_username: kean
 
 # Build settings
 markdown: kramdown
+future: true
 
 # Site specific
-featured_post: 00e90200-1ef8-479e-aea7-62b98a148c2e
+featured_post: NULL
 
 gems:
   - jekyll-redirect-from

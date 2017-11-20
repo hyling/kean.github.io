@@ -403,7 +403,7 @@ _ = client.request(API.postFeedback(email: "email", message: "message"))
 _ = client.request(API.getCustomerProfile())
 ```
 
-Great, this works just as expected! This approach is nothing new, e.g. [RxSwift traits](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Traits.md) also use phantom types. I'm still experimenting with it and haven't yet put this in production code. However, this approach looks really promising. The Swift type system is obviously so much more powerful than Objective-C, but I can't stop myself from wanting more.
+Great, this works just as expected! I'm still experimenting with this approach and haven't yet put this in production code. However, it looks really promising. The Swift type system is obviously so much more powerful than Objective-C, but I can't stop myself from wanting more.
 
 # Conclusion
 

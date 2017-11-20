@@ -14,7 +14,7 @@ public struct Id<Entity>: Hashable {
     }
     
     public static func ==(lhs: Id, rhs: Id) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+        return lhs.raw == rhs.raw
     }
 }
 
