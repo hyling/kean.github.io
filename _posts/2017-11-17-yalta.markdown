@@ -19,11 +19,11 @@ If you'd like to learn about *why it exists*, *who is it for*, and why it might 
 
 The primary motivation for releasing Yalta was [Chris Eidhof's article](http://chris.eidhof.nl/post/micro-autolayout-dsl/) in which he shares his concerns about the current state of Auto Layout tools in Swift. When I was deciding how to work with Auto Layout in my recent Swift project I came to the same conclusions as Chris did. Among the tools that I've investigated were:
 
-- [PureLayout](https://github.com/PureLayout/PureLayout) which I used in my Objective-C projects before. It was a great library in Objective-C world, but even then it wasn't the one with the most concise syntax. In Swift it became even more apparent.
+- [PureLayout](https://github.com/PureLayout/PureLayout) which I used in my Objective-C projects before. It was a great library in the Objective-C world, but even then it wasn't the one with the most concise syntax. In Swift it became even more apparent.
 - [Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit). Both are pretty large and complex libraries. Operator overloads come with a good chance of [increasing the app's compile time](https://github.com/robb/Cartography/issues/215).
-- Apple's [NSLayoutAnchor](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutAnchor_ClassReference/index.html) API was created in Objective-C era. I really like the idea behind anchors, but the actual API is verbose, requires manually activating each constraint, and there is no API for creating multiple constraints at once.
+- Apple's [NSLayoutAnchor](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutAnchor_ClassReference/index.html) API was created in the Objective-C era. I really like the idea behind anchors, but the actual API is verbose, requires manually activating each constraint, and there is no API for creating multiple constraints at once.
 
-So rather then pulling in a library I decided to write my own. The goal was to hit a balance between power and simplicity. I felt like I had a pretty good chance of achieving that. After all, I already had plenty of experience working with Auto Layout. The first time we adopted it in our projects was back in iOS 6 days. More recently I made [Arranged](https://github.com/kean/Arranged) (UIStackView backport) and wrote about [UIStackView under the hood](https://kean.github.io/post/lets-build-uistackview). I had a good idea about what I wanted from this tool.
+So rather then pulling in a library I decided to write my own. The goal was to hit a balance between power and simplicity. I felt like I had a pretty good chance of achieving that. After all, I already had plenty of experience working with Auto Layout. The first time we adopted it in our projects was back in iOS 6 days. More recently I made [Arranged](https://github.com/kean/Arranged) (UIStackView backport) and wrote about [UIStackView under the hood](https://kean.github.io/post/lets-build-uistackview). I had a good idea of I wanted from this tool.
 
 
 # ⛵Yalta
@@ -34,9 +34,9 @@ Yalta has quite a few advantages over other frameworks.
 - Yalta has a fluent API that makes use sites form grammatical English phrases. That's what makes Swift code really stand out for me.
 - It's extremely small and simple with less than 250 line of code (compare with 1000 lines over 27 files in Cartography).
 - There are no custom operators and thus no unexpected surprises like an [increasing in your app's compile time](https://github.com/robb/Cartography/issues/215).
-- Yalta is designed to be approachable by new developers which benefits seasoned ones as well.
+- Yalta is designed to be approachable by new developers which benefit seasoned ones as well.
 
-> [Yalta](https://en.wikipedia.org/wiki/Yalta) is a beautiful port city on the Black Sea, and a great name for *yet another layout tool* with *anchors*.
+> [Yalta](https://en.wikipedia.org/wiki/Yalta) is a beautiful port city on the Black Sea and a great name for *yet another layout tool* with *anchors*.
 
 
 # Quick Overview

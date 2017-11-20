@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Codable: Tips and Tricks"
-subtitle: "Introduced in Swift 4 to <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>replace NSCoding APIs</a>, Codable also features first class JSON support"
+subtitle: "Introduced in Swift 4 to <a href='https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation'>replace NSCoding APIs</a>, Codable also features first-class JSON support"
 date: 2017-11-10 18:00:00 +0300
 category: programming
 tags: ios
@@ -22,7 +22,7 @@ I've migrated our app to [Codable](https://developer.apple.com/documentation/swi
 
 In the real world though things get very *complicated* very *quickly*. Trying to build a fault tolerant system which deals with all the quirks of the external JSON and models all the product requirements is a challenge.
 
-One of the major downsides of `Codable` is that as soon a you need custom decoding logic - even for a single key - you have to provide custom everything: manually define all the *coding keys*, and implementing an entire `init(from decoder: Decoder) throws` initializer by hand. This isn't ideal. But it is at least as good (or bad) as third-party JSON libraries in Swift. Having one built into the standard library is definitely a win.
+One of the major downsides of `Codable` is that as soon as you need custom decoding logic - even for a single key - you have to provide custom everything: manually define all the *coding keys*, and implementing an entire `init(from decoder: Decoder) throws` initializer by hand. This isn't ideal. But it is at least as good (or bad) as third-party JSON libraries in Swift. Having one built into the standard library is definitely a win.
 
 So if you'd like to start using `Codable` in your app (and you are already familiar with all the basics) here are some tips and tricks that you may find helpful:
 
@@ -69,7 +69,7 @@ As you might have expected we received a [`.keyNotFound`](https://developer.appl
 
 > When the data doesn't match an expected format (e.g. it might be a result of miscommunication, regression, or unexpected user input) the system should automatically report an error to give the developers a chance to fix it. Swift provides a thorough error report in a form of [`DecodingError`](https://developer.apple.com/documentation/swift/decodingerror) any time the decoding fails which is extremely useful.
 
-In most cases you wouldn't want a single corrupted post to prevent you from displaying an entire page of other perfectly valid ones. To prevent this from happening I use a special `Safe<T>` type which allows me to safely decode an object. If it encounters an error during decoding it fails safely and [sends a report](https://sentry.io/welcome/):
+In most cases, you wouldn't want a single corrupted post to prevent you from displaying an entire page of other perfectly valid ones. To prevent this from happening I use a special `Safe<T>` type which allows me to safely decode an object. If it encounters an error during decoding it fails safely and [sends a report](https://sentry.io/welcome/):
 
 ```swift
 public struct Safe<Base: Decodable>: Decodable {
@@ -104,7 +104,7 @@ do {
 
 # 2. Id Type and a Single Value Container
 
-In the previous example I've used a special `Id<Post>` type. The `Id` type gets parametrized with a generic parameter `Entity` which isn't actually used by the `Id` itself but is used by compiler when comparing different types of `Id`s. This way the compiler ensures that I can't accidentally pass `Id<Media>` where `Id<Image>` is expected.
+In the previous example, I've used a special `Id<Post>` type. The `Id` type gets parametrized with a generic parameter `Entity` which isn't actually used by the `Id` itself but is used by the compiler when comparing different types of `Id`s. This way the compiler ensures that I can't accidentally pass `Id<Media>` where `Id<Image>` is expected.
 
 > Another place where I used *phantom types* for type safety is my <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> post.
 
@@ -157,7 +157,7 @@ As you can see from the code above `Id` also has a special rule that prevents it
 
 # 3. Safely Decoding Enums
 
-Swift has a great support for decoding (and encoding) enums. In many cases all you need to do is to just declare a `Decodable` conformance which gets synthesized automatically by a compiler (the enum raw type must be either `String` or `Int`).
+Swift has a great support for decoding (and encoding) enums. In many cases, all you need to do is to just declare a `Decodable` conformance which gets synthesized automatically by a compiler (the enum raw type must be either `String` or `Int`).
 
 Suppose you're building a system that displays all your devices on a map. A device has a `location` (required) and `system` (required) which it's running.
 
@@ -229,7 +229,7 @@ self.system = System(rawValue: try map.decode(String.self, forKey: .system))
 
 # 4. Less Verbose Manual Decoding
 
-In the previous example we had to implement a custom initializer `init(from decoder: Decoder) throws` which turned out [pretty verbose](https://bugs.swift.org/browse/SR-6063). Fortunately, there are a few ways to make it more terse.
+In the previous example, we had to implement a custom initializer `init(from decoder: Decoder) throws` which turned out [pretty verbose](https://bugs.swift.org/browse/SR-6063). Fortunately, there are a few ways to make it terser.
 
 ## 4.1. Getting Rid of Explicit Type Parameters
 
@@ -257,7 +257,7 @@ Let's go back to our `Post` example and extend it with `webURL` property (option
 }
 ```
 
-To decode this data safely we could implement a custom `init(from decoder: Decoder) throws` initializer but this time take advantage of our new `decode(...)` methods which doesn't require an explicit type parameter:
+To decode this data safely we could implement a custom `init(from decoder: Decoder) throws` initializer but this time take advantage of our new `decode(...)` methods which don't require an explicit type parameter:
 
 ```swift
 final class Post: Decodable {

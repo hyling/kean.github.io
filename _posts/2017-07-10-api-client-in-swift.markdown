@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "API Client in Swift"
-subtitle: "How to implement a declarative and powerful API client using <a href='https://github.com/Alamofire/Alamofire'>Alamofire</a>, <a href='https://github.com/ReactiveX/RxSwift'>RxSwift</a> and <a href='https://kean.github.io/post/codable-tips-and-tricks'>Codable</a>"
+subtitle: "How to implement a declarative and powerful API client using <a href='https://github.com/Alamofire/Alamofire'>Alamofire</a>, <a href='https://github.com/ReactiveX/RxSwift'>RxSwift</a>, and <a href='https://kean.github.io/post/codable-tips-and-tricks'>Codable</a>"
 date: 2017-07-10 9:00:00 +0300
 category: programming
 tags: ios
@@ -42,11 +42,11 @@ Let's start with dependencies. As Swift ecosystem grows it becomes increasingly 
 - Generate cURL command output
 - Automatically show and hide network activity indicator
 
-`Alamofire` is a great framework with a solid code base and comprehensive documentation. The only real alternative to `Alamofire` is writing your own abstraction on top of `Foundation.URLSession`. It's absolutely possible and it's realtively simple, but it requires a lot of boilerplate code simply because of the natute of `Foundation.URLSession` and it's delegate-based approach.
+`Alamofire` is a great framework with a solid code base and comprehensive documentation. The only real alternative to `Alamofire` is writing your own abstraction on top of `Foundation.URLSession`. It's absolutely possible and relatively simple, but it requires a lot of boilerplate code simply because of the nature of `Foundation.URLSession` and it's delegate-based approach.
 
 ## 2. Using RxSwift
 
-[RxSwift](https://github.com/ReactiveX/RxSwift) has become a must-have tool for me. It gives you all of the advantages of promises and [much more](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md). One of its underrated features which happens to be one of me my favorite is its built-in [testing support](https://kean.github.io/post/rxswift-testing). Why does it make sense to wrap your API calls into `Observables`? I'm going to provide a couple of examples later in a "Usage" section to show exactly that.
+[RxSwift](https://github.com/ReactiveX/RxSwift) has become a must-have tool for me. It gives you all of the advantages of promises and [much more](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md). One of its underrated features which happen to be one of me my favorite is its built-in [testing support](https://kean.github.io/post/rxswift-testing). Why does it make sense to wrap your API calls into `Observables`? I'm going to provide a couple of examples later in a "Usage" section to show exactly that.
 
 > There is a number of reasons why I prefer RxSwift over ReactiveCocoa, but I'd like not to dive into this discussion as part of this article.
 
@@ -77,9 +77,9 @@ The things that I'm looking for in a JSON mapper are:
 
 # Endpoint
 
-Now let's dive into code. One of the questions to be answered is how to model API endpoints.
+Now let's dive into the code. One of the questions to be answered is how to model API endpoints.
 
-> [Moya](https://github.com/Moya/Moya) [recommends that you model](https://gist.github.com/kean/a2461a4520969a995c62d9ee65ff7e1a) put your endpoints into an enum (but doesn't enforce this), some open source projects do the same, and Alamofire itself [suggests](https://github.com/Alamofire/Alamofire#crud--authorization) that you do the same. This is surprising, because it doesn't seem like an optimal way to represent endpoints. Enums are great for representing concepts where mutual exclusivity of cases is important - `Optional`, `Result`, `Bool`. This is not the case with the API endpoints. There is no cohesion in [this code](https://gist.github.com/kean/a2461a4520969a995c62d9ee65ff7e1a). Instead of pulling together things that describe a single endpoint the details are scattered across the entire file. It's going to be unnecessary tedious to read, add new endpoint or edit existing ones.
+> [Moya](https://github.com/Moya/Moya) [recommends that you model](https://gist.github.com/kean/a2461a4520969a995c62d9ee65ff7e1a) put your endpoints into an enum (but doesn't enforce this), some open source projects do the same, and Alamofire itself [suggests](https://github.com/Alamofire/Alamofire#crud--authorization) that you do the same. This is surprising because it doesn't seem like an optimal way to represent endpoints. Enums are great for representing concepts where mutual exclusivity of cases is important - `Optional`, `Result`, `Bool`. This is not the case with the API endpoints. There is no cohesion in [this code](https://gist.github.com/kean/a2461a4520969a995c62d9ee65ff7e1a). Instead of pulling together things that describe a single endpoint the details are scattered across the entire file. It's going to be unnecessary tedious to read, add new endpoint or edit existing ones.
 
 My priorities are that the endpoints should be modeled in a type-safe, declarative and concise way, and it should be easy to add, use, and change them. In its simplest form `Endpoint` is described using `HTTP method`, `path`, `parameters`, and a way to decode the response:
 
@@ -109,7 +109,7 @@ enum Method {
 }
 ```
 
-> There are no prefixes to make code more concise. In reality, you would either add them, or put those types in a separate module.
+> There are no prefixes to make the code more concise. In reality, you would either add them or put those types in a separate module.
 
 To make endpoint initializers more concise `decode` closures can be inferred automatically (depends on the JSON mapper being used):
 
@@ -138,7 +138,7 @@ extension Endpoint where Response == Void {
 }
 ```
 
-Let's define a couple of endpoints to see how it works in pratice:
+Let's define a couple of endpoints to see how it works in practice:
 
 ```swift
 extension API {
@@ -185,7 +185,7 @@ This approach closely resembles the way REST models resources, but it has it's d
 
 # Client
 
-The next question is how to actually perform the requests for those endpoints - `Client`. It takes an endpoint parameters, fills the rest of the defails including access token, base URL, etc, and carry out the request using an underlying `Alamofire.SessionManager`:
+The next question is how to actually perform the requests for those endpoints - `Client`. It takes an endpoint parameters, fills the rest of the defaults including the access token, base URL, etc, and carry out the request using an underlying `Alamofire.SessionManager`:
 
 ```swift
 final class Client: ClientProtocol {
@@ -263,13 +263,13 @@ _ = client.request(API.Customer.get())
 _ = client.request(API.Customer.patch(firstName: "First", lastName: "Last"))
 ```
 
-> In general the actual net network calls are only made from Model layer (e.g. `API.Customer` would only be used directly inside `CustomerService` class).
+> In general, the actual net network calls are only made from Model layer (e.g. `API.Customer` would only be used directly inside `CustomerService` class).
 
 Each of the requests return [cold observables](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/HotAndColdObservables.md). So nothing is going to happen until someone subscribes to the observable. I'm not going to dive into details about RxSwift and how to use it. The article assumes that you are already familiar with it. However, what I would like to do is show a couple of examples of why observables are so useful and why it's a good idea to use them in a networking layer.
 
-**Load two resources simulatenesouly and continue only when both requests were successfull**
+**Load two resources simultaneously and continue only when both requests were successful**
 
-Suppose you need to load two entities form the backed simulatenesouly and only then you would be able to continue. Without Rx it would be an exercise of manually managing state of both of those requests. With Rx [`combineLatest`](http://reactivex.io/documentation/operators/combinelatest.html) operator it's a single line:
+Suppose you need to load two entities form the backed simultaneously and only then you would be able to continue. Without Rx it would be an exercise of manually managing state of both of those requests. With Rx [`combineLatest`](http://reactivex.io/documentation/operators/combinelatest.html) operator it's a single line:
 
 ```swift
 let dependencies = Observable.combineLatest(

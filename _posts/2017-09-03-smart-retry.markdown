@@ -15,9 +15,9 @@ The requirements are fairly straightforward. Let's say you have an observable se
 
 - automatically retry it up to N times
 - use exponential backoff or other delay options
-- retry immediately when network connection is re-established
+- retry immediately when a network connection is re-established
 
-This sounds like a tall order for a single `retryWhen` operator, but it's actually flexible enough to support all of those requirements. In this post I'm going to create a new custom `retry` operator which would wrap this entire logic.
+This sounds like a tall order for a single `retryWhen` operator, but it's actually flexible enough to support all of those requirements. In this post, I'm going to create a new custom `retry` operator which would wrap this entire logic.
 
 > The complete implementation is available [here](https://gist.github.com/kean/95b69ef1a90bb62e9b81e924a0a71437).
 
@@ -46,7 +46,7 @@ extension ObservableType {
 
 > I've also added a couple of extension to some of the RxSwift [traits](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Traits.md) to make using `retry` easier.
 
-You would use the `retry` operator just as any other of the built-in operators. For example, here's how it fits in a classic search example:
+You would use the `retry` operator just as any other of the built-in operators. For example, here's how it fits into a classic search example:
 
 ```swift
 let isBusy = ActivityIndicator()
@@ -62,7 +62,7 @@ let results = input
             .asDriver(onErrorJustReturn: [])
 ```
 
-> Notice that `trackActivity(isBusy)` is called _after_ the `retry` operator. If it were called before it then it would be tracking activity of each of the individual requests.
+> Notice that `trackActivity(isBusy)` is called _after_ the `retry` operator. If it were called before it then it would be tracking the activity of each of the individual requests.
 
 # Implementation
 
@@ -137,7 +137,7 @@ The documentation describes it really nicely. The basic idea is the `retryWhen` 
 
 A couple of important points to keep in mind are:
 
-- You should _not_ ignore errors observable sequence in your `notificationHandler`. If you do and for example just return a timer from the handler, then the timer will simply run in parallel with the source sequence! This would probably not be want you intended.
+- You should _not_ ignore errors observable sequence in your `notificationHandler`. If you do and for example just return a timer from the handler, then the timer will simply run in parallel with the source sequence! This would probably not want you intended.
 - In RxSwift 3.x if the trigger completes the source sequence also completes. This might not be what you expect. This behavior might change in [RxSwift 4](https://github.com/ReactiveX/RxSwift/issues/1082). I would suggest not to rely on it in your code.
 
 ## Delay Options

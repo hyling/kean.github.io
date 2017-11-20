@@ -13,11 +13,11 @@ I'm excited to introduce a new addition to Nuke - [RxNuke](https://github.com/ke
 
 <img src="{{ site.url }}/images/posts/introducing_rxnuke_01.png" class="screenshot">
 
-Nuke's design has always prioritized simplicity, reliability and performance. The core framework has a small API surface and only contains a minimum number of features to built upon. This is great for many reasons, but unfortunately that left a gap between what Nuke supports out of the box and what users need. I received many requests about particular use cases like these:
+Nuke's design has always prioritized simplicity, reliability, and performance. The core framework has a small API surface and only contains a minimum number of features to built upon. This is great for many reasons, but unfortunately, that left a gap between what Nuke supports out of the box and what users need. I received many requests about particular use cases like these:
 
 > - "show stale response while validating the image"
 > - "wait until N images are loaded and only then proceed"
-> - "show low-res image while loading a high-res one".
+> - "show a low-res image while loading a high-res one".
 
 Each app has a different idea about how to configure their image loading pipeline. It's not feasible to support all of them in a single framework. [RxNuke](https://github.com/kean/RxNuke) aims at bridging this gap by leveraging the power of reactive programming to serve all of the aforementioned use cases, as well as many others.
 
@@ -25,7 +25,7 @@ Each app has a different idea about how to configure their image loading pipelin
 
 # Introduction
 
-In order to get started with RxNuke you should be familiar with the basics of RxSwift. Even if you don't you can already start taking advantage of RxNuke powerful features thanks to a number of [examples of common use cases](https://github.com/kean/RxNuke#use-cases) available in an RxNuke documentation.
+In order to get started with RxNuke you should be familiar with the basics of RxSwift. Even if you don't you can already start taking advantage of RxNuke powerful features thanks to a number of [examples of common use cases](https://github.com/kean/RxNuke#use-cases) available in a RxNuke documentation.
 
 Let's starts with the basics. The initial version of RxNuke adds a single new `Loading` protocol with a set of methods which returns `Singles`.
 
@@ -198,7 +198,7 @@ final class ImageCell: UICollectionViewCell {
 
 # Conclusion
 
-I hope that `RxNuke` becomes a valuable addition to Nuke. It brings power to solve many common use cases which are hard to implement without Rx. `RxNuke` is still very early stage. As it evolves it's going to bring some new powerful features made possible by Rx, more examples of common use cases, and more `Nuke` extensions to give you power to build the exact image loading pipelines that you want.
+I hope that `RxNuke` becomes a valuable addition to Nuke. It brings power to solve many common use cases which are hard to implement without Rx. `RxNuke` is still very early stage. As it evolves it's going to bring some new powerful features made possible by Rx, more examples of common use cases, and more `Nuke` extensions to give you the power to build the exact image loading pipelines that you want.
 
 > If you have any questions, additions or corrections to the examples from the article please feel free to leave a comment below, or hit me up on [Twitter](https://twitter.com/a_grebenyuk).
 
