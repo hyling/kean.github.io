@@ -18,7 +18,7 @@ markdown: kramdown
 future: true
 
 # Site specific
-featured_post: 60d37e50-dd6b-40e5-bfa9-c22e21a7a5a9
+featured_post: NULL
 
 gems:
   - jekyll-redirect-from
