@@ -36,6 +36,20 @@ struct Id<Entity>: Hashable {
 }
 ```
 
+Usage:
+
+```swift
+final class Activity: Swift.Decodable {
+    let id: Id<Activity>
+    let name: String
+}
+
+extension API.Activity {
+    static func get(activityId: Id<Activity>) -> Endpoint<Activity>
+}
+
+```
+
 > See [**Codable: Id Type and Single Value Container**](https://kean.github.io/post/codable-tips-and-tricks#2-id-type-and-a-single-value-container) to learn how to add `Codable` conformance to `Id` type.
 
 # Authentication Scopes

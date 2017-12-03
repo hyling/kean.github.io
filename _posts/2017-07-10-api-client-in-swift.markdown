@@ -9,19 +9,17 @@ permalink: /post/api-client
 uuid: 543b6221-e3ec-4636-be57-6e6eb501e1f6
 ---
 
-Consuming a web service API was a major part of almost all the projects that I've worked on. Each one of them had a different approach to networking.
+Consuming a web service API was a major part of almost all the projects that I worked on. Each one of them had a different approach to networking.
 
 - My very first iOS project was built using [ASIHTTPRequest](https://github.com/pokeb/asi-http-request). `AFNetworking` was yet to be released. The XML responses were parsed using [TouchXML](https://github.com/TouchCode/TouchXML).
 - The next major project that I've worked on used [AFNetworking](https://github.com/AFNetworking/AFNetworking) which was just recently introduced. We've later wrapped the API calls in our in-house [Promises/A+](https://promisesaplus.com) to make things like chaining requests easier. This was well before [PromiseKit](https://github.com/mxcl/PromiseKit) first appeared on GitHub. The JSON responses were parsed manually with a help of a simple [safe_cast](https://gist.github.com/kean/3600ad35c818a6b28caa3e0fa026d478) macro.
 - The latest project that I've worked on had a custom API layer written on top of `NSURLSession`. It supported things like [batch HTTP requests](https://tools.ietf.org/id/draft-snell-http-batch-00.html#http-batch). The JSON responses were parsed using our in-house Objective-C JSON wrapper which was similar in terms of features to one of the first Swift JSON wrappers [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON).
 
-Each of those had its own good and bad parts. I'm not going to do a full retrospect, but I'd like to stress out that the majority of the problems in those different implementations **were not caused but some intrinsic flaws** of the technologies being used. It's always about how we were using those tools.
+Each of those had its own good and bad parts. I'm not going to do a full retrospect, but I'd like to stress out that the majority of the problems in those different implementations *were not caused but some intrinsic flaws* of the technologies being used. It's always about how we were using those tools.
 
-In this article I'd like to share my latest networking stack. It has a minimalistic yet powerful API, type-safe authorization scopes, endpoints are modeled in type-safe, declarative and concise way, support for OAuth 2 "refresh access token" dance. And it takes full advantage of the open source frameworks to achieve all of those powerful features 
+In this article, I'd like to share my latest networking stack. It has a minimalistic yet powerful API, type-safe authorization scopes, endpoints are modeled in a type-safe, declarative and concise way, support for OAuth 2 "refresh access token" dance. And it takes full advantage of the open source frameworks to achieve all of those powerful features 
 
 > All of the code from the post is [available here](https://gist.github.com/kean/64b9fc0963fd430594fdb3eb848bccf3) (requires Swift 4).
-
-> Check out <a href="{{ site.url }}/post/smart-retry">**Smart Rerty**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
 
 * TOC
 {:toc}
@@ -30,11 +28,11 @@ In this article I'd like to share my latest networking stack. It has a minimalis
 
 Let's start with dependencies. As Swift ecosystem grows it becomes increasingly more complicated to select the right tools for the job, just because of the sheer number of options. Especially for someone who likes to go through an entire library code base before making a final choice.
 
-## 1. Using Alamofire
+## 1. Alamofire
 
 [Alamofire](https://github.com/Alamofire/Alamofire) is a workhorse of many iOS projects. It has a lot of convenient features:
 
-- Dispatches from `Foundation.URLSession(Task/DataTask)Delegate` methods to invidual requests
+- Dispatches from `Foundation.URLSession(Task/DataTask)Delegate` methods to individual requests
 - Parameter encoding including URL encoding and JSON encoding
 - Response validation
 - Default `Accept-Encoding`, `Accept-Language`, and `User-Agent` HTTP headers
@@ -42,38 +40,19 @@ Let's start with dependencies. As Swift ecosystem grows it becomes increasingly 
 - Generate cURL command output
 - Automatically show and hide network activity indicator
 
-`Alamofire` is a great framework with a solid code base and comprehensive documentation. The only real alternative to `Alamofire` is writing your own abstraction on top of `Foundation.URLSession`. It's absolutely possible and relatively simple, but it requires a lot of boilerplate code simply because of the nature of `Foundation.URLSession` and it's delegate-based approach.
+`Alamofire` is a great framework with a solid code base and comprehensive documentation. The only real alternative to `Alamofire` is writing your own abstraction on top of `Foundation.URLSession`. It's absolutely possible and relatively simple, but it requires a lot of boilerplate code.
 
-## 2. Using RxSwift
+## 2. RxSwift
 
 [RxSwift](https://github.com/ReactiveX/RxSwift) has become a must-have tool for me. It gives you all of the advantages of promises and [much more](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md). One of its underrated features which happen to be one of me my favorite is its built-in [testing support](https://kean.github.io/post/rxswift-testing). Why does it make sense to wrap your API calls into `Observables`? I'm going to provide a couple of examples later in a "Usage" section to show exactly that.
 
 > There is a number of reasons why I prefer RxSwift over ReactiveCocoa, but I'd like not to dive into this discussion as part of this article.
 
-## 3. Using a JSON mapper
+## 3. Codable
 
-**Update!** Swift 4 [has been released](https://swift.org/blog/swift-4-0-released/). The new [Swift Encoders and Decoders](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md) are the way to go for the majority of the apps now!
+The new [Swift Encoders and Decoders](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md) - `Codable` - is the way to go for the majority of the apps. `Codable` was introduces in Swift 4 with a [motivation](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation) to replace old `NSCoding` APIs. Unlike `NSCoding` it has a first class JSON support which makes it a promising option for consuming JSON APIs. `Codable` does have a few drawbacks which you can learn more about in a separate post [**Codable: Tips and Tricks**](https://kean.github.io/post/codable-tips-and-tricks).
 
-> The rest of this section is kept for history.
-
-
-I don't think that it's that important which one of the JSON mappers to use unless you actually use one. It's [tedious and error-prone](https://developer.apple.com/swift/blog/?id=37) to map JSON to your model objects only using built-in language features.
-
-The things that I'm looking for in a JSON mapper are:
-
-- Performance and simplicity
-- Shouldn't force me to change model objects
-- Should have a validation mechanism that uses Swift error handling
-- Should take advantage of Swift type system
-- Avoids custom operators
-
- There is a [great article](https://github.com/bwhiteley/JSONShootout) which compares some of the JSON mappers. I'm not going to share which one I've personally picked. Instead, here's a list of mappers that I would *not* want to use in my project:
-
-- **[NO]** [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) - no Swift error handling, doesn't take advantage of type system, slow runtime performance.
-- **[NO]** [Argo](https://github.com/thoughtbot/Argo) - the slowest one in terms of runtime performance (and chances are compile time too), requires two extra dependencies, uses custom operators.
-- **[NO]** [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper) - forces to change model objects, no Swift error handling, uses custom operators
-- **[NO]** [Gloss](https://github.com/hkellaway/Gloss) - forces to change model objects, no Swift error handling
-
+There are a lot of third-party alternatives which were in use prior to Swift 4. Some of them still have advantages over `Codable.`. There is a [great article](https://github.com/bwhiteley/JSONShootout) which gives an overview of all of the major third-party JSON libraries.
 
 # Endpoint
 
