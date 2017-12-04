@@ -9,6 +9,8 @@ permalink: /nuke
 
 <!--Header-->
 
+<div class="base__card">
+
 <div align="center">
     <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
     <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> framework</p>
@@ -26,17 +28,18 @@ permalink: /nuke
     </div>
 </div>
 
+</div>
 
 <!--Featurette-->
 
 <div class="nuke-featurette-container">
     <div class="nuke-featurette-block">
-        <h2>Easy to Use</h2>
-        <p>Simple and expressive API. Comprehensive <a href="https://github.com/kean/Nuke#usage">usage guide</a> included. Zero configuration required.</p>
+        <h2>Simple</h2>
+        <p>Intuitive and powerful API. Comprehensive <a href="https://github.com/kean/Nuke#usage">usage guide</a> included. Zero configuration required.</p>
     </div>
     <div class="nuke-featurette-block">
         <h2>Fast</h2>
-        <p><a href="https://user-images.githubusercontent.com/1567433/27013058-f0f23ade-4ee4-11e7-9ef8-6b8b1dc4ad5c.png">Performant</a>, asynchronous and thread-safe. Handles heavy workloads with ease.</p>
+        <p><a href="https://github.com/kean/Image-Frameworks-Benchmark">Performant</a>, asynchronous and thread-safe. Handles even heavy workloads with ease.</p>
     </div>
     <div class="nuke-featurette-block">
         <h2>Reactive</h2>
@@ -50,6 +53,16 @@ permalink: /nuke
 
 
 <!--Detailed Featurette-->
+
+
+<hr class="nuke-featurette-divider"/>
+
+<h1 class="nuke-section-title">Performance</h1>
+
+Nuke is faster on the <strong>main thread</strong> than any other image loading library. And it's not just the main thread. With advanced features like <strong>rate limiting</strong>, Nuke stays responsive even in infinite collections of images.
+
+<img src="https://user-images.githubusercontent.com/1567433/33575334-4b996032-d94d-11e7-909e-ee72bf39b90c.png" class="screenshot" style="border-radius: 8px;">
+
 
 <hr class="nuke-featurette-divider">
 
@@ -65,39 +78,17 @@ permalink: /nuke
         <li><a href="https://github.com/kean/Nuke#design">Freedom to use</a> networking, caching libraries of your choice</li>
         <li><a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/kean/Nuke-Toucan-Plugin">Toucan</a> plugins</li>
         <li>Automated <a href="https://kean.github.io/post/image-preheating">prefetching</a> with <a href="https://github.com/kean/Preheat">Preheat</a> library</li>
-        <li><a href="https://github.com/kean/Image-Frameworks-Benchmark">Performant</a>, handles heavy workloads with ease</li>
     </ul>
 </div>
 
 
 <hr class="nuke-featurette-divider"/>
 
-<h1 class="nuke-section-title">RxNuke</h1>
+<h1 class="nuke-section-title">Animated Images</h1>
 
 <div>
 
-    <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many common use cases:<p>
-    <ul>
-        <li>Going From Low to High Resolution</li>
-        <li>Loading the First Available Image</li>
-        <li>Showing Stale Image While Validating It</li>
-        <li>Load Multiple Images, Display All at Once</li>
-        <li>Auto Retry</li>
-        <li>Tracking Activities</li>
-    </ul>
-
-    <p>And <a href="https://github.com/kean/RxNuke#use-cases">many more...</a></p>
-
-</div>
-
-
-<hr class="nuke-featurette-divider"/>
-
-<h1 class="nuke-section-title">GIFs</h1>
-
-<div>
-
-    <p>Nuke features <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> and <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage (deprecated)</a> plugin that allows you to load and display animated GIFs with smooth scrolling performance and low memory footprint.</p>
+    <p>Nuke features <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> and <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> plugins that allow you to load and display animated GIFs with smooth scrolling performance and low memory footprint.</p>
 
     <div class="video-container nuke-animated-image-video">
       <iframe width="640" height="360" src="https://www.youtube.com/embed/fEJqQMJrET4?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -105,6 +96,27 @@ permalink: /nuke
 
     <p>Captured on iPod Touch 5G</p>
 </div>
+
+
+<hr class="nuke-featurette-divider"/>
+
+<h1 class="nuke-section-title">Reactive Extensions</h1>
+
+<div>
+
+    <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many common use cases:<p>
+    <ul>
+        <li>Going from low to high resolution</li>
+        <li>Loading the first available image</li>
+        <li>Showing stale image while validating it</li>
+        <li>Load multiple images, display all at once</li>
+        <li>Auto retry</li>
+        <li>And <a href="https://github.com/kean/RxNuke#use-cases">more...</a></li>
+    </ul>
+
+
+</div>
+
 
 </main>
 

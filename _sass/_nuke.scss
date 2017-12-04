@@ -1,5 +1,5 @@
 .nuke-logo {
-    height: 180px;
+    height: 240px;
     margin: 23px 0 0.5 * $spacing-unit 0;
 
     @include media-query($on-palm) {
@@ -10,6 +10,7 @@
 
 .nuke-description {
     font-size: 38px;
+    max-width: 440px;
     font-weight: 400;
     strong {
     	font-weight: 700;
@@ -64,7 +65,13 @@
 
 .nuke-animated-image-video {
 	margin-top: $spacing-unit * 0.5;
+
+    iframe {
+        box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 }
+
+
 
 
 // Featurette
@@ -91,6 +98,10 @@
 .nuke-featurette-block {
     width: 320px;
     margin-right: $spacing-unit * 0.125;
+
+    h2 {
+        font-weight: 700;
+    }
 
     strong {
         font-size: 26px;
