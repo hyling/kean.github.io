@@ -96,13 +96,11 @@ public func loadImage(with request: Request, token: CancellationToken?, completi
 
 # Performance
 
-The main con of cancellation token model is that it is a bit tricky to implement. It requires two types which coordinate with each other. And a token source requires a storage for registered closures and a lock to synchronize access to it which might make it a bit heavy-weight and have a negative effect on performance. Fortunately, Nuke has solutions for both of those issues:
+The main con of cancellation token model is that it is a bit tricky to implement. It requires two types which coordinate with each other. And a token source some way to synchronize access to the underlying storage for observers, which might make it a bit heavy-weight and have a negative effect on performance. Fortunately, Nuke has solutiona for those performance issues.
 
-- Thanks to the way `CancellationTokenSource` is implemented in Nuke, it is able to use a single shared lock for all of the sources. This is possible for two reasons. First, `CancellationTokenSource` never executes any of the registered closures inside a lock, eliminating the possibility of deadlocks. And second, a critical sections executed inside the lock are extremely fast.
+Thanks to the way `CancellationTokenSource` is implemented in Nuke, it is able to use a single shared lock for all of the sources. This is possible for two reasons. First, `CancellationTokenSource` never executes any of the registered closures inside a lock, eliminating the possibility of deadlocks. And second, a critical sections executed inside the lock are extremely fast.
 
-- `CancellationTokenSource` stores its observers using a custom lightweight `Bag` type optimized for storing a small number of elements. `Bag` is a struct which stores first 2 elements inline in its properties. If more than 2 elements are added to the bag, it lazily allocates a buffer (`ContiguousArray`) for them. Nuke never registers more than 2 closures with a single CTS, which means that `Bag` never allocates any memory on a heap.
-
-Thanks to those two optimizations, `CancellationTokenSource` becomes a extremely lightweight. The only memory allocation on a heap happens for CTS class itself so its creation is very cheap. Registering closures with CTS is also cheap because those closures are stored inline in a `Bag`. `CancellationToken` is a struct with a single property with a strong reference to its source.
+Thanks to that optimizations, `CancellationTokenSource` becomes super cheap to use.
 
 # Alternatives
 
