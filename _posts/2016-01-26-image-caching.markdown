@@ -14,9 +14,9 @@ Caching is a great way to improve application performance and end-user experienc
 
 Why HTTP cache? It's an industry standard that fits the needs of most users. HTTP provides all kinds of tools for caching and chances are that your server already supports it.
 
-In addition to on-disk cache it's imperative to have a separate in-memory cache for fast access to decompressed images that are ready for display.
+In addition to on-disk cache, it's imperative to have a separate in-memory cache for fast access to decompressed images that are ready for display.
 
-*This guide focuses on images, but it most certainly applies to the other areas too. Its purpose is to answer some of the common questions about caching, and to provide references to a much more comprehensive sources.*
+*This guide focuses on images, but it most certainly applies to the other areas too. Its purpose is to answer some of the common questions about caching, and to provide references to more comprehensive sources.*
 
 > ## TL;DR
 - Each resource can define its caching policy via HTTP cache headers
@@ -66,7 +66,7 @@ Foundation framework provides [a set of classes](https://developer.apple.com/lib
 * It's hip to cache control
 * It handles revalidation *transparently*, you never have to deal with status code [304 (not modified)](http://www.codeproject.com/Articles/866319/HTTP-Not-Modified-An-Introduction)
 
-There is no addition configuration on the client side required to make cache management work. However, there are certain things that you can do to make sure that the system would work the way you expect.
+There is no additional configuration required on the client side to make cache management work. However, there are certain things that you can do to make sure that the system would work the way you expect.
 
 According to the [Apple's documentation](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionDataDelegate_protocol/index.html#//apple_ref/occ/intfm/NSURLSessionDataDelegate/URLSession:dataTask:willCacheResponse:completionHandler:), the responses are cached only when all of the following are true:
 
@@ -78,7 +78,7 @@ According to the [Apple's documentation](https://developer.apple.com/library/ios
 - The cache-related headers in the server’s response (if present) allow caching.
 - The response size is small enough to reasonably fit within the cache. (For example, if you provide a disk cache, the response must be no larger than about 5% of the disk cache size.)
 
-Your app should already comply to most of them by default (for instance, the session configuration allows caching by default). However, one thing that a client should definitely do is to set an appropriate cache size.
+Your app should already comply with most of them by default (for instance, the session configuration allows caching by default). However, one thing that a client should definitely do is to set an appropriate cache size.
 
 ## Configuring Caching
 
@@ -100,7 +100,7 @@ Let's focus on a [NSURLRequestCachePolicy](https://developer.apple.com/library/i
 
 `NSURLSession` also provides a comprehensive set of delegate methods. One those methods is [URLSessionSession(_:&#8203;dataTask:&#8203;willCacheResponse:&#8203;completionHandler:)](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionDataDelegate_protocol/index.html#//apple_ref/occ/intfm/NSURLSessionDataDelegate/URLSession:dataTask:willCacheResponse:completionHandler:) from `NSURLSessionDataDelegate` which. It might be used to prevent caching of specific URLs, providing a custom `userInfo` for cache responses and more. Note that this method is called only if the `NSURLSession` decides to cache the response. You can't use it to force `NSURLSession` to cache responses which headers explicitly disable caching.
 
-One of the other great things about `NSURLSession` is that it has its own way of limiting a number of concurrent connections via `HTTPMaximumConnectionsPerHost` property of the `NSURLSessionConfiguration`. It only limits the number of HTTP connections and not the number of concurrent session tasks (`NSURLSessionTask`). Given that, if the client start a new request which can be served by a fresh cached response then it would be served immediately, no matter how many other tasks are executing at the given moment.
+One of the other great things about `NSURLSession` is that it has its own way of limiting the number of concurrent connections via `HTTPMaximumConnectionsPerHost` property of the `NSURLSessionConfiguration`. It only limits the number of HTTP connections and not the number of concurrent session tasks (`NSURLSessionTask`). Given that, if the client starts a new request which can be served by a fresh cached response then it would be served immediately, no matter how many other tasks are executing at the given moment.
 
 *Again, I've just scratched the surface here, definitely check out [URL Session Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html#//apple_ref/doc/uid/10000165-BCICJDHA) if you haven't done that yet.*
 
@@ -132,7 +132,7 @@ func costFor(image: UIImage) -> Int {
 
 This configuration will provide arguably the best `NSCache` performance. Memory cache will hold a lot of images while still being under the certain limit. It's also important to immediately dispose of all cached objects when the app receives a memory warning.
 
-The downside of a separate memory cache is that it doesn't have any expiration and validation mechanisms. It's fine for most use cases, because `NSCache` evicts objects rather frequently. If you need more control over memory cache you can easily implement such features (expiration age, request policy, etc).
+The downside of a separate memory cache is that it doesn't have any expiration and validation mechanisms. It's fine for most use cases because `NSCache` evicts objects rather frequently. If you need more control over memory cache you can easily implement such features (expiration age, request policy, etc).
 
 ## <a name="references"></a>References
 
