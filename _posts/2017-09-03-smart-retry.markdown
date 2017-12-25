@@ -19,7 +19,7 @@ The requirements are fairly straightforward. Let's say you have an observable se
 
 This sounds like a tall order for a single `retryWhen` operator, but it's actually flexible enough to support all of those requirements. In this post, I'm going to create a new custom `retry` operator which would wrap this entire logic.
 
-> The complete implementation is available [here](https://gist.github.com/kean/95b69ef1a90bb62e9b81e924a0a71437).
+> The complete implementation is available [here](https://gist.github.com/kean/e2bc38106d19c249c04162714e7be321).
 
 > Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
 
@@ -57,7 +57,7 @@ let results = input
     .flatMapLatest { input in
         guard input.characters.count > 1 else { return .just([]) }
         return service(input)
-            .retry(delay: .exponentialDelayed(initial: 2, multiplier: 1, maxDelay: 16))
+            .retry(delay: .exponential(initial: 3, multiplier: 1.5, maxDelay: 16))
             .trackActivity(isBusy)
             .asDriver(onErrorJustReturn: [])
 ```
@@ -159,7 +159,7 @@ extension DelayOptions {
         case .constant(let time): return time
         case .exponential(let initial, let multiplier, let maxDelay):
             // if it's first attempt, simply use initial delay, otherwise calculate delay
-            let delay = attempt == 1 ? initial : initial * pow(1 + multiplier, Double(attempt - 1))
+            let delay = attempt == 1 ? initial : initial * pow(multiplier, Double(attempt - 1))
             return min(maxDelay, delay)
         case .custom(let closure): return closure(attempt)
         }
@@ -196,6 +196,8 @@ final class Reachability {
     }
 }
 ```
+
+> The complete implementation is available [here](https://gist.github.com/kean/e2bc38106d19c249c04162714e7be321).
 
 # Links
 
