@@ -143,6 +143,9 @@ pre {
 
     > code {
         font-size: 13px;
+        @include media-query($on-palm) {
+            letter-spacing: -0.6px;
+        }
         border: 0;
         padding-right: 0;
         padding-left: 0;

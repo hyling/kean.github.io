@@ -133,7 +133,7 @@ extension UIEdgeInsets {
 
 ## Conclusion
 
-As you can see it takes just a bit of extra effort to write view code which is a pleasure to read and modify.
+As you can see it takes just a bit of extra effort to write view code which is a pleasure to read and modify. I'm not entirely happy how `style` initializers are implemented at the moment - there is some code duplication - however, they get the job done.
 
 Besides, I also find it extremely useful to prototype views in Swift Playgrounds. This way you have an instant feedback when you change styles or layouts. In order to use the shared styles in Playgrounds, you need to extract them into a separate module if you haven't done that already.
 
