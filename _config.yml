@@ -18,7 +18,8 @@ markdown: kramdown
 future: true
 
 # Site specific
-featured_post: NULL
+# e.g. f7b08862-3571-4c61-a7a2-9a5f742fc10a
+featured_post: f7b08862-3571-4c61-a7a2-9a5f742fc10a
 
 gems:
   - jekyll-redirect-from

@@ -116,6 +116,7 @@ blockquote {
     color: $grey-color-dark;
     border-left: 3px solid $brand-color;
     margin: 0;
+    margin-left: 0.5 * $spacing-unit;
     @include media-query($on-palm) {
         font-size: 15px;
     }
@@ -215,4 +216,16 @@ th, td {
     background: $grey-backgrould-light-color;
     border: 0.5px solid $grey-color-light;
     border-radius: 8px;
+}
+
+@media print {
+    main {
+        max-width: 100%;
+    }   
+    aside {
+        display: none;
+    }
+    .post-footer {
+        display: none;
+    }
 }
