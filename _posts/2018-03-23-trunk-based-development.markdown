@@ -107,21 +107,25 @@ As a result, TBD reduces uncertainty and risk and allows to ship incremental cha
 
 # Conclusion
 
-There are some clear disadvantages of feature branches which often end up preventing very valuable engineering practices, like continuous integration and refactoring. There are also some clear benefits of trunk-based development. Please keep in mind that TBD is not against branches. It's perfectly fine to have short-lived feature branches, but limiting your team to a 1-1 relation between a feature and a branch has its downsides.
+There are some clear disadvantages of feature branches which often end up preventing very valuable engineering practices, like continuous integration and refactoring. There are also some clear benefits of trunk-based development.
 
-To me, personally, TBD itself seems like "a 25-dollar term for a 5-cent concept", but it is an important one. It just might be the case that you're doing TBD without calling it this way. There might also be some middle ground that works best in specific situations.
+Please keep in mind that TBD is not against branches. It's perfectly fine to have short-lived feature branches, but limiting your team to a 1-1 relation between a feature and a branch might not be the best choice.
 
-Many developers who I talked with have adopted feature branches a few years ago and haven't re-evaluated their decision since. The point of this post was to promote TBD in the mobile app developers community. The more people adopt continuous integration, the more important this idea becomes.
+Many developers who I talked with have adopted feature branches a few years ago and haven't re-evaluated their decision since. The point of this post is to promote TBD in the mobile app developers community. There are a lot of popular projects that use TBD principles, [Swift](https://swift.org/contributing/#contributing-code) itself is one of them.
 
-In this post, I've completely avoided how releases are managed in GitFlow and in TBD (I think GitFlow has a bit of an unwanted overhead and complexity there). I've avoided some other aspects of both techniques as well. There are a lot of resources on both techniques, which you can jump into to see the differences.
+To me, personally, TBD seems like "a 25-dollar term for a 5-cent concept", but it is an important one. And it just might be the case that you're doing TBD without calling it this way.
 
-There are definitely better articles about trunk-based development, which I encourage you to check out. When choosing engineering practices for your team, it's always better to have a clear understanding of pros and cons of each one, so that you won't make matters worse.
+In this post, I've completely avoided how releases are managed in GitFlow and in TBD (I think GitFlow has a bit of an unwanted overhead and complexity). There are a lot of resources on both techniques, which you can jump into to see the differences.
+
+There are definitely better articles about trunk-based development (see references), I encourage you to check them out.
 
 # References
 
 - [Paul Hammant, Steve Smith and friends (2017). Trunk Based Development.](https://trunkbaseddevelopment.com/context/)
+- [Apple Inc (2018). Swift: Contributing Code, Incremental Development.](https://swift.org/contributing/#contributing-code)
 - [Vishal Naik (2015). Enabling Trunk Based Development with Deployment Pipelines.](https://www.thoughtworks.com/insights/blog/enabling-trunk-based-development-deployment-pipelines)
 - [Neal Ford (2015). How CI removes the pain.](http://radar.oreilly.com/2015/03/how-ci-removes-the-pain.html)
+- [Robert Ecker (2016). Code Reviews in Trunk Based Development.](https://team-coder.com/code-reviews-in-trunk-based-development/)
 - [Martin Fowler (2009). FeatureBranch.](https://martinfowler.com/bliki/FeatureBranch.html)
 - [Martin Fowler (2010). FeatureToogle.](https://martinfowler.com/bliki/FeatureToggle.html)
 - [Vincent Driessen (2010). A Successful Git Branching Model.](http://nvie.com/posts/a-successful-git-branching-model/)
