@@ -4,7 +4,7 @@
             "title" : "Nuke",
             "link" : "https://kean.github.io/nuke",
             "languages" : "Swift",
-            "description" : "Image loading, processing, caching and preheating"
+            "description" : "A powerful image loading and caching system"
         },
         {
             "title" : "Yalta",

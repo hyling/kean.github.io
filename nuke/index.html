@@ -13,7 +13,7 @@ permalink: /nuke
 
 <div align="center">
     <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
-    <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> framework</p>
+    <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</p>
 
 </div>
 
@@ -39,11 +39,11 @@ permalink: /nuke
     </div>
     <div class="nuke-featurette-block">
         <h2>Fast</h2>
-        <p><a href="https://github.com/kean/Image-Frameworks-Benchmark">Performant</a>, asynchronous and thread-safe. Handles even heavy workloads with ease.</p>
+        <p><a href="https://github.com/kean/Nuke#performance">Performant</a>, asynchronous and thread-safe. Handles even heavy workloads with ease.</p>
     </div>
     <div class="nuke-featurette-block">
-        <h2>Reactive</h2>
-        <p><a href="https://github.com/kean/RxNuke">RxNuke</a> brings a power of <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> to your image loading pipeline.</p>
+        <h2>Powerful</h2>
+        <p>Suppors advanced features like progressive image loading, resumable downloads, request prioritization and more.</p>
     </div>
     <div class="nuke-featurette-block">
         <h2>Extensible</h2>
@@ -59,10 +59,13 @@ permalink: /nuke
 
 <h1 class="nuke-section-title">Performance</h1>
 
-Nuke is faster on the <strong>main thread</strong> than any other image loading library. And it's not just the main thread. With advanced features like <strong>rate limiting</strong>, Nuke stays responsive even in infinite collections of images.
+<p>Nuke is faster on the <strong>main thread</strong> than any other image loading library. And it's not just the main thread. With advanced features like <strong>rate limiting</strong>, Nuke stays responsive even in infinite collections of images.</p>
 
-<img src="{{ site.url }}/images/misc/nuke_perf_benchmark.png" class="screenshot" style="border-radius: 8px;">
+<p>Nuke collects detailed performance metrics during the exution of an image task to help you better understand its performance.</p>
 
+</br>
+<img src="https://user-images.githubusercontent.com/1567433/39093168-5da939c4-461b-11e8-9471-47107ea1ad78.png" style="border-radius: 8px;">
+</br>
 
 <hr class="nuke-featurette-divider">
 
@@ -73,11 +76,11 @@ Nuke is faster on the <strong>main thread</strong> than any other image loading 
 <div class="nuke-feature-container">
     <ul>
         <li>Hassle-free image loading into image views and other targets</li>
-        <li>Two <a href="https://kean.github.io/post/image-caching">cache layers</a> including LRU memory cache</li>
-        <li>Image transformations</li>
-        <li><a href="https://github.com/kean/Nuke#design">Freedom to use</a> networking, caching libraries of your choice</li>
-        <li><a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/kean/Nuke-Toucan-Plugin">Toucan</a> plugins</li>
-        <li>Automated <a href="https://kean.github.io/post/image-preheating">prefetching</a> with <a href="https://github.com/kean/Preheat">Preheat</a> library</li>
+        <li>Two <a href="https://kean.github.io/post/image-caching">cache layers</a> including fast LRU memory cache</li>
+        <li><a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/kean/Nuke-Toucan-Plugin">Toucan</a> intergrations</li>
+        <li>Automated <a href="https://kean.github.io/post/image-preheating">prefetching</a> with <a href="https://github.com/kean/Preheat">Preheat</a> <i>(deprecated in iOS 10)</i></li>
+        <li>Progressive image loading (progressive JPEG)</li>
+        <li>Resumable downloads, request deduplication, prioritization, rate limiting and more</li>
     </ul>
 </div>
 
