@@ -9,12 +9,11 @@ permalink: /nuke
 
 <!--Header-->
 
-<div class="base__card">
+<div>
 
 <div align="center">
     <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
-    <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</p>
-
+    <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
 </div>
 
 
@@ -34,90 +33,123 @@ permalink: /nuke
 
 <div class="nuke-featurette-container">
     <div class="nuke-featurette-block">
-        <h2>Simple</h2>
-        <p>Intuitive and powerful API. Comprehensive <a href="https://github.com/kean/Nuke#usage">usage guide</a> included. Zero configuration required.</p>
+        <h2>Caching</h2>
+        <p>Two cache layers including fast LRU memory cache, and native <a href="https://kean.github.io/post/image-caching">HTTP cache</a> or custom aggressive LRU disk cache.</p>
     </div>
     <div class="nuke-featurette-block">
-        <h2>Fast</h2>
-        <p><a href="https://github.com/kean/Nuke#performance">Performant</a>, asynchronous and thread-safe. Handles heavy workloads with ease.</p>
+        <h2>Integrations</h2>
+        <p> Nuke is a <a href="https://github.com/kean/Nuke#h_design">pipeline</a> with injectable dependencies. <a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">WebP</a>, <a herf="https://github.com/kean/Nuke-FLAnimatedImage-Plugin">FLAnimatedImage</a> plugins available.</p>
+    </div>
+</div>
+
+<!--Progressive JPEG-->
+
+<div class="nuke__feature_with_video__container">
+    <div class="nuke__feature_with_video__flex_container">
+        <!-- To the left: video -->
+        <div class="nuke__feature_with_video__flex_item">
+            <video loop muted autoplay preload="auto">
+            <source src="{{ site.url }}/videos/pjpeg_demo.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- To the right: title, subtitle, etc -->
+        <div class="nuke__feature_with_video__flex_item">
+            <header class="post-title-container">
+                <h2>Progressive JPEG & WebP</h2>
+            </header>
+            <p class="nuke__feature_with_video__subtitle">Enable progressive decoding with a single line of code. Nuke has support for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
+        </div>
+    </div>
+</div>
+
+<div class="nuke-featurette-container">
+    <div class="nuke-featurette-block">
+        <h2>Preheating Images</h2>
+        <p>Automatically prefetch images ahead of time using special low-priority requests. Can be used with both <a href="https://github.com/kean/Preheat">Preheat</a> and native table and collection view prefetching APIs.</p>
     </div>
     <div class="nuke-featurette-block">
-        <h2>Powerful</h2>
-        <p>Suppors progressive image loading, resumable downloads, request prioritization and more.</p>
-    </div>
-    <div class="nuke-featurette-block">
-        <h2>Extensible</h2>
-        <p> Nuke is a <a href="https://github.com/kean/Nuke#h_design">pipeline</a> with injectable dependencies. <a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a herf="https://github.com/kean/Nuke-FLAnimatedImage-Plugin">FLAnimatedImage</a> plugins available.</p>
+        <h2>Resumable Downloads</h2>
+        <p>If the data task fails with an error or gets canceled and the image was partially loaded, the next load will resume where it was left off (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>).</p>
     </div>
 </div>
 
 
-<!--Detailed Featurette-->
 
+<div class="nuke__feature_with_video__container">
+    <div class="nuke__feature_with_video__flex_container">
+        <!-- To the left: video -->
+        <div class="nuke__feature_with_video__flex_item">
+            <video loop muted autoplay preload="auto">
+            <source src="{{ site.url }}/videos/gif_demo.mp4" type="video/mp4">
+            </video>
+        </div>
 
-<hr class="nuke-featurette-divider"/>
+        <!-- To the right: title, subtitle, etc -->
+        <div class="nuke__feature_with_video__flex_item">
+            <header class="post-title-container">
+                <h2>Animated Images (GIFs)</h2>
+            </header>
+            <p class="nuke__feature_with_video__subtitle">Nuke features <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> and <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> plugins that allow you to load and display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
+            <p>Both of the plugins are extremely small (10-30 lines of code). You can either install them using a package manager or simply copy the code in your project.</p>
+        </div>
+    </div>
+</div>
+
 
 <h1 class="nuke-section-title">Performance</h1>
 
-<p>Nuke is faster on the main thread than any other image loading library. And it's not just the main thread. With advanced features like rate limiting, Nuke stays responsive even in infinite collections of images.</p>
+<p>Performance is one of the key differentiating factors for Nuke. There are three key components of its performance:</p>
+<ul>
+    <li><b>Main-Thread Performance.</b> The framework has been tuned to do very little work on the main thread. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</li>
+    <li><b>Robustness Under Stress.</b> Nuke is completely asynchronous, it executes work on a dedicated queues with a limited maximum number of concurrent tasks. Under stress image pipeline will rate limit the requests to prevent trashing underlying systems.</b></li>
+    <li><b>Memory Usage.</b> Nuke uses <a href="https://en.wikipedia.org/wiki/Cache_algorithms#Examples">LRU</a> (least recently used) replacement algorithm. It limits memory usage to ~20% of available RAM. As a good citizen, it evicts images on memory warnings and removes most of them when the app enters background.</li>
+</ul>
 
-<p>Nuke collects detailed performance metrics during the execution of each task:</p>
+<p>It's not enough to just have these features, Nuke also collects detailed <a href="https://github.com/kean/Nuke#performance-metrics"><b>performance metrics</b></a> during the execution of each task.</p>
 
-</br>
-<img src="https://user-images.githubusercontent.com/1567433/39193766-8dfd81b2-47dc-11e8-86b3-f3f69dc73d3a.png" style="border-radius: 8px;">
-</br>
+<div class="nuke__feature_with_video__container">
+    <div class="nuke__feature_with_video__flex_container">
+        <!-- To the left: video -->
+        <div class="nuke__feature_with_video__flex_item">
+            <video loop muted autoplay preload="auto">
+            <source src="{{ site.url }}/videos/rate_limiter.mp4" type="video/mp4">
+            </video>
+        </div>
 
-<hr class="nuke-featurette-divider">
-
-<h1 class="nuke-section-title">Features</h1>
-
-<p>Nuke pulls together <strong>stable</strong>, <strong>mature</strong> libraries from Swift ecosystem into <strong>simple</strong>, <strong>lightweight</strong> package that lets you focus on getting things done.</p>
-
-<div class="nuke-feature-container">
-    <ul>
-        <li>Two <a href="https://kean.github.io/post/image-caching">cache layers</a>, fast custom LRU disk and memory caches</li>
-        <li><a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/kean/Nuke-Toucan-Plugin">Toucan</a> intergrations</li>
-        <li>Automated <a href="https://kean.github.io/post/image-preheating">prefetching</a> with <a href="https://github.com/kean/Preheat">Preheat</a> <i>(deprecated in iOS 10)</i></li>
-        <li>Progressive image loading (progressive JPEG)</li>
-        <li>Resumable downloads, request deduplication, prioritization, rate limiting and more</li>
-    </ul>
-</div>
-
-
-<hr class="nuke-featurette-divider"/>
-
-<h1 class="nuke-section-title">Animated Images</h1>
-
-<div>
-
-    <p>Nuke features <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> and <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> plugins that allow you to load and display animated GIFs with smooth scrolling performance and low memory footprint.</p>
-
-    <div class="video-container nuke-animated-image-video">
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/fEJqQMJrET4?rel=0" frameborder="0" allowfullscreen></iframe>
+        <!-- To the right: title, subtitle, etc -->
+        <div class="nuke__feature_with_video__flex_item">
+            <header class="post-title-container">
+                <h2>Main-Thread Performance</h2>
+            </header>
+            <p class="nuke__feature_with_video__subtitle">Nuke has been tuned to do very little work on the main thread. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</p>
+        </div>
     </div>
-
-    <p>Captured on iPod Touch 5G</p>
 </div>
 
 
-<hr class="nuke-featurette-divider"/>
-
-<h1 class="nuke-section-title">Reactive Extensions</h1>
+<h1 class="nuke-section-title">RxNuke</h1>
 
 <div>
 
-    <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many common use cases:<p>
+    <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many <a href="https://github.com/kean/RxNuke#use-cases">common use cases</a>:<p>
     <ul>
         <li>Going from low to high resolution</li>
         <li>Loading the first available image</li>
         <li>Showing stale image while validating it</li>
         <li>Load multiple images, display all at once</li>
-        <li>Auto retry</li>
-        <li>And <a href="https://github.com/kean/RxNuke#use-cases">more...</a></li>
+        <li>Auto retry requests</li>
     </ul>
 
+<p>Here's an example of how easy it is to load go flow log to high resolution:</p>
 
-</div>
+<pre>
+let pipeline = ImagePipeline.shared
+Observable.concat(pipeline.loadImage(with: lowResUrl).orEmpty,
+                  pipeline.loadImage(with: highResUtl).orEmpty)
+    .subscribe(onNext: { imageView.image = $0.image })
+    .disposed(by: disposeBag)
+</pre>
 
 
 </main>
