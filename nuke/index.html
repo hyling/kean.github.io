@@ -56,7 +56,7 @@ permalink: /nuke
         <!-- To the right: title, subtitle, etc -->
         <div class="nuke__feature_with_video__flex_item">
             <header class="post-title-container">
-                <h2>Progressive JPEG & WebP</h2>
+                <h2>Progressive JPEG, WebP</h2>
             </header>
             <p class="nuke__feature_with_video__subtitle">Enable progressive decoding with a single line of code. Nuke has support for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
         </div>
@@ -90,7 +90,7 @@ permalink: /nuke
             <header class="post-title-container">
                 <h2>Animated Images (GIFs)</h2>
             </header>
-            <p class="nuke__feature_with_video__subtitle">Nuke features <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> and <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> plugins that allow you to load and display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
+            <p class="nuke__feature_with_video__subtitle">You can use either <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> or <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> plugin to load and display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
             <p>Both of the plugins are extremely small (10-30 lines of code). You can either install them using a package manager or simply copy the code in your project.</p>
         </div>
     </div>
@@ -101,12 +101,12 @@ permalink: /nuke
 
 <p>Performance is one of the key differentiating factors for Nuke. There are three key components of its performance:</p>
 <ul>
-    <li><b>Main-Thread Performance.</b> The framework has been tuned to do very little work on the main thread. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</li>
+    <li><b>Main-Thread Performance.</b> The framework is tuned to do very little work on the main thread. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</li>
     <li><b>Robustness Under Stress.</b> Nuke is completely asynchronous, it executes work on a dedicated queues with a limited maximum number of concurrent tasks. Under stress image pipeline will rate limit the requests to prevent trashing underlying systems.</b></li>
     <li><b>Memory Usage.</b> Nuke uses <a href="https://en.wikipedia.org/wiki/Cache_algorithms#Examples">LRU</a> (least recently used) replacement algorithm. It limits memory usage to ~20% of available RAM. As a good citizen, it evicts images on memory warnings and removes most of them when the app enters background.</li>
 </ul>
 
-<p>It's not enough to just have these features, Nuke also collects detailed <a href="https://github.com/kean/Nuke#performance-metrics"><b>performance metrics</b></a> during the execution of each task.</p>
+<p>Nuke also collects detailed <a href="https://github.com/kean/Nuke#performance-metrics"><b>performance metrics</b></a> during the execution of each task.</p>
 
 <div class="nuke__feature_with_video__container">
     <div class="nuke__feature_with_video__flex_container">
@@ -122,7 +122,7 @@ permalink: /nuke
             <header class="post-title-container">
                 <h2>Main-Thread Performance</h2>
             </header>
-            <p class="nuke__feature_with_video__subtitle">Nuke has been tuned to do very little work on the main thread. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</p>
+            <p class="nuke__feature_with_video__subtitle">Nuke is tuned to do very little work on the main thread which helps achieve buttery smooth scrolling performance in table and collection views.</p>
         </div>
     </div>
 </div>

@@ -9,9 +9,9 @@
 }
 
 .nuke-description {
-    font-size: 38px;
-    max-width: 440px;
-    font-weight: 400;
+    font-size: 42px;
+    max-width: 460px;
+    font-weight: 300;
     strong {
     	font-weight: 700;
     }
@@ -145,6 +145,16 @@
         height: auto;
         border: 0.5px solid $grey-color-light;
         border-radius: 8px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    @include media-query($on-palm) {
+        h2 {
+            font-size: 26px;
+        }
     }
 
     padding: $spacing-unit * 0.5;
