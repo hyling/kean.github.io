@@ -41,7 +41,7 @@ p,
 
 h1, h2, h3
 %vertical-rhythm {
-    margin-top: $spacing-unit * 1.25;
+    margin-top: $spacing-unit * 1;
     @include media-query($on-palm) {
         margin-top: $spacing-unit * 1;
     }

@@ -27,11 +27,16 @@
 }
 
 .post-content {
+    h1 {
+        font-size: 30px;
+
+    }
+
     h2 {
         font-size: 22px;
 
-        margin-bottom: $spacing-unit / 2;
-        margin-top: $spacing-unit / 1.5;
+        // margin-bottom: $spacing-unit / 2;
+        margin-top: $spacing-unit;
     }
 
     h3 {

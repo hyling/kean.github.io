@@ -16,7 +16,7 @@ redirect_from: /blog/
 <div class="home-posts-container">
 
 {% for post in site.posts %}
-	{% if post.uuid == site.featured_post %}
+	{% if site.featured_posts contains post.uuid %}
 	<div class="blog__post-preview-featured__container">
 	    {% include post_preview.html %}
 	</div>
@@ -25,7 +25,7 @@ redirect_from: /blog/
 
 <div class="blog__post-preview__list-container">
 {% for post in site.posts %}
-	{% if post.uuid != site.featured_post %}
+	{% unless site.featured_posts contains post.uuid %}
 	{% if post.cover != NULL %}
 	<div class="blog__post-preview-with-cover__container">
 	    {% include post_preview_with_cover.html %}
@@ -35,7 +35,7 @@ redirect_from: /blog/
 	    {% include post_preview.html %}
 	</div>
 	{% endif %}
-	{% endif %}
+	{% endunless %}
 {% endfor %}
 </div>
 
