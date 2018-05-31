@@ -152,7 +152,12 @@
     }
 
     h2 {
+        margin-top: 0;
         font-size: 40px;
+
+        @include media-query($on-mobile) {
+            font-size: 34px;
+        }
     }
 
     background: $background-color-light-grey;
@@ -165,13 +170,13 @@
     @include media-query($on-mobile) {
         border-radius: 0px;
 
-        padding: 0.5 * $spacing-unit;
-        margin: 0;
-
-        h2 {
-            font-size: 26px;
-        }        
+        padding: $spacing-unit 0.5 * $spacing-unit;
+        margin: 0;     
     }
+}
+
+.nuke__feature_with_video__text_container {
+    margin: $spacing-unit 0;
 }
 
 .nuke__feature_with_video__flex_container {
