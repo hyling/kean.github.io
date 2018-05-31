@@ -32,15 +32,13 @@
     p {
       font-size: 16px;
     }
-}
 
-.sidebar-block {
-  .section-title {
-      margin-top: $spacing-unit * 1.25;
-      margin-bottom: $spacing-unit * 0.5;
-      color: $grey-color;
-      font-size: 18px;
-   }
+    .section-title {
+        margin-top: $spacing-unit * 1.25;
+        margin-bottom: $spacing-unit * 0.5;
+        color: $grey-color;
+        font-size: 18px;
+    }
 }
 
 
@@ -51,19 +49,6 @@
     p {
         margin-top: $spacing-unit * 0.25;
     }
-}
-
-.sidebar-title {
-    color: $text-color;
-    &:visited {
-        color: $text-color;
-    }
-    &:hover {
-        color: $text-color;
-    }
-}
-
-.sidebar-header-about {
 }
 
 .sidebar-contacts {

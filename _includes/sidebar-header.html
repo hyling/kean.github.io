@@ -1,21 +1,18 @@
 <div class="sidebar-header">
 
-<div class="sidebar-header-about">
+<div>
 	<a href="{{ site.baseurl }}/">
 		<img src="{{ site.url }}/images/avatar.jpg" class="sidebar-avatar">
 	</a>
 	<a href="{{ site.baseurl }}/">
-		<h2 class="sidebar-title">Alexander<br/>Grebenyuk</h2>
+		<h2 class="link--subtle">Alexander<br/>Grebenyuk</h2>
 	</a>
 	<p>Passionate software engineer</p>
 </div>
 </a>
 
 <div class="sidebar-contacts">
-	<p>
-	    <a href="https://github.com/kean">Github</a> | <a href="https://twitter.com/a_grebenyuk">Twitter</a> |
-	    <a href="https://www.linkedin.com/in/alex-grebenyuk">Linkedin</a> | <a href="https://www.flickr.com/photos/agrebenyuk/">Flickr</a>
-	</p>
+	{% include contacts.html %}
 </div>
 
 </div>
