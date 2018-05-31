@@ -1,9 +1,9 @@
 .nuke-logo {
     height: 240px;
-    margin: 23px 0 0.5 * $spacing-unit 0;
+    margin: $spacing-unit 0 0.5 * $spacing-unit 0;
 
-    @include media-query($on-palm) {
-        margin: 0.33 * $spacing-unit 0 0.33 * $spacing-unit 0;
+    @include media-query($on-mobile) {
+        margin: $spacing-unit 0 0.33 * $spacing-unit 0;
         height: 160px;
     }
 }
@@ -22,7 +22,7 @@
     margin-top: 0.5 * $spacing-unit;
     margin-bottom: $spacing-unit;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         font-size: 32px;
 	}
 }
@@ -35,7 +35,7 @@
     margin-top: $spacing-unit;
     display: flex;
     justify-content: center;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         margin: 0.5 * $spacing-unit 0;
     }
 }
@@ -58,7 +58,7 @@
     margin-top: $spacing-unit;
     margin-bottom: 0.5 * $spacing-unit;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         font-size: 32px;
     }
 }
@@ -89,7 +89,7 @@
     border-top: 1px solid #eeeeee;
     width: 100%;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         margin: 0.5 * $spacing-unit 0;
     }
 }
@@ -112,7 +112,7 @@
         margin-top: 0.25 * $spacing-unit;
     }
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
         margin: 0.5 * $spacing-unit 0;
         margin-right: 0;
@@ -151,7 +151,7 @@
         font-size: 40px;
     }
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         h2 {
             font-size: 26px;
         }
@@ -171,7 +171,7 @@
 
 .nuke__feature_with_video__flex_item {
     width: 47.8%;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
     }
 }

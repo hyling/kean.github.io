@@ -22,15 +22,15 @@ $background-color-light-grey: lighten($grey-color, 46%);
 $brand-color: #1A25FB;
 
 // Width of the content area
-$content-width: 980px;
+$content-width: 1000px;
 $aside-width: 220px;
 
-$on-palm: 500px;
+$on-mobile: 500px;
 $on-laptop: 990px;
 
 
 // Use media queries like this:
-// @include media-query($on-palm) {
+// @include media-query($on-mobile) {
 //     .wrapper {
 //         padding-right: $spacing-unit / 2;
 //         padding-left: $spacing-unit / 2;

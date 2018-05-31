@@ -99,7 +99,7 @@ img.screenshot {
 .post-navigation-preview-container {
     margin: $spacing-unit * 0.5;
     width: 44.333333%;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         margin: $spacing-unit * 0.25;
     }
 }
@@ -108,7 +108,7 @@ img.screenshot {
     h2 {
         margin-top: 0;
         font-size: 22px;
-        @include media-query($on-palm) {
+        @include media-query($on-mobile) {
             font-size: 16px;
         }
     }
@@ -132,7 +132,7 @@ img.screenshot {
 
     .post-link {
         font-size: 26px;
-        @include media-query($on-palm) {
+        @include media-query($on-mobile) {
             font-size: 18px;
         }
     }
@@ -148,7 +148,7 @@ img.screenshot {
 
 .introducing-rxnuke-logo {
     width: 442px;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
     }
 }
@@ -173,7 +173,7 @@ img.screenshot {
     letter-spacing: -1px;
 
     font-size: 32px;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         font-size: 28px;
     }
 
@@ -192,7 +192,7 @@ img.screenshot {
 
     .post-link {
         font-size: 56px;
-        @include media-query($on-palm) {
+        @include media-query($on-mobile) {
             font-size: 44px;
         }
     }
@@ -219,7 +219,7 @@ img.screenshot {
     margin: 0 0 1 * $spacing-unit 0;
 
     width: 47.8%;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
     }
 }
@@ -252,7 +252,7 @@ img.screenshot {
 
 .blog__post-preview-with-cover__flex_item {
     width: 47.8%;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
     }
 }

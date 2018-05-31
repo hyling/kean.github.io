@@ -42,7 +42,7 @@ p,
 h1, h2, h3
 %vertical-rhythm {
     margin-top: $spacing-unit * 1;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         margin-top: $spacing-unit * 1;
     }
 }
@@ -117,7 +117,7 @@ blockquote {
     border-left: 3px solid $brand-color;
     margin: 0;
     margin-left: 0.5 * $spacing-unit;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         font-size: 15px;
     }
     padding: 0 0.5 * $spacing-unit;
@@ -144,7 +144,7 @@ pre {
 
     > code {
         font-size: 13px;
-        @include media-query($on-palm) {
+        @include media-query($on-mobile) {
             letter-spacing: -0.6px;
         }
         border: 0;
@@ -160,7 +160,7 @@ pre {
     margin-left: auto;
     @extend %clearfix;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         max-width: -webkit-calc(#{$content-width});
         max-width:         calc(#{$content-width});
     }
@@ -218,7 +218,7 @@ th, td {
 
  .base__hor_insets {
     margin: 0 $spacing-unit;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         margin: 0 0.5 * $spacing-unit;
     }
 }

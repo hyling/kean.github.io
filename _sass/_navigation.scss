@@ -1,42 +1,12 @@
-.site-logo-icon {
-    margin: 0;
-    float: right;
-    width: 32px;
-    height: 32px;
-}
-
-.site-about {
-    font-size: 13px;
-    float: right;
-    color: $brand-color;
-    line-height: 1.0;
-    text-align: right;
-
-    &,
-    &:visited {
-        color: $brand-color;
-    }
-}
-
-
-/**
- * Navigation
- */
-.site-nav {
-    float: right;
-    line-height: 56px;
-}
-
-
 /**
  * Site footer
  */
-.site-footer {
+.site_footer {
     padding: $spacing-unit / 2 0;
     border-top: 1px solid #eee;
 }
 
-.footer-wrapper {
+.site_footer-wrapper {
     font-size: 13px;
     color: $grey-color;
     margin-left: -$spacing-unit / 2;
@@ -55,20 +25,15 @@
     }
 }
 
-
 /**
  * Page content
  */
-.page-content {
+.page_content {
     padding: $spacing-unit 0;
 
     @include media-query($on-laptop) {
         padding: 0;
     }
-}
-
-.page-heading {
-    font-size: 20px;
 }
 
 /**
@@ -88,7 +53,7 @@
     margin-top: -8px;
     border-radius: 8px;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 100%;
         margin: 0;
         margin-bottom: 0.5 * $spacing-unit;
@@ -116,7 +81,7 @@
 
 .site_header__spacer {
     width: $spacing-unit;
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 0.5 * $spacing-unit;
     }
 }
@@ -125,7 +90,7 @@
     border-radius: 12px;
     max-height: 120px;
 
-    @include media-query($on-palm) {
+    @include media-query($on-mobile) {
         width: 120px;
         height: 120px;
         object-fit: cover;
