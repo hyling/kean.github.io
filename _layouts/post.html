@@ -7,7 +7,7 @@ author: "Alexander Grebenyuk"
 
 {% include header.html %}
 
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post base__hor_insets" itemscope itemtype="http://schema.org/BlogPosting">
 
     <header class="post-header">
         <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
@@ -20,7 +20,7 @@ author: "Alexander Grebenyuk"
 
 </article>
 
-<div class="post-footer">
+<div class="post-footer base__hor_insets">
 
     <div class="post-navigation-container base__card">
         {% if page.previous %}
@@ -58,7 +58,7 @@ author: "Alexander Grebenyuk"
 
 
 
-<aside class="sidebar base__card">
+<aside class="sidebar base__hor_insets base__card">
 
 {% include sidebar.html %}
 

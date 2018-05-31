@@ -7,25 +7,27 @@ permalink: /nuke
 
 <main>
 
+<div class="base__hor_insets">
+
 <!--Header-->
 
 <div>
 
-<div align="center">
-    <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
-    <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
-</div>
-
-
-
-<div class="nuke-share-container">
-    <div class="nuke-share-icon">
-        <iframe src="https://ghbtns.com/github-btn.html?user=kean&repo=Nuke&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    <div align="center">
+        <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
+        <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
     </div>
-    <div class="nuke-share-icon nuke-share-icons-twitter">
-        {% include twitter_share_button.html %}
+
+
+
+    <div class="nuke-share-container">
+        <div class="nuke-share-icon">
+            <iframe src="https://ghbtns.com/github-btn.html?user=kean&repo=Nuke&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+        </div>
+        <div class="nuke-share-icon nuke-share-icons-twitter">
+            {% include twitter_share_button.html %}
+        </div>
     </div>
-</div>
 
 </div>
 
@@ -151,11 +153,12 @@ Observable.concat(pipeline.loadImage(with: lowResUrl).orEmpty,
     .disposed(by: disposeBag)
 </pre>
 
+</div>
 
 </main>
 
 
-<aside class="sidebar base__card">
+<aside class="sidebar base__hor_insets base__card">
 
 {% include sidebar-home.html %}
 
