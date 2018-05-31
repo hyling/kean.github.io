@@ -22,15 +22,9 @@ redirect_from: /blog/
 <div class="blog__post-preview__list-container">
 {% for post in site.posts %}
 	{% unless site.featured_posts contains post.uuid %}
-	{% if post.cover != NULL %}
-	<div class="blog__post-preview-with-cover__container">
-	    {% include post_preview_with_cover.html %}
-	</div>
-	{% else %}
 	<div class="blog__post-preview__container">
 	    {% include post_preview.html %}
 	</div>
-	{% endif %}
 	{% endunless %}
 {% endfor %}
 </div>

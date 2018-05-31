@@ -45,20 +45,23 @@
     background: $grey-backgrould-light-color;
     border: 0.5px solid $grey-color-light;
 
-
     padding: 0.75 * $spacing-unit 0;
     // margin-bottom: $spacing-unit;
 
     width: calc(100% - #{$spacing-unit * 2});
+    
     margin: $spacing-unit;
     margin-top: -8px;
     border-radius: 8px;
 
     @include media-query($on-mobile) {
         width: 100%;
+
         margin: 0;
         margin-bottom: 0.5 * $spacing-unit;
         padding: 0.5 * $spacing-unit 0;
+
+        border-radius: 0
     }
 
     display: none;

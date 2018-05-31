@@ -1,3 +1,11 @@
+/**
+ * Posts Container
+ */
+.home-posts-container {
+    h3 { // Recent, etc
+        margin: $spacing-unit * 1.5 0 0.5 * $spacing-unit 0;
+    }
+}
 
 /**
  * Content
@@ -13,7 +21,7 @@
     max-width:100%;
     margin: 0;
 
-    font-size: 56px;
+    font-size: 50px;
     @include media-query($on-laptop) {
         font-size: 44px;
     }
@@ -191,7 +199,7 @@ img.screenshot {
     margin-bottom: 1 * $spacing-unit;
 
     .post-link {
-        font-size: 56px;
+        font-size: 50px;
         @include media-query($on-mobile) {
             font-size: 44px;
         }
@@ -203,7 +211,7 @@ img.screenshot {
 // ============================================================
 
 .blog__post-preview__subtitle {
-    margin-top: 2px;
+    margin-top: 0px;
 }
 
 .blog__post-preview__list-container {
@@ -216,41 +224,8 @@ img.screenshot {
 
 .blog__post-preview__container {
     // border-top: 1px solid #e0e0e0;
-    margin: 0 0 1 * $spacing-unit 0;
+    margin-bottom: $spacing-unit;
 
-    width: 47.8%;
-    @include media-query($on-mobile) {
-        width: 100%;
-    }
-}
-
-
-// blog__post-preview-with-cover
-// ============================================================
-
-.blog__post-preview-with-cover__container {
-    margin: 0 0 1 * $spacing-unit 0;
-
-    width: 100%;
-
-    img {
-        margin: 0.25 * $spacing-unit 0;
-        border-radius: 8px;
-    }
-
-    padding: $spacing-unit * 0.5 $spacing-unit * 0.5 $spacing-unit * 0.5 $spacing-unit * 0.5;
-    background: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
-    border-radius: 8px;
-}
-
-.blog__post-preview-with-cover__flex_container {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-}
-
-.blog__post-preview-with-cover__flex_item {
     width: 47.8%;
     @include media-query($on-mobile) {
         width: 100%;
