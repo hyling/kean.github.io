@@ -53,16 +53,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 main {
-    max-width: 71%;
+    max-width: 740px;
     float: right;
 
     @include media-query($on-laptop) {
+        margin: auto;
+        max-width: 740px;
+        float: none;
+    }
+
+    @include media-query($on-mobile) {
         max-width: 100%;
     }
 }
 
 aside {
-    width: 220px;
+    width: 200px;
     float: left;
     
     @include media-query($on-laptop) {

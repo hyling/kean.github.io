@@ -29,6 +29,7 @@
  * Page content
  */
 .page_content {
+    // FIXME: make it always 0
     padding: $spacing-unit 0;
 
     @include media-query($on-laptop) {

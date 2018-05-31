@@ -7,18 +7,14 @@ permalink: /nuke
 
 <main>
 
-<div class="base__hor_insets">
-
 <!--Header-->
 
-<div>
+<div class="base__hor_insets">
 
     <div align="center">
         <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
         <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
     </div>
-
-
 
     <div class="nuke-share-container">
         <div class="nuke-share-icon">
@@ -33,6 +29,7 @@ permalink: /nuke
 
 <!--Featurette-->
 
+<div class="base__hor_insets">
 <div class="nuke-featurette-container">
     <div class="nuke-featurette-block">
         <h2>Caching</h2>
@@ -43,28 +40,30 @@ permalink: /nuke
         <p> Nuke is a <a href="https://github.com/kean/Nuke#h_design">pipeline</a> with injectable dependencies. <a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">WebP</a>, <a herf="https://github.com/kean/Nuke-FLAnimatedImage-Plugin">FLAnimatedImage</a> plugins available.</p>
     </div>
 </div>
+</div>
 
 <!--Progressive JPEG-->
 
 <div class="nuke__feature_with_video__container">
     <div class="nuke__feature_with_video__flex_container">
-        <!-- To the left: video -->
+        <!-- To the left: title, subtitle, etc -->
+        <div class="nuke__feature_with_video__flex_item">
+            <header class="post-title-container">
+                <h2>Progressive Images</h2>
+            </header>
+            <p class="nuke__feature_with_video__subtitle">Enable progressive decoding with a single line of code. Nuke has support for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
+        </div>
+
+        <!-- To the right: video -->
         <div class="nuke__feature_with_video__flex_item">
             <video autoplay loop muted playsinline preload="auto">
             <source src="{{ site.url }}/videos/pjpeg_demo.mp4" type="video/mp4">
             </video>
         </div>
-
-        <!-- To the right: title, subtitle, etc -->
-        <div class="nuke__feature_with_video__flex_item">
-            <header class="post-title-container">
-                <h2>Progressive JPEG, WebP</h2>
-            </header>
-            <p class="nuke__feature_with_video__subtitle">Enable progressive decoding with a single line of code. Nuke has support for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
-        </div>
     </div>
 </div>
 
+<div class="base__hor_insets">
 <div class="nuke-featurette-container">
     <div class="nuke-featurette-block">
         <h2>Preheating Images</h2>
@@ -75,30 +74,32 @@ permalink: /nuke
         <p>If the data task fails with an error or gets canceled and the image was partially loaded, the next load will resume where it was left off (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>).</p>
     </div>
 </div>
-
+</div>
 
 
 <div class="nuke__feature_with_video__container">
     <div class="nuke__feature_with_video__flex_container">
-        <!-- To the left: video -->
+        <!-- To the left: title, subtitle, etc -->
+        <div class="nuke__feature_with_video__flex_item">
+            <header class="post-title-container">
+                <h2>Animated Images</h2>
+            </header>
+            <p class="nuke__feature_with_video__subtitle">You can use either <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> or <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> plugin to load and display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
+            <p>
+            <strong>Note</strong>: GIF is not the most efficient format for transferring and displaying animated images. The current best practice is to <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/replace-animated-gifs-with-video/">use short videos instead of GIFs</a> (e.g. MP4, WebM).</p>
+        </div>
+
+        <!-- To the right: video -->
         <div class="nuke__feature_with_video__flex_item">
             <video autoplay loop muted playsinline preload="auto">
             <source src="{{ site.url }}/videos/gif_demo.mp4" type="video/mp4">
             </video>
         </div>
-
-        <!-- To the right: title, subtitle, etc -->
-        <div class="nuke__feature_with_video__flex_item">
-            <header class="post-title-container">
-                <h2>Animated Images (GIFs)</h2>
-            </header>
-            <p class="nuke__feature_with_video__subtitle">You can use either <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> or <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> plugin to load and display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
-            <p>Both of the plugins are extremely small (10-30 lines of code). You can either install them using a package manager or simply copy the code in your project.</p>
-        </div>
     </div>
 </div>
 
 
+<div class="base__hor_insets">
 <h1 class="nuke-section-title">Performance</h1>
 
 <p>Performance is one of the key differentiating factors for Nuke. There are three key components of its performance:</p>
@@ -109,29 +110,31 @@ permalink: /nuke
 </ul>
 
 <p>Nuke also collects detailed <a href="https://github.com/kean/Nuke#performance-metrics"><b>performance metrics</b></a> during the execution of each task.</p>
+</div>
+
 
 <div class="nuke__feature_with_video__container">
     <div class="nuke__feature_with_video__flex_container">
-        <!-- To the left: video -->
-        <div class="nuke__feature_with_video__flex_item">
-            <video autoplay loop muted playsinline preload="auto">
-            <source src="{{ site.url }}/videos/rate_limiter.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <!-- To the right: title, subtitle, etc -->
+        <!-- To the left: title, subtitle, etc -->
         <div class="nuke__feature_with_video__flex_item">
             <header class="post-title-container">
                 <h2>Main-Thread Performance</h2>
             </header>
             <p class="nuke__feature_with_video__subtitle">Nuke is tuned to do very little work on the main thread which helps achieve buttery smooth scrolling performance in table and collection views.</p>
         </div>
+
+        <!-- To the right: video -->
+        <div class="nuke__feature_with_video__flex_item">
+            <video autoplay loop muted playsinline preload="auto">
+            <source src="{{ site.url }}/videos/rate_limiter.mp4" type="video/mp4">
+            </video>
+        </div>
     </div>
 </div>
 
 
+<div class="base__hor_insets">
 <h1 class="nuke-section-title">RxNuke</h1>
-
 <div>
 
     <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many <a href="https://github.com/kean/RxNuke#use-cases">common use cases</a>:<p>
@@ -143,16 +146,16 @@ permalink: /nuke
         <li>Auto retry requests</li>
     </ul>
 
-<p>Here's an example of how easy it is to load go flow log to high resolution:</p>
+    <p>Here's an example of how easy it is to load go flow log to high resolution:</p>
 
-<pre>
-let pipeline = ImagePipeline.shared
-Observable.concat(pipeline.loadImage(with: lowResUrl).orEmpty,
-                  pipeline.loadImage(with: highResUtl).orEmpty)
-    .subscribe(onNext: { imageView.image = $0.image })
-    .disposed(by: disposeBag)
-</pre>
-
+    <pre>
+    let pipeline = ImagePipeline.shared
+    Observable.concat(pipeline.loadImage(with: lowResUrl).orEmpty,
+                      pipeline.loadImage(with: highResUtl).orEmpty)
+        .subscribe(onNext: { imageView.image = $0.image })
+        .disposed(by: disposeBag)
+    </pre>
+</div>
 </div>
 
 </main>
