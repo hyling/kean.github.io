@@ -231,3 +231,55 @@ img.screenshot {
         width: 100%;
     }
 }
+
+
+// acrhive
+// ============================================================
+
+.archive {
+    width: 100%;
+    float: right;
+
+    h2 {
+        margin-bottom: 0.25 * $spacing-unit;
+    }
+}
+
+.archive__header {
+    margin-top: $spacing-unit;
+
+    h1 {
+        font-size: 50px;
+        @include media-query($on-laptop) {
+            font-size: 44px;
+        }
+        margin-top: 0px;
+        margin-right: 0.5 * $spacing-unit;
+    }
+}
+
+.archive_pist__list {
+    list-style: none;
+
+    list-style-type: none;
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+}
+
+.archive_post {;
+    .post-link {
+        font-size: 20px;
+    }
+    .span {
+
+    }
+}
+
+.archive_post__container {
+    // width: 100%;
+}
+
+.archive__posts_list {
+    
+}
