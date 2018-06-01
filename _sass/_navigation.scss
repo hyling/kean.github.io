@@ -80,6 +80,9 @@
 
     h2 {
         margin-top: 0.5 * $spacing-unit;
+        @include media-query($on-mobile) {
+            margin-top: 0.25 * $spacing-unit;
+        }
     }
 }
 
@@ -98,6 +101,11 @@
         width: 120px;
         height: 120px;
         object-fit: cover;
+    }
+
+    @include media-query($on-mobile) {
+        width: 100px;
+        height: 100px;
     }
 }
 
