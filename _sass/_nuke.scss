@@ -1,4 +1,4 @@
-.nuke-logo {
+.NukeLogo {
     height: 240px;
     margin: $spacing-unit 0 0.5 * $spacing-unit 0;
 
@@ -12,7 +12,7 @@
     }
 }
 
-.nuke-description {
+.NukeDescription {
     font-size: 42px;
     max-width: 460px;
     font-weight: 300;
@@ -35,7 +35,7 @@
 // Share Icons
 // ===========================================================================
 
-.nuke-share-container {
+.NukeShare {
     margin-top: $spacing-unit;
     display: flex;
     justify-content: center;
@@ -44,19 +44,14 @@
     }
 }
 
-.nuke-share-icon {
+.NukeShare_Icon {
     align-self: center;
-}
-
-.nuke-share-icon-twitter {
-     margin-right: 18px;
-     opacity: 0.8;
 }
 
 // Contents
 // ===========================================================================
 
-.nuke-section-title {
+.NukeSectionTitle {
     font-size: 40px;
     font-weight: 700;
     margin-top: $spacing-unit;
@@ -67,36 +62,14 @@
     }
 }
 
-.nuke-animated-image-video {
-	margin-top: $spacing-unit * 0.5;
-
-    iframe {
-        box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-}
-
-
-// Featurette
-// ===========================================================================
-
-.nuke-featurette-container {
+.NukeFeatureList {
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
     margin: $spacing-unit 0;
 }
 
-.nuke-featurette-divider {
-    margin: $spacing-unit 0;
-    border-top: 1px solid #eeeeee;
-    width: 100%;
-
-    @include media-query($on-mobile) {
-        margin: 0.5 * $spacing-unit 0;
-    }
-}
-
-.nuke-featurette-block {
+.NukeFeatureList_Item {
     width: 47%;
     margin: 0.5 * $spacing-unit 0;
     margin-right: $spacing-unit * 0.125;
@@ -125,21 +98,7 @@
     }
 }
 
-
-/**
- * Features (large blocks)
- */
- .nuke-feature-container {
-     
-     h2 {
-         margin: 0 0 0.25 * $spacing-unit 0;
-     }
- }
-
-// .nuke__feature_with_video
-// ============================================================
-
-.nuke__feature_with_video__container {
+.NukeFeatureWithVideo {
     video {
         width: 100%;
         height: auto;
@@ -177,18 +136,14 @@
     }
 }
 
-.nuke__feature_with_video__text_container {
-    margin: $spacing-unit 0;
-}
-
-.nuke__feature_with_video__flex_container {
+.NukeFeatureWithVideo_Flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-flow: row wrap;
 }
 
-.nuke__feature_with_video__flex_item {
+.NukeFeatureWithVideo_FlexItem {
     width: 47.8%;
     @include media-query($on-mobile) {
         width: 100%;

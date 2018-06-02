@@ -12,12 +12,12 @@ permalink: /nuke
 <div class="Any-horInsets">
 
     <div align="center">
-        <div><img class="nuke-logo" src="{{ site.url }}/images/nuke_logo.png"></div>
-        <h1 class="nuke-description">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
+        <div><img class="NukeLogo" src="{{ site.url }}/images/nuke_logo.png"></div>
+        <h1 class="NukeDescription">A powerful <strong>image loading</strong> and <strong>caching</strong> system</h1>
     </div>
 
-    <div class="nuke-share-container">
-        <div class="nuke-share-icon">
+    <div class="NukeShare">
+        <div class="NukeShare_Icon">
             <iframe src="https://ghbtns.com/github-btn.html?user=kean&repo=Nuke&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
         </div>
         <div>
@@ -30,12 +30,12 @@ permalink: /nuke
 <!--Featurette-->
 
 <div class="Any-horInsets">
-<div class="nuke-featurette-container">
-    <div class="nuke-featurette-block">
+<div class="NukeFeatureList">
+    <div class="NukeFeatureList_Item">
         <h2>Caching</h2>
         <p>Fast LRU memory cache, native <a href="https://kean.github.io/post/image-caching">HTTP disk cache</a>, and custom aggressive LRU disk cache.</p>
     </div>
-    <div class="nuke-featurette-block">
+    <div class="NukeFeatureList_Item">
         <h2>Integrations</h2>
         <p>Customize <a href="https://github.com/kean/Nuke#h_design">image pipeline</a> using built-in <a href="https://github.com/kean/Nuke-Alamofire-Plugin">Alamofire</a>, <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a>, <a herf="https://github.com/kean/Nuke-FLAnimatedImage-Plugin">FLAnimatedImage</a>, <a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">WebP</a> plugins or custom ones.</p>
     </div>
@@ -44,16 +44,16 @@ permalink: /nuke
 
 <!--Progressive JPEG-->
 
-<div class="nuke__feature_with_video__container">
-    <div class="nuke__feature_with_video__flex_container">
+<div class="NukeFeatureWithVideo">
+    <div class="NukeFeatureWithVideo_Flex">
         <!-- To the left: title, subtitle, etc -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <h2>Progressive Images</h2>
-            <p class="nuke__feature_with_video__subtitle">Enable progressive decoding with a single line of code. Nuke supports for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
+            <p>Enable progressive decoding with a single line of code. Nuke supports for both progressive JPEG (built-in) and WebP (<a href="https://github.com/ryokosuge/Nuke-WebP-Plugin">built by the community</a>).</p>
         </div>
 
         <!-- To the right: video -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <video autoplay loop muted playsinline preload="auto">
             <source src="{{ site.url }}/videos/pjpeg_demo.mp4" type="video/mp4">
             </video>
@@ -62,12 +62,12 @@ permalink: /nuke
 </div>
 
 <div class="Any-horInsets">
-<div class="nuke-featurette-container">
-    <div class="nuke-featurette-block">
+<div class="NukeFeatureList">
+    <div class="NukeFeatureList_Item">
         <h2>Preheating Images</h2>
         <p>Automatically prefetch images ahead of time using either <a href="https://github.com/kean/Preheat">Preheat</a> or native table and collection view prefetching APIs.</p>
     </div>
-    <div class="nuke-featurette-block">
+    <div class="NukeFeatureList_Item">
         <h2>Resumable Downloads</h2>
         <p>If the request fails or gets canceled and the image was partially loaded, resume where it was left off (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>).</p>
     </div>
@@ -75,18 +75,18 @@ permalink: /nuke
 </div>
 
 
-<div class="nuke__feature_with_video__container">
-    <div class="nuke__feature_with_video__flex_container">
+<div class="NukeFeatureWithVideo">
+    <div class="NukeFeatureWithVideo_Flex">
         <!-- To the left: title, subtitle, etc -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <h2>Animated Images</h2>
-            <p class="nuke__feature_with_video__subtitle">Use either <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> or <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> plugin to display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
+            <p>Use either <a href="https://github.com/Flipboard/FLAnimatedImage">FLAnimatedImage</a> or <a href="https://github.com/kean/Nuke-Gifu-Plugin">Gifu</a> plugin to display animated GIFs with smooth scrolling performance and <a href="https://www.youtube.com/watch?v=fEJqQMJrET4">low memory footprint</a>.</p>
             <p>
             <strong>Note</strong>: GIF is not the most efficient format for transferring and displaying animated images. The current best practice is to <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/replace-animated-gifs-with-video/">use short videos instead</a>. See the demo project for more info.</p>
         </div>
 
         <!-- To the right: video -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <video autoplay loop muted playsinline preload="auto">
             <source src="{{ site.url }}/videos/gif_demo.mp4" type="video/mp4">
             </video>
@@ -96,7 +96,7 @@ permalink: /nuke
 
 
 <div class="Any-horInsets">
-<h1 class="nuke-section-title">Performance</h1>
+<h1 class="NukeSectionTitle">Performance</h1>
 
 <p>Performance is one of the key differentiating factors for Nuke. There are three key components of its performance:</p>
 <ul>
@@ -110,16 +110,16 @@ permalink: /nuke
 </div>
 
 
-<div class="nuke__feature_with_video__container">
-    <div class="nuke__feature_with_video__flex_container">
+<div class="NukeFeatureWithVideo">
+    <div class="NukeFeatureWithVideo_Flex">
         <!-- To the left: title, subtitle, etc -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <h2>Smooth Scrolling</h2>
-            <p class="nuke__feature_with_video__subtitle">Nuke is tuned to do very little work on the main thread which helps achieve buttery smooth scrolling performance in table and collection views.</p>
+            <p>Nuke is tuned to do very little work on the main thread which helps achieve buttery smooth scrolling performance in table and collection views.</p>
         </div>
 
         <!-- To the right: video -->
-        <div class="nuke__feature_with_video__flex_item">
+        <div class="NukeFeatureWithVideo_FlexItem">
             <video autoplay loop muted playsinline preload="auto">
             <source src="{{ site.url }}/videos/rate_limiter.mp4" type="video/mp4">
             </video>
@@ -129,7 +129,7 @@ permalink: /nuke
 
 
 <div class="Any-horInsets">
-<h1 class="nuke-section-title">RxNuke</h1>
+<h1 class="NukeSectionTitle">RxNuke</h1>
 <div>
 
     <p><a href="https://github.com/kean/RxNuke">RxNuke</a> adds <a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> extensions for Nuke and enables many <a href="https://github.com/kean/RxNuke#use-cases">common use cases</a>:<p>
