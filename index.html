@@ -9,29 +9,29 @@ redirect_from: /blog/
 
 <div class="Any-horInsets">
 
-<div class="home-posts-container">
-
-{% for post in site.posts %}
-	{% if site.featured_posts contains post.uuid %}
-	<div class="PostPreviewFeatured">
-	    {% include post_preview.html %}
-	</div>
-	{% endif %}
-{% endfor %}
-
 <div class="PostPreviewList">
-{% for post in site.posts %}
-	{% unless site.featured_posts contains post.uuid %}
-	<div class="PostPreview">
-	    {% include post_preview.html %}
-	</div>
-	{% endunless %}
-{% endfor %}
+
+	<!-- Display featured posts -->
+	{% for post in site.posts %}
+		{% if site.featured_posts contains post.uuid %}
+		<div class="PostPreview PostPreview-featured">
+		    {% include post-preview.html %}
+		</div>
+		{% endif %}
+	{% endfor %}
+
+	<!-- Display the reset of the posts -->
+	{% for post in site.posts %}
+		{% unless site.featured_posts contains post.uuid %}
+		<div class="PostPreview">
+			{% include post-preview.html %}
+		</div>
+		{% endunless %}
+	{% endfor %}
+
+</div> <!--PostPreviewList-->
+
 </div>
-
-</div> <!--home-posts-container!-->
-
-</div> <!--home!-->
 
 </main>
 

@@ -18,6 +18,7 @@
     letter-spacing: -1px;
     line-height: 1.0;
     margin: 0;
+    margin-top: 6px;
 
     font-size: 50px;
     @include media-query($on-laptop) {
@@ -28,11 +29,25 @@
     }
 }
 
+.PostLink {
+    color: $text-color;
+    line-height: 1.0;
+    letter-spacing: -1px;
+
+    font-size: 32px;
+    @include media-query($on-mobile) {
+        font-size: 28px;
+    }
+
+    &:visited {
+        color: $text-color;
+    }
+}
+
 .PostMeta {
     color: $grey-color;
     font-size: 14px;
     font-weight: 300;
-    margin: 0.125 * $spacing-unit 0;
 }
 
 .PostContents {
@@ -117,87 +132,93 @@ img.Screenshot {
 }
 
 .PostNavigation_PostPreview {
-    margin-top: $spacing-unit * 0.25;
-    .PostPreview_Header {
-        margin: 0;
-    }
+    .PostMiniPreview {
+        margin-top: $spacing-unit * 0.25;
 
-    .PostLink {
-        font-size: 26px;
-        @include media-query($on-mobile) {
-            font-size: 18px;
+        .PostLink {
+            font-size: 26px;
+            @include media-query($on-mobile) {
+                font-size: 18px;
+            }
+        }
+
+        .PostMeta {
+            margin-top: 0;
         }
     }
-
-    .PostMeta {
-        margin-top: 0;
-    }
 }
 
-// Post (Shared)
-// ============================================================
-
-.PostPreview_Header {
-    margin-top: 0.5 * $spacing-unit;
-    margin-bottom: 0.25 * $spacing-unit;
-    h2 {
-        display: inline;
-    }
-}
-
-.PostLink {
-    display: inline-block;
-    max-width:100%;
-    color: $text-color;
-    line-height: 1.0;
-    letter-spacing: -1px;
-
-    font-size: 32px;
-    @include media-query($on-mobile) {
-        font-size: 28px;
-    }
-
-    &:visited {
-        color: $text-color;
-    }
-}
-
-// PostPreviewList, PostPreview
+// PostPreview, PostPreviewList
 // ================================================
+
+.PostPreview {
+
+}
 
 .PostPreviewList {
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin-left: 0;
-    margin-top: 0.5 * $spacing-unit;
+
+    .PostPreview {
+        margin-bottom: 0.5 * $spacing-unit;
+
+        width: 47.8%;
+        @include media-query($on-mobile) {
+            width: 100%;
+        }
+    }
+
+    .PostPreview-featured {
+        margin-bottom: $spacing-unit;
+        @include media-query($on-mobile) {
+            margin-bottom: 0.5 * $spacing-unit;
+        }
+
+        width: 100%;
+    }
  }
 
-.PostPreview {
-    margin-bottom: $spacing-unit;
-
-    width: 47.8%;
-    @include media-query($on-mobile) {
-        width: 100%;
+.PostPreview_Header {
+    margin-top: 0.5 * $spacing-unit;
+    margin-bottom: 0.25 * $spacing-unit;
+    h2 {
+        margin: 0;
+        margin-top: 6px;
     }
 }
 
 .PostPreview_Subtitle {
-    margin-top: 0px;
+    margin: 0px;
 }
 
-.PostPreviewFeatured {
-    margin: 0.5 * $spacing-unit 0;
-    margin-bottom: $spacing-unit;
+.PostPreview-featured .PostLink {
+    font-size: 50px;
+    @include media-query($on-mobile) {
+        font-size: 44px;
+    }
+    @include media-query($on-mobile) {
+        font-size: 38px;
+    }
+}
+
+.PostMiniPreview {    
+    h2 {
+        line-height: 1.0;
+        margin: 0;
+        margin-bottom: 0.1 * $spacing-unit;
+    }
 
     .PostLink {
-        font-size: 50px;
-        @include media-query($on-mobile) {
-            font-size: 44px;
-        }
-        @include media-query($on-mobile) {
-            font-size: 38px;
-        }
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+    }
+
+    .PostMeta {
+        font-size: 15px;
+        line-height: 1.2;
+        margin-top: 0 * $spacing-unit;
     }
 }
 

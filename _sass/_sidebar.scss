@@ -1,6 +1,11 @@
 .Sidebar {
     h2 {
         font-size: 23px;
+    }
+}
+
+.SidebarHeader {
+    h2 {
         margin-top: $spacing-unit * 0.5;
         margin-bottom: $spacing-unit * 0.25;
     }
@@ -56,24 +61,19 @@
 // SidebarPostPreview
 // ================================================
 
+.SidebarList {
+    .SidebarPostPreview {
+        margin-top: 0.25 * $spacing-unit;
+        margin-bottom: 0.33 * $spacing-unit;
+    }
+}
+
 .SidebarPostPreview {
     border-top: 1px solid #e0e0e0;
     width: 100%;
 
-    .PostPreview_Header {
-        margin-top: 0.25 * $spacing-unit;
-        margin-bottom: 0.33 * $spacing-unit;
-    }
-
-    .PostLink {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-    .PostMeta {
-        font-size: 15px;
-        line-height: 1.2;
-        margin-top: 0 * $spacing-unit;
+    .PostMiniPreview {
+        margin: 0.25 * $spacing-unit 0;
     }
 }
 
