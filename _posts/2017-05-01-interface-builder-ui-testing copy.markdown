@@ -12,7 +12,7 @@ uuid: 5236b644-6093-4896-9318-def1e4ffaf80
 
 The recent changes to Interface Builder made me change my mind about it. I was sold on the _Preview_ feature which allows to test the UI on different screen sizes and in different orientations. Let's see how to make the best use of this feature.
 
-<img src="{{ site.url }}/images/ib_designable/ib_screen_01.png" class="screenshot">
+<img src="{{ site.url }}/images/ib_designable/ib_screen_01.png" class="Screenshot">
 
 # Using Interface Builder
 

@@ -1,20 +1,20 @@
-<header class="site_header">
+<header class="SiteHeader">
 
-<div class="site_header__content">
+<div class="SiteHeaderProfile">
 	<div>
 		<a href="{{ site.baseurl }}/">
-			<img class="site_header__avatar" src="{{ site.url }}/images/avatar.jpg">
+			<img class="SiteHeaderProfile_Avatar" src="{{ site.url }}/images/avatar.jpg">
 		</a>
 	</div>
 
-	<div class="site_header__spacer"></div>
+	<div class="SiteHeaderProfile_Spacer"></div>
 
 	<div>
 		<a href="{{ site.baseurl }}/">
-			<h2 class="link--subtle">Alexander<br/>Grebenyuk</h2>
+			<h2 class="Link-subtle">Alexander<br/>Grebenyuk</h2>
 		</a>
-		<div class="site_header__contacts">
-			{% include contacts.html %}
+		<div class="SiteHeaderProfile_Contacts">
+			<p>{% include contacts.html %}</p>
 		</div>
 	</div>
 </div>

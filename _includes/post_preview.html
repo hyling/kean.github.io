@@ -1,5 +1,5 @@
-<header class="post-title-container">
-	<p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}</span></p>
-    <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+<header class="PostPreview_Header">
+	<p class="PostMeta"><span>{{ post.date | date: "%b %-d, %Y" }}</span></p>
+    <h2><a class="PostLink" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 </header>
-<p class="blog__post-preview__subtitle">{{ post.subtitle }}</p>
+<p class="PostPreview_Subtitle">{{ post.subtitle }}</p>

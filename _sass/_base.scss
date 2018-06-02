@@ -111,7 +111,6 @@ a {
     &:visited {
         color: $brand-color;
     }
-
     &:hover {
         text-decoration: underline;
     }
@@ -182,7 +181,6 @@ pre {
 }
 
 .icon {
-
     > svg {
         display: inline-block;
         width: 16px;
@@ -213,43 +211,7 @@ th, td {
     aside {
         display: none;
     }
-    .post-footer {
+    .PostFooter {
         display: none;
-    }
-}
-
-/**
- * Base
- */
-
- .base__hor_insets {
-    margin: 0 $spacing-unit;
-    @include media-query($on-mobile) {
-        margin: 0 0.5 * $spacing-unit;
-    }
-}
-
-
-.base__hr-divider {
-    margin: $spacing-unit * 0.5 0 $spacing-unit 0;
-    border-top: 1px solid #e0e0e0;
-    transform: scaleY(0.5);
-    width: 100%;
-}
-
-.base__card {
-    padding: $spacing-unit * 0.75 $spacing-unit * 0.5;
-    background: $grey-backgrould-light-color;
-    border: 0.5px solid $grey-color-light;
-    border-radius: 8px;
-}
-
-.link--subtle {
-    color: $text-color;
-    &:visited {
-        color: $text-color;
-    }
-    &:hover {
-        color: $text-color;
     }
 }

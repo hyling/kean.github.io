@@ -7,22 +7,22 @@ redirect_from: /blog/
 
 {% include site-header.html %}
 
-<div class="home base__hor_insets">
+<div class="Any-horInsets">
 
 <div class="home-posts-container">
 
 {% for post in site.posts %}
 	{% if site.featured_posts contains post.uuid %}
-	<div class="blog__post-preview-featured__container">
+	<div class="PostPreviewFeatured">
 	    {% include post_preview.html %}
 	</div>
 	{% endif %}
 {% endfor %}
 
-<div class="blog__post-preview__list-container">
+<div class="PostPreviewList">
 {% for post in site.posts %}
 	{% unless site.featured_posts contains post.uuid %}
-	<div class="blog__post-preview__container">
+	<div class="PostPreview">
 	    {% include post_preview.html %}
 	</div>
 	{% endunless %}
@@ -36,7 +36,7 @@ redirect_from: /blog/
 </main>
 
 
-<aside class="sidebar base__card">
+<aside class="sidebar Any-card">
 
 {% include sidebar-home.html %}
 

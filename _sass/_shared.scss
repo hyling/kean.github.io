@@ -1,0 +1,30 @@
+.Any-horInsets {
+    margin: 0 $spacing-unit;
+    @include media-query($on-mobile) {
+        margin: 0 0.5 * $spacing-unit;
+    }
+}
+
+.HorDivider {
+    margin: $spacing-unit * 0.5 0 $spacing-unit 0;
+    border-top: 1px solid #e0e0e0;
+    transform: scaleY(0.5);
+    width: 100%;
+}
+
+.Any-card {
+    padding: $spacing-unit * 0.75 $spacing-unit * 0.5;
+    background: $grey-backgrould-light-color;
+    border: 0.5px solid $grey-color-light;
+    border-radius: 8px;
+}
+
+.Link-subtle {
+    color: $text-color;
+    &:visited {
+        color: $text-color;
+    }
+    &:hover {
+        color: $text-color;
+    }
+}

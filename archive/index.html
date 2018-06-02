@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<main class="archive">
+<main class="Archive">
 
 {% include site-header.html %}
 
-<div class="base__hor_insets">
+<div class="Any-horInsets">
 
-<div class="archive__header">
+<div class="ArchiveHeader">
 	<h1>Articles</h1>
 </div>
 
@@ -18,12 +18,10 @@ layout: default
 
     {% if forloop.first %}
     <h2 id="{{ this_year }}-ref">{{this_year}}</h2>
-    <ul class="archive_pist__list">
+    <ul class="ArchivePostList">
     {% endif %}
 
-    <li class="archive_post">
-	    {% include archive_post.html %}
-	</li>
+	{% include archive_post_list_item.html %}
 
     {% if forloop.last %}
     </ul>
@@ -31,7 +29,7 @@ layout: default
         {% if this_year != next_year %}
         </ul>
         <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
-        <ul class="archive_pist__list">
+        <ul class="ArchivePostList">
         {% endif %}
     {% endif %}
 {% endfor %}
@@ -41,7 +39,7 @@ layout: default
 </main>
 
 
-<aside class="sidebar base__card">
+<aside class="sidebar Any-card">
 
 {% include sidebar-home.html %}
 

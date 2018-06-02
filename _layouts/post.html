@@ -7,29 +7,29 @@ author: "Alexander Grebenyuk"
 
 {% include site-header.html %}
 
-<article class="post base__hor_insets" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="Any-horInsets" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <header class="post-header">
-        <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
-        <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <header class="PostHeader">
+        <p class="PostMeta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
+        <h1 class="PostTitle" itemprop="name headline">{{ page.title }}</h1>
     </header>
 
-    <div class="post-content" itemprop="articleBody">
+    <div class="PostContents" itemprop="articleBody">
         {{ content }}
     </div>
 
 </article>
 
-<div class="post-footer base__hor_insets">
+<div class="PostFooter Any-horInsets">
 
-    <div class="post-navigation-container base__card">
+    <div class="PostNavigation Any-card">
         {% if page.previous %}
             {% assign post = page.previous %}
-            <div class="post-navigation-preview-container">
-                <div class="post-navigation-prev-next-button">
+            <div class="PostNavigation_Button">
+                <div class="PostNavigation_ButtonTitle">
                     <a href="{{ page.previous.url }}"><h2>Previous</h2></a>
                 </div>
-                <div class="post-navigation-preview">
+                <div class="PostNavigation_PostPreview">
                     {% include post-mini-preview.html %}
                 </div>
             </div>
@@ -37,11 +37,11 @@ author: "Alexander Grebenyuk"
 
         {% if page.next %}
             {% assign post = page.next %}
-            <div class="post-navigation-preview-container">
-                <div class="post-navigation-prev-next-button">
+            <div class="PostNavigation_Button">
+                <div class="PostNavigation_ButtonTitle">
                     <a href="{{ page.next.url }}"><h2>Next</h2></a>
                 </div>
-                <div class="post-navigation-preview">
+                <div class="PostNavigation_PostPreview">
                     {% include post-mini-preview.html %}
                 </div>
             </div>
@@ -58,7 +58,7 @@ author: "Alexander Grebenyuk"
 
 
 
-<aside class="sidebar base__card">
+<aside class="sidebar Any-card">
 
 {% include sidebar.html %}
 

@@ -14,7 +14,7 @@ I've migrated our app to [Codable](https://developer.apple.com/documentation/swi
 
 > <a href="{{ site.url }}/playgrounds/codable.playground.zip">Swift Playground</a> with all of the code from this article:
 
-<img src="{{ site.url }}/images/posts/codable_screen_01.png" class="screenshot">
+<img src="{{ site.url }}/images/posts/codable_screen_01.png" class="Screenshot">
 
 `Codable` was introduces in Swift 4 with a [motivation](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation) to replace old `NSCoding` APIs. Unlike `NSCoding` it has a first class JSON support which makes it a promising option for consuming JSON APIs.
 

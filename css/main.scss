@@ -45,10 +45,12 @@ $on-laptop: 1000px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+        "shared",
         "base",
         "icons",
-        "navigation",
+        "site",
         "blog",
+        "archive",
         "syntax-highlighting",
         "sidebar",
         "nuke"

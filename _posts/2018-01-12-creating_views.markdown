@@ -18,7 +18,7 @@ In this post, I'd like to share some of the practices that I use when writing vi
 
 Let's jump straight into the code. Here's an example of a view that displays a user (full code available in a <a href="{{ site.url }}/playgrounds/creating_views.playground.zip">playground</a>):
 
-<img src="{{ site.url }}/images/posts/creating_views_01.png" class="screenshot">
+<img src="{{ site.url }}/images/posts/creating_views_01.png" class="Screenshot">
 
 I will go into more details about the two major areas of this code - style and layout. Let's start with the style.
 

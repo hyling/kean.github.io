@@ -1,16 +1,15 @@
-/**
- * Site footer
- */
-.site_footer {
+// SiteFooter
+// =============================================
+
+.SiteFooter {
     padding: $spacing-unit / 2 0;
     border-top: 1px solid #eee;
 }
 
-.site_footer-wrapper {
+.SiteFooter_Links {
     font-size: 13px;
-    color: $grey-color;
+    color: lighten($grey-color, 10%);
     margin-left: -$spacing-unit / 2;
-    @extend %clearfix;
     text-align: center;
     margin-bottom: $spacing-unit / 2;
     padding-left: $spacing-unit / 2;
@@ -21,14 +20,11 @@
     }
 
     a {
-        color: lighten($brand-color, 10%)
+        color: lighten($brand-color, 20%)
     }
 }
 
-/**
- * Page content
- */
-.page_content {
+.PageContents {
     // FIXME: make it always 0
     padding: $spacing-unit 0;
 
@@ -37,19 +33,20 @@
     }
 }
 
-/**
- * Header
- */
+// SiteHeader
+// =============================================
 
-.site_header {
+.SiteHeader {
     background: $grey-backgrould-light-color;
     border: 0.5px solid $grey-color-light;
 
     padding: 0.75 * $spacing-unit 0;
-    // margin-bottom: $spacing-unit;
 
     width: calc(100% - #{$spacing-unit * 2});
     
+    // It has slightly different design on "laptop"
+    // and "mobile"
+
     margin: $spacing-unit;
     margin-top: -8px;
     border-radius: 8px;
@@ -65,13 +62,12 @@
     }
 
     display: none;
-
     @include media-query($on-laptop) {
         display: inline-block;
     }
 }
 
-.site_header__content {
+.SiteHeaderProfile {
     margin: 0 0.5 * $spacing-unit;
 
     display: flex;
@@ -86,14 +82,14 @@
     }
 }
 
-.site_header__spacer {
+.SiteHeaderProfile_Spacer {
     width: $spacing-unit;
     @include media-query($on-mobile) {
         width: 0.5 * $spacing-unit;
     }
 }
 
-.site_header__avatar {
+.SiteHeaderProfile_Avatar {
     border-radius: 12px;
     max-height: 120px;
 
@@ -109,8 +105,9 @@
     }
 }
 
-.site_header__contacts {
+.SiteHeaderProfile_Contacts {
     p {
+        margin-top: 0.2 * $spacing-unit;
         font-size: 14px;
     }
 }

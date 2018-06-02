@@ -81,7 +81,7 @@ The distribution determines how the stack view lays out its arranged views along
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. When the arranged views do not fit within the stack view, it shrinks the views according to their compression resistance priority. If the arranged views do not fill the stack view, it stretches the views according to their hugging priority.
 
-<img src="{{ site.url }}/images/stack_view/01.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/01.png" class="PostStackView_Screenshot">
 
 #### Constraints
 
@@ -143,7 +143,7 @@ As you probably noticed we haven't defined the stack's size along neither of its
 
 In the result we get a very simple but very useful layout. In terms of constraints this configuration is the simplest one to implement.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewDistribution.fillEqually"></a>
@@ -152,7 +152,7 @@ In the result we get a very simple but very useful layout. In terms of constrain
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. The views are resized so that they are all the same size along the stack view’s axis.
 
-<img src="{{ site.url }}/images/stack_view/02.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/02.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-fill-equally:</b>
@@ -178,7 +178,7 @@ In the result we get a very simple but very useful layout. In terms of constrain
 
 This distribution is almost the same as <a href="#UIStackViewDistribution.fill">fill distribution</a>. The only different is the new <b>UISV-fill-equally</b> set of constraints. It forces all of the arranged views to have the same width (or height for vertical `UIStackView`).
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewDistribution.fillProportionally"></a>
@@ -187,7 +187,7 @@ This distribution is almost the same as <a href="#UIStackViewDistribution.fill">
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. Views are resized proportionally based on their intrinsic content size along the stack view’s axis.
 
-<img src="{{ site.url }}/images/stack_view/03.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/03.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-fill-proportionally:</b>
@@ -232,7 +232,7 @@ Also notice that the priority of the constraints is higher then both content hug
 
 > I'm not sure why each constraint has a different priority (999, 998, etc). If you have an idea please <a href="#comment-section">leave a comment below</a>.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewDistribution.equalSpacing"></a>
@@ -241,7 +241,7 @@ Also notice that the priority of the constraints is higher then both content hug
 
 > A layout where the stack view positions its arranged views so that they fill the available space along the stack view’s axis. When the arranged views do not fill the stack view, it pads the spacing between the views evenly. If the arranged views do not fit within the stack view, it shrinks the views according to their compression resistance priority.
 
-<img src="{{ site.url }}/images/stack_view/04.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/04.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-distributing-edge:</b>
@@ -272,7 +272,7 @@ Also notice that the priority of the constraints is higher then both content hug
 
 This configuration requires extra spacers (`_UIOLAGapGuide`) [between subsequent subviews](http://stackoverflow.com/questions/38778692/xcode-7-constraints-equal-spacing-between-buttons). Spacers are pinned to respected subviews by <b>UISV-distributing-edge</b> constraints. All the spacers have the same size thanks to <b>UISV-fill-equally</b> constraints. The <b>UISV-spacing</b> constraints are a bit different from previous distributions too - they now use `NSLayoutRelation.greaterThanOrEqual` rather than `NSLayoutRelation.equal`.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewDistribution.equalCentering"></a>
@@ -281,7 +281,7 @@ This configuration requires extra spacers (`_UIOLAGapGuide`) [between subsequent
 
 > A layout that attempts to position the arranged views so that they have an equal center-to-center spacing along the stack view’s axis, while maintaining the spacing property’s distance between views. If the arranged views do not fit within the stack view, it shrinks the spacing until it reaches the minimum spacing defined by its spacing property. If the views still do not fit, the stack view shrinks the arranged views according to their compression resistance priority.
 
-<img src="{{ site.url }}/images/stack_view/05.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/05.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-distributing-edge:</b>
@@ -318,7 +318,7 @@ The other difference is that **UISV-fill-equally** constraints now have a low pr
 
 The minimum spacing is again achieved by **UISV-spacing** constraints which all have a *required* priority.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 ## UIStackView Alignment
 
@@ -329,7 +329,7 @@ The minimum spacing is again achieved by **UISV-spacing** constraints which all 
 
 > A layout where the stack view resizes its arranged views so that they fill the available space perpendicular to the stack view’s axis.
 
-<img src="{{ site.url }}/images/stack_view/01.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/01.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -351,7 +351,7 @@ The minimum spacing is again achieved by **UISV-spacing** constraints which all 
 
 This configuration is exactly the same as the very first one: [fill distribution](#UIStackViewDistribution.fill).
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewAlignment.leading"></a>
@@ -360,7 +360,7 @@ This configuration is exactly the same as the very first one: [fill distribution
 
 > A layout for vertical stacks where the stack view aligns the leading edge of its arranged views along its leading edge.
 
-<img src="{{ site.url }}/images/stack_view/06.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/06.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -404,7 +404,7 @@ Interestingly vertical **UISV-canvas-connection** constraints pin different view
 
 Now why is that so complicated? Why is layout spacer necessary and is it necessary at all? Couldn't we just pin all the arranged views to the stack view itself? I think that it might be excessive, but I might be missing something. If you have an idea why it's implemented this way please [share it in the comments](#comment-section).
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewAlignment.center"></a>
@@ -413,7 +413,7 @@ Now why is that so complicated? Why is layout spacer necessary and is it necessa
 
 > A layout where the stack view aligns the center of its arranged views with its center along its axis.
 
-<img src="{{ site.url }}/images/stack_view/07.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/07.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -450,7 +450,7 @@ Now why is that so complicated? Why is layout spacer necessary and is it necessa
 
 This and the following alignment (.trailing) is very similar to a [leading alignment](#UIStackViewAlignment.leading) so I'm not going to comment them that much. This particular configuration has an extra **UISV-canvas-connection** constraint that pins first arranged view to the `.centerY` of the stack view, and has slightly different **UISV-spanning-boundary** and **UISV-alignment**. But the idea is the same.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewAlignment.trailing"></a>
@@ -459,7 +459,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
 
 > A layout for vertical stacks where the stack view aligns the trailing edge of its arranged views along its trailing edge.
 
-<img src="{{ site.url }}/images/stack_view/08.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/08.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -493,7 +493,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
  H:[Subview1]-(0)-[Subview2]
 </pre>
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="UIStackViewAlignment.firstBaseline"></a>
@@ -502,7 +502,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
 
 > A layout where the stack view aligns its arranged views based on their first baseline. This alignment is only valid for horizontal stacks.
 
-<img src="{{ site.url }}/images/stack_view/09.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/09.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -544,7 +544,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
  H:[Subview1]-(0)-[Subview2]
 </pre>
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 The `.firstBaseline` and the `.lastBaseline` alignments only make sense for views like `UILabel` which has some content with actual baselines (like text).
 
@@ -556,7 +556,7 @@ This alignment is again very similar to the previous ones. It uses an auxilary s
 
 > A layout where the stack view aligns its arranged views based on their last baseline. This alignment is only valid for horizontal stacks.
 
-<img src="{{ site.url }}/images/stack_view/10.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/10.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-alignment:</b>
@@ -598,7 +598,7 @@ This alignment is again very similar to the previous ones. It uses an auxilary s
  H:[Subview1]-(0)-[Subview2]
 </pre>
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 ## UIStackView Misc
@@ -610,7 +610,7 @@ This alignment is again very similar to the previous ones. It uses an auxilary s
 
 > The stack view automatically updates its layout whenever views are added, removed or inserted into the arrangedSubviews array, or whenever one of the arranged views's isHidden property changes.
 
-<img src="{{ site.url }}/images/stack_view/11.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/11.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-hiding:</b>
@@ -656,7 +656,7 @@ UIView.animateWithDuration(0.33) {
 
 This way some of the responsibilities gets delegated to the user of the library, but all the complexities of working with `isHidden` are gone.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="Misc.MarginsRelativeLayout"></a>
@@ -665,7 +665,7 @@ This way some of the responsibilities gets delegated to the user of the library,
 
 > A Boolean value that determines whether the stack view lays out its arranged views relative to its layout margins. If true, the stack view will layout its arranged views relative to its layout margins. If false, it lays out the arranged views relative to its bounds.
 
-<img src="{{ site.url }}/images/stack_view/12.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/12.png" class="PostStackView_Screenshot">
 
 <pre>
 UISV-alignment:
@@ -693,7 +693,7 @@ UISV-alignment:
 
 **UISV-canvas-connection** constraints now pin subviews to `UIViewLayoutMarginsGuide` instead of bounds.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="Misc.BaselineRelativeLayout"></a>
@@ -702,7 +702,7 @@ UISV-alignment:
 
 > A Boolean value that determines whether the vertical spacing between views is measured from their baselines. If YES, the vertical space between views are measured from the last baseline of a text-based view, to the first baseline of the view below it. Top and bottom views are also positioned so that their closest baseline is the specified distance away from the stack view’s edge. This property is only used by vertical stack views.
 
-<img src="{{ site.url }}/images/stack_view/13.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/13.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-spacing:</b>
@@ -724,14 +724,14 @@ UISV-alignment:
 
 The stack modifies **UISV-spacing** constraints by using `.firstBaseline` and `.lastBaseline` layout attributes.
 
-<p class="base__hr-divider"></p>
+<p class="HorDivider"></p>
 
 
 <a name="Misc.SingleSubviewCenterAlignment"></a>
 
 ### 3.4 Single Subview, Alignment: .Center
 
-<img src="{{ site.url }}/images/stack_view/14.png" class="screenshot-stackview">
+<img src="{{ site.url }}/images/stack_view/14.png" class="PostStackView_Screenshot">
 
 <pre>
 <b>UISV-canvas-connection:</b>
