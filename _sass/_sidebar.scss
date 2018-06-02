@@ -1,4 +1,4 @@
-.sidebar {
+.Sidebar {
     h2 {
         font-size: 23px;
         margin-top: $spacing-unit * 0.5;
@@ -6,7 +6,7 @@
     }
 }
 
-.sidebar-list {
+.SidebarList {
     margin-left: 0;
     list-style: none;
 
@@ -20,19 +20,12 @@
     }
 }
 
-.sidebar-link-container {
-    margin: 0.25 * $spacing-unit 0;
-    a {
-        font-size: 16px;
-    }
-}
-
-.sidebar-block {
+.SidebarSections {
     p {
       font-size: 16px;
     }
-
-    .section-title {
+    
+    .Sidebar_SectionTitle {
         margin-top: $spacing-unit * 1.25;
         margin-bottom: $spacing-unit * 0.5;
         color: $grey-color;
@@ -40,27 +33,30 @@
     }
 }
 
-.sidebar-header {
+// SidebarHeader
+// ================================================
+
+.SidebarHeader {
     p {
         margin-top: $spacing-unit * 0.25;
     }
 }
 
-.sidebar-contacts {
+.SidebarHeader_Contacts {
     p {
         font-size: 14px;
     }
 }
 
-.sidebar-avatar {
+.SidebarHeader_Avatar {
     border-radius: 12px;
     max-height: 180px;
 }
 
-// Post Previews
-// ===================================================
+// SidebarPostPreview
+// ================================================
 
-.sidebar-preview-container {
+.SidebarPostPreview {
     border-top: 1px solid #e0e0e0;
     width: 100%;
 
@@ -84,7 +80,7 @@
 // Open Source
 // ===================================================
 
-.sidebar-oss-container {
+.Sidebar {
     .icon-swift {
         opacity: 0.33;
         width: 16px;
@@ -92,7 +88,7 @@
     }
 }
 
-.sidebar-oss-project-container {
+.SidebarOSSProject {
     border-top: 1px solid #e0e0e0;
     width: 100%;
     margin: 0.33 * $spacing-unit 0;
@@ -103,7 +99,7 @@
     }
 }
 
-.sidebar-oss-link {
+.SidebarOSSProject_Link {
     font-size: 18px;
     font-weight: 600;
     max-width: 100%;
@@ -115,7 +111,7 @@
     }
 }
 
-.sidebar-oss-excerpt {
+.SidebarOSSProject_Excerpt {
     margin-top: 0;
     line-height: 1.4;
 }

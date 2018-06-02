@@ -1,19 +1,17 @@
-<h2 class="section-title">Open Source</h2>
+<h2 class="Sidebar_SectionTitle">Open Source</h2>
 
-<div class="sidebar-oss-container">
-    <div class="sidebar-list">
-    {% for project in site.data.open-source.projects %}
-      <div class="sidebar-oss-project-container">
-        <h2>
-          <a class="sidebar-oss-link" href="{{ project.link }}">{{ project.title }}</a>
-          <div class="icon icon-swift"></div>
-        </h2>
-        <p class="sidebar-oss-excerpt">{{ project.description }}</p>
-        <p>
-      </div>
-    {% endfor %}
-    <div class="sidebar-oss-project-container">
-      <p><a href="https://github.com/kean">See all projects »</a></p>
-      </div>
-    </div>
+<div class="SidebarList">
+{% for project in site.data.open-source.projects %}
+  <div class="SidebarOSSProject">
+    <h2>
+      <a class="SidebarOSSProject_Link" href="{{ project.link }}">{{ project.title }}</a>
+      <div class="icon icon-swift"></div>
+    </h2>
+    <p class="SidebarOSSProject_Excerpt">{{ project.description }}</p>
+    <p>
+  </div>
+{% endfor %}
+<div class="SidebarOSSProject">
+  <p><a href="https://github.com/kean">See all projects »</a></p>
+  </div>
 </div>
