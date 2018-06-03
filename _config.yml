@@ -20,8 +20,8 @@ future: true
 # Site specific
 # e.g. f7b08862-3571-4c61-a7a2-9a5f742fc10a
 featured_posts:
+  - 7ba0839a-0983-419a-b74e-43a75af31520
   - 5d99141e-9678-43af-975c-8ca5f736cb4a
-  - f7b08862-3571-4c61-a7a2-9a5f742fc10a
 
 gems:
   - jekyll-redirect-from
