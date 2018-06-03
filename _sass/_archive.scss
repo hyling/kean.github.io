@@ -11,13 +11,6 @@
     margin-top: $spacing-unit;
 
     h1 {
-        font-size: 50px;
-        @include media-query($on-laptop) {
-            font-size: 44px;
-        }
-        @include media-query($on-mobile) {
-           font-size: 38px;
-        }
         margin-top: 0px;
         margin-right: 0.5 * $spacing-unit;
     }
