@@ -20,9 +20,9 @@ author: "Alexander Grebenyuk"
 
 </article>
 
-<div class="PostFooter Any-horInsets">
+<div class="PostFooter">
 
-    <div class="PostNavigation Any-card">
+    <div class="PostNavigation Any-responsiveCard">
         {% if page.previous %}
             {% assign post = page.previous %}
             <div class="PostNavigation_Button">
@@ -49,8 +49,10 @@ author: "Alexander Grebenyuk"
 
     </div>
 
-    <a name="comment-section"></a>
-    {% include comment-section.html %}
+    <div class="Any-horInsets">
+        <a name="comment-section"></a>
+        {% include comment-section.html %}
+    </div>
 
 </div>
 

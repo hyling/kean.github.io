@@ -93,22 +93,19 @@ img.Screenshot {
 }
 
 .PostNavigation {
-    margin-top: $spacing-unit;
-
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin-left: 0;
-    margin-bottom: $spacing-unit * 1;
-    padding: 0;
+    margin: $spacing-unit 0;
+
+    padding: $spacing-unit;
+    @include media-query($on-mobile) {
+        padding: 0.5 * $spacing-unit;  
+    }
  }
 
 .PostNavigation_Button {
-    margin: $spacing-unit * 0.5;
     width: 44.333333%;
-    @include media-query($on-mobile) {
-        margin: $spacing-unit * 0.25;
-    }
 }
 
 .PostNavigation_ButtonTitle {
@@ -138,12 +135,15 @@ img.Screenshot {
         .PostLink {
             font-size: 26px;
             @include media-query($on-mobile) {
-                font-size: 18px;
+                font-size: 20px;
             }
         }
 
         .PostMeta {
             margin-top: 0;
+            @include media-query($on-mobile) {
+                margin-top: 6px;
+            }
         }
     }
 }

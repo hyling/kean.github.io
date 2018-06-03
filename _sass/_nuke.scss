@@ -121,18 +121,11 @@
         }
     }
 
-    background: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
-    border-radius: 8px;
-
-    padding: $spacing-unit;
     margin: $spacing-unit 0;
-
+    padding: $spacing-unit;
     @include media-query($on-mobile) {
-        border-radius: 0px;
-
-        padding: $spacing-unit 0.5 * $spacing-unit;
-        margin: 0;     
+        margin: 0;
+        padding: $spacing-unit 0.5 * $spacing-unit;  
     }
 }
 
