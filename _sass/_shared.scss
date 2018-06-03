@@ -31,10 +31,14 @@
 
 .Link-subtle {
     color: $text-color;
+    transition: all 0.1s linear;
+    text-decoration: none;
+
     &:visited {
         color: $text-color;
     }
     &:hover {
-        color: $text-color;
+        color: lighten($text-color, 15%);
+        text-decoration: none;
     }
 }

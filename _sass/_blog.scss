@@ -30,17 +30,12 @@
 }
 
 .PostLink {
-    color: $text-color;
     line-height: 1.0;
     letter-spacing: -1px;
 
     font-size: 32px;
     @include media-query($on-mobile) {
         font-size: 28px;
-    }
-
-    &:visited {
-        color: $text-color;
     }
 }
 
@@ -110,20 +105,11 @@ img.Screenshot {
 
 .PostNavigation_ButtonTitle {
     h2 {
+        color: $grey-color;
         margin-top: 0;
         font-size: 22px;
         @include media-query($on-mobile) {
             font-size: 16px;
-        }
-    }
-    a {
-        color: $grey-color;
-        &:visited {
-            color: $grey-color;
-        }
-        &:hover {
-            color: #333;
-            text-decoration: none;
         }
     }
 }

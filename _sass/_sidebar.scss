@@ -85,6 +85,7 @@
         opacity: 0.33;
         width: 16px;
         height: 16px;
+        margin-bottom: -1.5px;
     }
 }
 
@@ -102,13 +103,7 @@
 .SidebarOSSProject_Link {
     font-size: 18px;
     font-weight: 600;
-    max-width: 100%;
-    color: $text-color;
     letter-spacing: -0.5px;
-
-    &:visited {
-        color: $text-color;
-    }
 }
 
 .SidebarOSSProject_Excerpt {
