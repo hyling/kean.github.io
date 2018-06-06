@@ -15,7 +15,7 @@ The Network Extension is an expansive framework. It provides a set of APIs that 
 
 This is **the first post in a series** about the Network Extension framework. I'm going to start with a high-level overview, dive deep into some of the most interesting extensions and explore a couple of apps that already take the powerful features provided by this fantastic framework.
 
-# Prerequisites
+## Prerequisites
 
 It's best to read this series when you're already familiar with the basics of network protocols. It should be enough to understand the basics of IP, TCP and UDP, and a bit about VPN. There is a lot of information available online. Regardless of whether you go through a tutorial or [an RFC](https://tools.ietf.org/html/rfc791), I would recommend installing [Wireshark](https://www.wireshark.org) and inspecting one or two [sample captures](https://wiki.wireshark.org/SampleCaptures).
 
@@ -23,7 +23,7 @@ It's best to read this series when you're already familiar with the basics of ne
 
 <img src="{{ site.url }}/images/posts/network-extensions/wireshark_sample.png">
 
-# Network Extensions Overview
+## Network Extensions Overview
 
 Let's start with an overview of the available network extensions. There is already a good overview available [in the Developer Library](https://developer.apple.com/documentation/networkextension), but it does miss a few things.
 
@@ -33,11 +33,11 @@ I'm also going to highlight the requirements of each of the extensions. Some are
 
 There is no need to remember everything in the this section - it's just a high-level overview that provides a general idea of what the Network Extension framework is about.
 
-## Personal VPN
+### Personal VPN
 
 The **[`NEVPNManager`](https://developer.apple.com/documentation/networkextension/nevpnmanager) (iOS 8+)** API gives apps the ability to create and manage a VPN configuration (one per app).
 
-## Network Tunneling Protocol Client
+### Network Tunneling Protocol Client
 
 The `NETunnelProvider` APIs allow apps to implement the client side of a custom network tunneling protocol (e.g. VPN protocols).
 
@@ -49,23 +49,23 @@ The provider subclass should be added inside a special app extension target. The
 
 > You won't be able to run any of these app extensions in a simulator, and to run in on a device you will need to create an entitlement.
 
-## On-Device Network Content Filter
+### On-Device Network Content Filter
 
 The **[`NEFilterProvider`](https://developer.apple.com/documentation/networkextension/nefilterprovider) (iOS 9+, supervised devices)** APIs give the ability to filter network traffic on iOS devices. This API was designed primarily for devices owned by schools. In general, most schools have some sort of content filtering enabled on their local WiFi networks, but that doesn't work with mobile networks. With `NEFilterProvider` the traffic filtering is going to work regardless of which network the device is connected to.
 
-## DNS Proxy
+### DNS Proxy
 
 The **[`NEDNSProxyProvider`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider) (iOS 11+, supervised devices)** API allows apps to intercept all of the network traffic coming from the device. This allows apps to send DNS queries to preferred DNS servers, use custom DNS protocols (e.g. DNS over HTTPS which is supported by recently introduced [Cloudflare DNS](https://developers.cloudflare.com/1.1.1.1/dns-over-https/), by [Google Public DNS](https://developers.google.com/speed/public-dns/docs/dns-over-https) and other DNS services), and more. One of the reasons to use custom (and encrypted) DNS protocols is to avoid [DNS hijacking](https://www.dnsoverride.com/dns-hijacking-by-some-mobile-carriers/), which is a common practice among US mobile network operators.
  
-## Wi-Fi Hotspot Authentication and Configuration
+### Wi-Fi Hotspot Authentication and Configuration
 
 The **[`NEHotspotHelper`](https://developer.apple.com/documentation/networkextension/nehotspothelper) (iOS 9+)** API gives apps the ability to perform custom authentication for Wi-Fi Hotspots. It can also give users a way to seamlessly connect to a large network of Wi-Fi Hotspots. The **[`NEHotspotConfiguration`](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration) (iOS 11+)** API lets apps configure these hotspots.
 
-# Upcoming Posts
+## Upcoming Posts
 
 The next post in the series is going to be a deep dive into `NEPacketTunnelProvider` (the most powerful and the most low-level extension) and into Apple's sample project - [SimpleTunnel](https://developer.apple.com/library/content/samplecode/SimpleTunnel/Introduction/Intro.html). It's going to be a practical hands-on experience, please stay tuned.
 
-# References
+## References
 
 - [Apple Developer Documentation: NetworkExtension Framework](https://developer.apple.com/documentation/networkextension)
 - [WWDC 2017. Session 707: Advances in Networking, Part 1](https://developer.apple.com/videos/play/wwdc2017/707)

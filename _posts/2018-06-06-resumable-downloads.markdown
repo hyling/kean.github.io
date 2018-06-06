@@ -13,7 +13,7 @@ Resumable downloads ([HTTP range requests](https://developer.mozilla.org/en-US/d
 
 There are at least two ways to implement HTTP range requests using `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second option is to use `URLSessionDataTask` and handle HTTP range requests manually. In this article I'm going to cover both.
 
-# URLSession Download Tasks
+## URLSession Download Tasks
 
 [`URLSessionDownloadTask`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask) handles all the intricacies of HTTP range requests for you. Let's quickly go through how to use `URLSessionDownloadTasks`.
 
@@ -61,11 +61,11 @@ When you receive a resumable data you need to store it somewhere depending on wh
 
 Download tasks are designed to be used when you actually want to _download_ some data to disk. This isn't what `URLSession` is used for in Nuke. It uses `URLSessionDataTasks` and fortunately, there is a way to make them support HTTP range requests.
 
-# URLSession Data Tasks
+## URLSession Data Tasks
 
 Lets first quickly go through the [HTTP range requests spec](https://tools.ietf.org/html/rfc7233) and then see how it can be implemented using Swift and `URLSessionDataTask`.
 
-## HTTP Range Requests
+### HTTP Range Requests
 
 If the [`Accept-Ranges`](https://tools.ietf.org/html/rfc7233#section-2.3) header is present in the response and has a value `bytes`, the server supports range requests:
 
@@ -112,7 +112,7 @@ HTTP/1.1 412 Precondition Failed
 
 > Mozilla is doing a fantastic job documenting web technologies, if you want to learn a bit more check their [HTTP Range Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) guide, it's very well written!
 
-## Implementing ResumableData
+### Implementing ResumableData
 
 First, let's create a type that would implement the HTTP range requests spec. Let's start by defining a type itself and its initializer:
 
@@ -174,7 +174,7 @@ static func isResumedResponse(_ response: URLResponse) -> Bool {
 
 Now that we have `ResumableData` in place it's only a matter of using it when working with data tasks.
 
-## Using ResumableData
+### Using ResumableData
 
 When the data task fails we need to try and save the resumable data somewhere.
 
@@ -209,13 +209,13 @@ func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive 
 >
 > I'm not entirely sure why this is the case, please leave a comment if you know. My guess is that range requests are somewhat dangerous. It the server returns `Accept-Ranges` but fails to send validators for content which can actually change in the future, the client might end up downloading parts of different resources and combining them together.
 
-# Resumable Downloads in Nuke
+## Resumable Downloads in Nuke
 
 It was very satisfying to implement resumable downloads in Nuke and see them work in practice. I think it can be a major improvement to the user experience, especially on mobile networks.
 
 There is an alternative to resumable downloads which some of the image loading frameworks use which just never cancel the requests which have already started. I think this is an inferior solution because continuing performing the requests which have been explicitly canceled by the client means other requests and loading data which might not be needed by the time its loaded.
 
-# References
+## References
 
 - [Nuke](https://kean.github.io/nuke)
 - [MDN web docs: HTTP Range Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)

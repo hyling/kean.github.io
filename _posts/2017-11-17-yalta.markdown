@@ -15,7 +15,7 @@ uuid: 00e90200-1ef8-479e-aea7-62b98a148c2e
 If you'd like to learn about *why it exists*, *who is it for*, and why it might be the best tool for you, please continue. The best place to start using it is in a Playground [available in the project](https://github.com/kean/Yalta). It's going to feel instantly familiar!
 
 
-# Why
+## Why
 
 The primary motivation for releasing Yalta was [Chris Eidhof's article](http://chris.eidhof.nl/post/micro-autolayout-dsl/) in which he shares his concerns about the current state of Auto Layout tools in Swift. When I was deciding how to work with Auto Layout in my recent Swift project I came to the same conclusions as Chris did. Among the tools that I've investigated (and took the best ideas from) were:
 
@@ -26,7 +26,7 @@ The primary motivation for releasing Yalta was [Chris Eidhof's article](http://c
 So rather then pulling in a library I decided to write my own. The goal was to hit a balance between power and simplicity. I felt like I had a pretty good chance of achieving that. After all, I already had plenty of experience working with Auto Layout. The first time we adopted it in our projects was back in iOS 6 days. More recently I made [Arranged](https://github.com/kean/Arranged) (UIStackView backport) and wrote about [UIStackView under the hood](https://kean.github.io/post/lets-build-uistackview). I had a good idea of I wanted from this tool.
 
 
-# ⛵Yalta
+## ⛵Yalta
 
 Yalta has quite a few advantages over other frameworks.
 
@@ -38,7 +38,7 @@ Yalta has quite a few advantages over other frameworks.
 
 > [Yalta](https://en.wikipedia.org/wiki/Yalta) is a beautiful port city on the Black Sea and a great name for *yet another layout tool* with *anchors*.
 
-# Usage
+## Usage
 
 Start by selecting an **anchor** or a **collection of anchors** of a view (or of a layout guide). Then use anchor's methods to create constraints.
 

@@ -16,7 +16,7 @@ One of my favorite features of RxSwift is its testing infrastructure, RxTest. An
 
 > Requirements: Xcode 8.3, Swift 3.1, RxSwift 3.5
 
-# Paging
+## Paging
 
 One of the main components responsible for paging in our app is `PagingScrollViewModel` which is defined like this:
 
@@ -42,27 +42,27 @@ One of the scenarios that I'd like to capture by unit tests is this:
 
 It's a relatively complex scenario which would normally seem hard to test. But it's actually really easy using RxTest. Let's first take a quick look at RxTest and then jump right into the test file.
 
-# RxTest
+## RxTest
 
 The main component of RxTest is a `TestScheduler` class. It is a "virtual time scheduler" which allows you to control time. You can use it to:
 
 - Create test observables which emit specific events at specific points in virtual time. For example, you can mock "Retry" button tap like this:
 
-{% highlight swift %}
+```swift
 let retryTap = scheduler.createHotObservable([next(150, ())])
-{% endhighlight %}
+```
 
 - Create test observers which you can subscribe to your actual observables to record all of the events emitted by them:
 
-{% highlight swift %}
+```swift
 let pages = scheduler.record(viewModel.pages)
-{% endhighlight %}
+```
 
 Let's see how it all comes into practice in the actual test case.
 
-# Test Case
+## Test Case
 
-{% highlight swift %}
+```swift
 // Create a list of expected events.
 // `Recorded` is a simple `time` + `value` struct (RxTest)
 // `Event` is a core type in RxSwift that represents a sequence event.
@@ -112,11 +112,11 @@ driveOnScheduler(scheduler) {
     print(pages.events)
     print(indicators.events)
 }
-{% endhighlight %}
+```
 
 That's it! If you were to run this test case we see the recorded events printed out to the console:
 
-{% highlight plain %}
+```
 pages.events:
 
 next([]) @ 0
@@ -128,13 +128,13 @@ next(loading) @ 0
 next(none) @ 25
 next(loading) @ 150
 next(failed("An error has occured")) @ 175
-{% endhighlight %}
+```
 
 This matches the expected events, the test is passed successfully.
 
 The `TestScheduler.record(_:)` is a helper method borrowed from the tests in a RxSwift repo (there are a lot of other goodies too):
 
-{% highlight swift %}
+```swift
 extension TestScheduler {
     /// Creates a `TestableObserver` instance which immediately subscribes
     /// to the `source` and disposes the subscription at virtual time 100000.
@@ -147,9 +147,9 @@ extension TestScheduler {
         return observer
     }
 }
-{% endhighlight %}
+```
 
-# Conclusion
+## Conclusion
 
 Because RxSwift is such a generic abstraction which provides a unified interface for all kinds of events (user input, async operations, data changing over time) we can also have such a simple yet powerful unified testing infrastructure.
 

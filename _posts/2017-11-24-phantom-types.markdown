@@ -18,7 +18,7 @@ With phantom types, you can add extra information to your types and use it to re
 - [Layout Anchors](#layout-anchors)
 
 
-# Id Type
+## Id Type
 
 The `Id` type represents an identifier of a model entity. It gets parametrized with an `Entity` which is used by the compiler when comparing different types of `Id`s. This way the compiler prevents you from accidentally mixing up different ids. Essentially each entity has its own type of id (e.g. `Id<User>`, `Id<Image>`, etc).
 
@@ -52,7 +52,7 @@ extension API.Activity {
 
 > See [**Codable: Id Type and Single Value Container**](https://kean.github.io/post/codable-tips-and-tricks#2-id-type-and-a-single-value-container) to learn how to add `Codable` conformance to `Id` type.
 
-# Authentication Scopes
+## Authentication Scopes
 
 Another use case is the <a href="{{ site.url }}/post/api-client">API Client</a> where phantom types represent authentication scopes:
 
@@ -98,7 +98,7 @@ extension AuthorizedClient where Authorization == Scope.Customer {
 > For more info about the API client see <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a>.
 
 
-# Layout Anchors
+## Layout Anchors
 
 The most recent and the most complex use case of phantom types for me was in [Yalta](https://github.com/kean/Yalta), a small Auto Layout library which implements custom layout anchors. I think this is most interesting one, so I'm going to focus on it a bit more. Similar to [`NSLayoutAnchor`](https://developer.apple.com/documentation/uikit/nslayoutanchor) each anchor in Yalta represents a layout attribute of a view. Unlike `NSLayoutAnchor` each kind of anchor has its own special set of methods which is part of Yalta's fluent API.
 
@@ -172,7 +172,7 @@ extension Anchor where Type: AnchorTypeEdge {
 
 With just a few phantom types I was able to add all that extra type information without having to subclass `Anchor` type (it is actually a simple `struct`). If I were to use the approach similar to `NSLayoutAnchor` it would lead to a class explosion (think `AnchorEdgeVertical`, `AnchorCenterVertical`, etc). More importantly, with generics I was able to target specific groups of anchors (e.g. `Anchor<*, Vertical>`, or `Anchor<Dimension, *>)>`).
 
-# Resources
+## Resources
 
 There are more examples of phantom types in Swift available online:
 

@@ -29,7 +29,7 @@ So if you'd like to start using `Codable` in your app (and you are already famil
 * TOC
 {:toc}
 
-# 1. Safely Decoding Arrays
+## 1. Safely Decoding Arrays
 
 Let's say you want to load and display a collection of posts (`Post`) in your app. Each `Post` has an `id` (required), `title` (required), and `subtitle` (optional).
 
@@ -102,7 +102,7 @@ do {
 
 > Keep in mind that `decode([Safe<Post>].self, from:...` call is going to throw an error if the data doesn't contain an array. In general errors like that should be caught on a higher level. The common API contract is to always return an empty array if there are no elements to return.
 
-# 2. Id Type and a Single Value Container
+## 2. Id Type and a Single Value Container
 
 In the previous example, I've used a special `Id<Post>` type. The `Id` type gets parametrized with a generic parameter `Entity` which isn't actually used by the `Id` itself but is used by the compiler when comparing different types of `Id`s. This way the compiler ensures that I can't accidentally pass `Id<Media>` where `Id<Image>` is expected.
 
@@ -155,7 +155,7 @@ extension Id: Codable {
 As you can see from the code above `Id` also has a special rule that prevents it from being initialized from an empty `String`.
 
 
-# 3. Safely Decoding Enums
+## 3. Safely Decoding Enums
 
 Swift has a great support for decoding (and encoding) enums. In many cases, all you need to do is to just declare a `Decodable` conformance which gets synthesized automatically by a compiler (the enum raw type must be either `String` or `Int`).
 
@@ -227,11 +227,11 @@ self.system = System(rawValue: try map.decode(String.self, forKey: .system))
 ```
 
 
-# 4. Less Verbose Manual Decoding
+## 4. Less Verbose Manual Decoding
 
 In the previous example, we had to implement a custom initializer `init(from decoder: Decoder) throws` which turned out [pretty verbose](https://bugs.swift.org/browse/SR-6063). Fortunately, there are a few ways to make it terser.
 
-## 4.1. Getting Rid of Explicit Type Parameters
+### 4.1. Getting Rid of Explicit Type Parameters
 
 One option is to get rid of explicit type parameters:
 
@@ -345,7 +345,7 @@ init(from decoder: Decoder) throws {
 ```
 
 
-## 4.2. Using Separate Decoding Scheme
+### 4.2. Using Separate Decoding Scheme
 
 Another approach that I find promising is to define a separate `<#Type#>Scheme` type which takes advantage of automatic decoding, but uses some helper types (like `Safe`) to customize the decoding process:
 
@@ -375,7 +375,7 @@ The upside of this approach is that we take advantage of automatic decoding. The
 There are plenty of downsides too, so I'm reluctant to recommend this approach.
 
 
-# 5. Encoding Patch Parameters
+## 5. Encoding Patch Parameters
 
 A common `PATCH` request in our app follows this set of rules:
 - The keys not present in the request are ignored

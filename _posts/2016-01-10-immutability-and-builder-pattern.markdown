@@ -18,7 +18,7 @@ First idea that comes to mind is to follow the steps of the platform. `Cocoa` ob
 
 Let's implement a `User` class and its mutable counterpart:
 
-{% highlight objc %}
+```objc
 @interface User : NSObject <NSCopying, NSMutableCopying>
 
 @property (nonnull, nonatomic, readonly) NSString *name;
@@ -33,9 +33,9 @@ Let's implement a `User` class and its mutable counterpart:
 @property (nullable, nonatomic) NSString *name;
 
 @end
-{% endhighlight %}
+```
 
-{% highlight objc %}
+```objc
 @interface User ()
 
 @property (nonatomic) NSString *name;
@@ -67,7 +67,7 @@ Let's implement a `User` class and its mutable counterpart:
 @dynamic name;
 
 @end
-{% endhighlight %}
+```
 
 Now we are able to use those classes the same way we use `NSURLRequest`. However, there are several problems with this approach:
 
@@ -81,7 +81,7 @@ Fortunately there is an alternative way to create immutable objects which is an 
 
 Let's dive straight into implementation but this time we will start with a base class for our model objects - `Entity`.
 
-{% highlight objc %}
+```objc
 @class EntityBuilder;
 
 @interface Entity : NSObject
@@ -100,9 +100,9 @@ Let's dive straight into implementation but this time we will start with a base 
 - (nonnull Entity *)build;
 
 @end
-{% endhighlight %}
+```
 
-{% highlight objc %}
+```objc
 @implementation Entity
 
 - (instancetype)initWithBuilder:(EntityBuilder *)builder {
@@ -123,7 +123,7 @@ Let's dive straight into implementation but this time we will start with a base 
 }
 
 @end
-{% endhighlight %}
+```
 
 `Entity` class has no mutable counterpart which means that defensive copying is no longer required. We also used just two lines of code for an `ID` property.
 

@@ -23,7 +23,7 @@ This sounds like a tall order for a single `retryWhen` operator, but it's actual
 
 > Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
 
-# Usage
+## Usage
 
 Here's how our custom `retry` operator is defined:
 
@@ -64,7 +64,7 @@ let results = input
 
 > Notice that `trackActivity(isBusy)` is called _after_ the `retry` operator. If it were called before it then it would be tracking the activity of each of the individual requests.
 
-# Implementation
+## Implementation
 
 Let's jump straight into the final implementation and then work our way down:
 
@@ -103,7 +103,7 @@ extension ObservableType {
 
 That's a lot to chew on. Let's approach it piece by piece.
 
-## retryWhen Operator
+### retryWhen Operator
 
 The [`retryWhen`](http://reactivex.io/documentation/operators/retry.html) operator is the most important and the most complex part. It's very powerful, but it takes some time to grasp.
 
@@ -140,7 +140,7 @@ A couple of important points to keep in mind are:
 - You should _not_ ignore errors observable sequence in your `notificationHandler`. If you do and for example just return a timer from the handler, then the timer will simply run in parallel with the source sequence! This would probably not want you intended.
 - In RxSwift 3.x if the trigger completes the source sequence also completes. This might not be what you expect. This behavior might change in [RxSwift 4](https://github.com/ReactiveX/RxSwift/issues/1082). I would suggest not to rely on it in your code.
 
-## Delay Options
+### Delay Options
 
 The `DelayOptions` is just a simple enum which defines a number of strategies for calculating delay interval for each attempt:
 
@@ -167,7 +167,7 @@ extension DelayOptions {
 }
 ```
 
-## Reachability
+### Reachability
 
 [Reachability](https://developer.apple.com/library/content/samplecode/Reachability/Introduction/Intro.html) monitors network state. There are a couple of open source libraries that provide a convenient API on top of it. For example, I personally use `NetworkReachabilityManager` which is part of [Alamofire](https://github.com/Alamofire/Alamofire#network-reachability) since I already [use this library in my projects](https://kean.github.io/post/api-client).
 
@@ -199,9 +199,8 @@ final class Reachability {
 
 > The complete implementation is available [here](https://gist.github.com/kean/e2bc38106d19c249c04162714e7be321).
 
-# Links
+## Resoures
 
 - [RxSwift](https://github.com/ReactiveX/RxSwift)
 - [ReactiveX operators: retry](http://reactivex.io/documentation/operators/retry.html)
 - [Reachability](https://developer.apple.com/library/content/samplecode/Reachability/Introduction/Intro.html)
-

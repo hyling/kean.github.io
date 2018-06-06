@@ -41,7 +41,7 @@ A `UICollectionView` is a `UIScrollView` subclass which means that we can detect
 
 The next step is to calculate a preheat window in the current scroll direction (works for a `UICollectionViewFlowLayout` only):
 
-{% highlight swift %}
+```swift
 extension UICollectionView {
     // `sizeRatio` is a proportion of a scroll view's width (or height for views with vertical orientation) used as a preheating window width (or height respectively).
     func preheatingRect(isScrollingForward isScrollingForward: Bool, sizeRatio: CGFloat) -> CGRect {
@@ -58,7 +58,7 @@ extension UICollectionView {
         }
     }
 }
-{% endhighlight %}
+```
 
 After we calculated a preheat window we find out which cells are going to be displayed in it by using `layoutAttributesForElementsInRect(_)` method of `UICollectionView` class. It also makes sense to sort index paths by the distance to the viewport.
 
@@ -70,13 +70,13 @@ First, we need to keep track of the current preheat window, and update it only w
 
 Second, we might make it more convenient for the delegate by calculating a diff between previous preheat window and the current one (in terms of index paths):
 
-{% highlight swift %}
+```swift
 // you might want to use `Set` instead
 let added = newIndexPaths.filter { !self.indexPaths.contains($0) }
 let removed = self.indexPaths.filter { !newIndexPaths.contains($0) }
 self.indexPaths = newIndexPaths
 handler?(added: added, removed: removed)
-{% endhighlight %}
+```
 
 ## Preheat & Nuke
 
@@ -84,11 +84,11 @@ The full implementation of preheating is available in [Preheat](https://github.c
 
 You can use Preheat with any image loading library, including [Nuke](https://github.com/kean/Nuke) which it way designed for. Nuke provides a set of self-explanatory methods for precaching image which are inspired by the [PHImageManager](https://developer.apple.com/library/prerelease/ios/documentation/Photos/Reference/PHImageManager_Class/index.html) class:
 
-{% highlight swift %}
+```swift
 func startPreheatingImages(requests: [ImageRequest])
 func stopPreheatingImages(requests: [ImageRequest])
 func stopPreheatingImages()
-{% endhighlight %}
+```
 
 When you call `startPreheatingImages(_)` method, Nuke starts to load and cache images for the given requests. Nuke caches images with the exact *target size*, *content mode*, and *filters* provided in the request. At any time afterward, you can create tasks with equivalent requests - for each of the requests Nuke would either return a cached image, or add another observer to the existing preheating task.
 
@@ -96,7 +96,7 @@ Nuke guarantees that preheating tasks never interfere with normal (non-preheatin
 
 Here is an example of how you might implement preheating in your application using Preheat & Nuke:
 
-{% highlight swift %}
+```swift
 class PreheatDemoViewController: UICollectionViewController, PreheatControllerDelegate {
     var preheatController: PreheatController<UICollectionView>!
 
@@ -131,7 +131,7 @@ class PreheatDemoViewController: UICollectionViewController, PreheatControllerDe
         preheatController.enabled = false
     }
 }
-{% endhighlight %}
+```
 
 ## Credits
 

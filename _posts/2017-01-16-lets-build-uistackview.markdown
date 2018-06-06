@@ -87,7 +87,7 @@ The distribution determines how the stack view lays out its arranged views along
 
 Let's print a full list of constraints inside the stack view using this code:
 
-{% highlight swift %}
+```swift
 constraints(for: stackView).forEach { print($0) }
 
 func constraints(for view: UIView) -> [NSLayoutConstraint] {
@@ -98,15 +98,15 @@ func constraints(for view: UIView) -> [NSLayoutConstraint] {
     }
     return constraints
 }
-{% endhighlight %}
+```
 
 Each constraint gets printed in a full format like this:
 
-{% highlight swift %}
+```swift
 <NSLayoutConstraint:0x6100000922f0 'UISV-canvas-connection'
    UIStackView:0x7f892be06190.leading == Subview0.leading
    (active, names: content-view-1:0x7f892be0bb70 )>
-{% endhighlight %}
+```
 
 As you can see stack view sets a specific `identifier` based on the role that the constraint plays in the layout. Let's convert the remaining constraints to a more concise format:
 

@@ -11,7 +11,7 @@ uuid: f6bfea67-880f-462f-a08c-5b065a70f573
 
 The cancellation tokens have recently (turns out actually not so recently!) [surfaced in Swift Evolution](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170821/039226.html) in a conversation about async/await. I've been using this cancellation model in [Nuke](https://github.com/kean/Nuke) for more than a year now, so I decided to share some of my experiences with it.
 
-# Cancellation Token
+## Cancellation Token
 
 Nuke has to manage cancellation of lots of chained asynchronous operations. In the earlier versions cancellation was implemented using a few different ad-hoc mechanisms, including `Foundation.Operation` cancellation, some ad-hoc tasks responsible for cancelling multiple underlying operations, and more. It was a mess. In an effort to simplify cancellation I've looked at some ideas outside of the Swift world.
 
@@ -20,7 +20,7 @@ One of the most promising patterns that I found was C# [Cancellation Token](http
 > This model is based on a lightweight object called a cancellation token. The object that invokes one or more cancelable operations, for example by creating new threads or tasks, passes the token to each operation. Individual operations can in turn pass copies of the token to other operations. At some later time, the object that created the token can use it to request that the operations stop what they are doing. Only the requesting object can issue the cancellation request, and each listener is responsible for noticing the request and responding to it in an appropriate and timely manner.
 
 
-# Implementation
+## Implementation
 
 The general pattern for implementing the cooperative cancellation model consists of two components:
 
@@ -53,7 +53,7 @@ final public class CancellationTokenSource {
 ```
 
 
-# Usage
+## Usage
 
 To use this model you first create a token source at a point where you start one or more asynchronous operations. Then you create a token using the token source and pass the token to each of the operations, which in turn register for cancellation notifications using those tokens. Here's a code example from Nuke:
 
@@ -75,7 +75,7 @@ func loadData(with request: URLRequest, token: CancellationToken, completion: @e
 When `cancel()` is called on the `CancellationTokenSource` all the tokens are cancelled.
 
 
-# Pros
+## Pros
 
 There are quite a few advantages of using cancellation tokens.
 
@@ -94,7 +94,7 @@ public func loadImage(with request: Request, token: CancellationToken?, completi
 }
 ```
 
-# Performance
+## Performance
 
 The main con of cancellation token model is that it is a bit tricky to implement. It requires two types which coordinate with each other. And a token source some way to synchronize access to the underlying storage for observers, which might make it a bit heavy-weight and have a negative effect on performance. Fortunately, Nuke has solutiona for those performance issues.
 
@@ -102,12 +102,12 @@ Thanks to the way `CancellationTokenSource` is implemented in Nuke, it is able t
 
 Thanks to that optimizations, `CancellationTokenSource` becomes super cheap to use.
 
-# Alternatives
+## Alternatives
 
 Cancellation tokens get the job done in Nuke, however, it does have some cons. It might be a bit cumbersome to use and might feel unfamiliar to Swift developers. My favorite cancellation model remains [disposing](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/GettingStarted.md#disposing) from RxSwift (not actually originated there). It's more convenient to use and offers a rich set of features. [RxNuke](https://github.com/kean/RxNuke) wraps Nuke's cancellation tokens in disposables. However, I find cancellation tokens to be a better fit for core Nuke project because of how lightweight the pattern is.
 
 
-# Resources
+## Resources
 
 - [Cancellation in Managed Threads](https://docs.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads)
 - [Nuke: CancellationToken](https://github.com/kean/Nuke/blob/master/Sources/CancellationToken.swift) 

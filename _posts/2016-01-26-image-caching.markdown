@@ -39,22 +39,22 @@ HTTP cache is quite flexible. It allows servers to:
 
 Here's an example of what you should look for in HTTP response headers:
 
-{% highlight html %}
+```
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=3600
 Expires: Mon, 26 Jan 2016 17:45:57 GMT
 Last-Modified: Mon, 12 Jan 2016 17:45:57 GMT
 ETag: "686897696a7c876b7e"
-{% endhighlight %}
+```
 
 This response is cacheable and it's going to be *fresh* for 1 hour. When the response becomes *stale*, the client validates it by making a *conditional* request using the `If-Modified-Since` and/or `If-None-Match` headers. If the response is still fresh the server returns status code `304 Not Modified` to instruct the client to use cached data, or it would return `200 OK` with a new data otherwise.
 
 Most of the images are static assets that will not change in the future. The most viable caching strategy in this case is an *aggressive* caching. The server should simply set the `Cache-Control` header with a `max-age` value of a year in the future from the time of the request. It is recommended that `Expires` should be set to a similar value.
 
-{% highlight html %}
+```
 Cache-Control:public; max-age=31536000
 Expires: Mon, 25 Jan 2017 17:45:57 GMT
-{% endhighlight %}
+```
 
 *For more info about HTTP caching see some of the [guides from the reference list](#references) including [this one](https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers).*
 
@@ -112,23 +112,23 @@ Starting with iOS 7 `NSCache` will no longer remove cached objects automatically
 
 The obvious total cost limit is the number of bytes in memory. It might be computed as a percentage of available memory:
 
-{% highlight swift %}
+```swift
 func totalCostLimit() -> Int {
     let physicalMemory = NSProcessInfo.processInfo().physicalMemory
     let ratio = physicalMemory <= (1024 * 1024 * 512 /* 512 Mb */) ? 0.1 : 0.2
     let limit = physicalMemory / UInt64(1 / ratio)
     return limit > UInt64(Int.max) ? Int.max : Int(limit)
 }
-{% endhighlight %}
+```
 
 Now let's compute a cost for `UIImage` object. Most of the space taken by `UIImage` is a bitmap which can be used to approximate its size in memory:
 
-{% highlight swift %}
+```swift
 func costFor(image: UIImage) -> Int {
     let imageRef = image.CGImage
     return CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef) // Cost in bytes
 }
-{% endhighlight %}
+```
 
 This configuration will provide arguably the best `NSCache` performance. Memory cache will hold a lot of images while still being under the certain limit. It's also important to immediately dispose of all cached objects when the app receives a memory warning.
 

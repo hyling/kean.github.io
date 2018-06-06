@@ -37,7 +37,7 @@ An obvious way to implement those scenarios using `Foundation` is with a help of
 
 Since I've realized that in my recent app I mostly use naive dates and times, I decided to build a type-safe abstraction to eliminate the potential errors: [NaiveDate](https://github.com/kean/NaiveDate).
 
-# NaiveDate
+## NaiveDate
 
 The library implements three types:
 - `NaiveDate` (e.g. `2017-09-29`)
@@ -46,7 +46,7 @@ The library implements three types:
 
 Each of them implements `Equatable`, `Comparable`, `LosslessStringConvertible`, and `Codable` protocols. Naive types can also be converted to  `Date`, and `DateComponents`.
 
-## Create
+### Create
 
 Naive dates and times can be created from a string (using a predefined format), using `Decodable`, or with a memberwise initializer:
 
@@ -64,7 +64,7 @@ NaiveDateTime(
 )
 ```
 
-## Format
+### Format
 
 Format dates without having to worry about time zones:
 
@@ -82,7 +82,7 @@ NaiveDateFormatter(dateStyle: .short, timeStyle: .short).string(from: dateTime)
 // prints "Nov 1, 2017 at 3:30 PM"
 ```
 
-## Convert
+### Convert
 
 When you do need time zones, convert `NaiveDate` to `Date`:
 
@@ -105,13 +105,13 @@ let dateTime = NaiveDateTime(
 Calendar.current.date(from: dateTime)
 ```
 
-# Notes
+## Notes
 
 Naive dates and times are extremely easy to use. There are no time zones to worry about. You can easily parse them without having to use custom date formatters. It works just as you expect. But, it's important to understand the limitations behind them.
 
 They are called "naive" because they don't have a time zone associated with them. This means the date may not actually exist in some areas in the world, even though they are "valid". For example, when daylight saving changes are applied the clock typically moves forward or backward by one hour. This means certain dates never occur or may occur more than once. The moment you need to do any precise manipulations with time, always use native `Date` and `Calendar` types.
 
-# Resources
+## Resources
 
 - [Apple Developer Documentation: Dates and Times](https://developer.apple.com/documentation/foundation/dates_and_times)
 - [NaiveDateTime](https://docs.rs/chrono/0.3.1/chrono/naive/datetime/struct.NaiveDateTime.html)

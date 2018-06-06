@@ -24,11 +24,11 @@ In this article, I'd like to share my latest networking stack. It has a minimali
 * TOC
 {:toc}
 
-# Dependencies
+## Dependencies
 
 Let's start with dependencies. As Swift ecosystem grows it becomes increasingly more complicated to select the right tools for the job, just because of the sheer number of options. Especially for someone who likes to go through an entire library code base before making a final choice.
 
-## 1. Alamofire
+### 1. Alamofire
 
 [Alamofire](https://github.com/Alamofire/Alamofire) is a workhorse of many iOS projects. It has a lot of convenient features:
 
@@ -42,19 +42,19 @@ Let's start with dependencies. As Swift ecosystem grows it becomes increasingly 
 
 `Alamofire` is a great framework with a solid code base and comprehensive documentation. The only real alternative to `Alamofire` is writing your own abstraction on top of `Foundation.URLSession`. It's absolutely possible and relatively simple, but it requires a lot of boilerplate code.
 
-## 2. RxSwift
+### 2. RxSwift
 
 [RxSwift](https://github.com/ReactiveX/RxSwift) has become a must-have tool for me. It gives you all of the advantages of promises and [much more](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md). One of its underrated features which happen to be one of me my favorite is its built-in [testing support](https://kean.github.io/post/rxswift-testing). Why does it make sense to wrap your API calls into `Observables`? I'm going to provide a couple of examples later in a "Usage" section to show exactly that.
 
 > There is a number of reasons why I prefer RxSwift over ReactiveCocoa, but I'd like not to dive into this discussion as part of this article.
 
-## 3. Codable
+### 3. Codable
 
 The new [Swift Encoders and Decoders](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md) - `Codable` - is the way to go for the majority of the apps. `Codable` was introduces in Swift 4 with a [motivation](https://github.com/apple/swift-evolution/blob/master/proposals/0167-swift-encoders.md#motivation) to replace old `NSCoding` APIs. Unlike `NSCoding` it has a first class JSON support which makes it a promising option for consuming JSON APIs. `Codable` does have a few drawbacks which you can learn more about in a separate post [**Codable: Tips and Tricks**](https://kean.github.io/post/codable-tips-and-tricks).
 
 There are a lot of third-party alternatives which were in use prior to Swift 4. Some of them still have advantages over `Codable.`. There is a [great article](https://github.com/bwhiteley/JSONShootout) which gives an overview of all of the major third-party JSON libraries.
 
-# Endpoint
+## Endpoint
 
 Now let's dive into the code. One of the questions to be answered is how to model API endpoints.
 
@@ -162,7 +162,7 @@ extension API {
 This approach closely resembles the way REST models resources, but it has it's downsides too - it's less auto-complete friendly, and it introduces a bunch of new types (enums) into the system.
 
 
-# Client
+## Client
 
 The next question is how to actually perform the requests for those endpoints - `Client`. It takes an endpoint parameters, fills the rest of the defaults including the access token, base URL, etc, and carry out the request using an underlying `Alamofire.SessionManager`:
 
@@ -232,7 +232,7 @@ private class OAuth2Retrier: Alamofire.RequestRetrier {
 ```
 
 
-# Usage
+## Usage
 
 We now have everything in place to start using our API endpoints. Let's create a client and start a request.
 
@@ -290,7 +290,7 @@ There are a bunch of other benefits of using Rx. For example:
 - Dispose bags allow you to easily tie the lifetime of your network operations to lifetime of other objects (e.g. view controllers)
 
 
-# Type-Safe Authorization Scopes
+## Type-Safe Authorization Scopes
 
 Another interesting problem is how to model authorization scopes using Swift. The web service API which I'm currently working with has two levels of authorizations: 
 
@@ -384,7 +384,7 @@ _ = client.request(API.getCustomerProfile())
 
 Great, this works just as expected! I'm still experimenting with this approach and haven't yet put this in production code. However, it looks really promising. The Swift type system is obviously so much more powerful than Objective-C, but I can't stop myself from wanting more.
 
-# Conclusion
+## Conclusion
 
 I hope you've enjoyed this! Please keep in mind that all of those decisions were made in the context of the app and the web service for which it was implemented. I would advise against adopting any of the described decisions without careful consideration.
 
@@ -392,7 +392,7 @@ It's hard to imagine now that there was a time when the only relatively easy-to-
 
 > All of the code from the post is [available here](https://gist.github.com/kean/64b9fc0963fd430594fdb3eb848bccf3) (requires Swift 4).
 
-# References
+## References
 
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [RxSwift](https://github.com/ReactiveX/RxSwift)

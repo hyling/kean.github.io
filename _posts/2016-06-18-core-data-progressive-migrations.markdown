@@ -29,7 +29,7 @@ When dealing with something as critical you want to keep things simple. With Cor
 
 Imagine you are working on an app. You started with *mom_v1 ([`NSManagedObjectModel`](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/CoreDataFramework/Classes/NSManagedObjectModel_Class/) *version 1*). Later you added *mom_v2* with minimal schema changes. At this point your Core Data setup might look like [this](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreDataVersioning/Articles/vmInitiating.html#//apple_ref/doc/uid/TP40004399-CH7-SW3):
 
-{% highlight swift %}
+```swift
 let psc = NSPersistentStoreCoordinator(managedObjectModel: <#mom#>)
 try psc.addPersistentStore(
     ofType: NSSQLiteStoreType,
@@ -38,7 +38,7 @@ try psc.addPersistentStore(
     options: [NSMigratePersistentStoresAutomaticallyOption : true,
               NSInferMappingModelAutomaticallyOption : true]
 )
-{% endhighlight %}
+```
 
 When you add a store that uses *mom_v1* to the `NSPersistentStoreCoordinator`, it automatically creates an [inferred mapping model](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreDataVersioning/Articles/vmLightweightMigration.html#//apple_ref/doc/uid/TP40004399-CH4-SW2) between *mom_v1* and *mom_v2* and performs a lightweight migration.
 
@@ -70,18 +70,18 @@ It might be tempting to create yet another custom mapping *mom_v1 ~> mom_v3* to 
 
 There is a very simple way to trick Core Data into performing progressive migrations using only `NSPersistentStoreCoordinator`. Each coordinator is initialized with a destination mom. When you add a store to the coordinator it performs a migration to the mom that it was initialized with. A destination mom doesn't have to be your final mom version. We can use these facts to implement progressive migrations:
 
-{% highlight plaintext %}
+```
 func migrate(store)
     V <- current mom version
     if V is not final
         psc <- create coordinator with mom V+1
         add store to psc which migrates it to V+1
         migrate(store)
-{% endhighlight %}
+```
 
 Here's a slightly modified non-recursive implementation of `migrate` function:
 
-{% highlight swift %}
+```swift
 // moms: [mom_v1, mom_v2, ... , mom_vN]
 func migrateStore(at storeURL: URL, moms: [NSManagedObjectModel]) throws {
     let idx = try indexOfCompatibleMom(at: storeURL, moms: moms)
@@ -98,13 +98,13 @@ func migrateStore(at storeURL: URL, moms: [NSManagedObjectModel]) throws {
         }
     }
 }
-{% endhighlight %}
+```
 
 This function takes a linear version history as a parameter. To create it you should read all moms from the bundle and order them. Compiled moms have `.mom` extension and are in general stored in a subdirectory with `.momd` extension. To create a list of moms you can either provide an ordered list of hard-coded file names, or implement some simple heuristic that reads and sorts them automatically. I prefer the former, because mom names come in handy when writing tests.
 
 And here's an implementation of `indexOfCompatibleMom(at:moms:)` function:
 
-{% highlight swift %}
+```swift
 func indexOfCompatibleMom(at storeURL: URL, moms: [NSManagedObjectModel]) throws -> Int {
     let meta = try NSPersistentStoreCoordinator.metadataForPersistentStore(ofType: NSSQLiteStoreType, at: storeURL)
     guard let idx = moms.index(where: { $0.isConfiguration(withName: nil, compatibleWithStoreMetadata: meta) }) else {
@@ -117,7 +117,7 @@ func indexOfCompatibleMom(at storeURL: URL, moms: [NSManagedObjectModel]) throws
 enum MigrationError: ErrorProtocol {
     case IncompatibleModels
 }
-{% endhighlight %}
+```
 
 This simple solution does just what we wanted, but it has some downsides:
 
@@ -131,7 +131,7 @@ Eventually, you might want to customize a migration process.
 
 The algorithm is similar to the one introduced in the previous part, but this time we use `NSMigrationManager` class to [perform  migrations](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreDataVersioning/Articles/vmCustomizing.html#//apple_ref/doc/uid/TP40004399-CH8-SW1). Here's an outline of what we need to do:
 
-{% highlight plaintext %}
+```swift
 func migrate(store)
     V <- current mom version
     if V is not final
@@ -149,13 +149,13 @@ func findMapping(v1, v2)
     if mapping = nil
         mapping <- inferred mapping from v1 to v2
     return mapping
-{% endhighlight %}
+```
 
 You can find a full non-recursive implementation [here](https://gist.github.com/kean/28439b29532993b620497621a4545789). The provided functions match the ones defined in the pseudocode. Let's dive into the code to see some of the details.
 
 Here's the first function that loops through the object models. It uses an `indexOfCompatibleMom(at:moms:)` function that we added earlier.
 
-{% highlight swift %}
+```swift
 // moms: [mom_v1, mom_v2, ... , mom_vN]
 func migrateStore(at storeURL: URL, moms: [NSManagedObjectModel]) throws {
     let idx = try indexOfCompatibleMom(at: storeURL, moms: moms)
@@ -168,11 +168,11 @@ func migrateStore(at storeURL: URL, moms: [NSManagedObjectModel]) throws {
         return dmom
     }
 }
-{% endhighlight %}
+```
 
 Next is a function that performs an actual migration. As you can see it relies heavily on Swift [error handling model](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html).
 
-{% highlight swift %}
+```swift
 func migrateStore(at storeURL: URL, from smom: NSManagedObjectModel, to dmom: NSManagedObjectModel) throws {
     // Prepare temp directory
     let dir = try URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)
@@ -207,20 +207,20 @@ func migrateStore(at storeURL: URL, from smom: NSManagedObjectModel, to dmom: NS
         ofType: NSSQLiteStoreType
     )
 }
-{% endhighlight %}
+```
 
 The last step where we replace the source store is very important. The `replacePersistentStore(at:...)` method (which was added in iOS 9.0) honors file locks, journal files, journaling modes, and other intricacies related to SQLite. It guarantees that you won't [corrupt user data](https://www.sqlite.org/howtocorrupt.html) by failing to replace stores in a single transaction.
 
 The last piece is a simple function that finds a mapping model:
 
-{% highlight swift %}
+```swift
 func findMapping(from smom: NSManagedObjectModel, to dmom: NSManagedObjectModel) throws -> NSMappingModel {
     if let mapping = NSMappingModel(from: Bundle.allBundles(), forSourceModel: smom, destinationModel: dmom) {
         return mapping // found custom mapping
     }
     return try NSMappingModel.inferredMappingModel(forSourceModel: smom, destinationModel: dmom)
 }
-{% endhighlight %}
+```
 
 
 ## Testing
@@ -234,7 +234,7 @@ It is very important to test migrations on different data sets and different ver
 
 Here's how your test methods might actually look like (this is a very rough draft):
 
-{% highlight swift %}
+```swift
 func testMigrationFrom_v2_to_v3() {
     let mom_v2 = <#create_mom_v2#>
     let mom_v3 = <#create_mom_v3#>
@@ -272,7 +272,7 @@ func prepareStore(name: String) -> URL {
     // Prepare store by copying all it's files from a test bundle to a temp directory
     // either using NSPersistentStoreCoordinator or NSFileManager
 }
-{% endhighlight %}
+```
 
 
 ## Notes

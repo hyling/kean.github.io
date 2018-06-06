@@ -14,7 +14,7 @@ The recent changes to Interface Builder made me change my mind about it. I was s
 
 <img src="{{ site.url }}/images/ib_designable/ib_screen_01.png" class="Screenshot">
 
-# Using Interface Builder
+## Using Interface Builder
 
 There are two major things that you can do in Interface Builder to get your job done: layout and styles.
 
@@ -41,7 +41,7 @@ The pro of defining styles in IB is that you can visually see what the UI is goi
 
 The example in the screenshot in the begging of the article is rendered entirely by an `ActivityDetailsView` class. This view contains a table view and implements its data source to render the `Activity` model objects. Here's a part of the implementation of the `ActivityDetailsView.swift` file to get an idea how it might look like:
 
-{% highlight swift %}
+```swift
 // @IBDesignable final class ActivityDetailsView: UIView, UITableViewDataSource, UITableViewDelegate {
 
 @IBOutlet private weak var tableView: UITableView!
@@ -130,7 +130,7 @@ override func prepareForInterfaceBuilder() {
     display(activity)
 }
 #endif
-{% endhighlight %}
+```
 
 In order to feed the test data into the view the special [`prepareForInterfaceBuilder`](https://developer.apple.com/reference/objectivec/nsobject/1402908-prepareforinterfacebuilder) method is called:
 

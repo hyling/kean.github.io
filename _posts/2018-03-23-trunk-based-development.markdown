@@ -19,13 +19,13 @@ Before we begin, let's quickly review what *continuous integration* is. It often
 
 I would argue that feature branches prevent continuous integration and have some other negative effects like discouraging refactoring. The issue is of course a bit more nuanced than that, so keep in mind that I am mostly going to focus on the downsides of feature branches. I will demonstrate those downsides on five scenarios that we used to constantly encounter in practice in our projects.
 
-# Feature Branches
+## Feature Branches
 
 When I worked on my very first team project, there were four engineers in our team. The only branching strategy that we were familiar with was [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/). One of the main concepts of GitFlow is **feature branches**. The idea is that each feature should be developed in its own branch. When the feature is *done*, it gets merged into `develop` branch. We've ended up adopting this branching strategy in our project and in a relatively naive way - some feature branches could last for days or even weeks which we now know is a common anti-pattern. In other projects that I had a pleasure to work on, we also used GitFlow with a few variations.
 
 The idea of feature branches seems very natural and straightforward at first. Developers are isolated in their own "safe" branches and are able to work in parallel, no unfinished work ever finds its way into the `develop` branch. However, at some point, this work has to be **integrated** and that's where the disadvantages of this model become apparent.
 
-## Uncertainty and Risk of Failing to Deliver
+### Uncertainty and Risk of Failing to Deliver
 
 > **Scenario:** You are close to the end of the two week sprint. Alice and Bob both finish their features and create pull requests. There were no previous integrations of their code.
 
@@ -37,13 +37,13 @@ This problem arises even if there is just one feature branch waiting to be revie
 >
 > *- Parkinson's law.*
 
-## Slow and Ineffective Reviews
+### Slow and Ineffective Reviews
 
 > **Scenario:** Bob has finished a feature, which took two days to complete. He's created a pull request with 600 lines of code and 40 files touched. A significant portion of this code is refactoring. After 8 hours of waiting the PR is eventually reviewed. The pull request is merged with a message "looks good to me" after a 15 minutes review.
 
 Large pull requests like that are hard to review. Eventually, the reviews become less effective, less thorough and they also tend to take a lot of time (most of which is spent waiting for a reviewer).
 
-## Big Merge Conflicts, Refactoring is Discouraged
+### Big Merge Conflicts, Refactoring is Discouraged
 
 > **Scenario:** Alice has finished working on a feature. She's created a pull request with 1000 lines of code, 500 of which were made as part of refactoring, touching 80 files (renaiming some components, moving a few things around). By the time the review was completed, more changes had been merged into `develop` (integration branch), resulting in PR having merge conflicts.
 
@@ -55,7 +55,7 @@ In my view, the most detrimental problem with feature branches is that this stra
 >
 > *- Martin Fowler. "FeatureBranch"*
 
-## Prevents Continuous Delivery
+### Prevents Continuous Delivery
 
 > **Scenario:** Alice is working on feature A in a feature branch. The team (e.g. product owner, UX designer) is interested in receiving each new iteration of this feature to see how good well the ideas have turned out to be and start producing feedback as soon as possible.
 
@@ -65,37 +65,37 @@ In my view, the most detrimental problem with feature branches is that this stra
 
 This scenario often results in an ad-hoc solution like a separate integration branch created just for these two features.
 
-## Duplicated Work, Hard to Share Dependencies
+### Duplicated Work, Hard to Share Dependencies
 
 > **Scenario:** Alice is working on feature A, Bob is working on feature B. Bob has already implemented some component C and it has already been incorporated into his own branch as part of a bigger commit. Now, Alice realizes that she also needs this component.
 
 It takes a large amount of effort to organize the work on feature branches in a way that there are no shared dependencies between branches. And there is often no agreed-upon mechanism for sharing this work. In the worst case scenario, if your team is dogmatic in terms of not merging unfinished work in a `develop` branch, you might end up creating yet another integration branch, apart from `develop`, just for those two features.
 
-## Postponed Integrations
+### Postponed Integrations
 
 > **Scenario:** Bob has finished a feature, but the team doesn't merge it because they don't consider the feature to be **done** due to the factors out of Bob's control (e.g. they're waiting for updated graphics from the designer).
 
 As a result, integration is postponed, Bob might need to rebase the work later, the team can't start using Bob's work.
 
-# Trunk-Based Development
+## Trunk-Based Development
 
 If you've ever used feature branches, chances are you had encountered at least some of the scenarios above. Fortunately, many of those problems are largely mitigated by decomposing stories properly and not having feature branches that live for a long time. However, in practice the work on even relatively small feature branch might take a lot of time in some cases due to the factors out of your control. And there is always this mismatch between how you split the stories and how you perform the actual work (e.g. refactoring step, adding some shared components, etc - the work that you want to be integrated as soon as possible).
 
 The shorter lived the branches are, the closer you get to a [Trunk-Based Development](https://trunkbaseddevelopment.com) (TBD). The core principles behind TBD are actually rather simple. In TBD developers always check into one branch (either via pull requests or directly), typically `master` which is also called "trunk". Trunk is a single integration point which is used for continuous integration and delivery. This trunk is always stable, but it can have unfinished features covered by [feature toggles](https://martinfowler.com/bliki/FeatureToggle.html).
 
-## Continuous Integration
+### Continuous Integration
 
 TBD enables continuous integration - developers can integrate their work more quicker and easier. You no longer end up in situations where developers are isolated in their own branches with no feedback from the team.
 
-## Cheap Decomposition
+### Cheap Decomposition
 
 Decomposition becomes cheap. You're no longer limited by a 1-1 relation between features and branches mentality. When working on a story, you can complete refactoring on Monday and get it merged immediately, then create some shared component on Tuesday so that your colleague working on a related feature can start using it right away, and finally finish the feature on Friday, when you receive all the remaining assets from the designer and merge the feature with no conflicts.
 
-## Fewer Merge Conflicts
+### Fewer Merge Conflicts
 
 Small incremental changes lead to smaller and less frequent merge conflicts. There are no reasons to hold back on refactoring anymore.
 
-## Continuous Code Review
+### Continuous Code Review
 
 It also enables [*continuous code review*](https://trunkbaseddevelopment.com/continuous-review/) - the idea that instead of reviewing large pieces of code infrequently you do it often, quickly, and also painlessly.
 
@@ -105,7 +105,7 @@ It also enables [*continuous code review*](https://trunkbaseddevelopment.com/con
 
 As a result, TBD reduces uncertainty and risk and allows to ship incremental changes to the customer quickly and reliably.
 
-# Conclusion
+## Conclusion
 
 There are some clear disadvantages of feature branches which often end up preventing very valuable engineering practices, like continuous integration and refactoring. There are also some clear benefits of trunk-based development.
 
@@ -119,7 +119,7 @@ In this post, I've completely avoided how releases are managed in GitFlow and in
 
 There are definitely better articles about trunk-based development (see references), I encourage you to check them out.
 
-# References
+## References
 
 - [Paul Hammant, Steve Smith and friends (2017). Trunk Based Development.](https://trunkbaseddevelopment.com/context/)
 - [Apple Inc (2018). Swift: Contributing Code, Incremental Development.](https://swift.org/contributing/#contributing-code)
