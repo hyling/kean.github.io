@@ -61,7 +61,7 @@ h1 {
         font-size: 44px;
     }
     @include media-query($on-mobile) {
-        font-size: 38px;
+        font-size: 40px;
     }
 }
 
@@ -133,14 +133,16 @@ a {
 }
 
 blockquote {
-    border-left: 3px solid $brand-color;
-    margin: 0;
-    margin-left: 0.5 * $spacing-unit;
-    padding: 0 0.5 * $spacing-unit;
+    background-color: $background-color-light-grey;
+    border-left: 4px solid $grey-color;
+    border-radius: 4px;
 
-    @include media-query($on-mobile) {
-        margin-left: 0.2 * $spacing-unit;
-        padding-left: 0.5 * $spacing-unit;
+    margin: 0;
+    padding: 0.33 * $spacing-unit 0.5 * $spacing-unit;
+    margin: $spacing-unit * 0.5 0;
+
+    p {
+        margin: 0;
     }
 }
 
@@ -148,6 +150,7 @@ pre,
 code {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height};
     font-family: 'SF Mono', Menlo, monospace, Courier, Consolas, "Liberation Mono", monospace;
+    font-size: 17px;
 }
 
 strong code {
@@ -166,6 +169,9 @@ pre {
 
     margin-right: -(0.5 * $spacing-unit);
     margin-left: -(0.5 * $spacing-unit);
+
+    margin-top: $spacing-unit * 0.5;
+    margin-bottom: $spacing-unit * 0.5;
 
     @include media-query($on-mobile) {
         border-radius: 0;

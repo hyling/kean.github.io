@@ -9,9 +9,9 @@ permalink: /post/resumable-downloads
 uuid: 7ba0839a-0983-419a-b74e-43a75af31520
 ---
 
-Resumable downloads ([HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)) is one of my favorite new features in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). The idea is that if the image download fails or the request gets canceled and the image was partially loaded, the next request can resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
+Resumable downloads ([HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)) is one of my favorite new features in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). The idea is that when the image download fails or gets canceled and the image was partially loaded, the next request can resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
 
-There are at least two ways to implement HTTP range requests using `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second option is to use `URLSessionDataTask` and handle HTTP range requests manually. In this article I'm going to cover both.
+There are at least two ways to implement HTTP range requests using `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second is to use `URLSessionDataTask` and handle HTTP range requests manually. In this article I'm going to cover both.
 
 ## URLSession Download Tasks
 
@@ -35,7 +35,7 @@ func startRequest() {
 }
 ```
 
-> Actually there is a third, indirect way to create `URLSessionDownloadTask`. You can implement `func urlSession(_:dataTask:didReceive response:completionHandler:)` method from `URLSessionDataTaskDelegate` protocol and in this method call completion handler with `ResponseDisposition.becomeDownload`.
+> Actually there is a third, indirect way to create `URLSessionDownloadTask`. You can implement `func urlSession(_:dataTask:didReceive response:completionHandler:)` method from `URLSessionDataTaskDelegate` protocol and in this method call completion handler with `ResponseDisposition` `.decomeDownload`.
 
 When you create `URLSessionDownloadTask` for the given URL for the first time you do so by passing either `URL` or `URLRequest` in initializer. But if you already have a resumable data, the request is no longer needed - it's stored as part of the resumable data. But where does the resumable data come from?
 
@@ -110,7 +110,7 @@ curl https://cloud.githubusercontent.com/assets/1567433/9781817/ecb16e82-57a0-11
 HTTP/1.1 412 Precondition Failed
 ```
 
-> Mozilla is doing a fantastic job documenting web technologies, if you want to learn a bit more check their [HTTP Range Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) guide, it's very well written!
+> Mozilla is doing a fantastic job documenting web technologies. If you'd to learn a bit more check their [HTTP Range Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) guide.
 
 ### Implementing ResumableData
 
