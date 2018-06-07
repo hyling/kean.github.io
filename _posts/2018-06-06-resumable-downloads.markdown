@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Resumable Downloads"
-subtitle: 'Exploring how <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a> - one of my favorite new features in <a href="https://github.com/kean/Nuke/releases/tag/7.0">Nuke 7</a> - are implemented'
+subtitle: 'Exploring how resumable downloads - one of my favorite new features in <a href="https://github.com/kean/Nuke/releases/tag/7.0">Nuke 7</a> - are implemented using <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>'
 date: 2018-06-06 18:00:00 +0300
 category: programming
 tags: programming
@@ -9,9 +9,9 @@ permalink: /post/resumable-downloads
 uuid: 7ba0839a-0983-419a-b74e-43a75af31520
 ---
 
-Resumable downloads ([HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)) is one of my favorite new features in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). The idea is that when the image download fails or gets canceled and the image was partially loaded, the next request can resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
+Resumable downloads were introduced in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). When the image download fails or gets canceled and the image was partially loaded, the next request will resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
 
-There are at least two ways to implement HTTP range requests using `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second is to use `URLSessionDataTask` and handle HTTP range requests manually. In this article I'm going to cover both.
+The resumable downloads are built using [HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests). There are at least two ways to implement range requests with `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second is to use `URLSessionDataTask` and handle HTTP range requests manually. I'm going to cover both in this article.
 
 ## URLSession Download Tasks
 
@@ -211,9 +211,7 @@ func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive 
 
 ## Resumable Downloads in Nuke
 
-It was very satisfying to implement resumable downloads in Nuke and see them work in practice. I think it can be a major improvement to the user experience, especially on mobile networks.
-
-There is an alternative to resumable downloads which some of the image loading frameworks use which just never cancel the requests which have already started. I think this is an inferior solution because continuing performing the requests which have been explicitly canceled by the client means other requests and loading data which might not be needed by the time its loaded.
+It was very satisfying to implement resumable downloads in Nuke and see them in action. I think it can be a major improvement to the user experience, especially on mobile networks.
 
 ## References
 
