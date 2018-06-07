@@ -9,7 +9,7 @@ permalink: /post/resumable-downloads
 uuid: 7ba0839a-0983-419a-b74e-43a75af31520
 ---
 
-Resumable downloads were introduced in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). When the image download fails or gets canceled and the image was partially loaded, the next request will resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
+Resumable downloads were introduced in [Nuke 7](https://github.com/kean/Nuke/releases/tag/7.0). When the image download fails or gets canceled and the image is only partially loaded, the next request will resume where the previous one left off. This sounds like a must-have feature, but most image loading frameworks don't support it.
 
 The resumable downloads are built using [HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests). There are at least two ways to implement range requests with `URLSession`. The first one is to use `URLSessionDownloadTask` which has resumable downloads built-in, the second is to use `URLSessionDataTask` and handle HTTP range requests manually. I'm going to cover both in this article.
 
@@ -17,9 +17,9 @@ The resumable downloads are built using [HTTP range requests](https://developer.
 
 [`URLSessionDownloadTask`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask) handles all the intricacies of HTTP range requests for you. Let's quickly go through how to use `URLSessionDownloadTasks`.
 
-> `URLSession` has two ways to use session tasks (`URLSessionTask`) - the convenience closure-based way, and the delegate-based way. I'm going to be focusing on the latter.
+> `URLSession` has two ways of using session tasks (`URLSessionTask`) - the convenience closure-based way, and the delegate-based way. I'm going to focus on the latter.
 
-Unlike other `URLSessionTask` subclasses there are two ways two create a download task - either with a `URL` (or `URLRequest`) or with a resumable data.
+Unlike other `URLSessionTask` subclasses there are two ways to create a download task - either with a `URL` (or `URLRequest`) or with a resumable data.
 
 ```swift
 let urlSession: URLSession
@@ -35,13 +35,13 @@ func startRequest() {
 }
 ```
 
-> Actually there is a third, indirect way to create `URLSessionDownloadTask`. You can implement `func urlSession(_:dataTask:didReceive response:completionHandler:)` method from `URLSessionDataTaskDelegate` protocol and in this method call completion handler with `ResponseDisposition` `.decomeDownload`.
+> Actually there is also a third indirect way to create `URLSessionDownloadTask`. You can implement `func urlSession(_:dataTask:didReceive response:completionHandler:)` method from `URLSessionDataTaskDelegate` protocol and call completion handler with `ResponseDisposition` `.decomeDownload` in this method.
 
-When you create `URLSessionDownloadTask` for the given URL for the first time you do so by passing either `URL` or `URLRequest` in initializer. But if you already have a resumable data, the request is no longer needed - it's stored as part of the resumable data. But where does the resumable data come from?
+When you create `URLSessionDownloadTask` for the given URL for the first time you do so by passing either `URL` or `URLRequest` in initializer. But if you already have resumable data, the request is no longer needed - it's stored as part of the resumable data. But where does the resumable data come from?
 
 You can retrieve resumable data from the `userInfo` of the task's error using [`NSURLSessionDownloadTaskResumeData`](https://developer.apple.com/documentation/foundation/nsurlsessiondownloadtaskresumedata) key. The error is going to contain the resumable data when either a transfer error occurs or when you call `cancel(byProducingResumeData:)` method (if you call `cancel()` the resumable data is not produced).
 
-> The server must also indicate that it supports HTTP range request in order for resumable data to be produced.
+> The server must also indicate that it supports HTTP range request for resumable data to be produced.
 
 ```swift
 func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -51,9 +51,9 @@ func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithErro
 }
 ```
 
-When you receive a resumable data you need to store it somewhere depending on what your requirements are.
+When you receive resumable data you need to store it somewhere depending on what your requirements are.
 
-`URLSessionDownloadTask` works great by has a few limitations:
+`URLSessionDownloadTask` works great but has a few limitations:
 
 - It can read from `URLCache` (native HTTP cache) but it's not going to save responses there. If you'd like to do that, you'll have to do it manually.
 - There is always disk I/O happening which is not always desirable.
@@ -67,7 +67,7 @@ Lets first quickly go through the [HTTP range requests spec](https://tools.ietf.
 
 ### HTTP Range Requests
 
-If the [`Accept-Ranges`](https://tools.ietf.org/html/rfc7233#section-2.3) header is present in the response and has a value `bytes`, the server supports range requests:
+If the [`Accept-Ranges`](https://tools.ietf.org/html/rfc7233#section-2.3) header is present in the response and has value `bytes`, the server supports range requests:
 
 ```
 curl -I https://cloud.githubusercontent.com/assets/1567433/9781817/ecb16e82-57a0-11e5-9b43-6b4f52659997.jpg
@@ -101,7 +101,7 @@ Accept-Ranges: bytes
 
 When resuming the request that contains a validator - either [`Last-Modified`](https://tools.ietf.org/html/rfc7232#section-2.2) or [`ETag`](https://tools.ietf.org/html/rfc7232#section-2.3) - you can also provide an optional [`If-Range`](https://tools.ietf.org/html/rfc7233#section-3.2) header in the request which makes a request _conditional_. It means that if the representation is unchanged, send the requested part; otherwise, send the entire representation (with status code `200 OK`).
 
-If the client doesn't send `If-Range` header but makes a request conditional by providing either or both of `If-Unmodified-Since` and `If-Match`, then if the condition fails the request is also going to fail with status code `412 Precondition Failed` which isn't very convenient.
+If the client doesn't send `If-Range` header but makes a request conditional by providing either or both `If-Unmodified-Since` and `If-Match`, then if the condition fails the request is also going to fail with status code `412 Precondition Failed` which isn't very convenient.
 
 ```
 curl https://cloud.githubusercontent.com/assets/1567433/9781817/ecb16e82-57a0-11e5-9b43-6b4f52659997.jpg \
@@ -207,7 +207,7 @@ func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive 
 
 > You might have noticed that `ResumableData` doesn't support unconditional range requests. This matches the [`URLSessionDownloadTask` behavior](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask/1411634-cancel) which states that a download can only be resumed if the server provides either the ETag or Last-Modified header (or both) in its response.
 >
-> I'm not entirely sure why this is the case, please leave a comment if you know. My guess is that range requests are somewhat dangerous. It the server returns `Accept-Ranges` but fails to send validators for content which can actually change in the future, the client might end up downloading parts of different resources and combining them together.
+> I'm not entirely sure why this is the case, please leave a comment if you know. My guess is that range requests are somewhat dangerous. If the server returns `Accept-Ranges` but fails to send validators for content which can actually change in the future, the client might end up downloading parts of different resources and combining them together.
 
 ## Resumable Downloads in Nuke
 
