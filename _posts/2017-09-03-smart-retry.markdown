@@ -9,19 +9,19 @@ permalink: /post/smart-retry
 uuid: 134b8103-bc6b-4e34-bf8f-4c1a551a4473
 ---
 
-In this post I'm going to combine [`retryWhen`](http://reactivex.io/documentation/operators/retry.html) operator with [Reachability](https://developer.apple.com/library/content/samplecode/Reachability/Introduction/Intro.html) and delay options inspired by [RxSwiftExt](https://github.com/RxSwiftCommunity/RxSwiftExt) to implement an effective retry strategy.
+In this post I'm going to combine [`retryWhen`](http://reactivex.io/documentation/operators/retry.html) operator, [Reachability](https://developer.apple.com/library/content/samplecode/Reachability/Introduction/Intro.html), and delay options inspired by [RxSwiftExt](https://github.com/RxSwiftCommunity/RxSwiftExt) to implement an effective retry strategy.
 
-The requirements are fairly straightforward. Let's say you have an observable sequence which wraps a networking call. If the observable sequence fails with a network error I would like to:
+The requirements are fairly straightforward. Let's say you have an observable sequence which wraps a networking call. If the sequence fails with a network error what I would like to do is:
 
-- automatically retry it up to N times
-- use exponential backoff or other delay options
-- retry immediately when a network connection is re-established
+- Automatically retry up to N times
+- Use exponential backoff or other delay options
+- Retry immediately when a network connection is re-established
 
 This sounds like a tall order for a single `retryWhen` operator, but it's actually flexible enough to support all of those requirements. In this post, I'm going to create a new custom `retry` operator which would wrap this entire logic.
 
 > The complete implementation is available [here](https://gist.github.com/kean/e2bc38106d19c249c04162714e7be321).
 
-> Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for more awesome use-cases of RxSwift.
+> Check out <a href="{{ site.url }}/post/api-client">**API Client in Swift**</a> and <a href="{{ site.url }}/post/introducing-rxnuke">**Introducing RxNuke**</a> for other RxSwift use-cases.
 
 ## Usage
 
