@@ -217,5 +217,3 @@ As someone who prefers [New Jersey style](https://en.wikipedia.org/wiki/Worse_is
 But I really like Swift's type system and especially how it handles value types. I can't imagine modern programming without option types now. So even taking all these challenges into account, I'm leaning towards _yes_.
 
 Will Swift lean even more towards functional programming in the future? Is it going to overcome these challenges and make optionals even more ergonomic? I can't wait to see.
-
-> Or maybe simple [type annotations](https://flow.org/en/) were good enough all along?
