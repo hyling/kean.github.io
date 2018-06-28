@@ -95,10 +95,10 @@ print("\(value)")
 
 What would you expect this call to print? I would say "2". Nope, it prints "Optional(2)" and produces a warning implemented in [SR-1882](https://bugs.swift.org/browse/SR-1882). This warning seems well-intentioned, but it seems to have created another problem. In most cases, you should really not be printing optionals. But you do for logging. People are going to be [complaining forever](https://forums.developer.apple.com/thread/74890) about it.
 
-But how would you make it print "2"? Maybe this way?
+But how would you make it print "2"? Here's one way to do it:
 
 ```swift
-optional.map(String.init(describing:)) ?? "null"
+print("\(value ?? "null")")
 ```
 
 ### Just an Enum or Maybe Not?
