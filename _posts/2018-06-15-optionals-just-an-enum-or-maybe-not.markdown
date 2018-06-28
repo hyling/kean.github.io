@@ -98,7 +98,7 @@ What would you expect this call to print? I would say "2". Nope, it prints "Opti
 But how would you make it print "2"? Here's one way to do it:
 
 ```swift
-print("\(value ?? "null")")
+print("\(value?.description ?? "null")")
 ```
 
 ### Just an Enum or Maybe Not?
