@@ -41,7 +41,7 @@ May 2015 – [RxSwift 1.0 is released](https://github.com/ReactiveX/RxSwift/rele
 
 MVVM was one of the first "alternative" patterns that were wildly adopted by iOS developers. Every newsletter in 2015 would have at least one article about MVVM and RxSwift or ReactiveCocoa.
 
-This pattern was [originally introduced](https://blogs.msdn.microsoft.com/johngossman/2005/10/08/introduction-to-modelviewviewmodel-pattern-for-building-wpf-apps/) by Microsoft under the name MVVM back in 2005, but most of the ideas behind it were shared by Martin Fowler in his article named [Presentation Model](https://martinfowler.com/eaaDev/PresentationModel.html) from 2004.
+This pattern was [originally introduced](https://blogs.msdn.microsoft.com/johngossman/2005/10/08/introduction-to-modelviewviewmodel-pattern-for-building-wpf-apps/) by Microsoft under the name MVVM back in 2005, but most of the ideas behind it were shared earilier by Martin Fowler in his article named [Presentation Model](https://martinfowler.com/eaaDev/PresentationModel.html) from 2004.
 
 MVVM is a three-tier architecture. You have View which is active, ViewModel and Model. An _active_ View means that the View knows about the ViewModel and that it itself binds to the output of the ViewModel.
 
@@ -99,7 +99,7 @@ There are some open questions, at least in my head. For instance, if all I have 
 
 If functional programming has any future in UI development, this is it. It doesn’t have to be Elm or React Native or some other specific framework – they are all based on the same principles. We’ve already tried using functional reactive programming in UI, but it ended up being too low-level and too cumbersome to use. We need a simple solution that anyone can understand and use.
 
-If you want to try something close to the Elm Architecture today, but without the need for a virtual view implementation, I would recommend looking into immutable ViewModels. They feel very similar, but dont't require a ton of infrastructure to make them play nicely with UIKit.
+If you want to try something close to the Elm Architecture today, but without the need for a virtual view implementation, I would recommend looking into immutable ViewModels. They feel very similar, but don't require a ton of infrastructure to make them play nicely with UIKit.
 
 ## Conclusion
 
