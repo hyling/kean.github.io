@@ -103,4 +103,4 @@ If you want to try something close to the Elm Architecture today, but without th
 
 ## Conclusion
 
-App architecture is a topic that might seem intimidating. There are so many acronyms which stand for things that seem so abstract. But don’t get discouraged. Most of the architectures are actually very similar and are all there to help you achieve the same things – write great software.
+App architecture is a topic that might seem intimidating. There are so many acronyms which stand for things that seem so abstract. But don’t get discouraged. Most of the architectures are actually very similar and are all there to help you achieve the same thing – write great software.
