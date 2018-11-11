@@ -20,9 +20,9 @@
         },
         {
             "title" : "Pill",
-            "link" : "https://github.com/kean/Promise",
+            "link" : "https://github.com/kean/Pill",
             "languages" : "Swift",
-            "description" : "Micro Promise/A+"
+            "description" : "A streamline Future<Value, Error> implementation"
         },
         {
             "title" : "Preheat",
