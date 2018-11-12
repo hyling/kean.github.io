@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Future<Value, Error>
-subtitle: <a href="https://github.com/kean/Pill">Pill</a> – a streamlined Future<Value, Error> implementation with a functional API
+title: Future&lt;Value, Error&gt;
+subtitle: <a href="https://github.com/kean/Pill">Pill</a> – a streamlined Future&lt;Value, Error&gt; implementation with a functional API
 date: 2018-11-12 9:00:00 +0300
 category: programming
 tags: programming
@@ -21,19 +21,17 @@ Futures are easily composable. For example, `Future<Value, Error>` in Pill provi
 
 There are plenty of great Future implementations available in Swift. I've looked at [mxcl/PromiseKit](https://github.com/mxcl/PromiseKit), [google/Promises](https://github.com/google/promises), [SwiftNIO/EventLoopFuture](https://apple.github.io/swift-nio/docs/current/NIO/Classes/EventLoopFuture.html), [BrightFutures](https://github.com/Thomvis/BrightFutures), [khanlou/Promise](https://github.com/khanlou/Promise) and many more. Most don't provide typed errors. And many are just too big which makes including them in a project a hard sell. So I still decided to continue working on Pill because none of them "were quite my tempo".
 
-## `Future<Value, Error>`
-
-### Typed Errors
+## Future&lt;Value, Error&gt;
 
 The first change was an addition of typed errors: instead of `Promise<T>` we now have `Future<Value, Error>` (and also `Promise<Value, Error>` which is now a separate struct). The typed errors give you extra confidence when dealing with errors.
 
 There seem to be an opinion that typed errors are inconvenient and just add unnecessary complexity. I used to share this opinion but after working with typed errors for a while I found the opposite to be true. Typed errors are not only safer, but they often make error handling more ergonomic since you no longer need to cast them.
 
-### Streamlined Functional API
+## Streamlined Functional API
 
 I reviewed all of the terminology used in `Pill`: `resolve`, `fulfill`, `reject`, `then`, `recover` – I didn't feel that Swift developers were accustomed to these terms. So I decided to replace them with a set of functional methods that we all know and love.
 
-## Map and FlatMap
+### Map and FlatMap
 
 Instead of `then` there is `map` and `flatMap`:
 
@@ -57,9 +55,9 @@ let avatar = user
 
 ### Zip and Reduce
 
-I decided not to stop at `map` and `flatMap` and added two other incredibly useful functions: `zip` and `reduce`. 
+I decided not to stop there and added two other incredibly useful functions: `zip` and `reduce`. 
 
-Use `zip` to combine the result of two futures into a single tuple:
+Use `zip` to combine the result of up to three futures into a single tuple:
 
 ```swift
 let user: Future<User, Error>
@@ -91,7 +89,7 @@ Future.reduce(0, [future1, future2], +).on(success: { value in
 
 ## What's Next
 
-Working on `Future<Value, Error>` was a lot of fun, especially implementing functional parts like `zip` and `reduce`. I'm extremely satisfied with the result and the fact that even with the new additions it is still just under 160 lines of code – this truly shows the power of composition.
+Working on `Future<Value, Error>` was a lot of fun, especially implementing functional parts like `zip` and `reduce`. I'm extremely satisfied with the result and the fact that even with the new additions it is still just under 150 lines of code – this truly shows the power of composition.
 
 If you'd like to give `Future<Value, Error>` a try, [`Pill`](https://github.com/kean/Pill) is a great place to start.
 
