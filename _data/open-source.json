@@ -7,6 +7,12 @@
             "description" : "A powerful image loading and caching system"
         },
         {
+            "title" : "FutureX",
+            "link" : "https://github.com/kean/FutureX",
+            "languages" : "Swift",
+            "description" : "A streamlined Future&lt;Value, Error&gt; implementation"
+        },
+        {
             "title" : "Yalta",
             "link" : "https://github.com/kean/Yalta",
             "languages" : "Swift",
@@ -17,12 +23,6 @@
             "link" : "https://github.com/kean/Arranged",
             "languages" : "Swift",
             "description" : "Open source replacement of UIStackView for iOS 8"
-        },
-        {
-            "title" : "Pill",
-            "link" : "https://github.com/kean/Pill",
-            "languages" : "Swift",
-            "description" : "A streamline Future<Value, Error> implementation"
         },
         {
             "title" : "Preheat",

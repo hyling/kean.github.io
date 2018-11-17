@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Future&lt;Value, Error&gt;
-subtitle: <a href="https://github.com/kean/Pill">Pill</a> – a streamlined Future&lt;Value, Error&gt; implementation with a functional API
+subtitle: <a href="https://github.com/kean/FutureX">FutureX</a> – a streamlined Future&lt;Value, Error&gt; implementation with functional interface
 date: 2018-11-12 9:00:00 +0300
 category: programming
 tags: programming
@@ -9,13 +9,13 @@ permalink: /post/future
 uuid: b1b94ee1-c736-4e89-85a9-69cfe5ab6880
 ---
 
-Inspired by the Swift core team's recent activity in the [proposal to add `Result<Value, Error>`](https://github.com/apple/swift-evolution/blob/master/proposals/0235-add-result.md) to the Swift Standard Library, I started working on a new version of [Pill](https://github.com/kean/Pill) – a `Future` implementation. The initial goal was to provide a small and simple `Future<Value, Error>` class with typed errors, but eventually, I challenged myself to code the `Future` that would feel like a part of the Swift Standard Library. For me, that meant building an idiomatic Swift implementation with a streamlined functional API and a good performance.
+Inspired by the Swift core team's recent activity in the [proposal to add `Result<Value, Error>`](https://github.com/apple/swift-evolution/blob/master/proposals/0235-add-result.md) to the Swift Standard Library, I started working on a new version of [FutureX](https://github.com/kean/FutureX) – a `Future` implementation. The initial goal was to provide a small and simple `Future<Value, Error>` class with typed errors, but eventually, I challenged myself to code the `Future` that would feel like a part of the Swift Standard Library. For me, that meant building an idiomatic Swift implementation with a streamlined functional API and good performance.
 
 ## Future
 
 A future represents a result of computation which may be available now, or in the future, or never. Essentially, a future is an object to which you attach callbacks, instead of passing them into a function that performs a computation.
 
-Futures are easily composable. For example, `Future<Value, Error>` in Pill provides a set of functions like `map`, `flatMap`, `zip`, `reduce` and more to compose futures (more on it later).
+Futures are easily composable. For example, `Future<Value, Error>` in FutureX provides a set of functions like `map`, `flatMap`, `zip`, `reduce` and more to compose futures (more on it later).
 
 ## Prior Art
 
@@ -29,7 +29,7 @@ There seem to be an opinion that typed errors are inconvenient and just add unne
 
 ## Streamlined Functional API
 
-I reviewed all of the terminology used in `Pill`: `resolve`, `fulfill`, `reject`, `then`, `recover` – I didn't feel that Swift developers were accustomed to these terms. So I decided to replace them with a set of functional methods that we all know and love.
+I reviewed all of the terminology used in `FutureX`: `resolve`, `fulfill`, `reject`, `then`, `recover` – I didn't feel that Swift developers were accustomed to these terms. So I decided to replace them with a set of functional methods that we all know and love.
 
 ### Map and FlatMap
 
@@ -91,5 +91,5 @@ Future.reduce(0, [future1, future2], +).on(success: { value in
 
 Working on `Future<Value, Error>` was a lot of fun, especially implementing functional parts like `zip` and `reduce`. I'm extremely satisfied with the result and the fact that even with the new additions it is still just under 150 lines of code – this truly shows the power of composition.
 
-If you'd like to give `Future<Value, Error>` a try, [`Pill`](https://github.com/kean/Pill) is a great place to start.
+If you'd like to give `Future<Value, Error>` a try, [`FutureX`](https://github.com/kean/FutureX) is a great place to start.
 
