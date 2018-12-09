@@ -102,9 +102,9 @@ permalink: /nuke
 
 <p>Performance is one of the key differentiating factors for Nuke. There are three key components of its performance:</p>
 <ul>
-    <li><b>Main-Thread Performance.</b> The framework was tuned to do as little work on the main thread as possible. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</li>
-    <li><b>Robustness Under Stress.</b> Nuke is completely asynchronous and works great under stress. It uses dedicated queues with limited concurrent task count and will even automatically rate limit the requests if necessary.</b></li>
-    <li><b>Memory Usage.</b> Nuke uses <a href="https://en.wikipedia.org/wiki/Cache_algorithms#Examples">LRU</a> (least recently used) replacement algorithm. It limits memory usage to ~20% of available RAM, evicts images on memory warnings and removes even removes most of them when the app enters background.</li>
+    <li><b>Main-Thread Performance.</b> The framework is tuned to do as little work on the main thread as possible. It's <a href="https://github.com/kean/Image-Frameworks-Benchmark">at least 2.7x faster</a> than other frameworks.</li>
+    <li><b>Robustness Under Stress.</b> Nuke is asynchronous and works great under stress. It uses dedicated queues with limited concurrent task count, and it will even automatically rate limit the requests if necessary.</b></li>
+    <li><b>Memory Usage.</b> Nuke uses <a href="https://en.wikipedia.org/wiki/Cache_algorithms#Examples">LRU</a> (least recently used) replacement algorithm. It limits memory usage to ~20% of available RAM, evicts images on memory warnings and removes some of them when the app enters background.</li>
 </ul>
 
 <p>Nuke also collects detailed <a href="https://github.com/kean/Nuke#performance-metrics">performance metrics</a> during the execution of each task.</p>
