@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Navigation Problem
-subtitle: Or how to stop worrying and start using MVC
+subtitle: How to solve it without Coordinators and why Coordinators might be not an optimal solution for you
 date: 2019-03-24 9:00:00 +0300
 category: programming
 tags: programming
