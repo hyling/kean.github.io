@@ -17,9 +17,11 @@ A Coordinator would typically end up creating new modules (Factory), manipulatin
 
 ## MVC
 
-Any MVC-based architecture already provides the tools to manage navigation. In this article I'm going to use MVP as an example. But the same principles apply to other patterns like MVC and MVVM.
+Any MVC-based architecture already provides you with the tools to manage navigation. In this article I'm going to use MVP as an example. But the same principles can be apply to other patterns like MVC and MVVM.
 
 > I use Factories which construct Model and Presenter objects and which have access to Context for DI. I also skip some protocol declarations and `final` keywords which I would normally use. And I use delegates which could be of course replaced with other mechanisms like closures.
+
+> Please keep in mind that the goal of the article is to describe a solution which would only require these three MVP components – Model, View and Presenter – but would still maintain full separation of concerns and keep the modules unit testable.
 
 We need a domain area for our example. Let's pretend that we live in a world of IoT devices where every door lock is a connected one. Now we need an app.
 
@@ -37,18 +39,18 @@ Let's see how we would approach this if we limit ourselves to MVP. I would start
 
 ```swift
 class DeviceInstallationViewController: UINavigationController {
-    init(presenter: DeviceInstallationPresenterProtocol) {
+    init(presenter: DeviceInstallationPresenter) {
         self.presenter = presenter
     }
 
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         presenter.onViewDidLoad()
     }
 
     func showDeviceDetectionScreen(presenter: DeviceDetectionPresenter) {
         let vc = DeviceDetectionViewController(presenter: presenter)
-        push(vc, animated: false) // This is the first screen
+        pushViewController(vc, animated: false) // This is the first screen
     }
 }
 
@@ -73,7 +75,8 @@ Now let's add the remaining steps:
 ```swift
 class DeviceInstallationViewController: UINavigationController {
     func showLoginScreen(presenter: DeviceLoginPresenter) {
-        push(DeviceLoginViewController(presenter: presenter), animated: true)
+        let vc = DeviceLoginViewController(presenter: presenter)
+        pushViewController(vc, animated: true)
     }
 
     func showDeviceDetails(presenter: DeviceDetailsPresenter) {
@@ -83,7 +86,7 @@ class DeviceInstallationViewController: UINavigationController {
         // but only if it is shown within this flow.
         vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", target: self.presenter, action: #selector(buttonCloseDeviceDetailsTapped))
 
-        push(vc, animated: true)
+        pushViewController(vc, animated: true)
     }
 }
 
@@ -243,6 +246,16 @@ class DeviceListViewPresenter {
     }
 }
 ```
+
+## Alternatives
+
+A more advanced design might include a separate component which would know about transitions between the screens - something like native segues or exactly native segues. This design would be a bit more complex but it does have a few pros:
+
+- Screens no longer need to know about other Screens
+- Transitions can be reused between modules
+- Transitions can be used by Views which can't show new screens by themselves
+
+Another potential change that you could make is to actually use the term `Flow` for modules which don't have their own UI and only manager navigation between the screens. So `DeviceInstallationPresenter` would than be called `DeviceInstallationFlow` but it would still have it's own model if needed – `DeviceInstallationModel`. This might make the separation a bit more clear but I personally prefer the term `Presenter`.
 
 ## Final Thoughts
 
