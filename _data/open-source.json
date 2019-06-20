@@ -13,8 +13,8 @@
             "description" : "A streamlined Future&lt;Value, Error&gt; implementation"
         },
         {
-            "title" : "Yalta",
-            "link" : "https://github.com/kean/Yalta",
+            "title" : "Align",
+            "link" : "https://github.com/kean/Align",
             "languages" : "Swift",
             "description" : "An intuitive and powerful Auto Layout library"
         },

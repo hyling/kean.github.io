@@ -90,9 +90,9 @@ private extension Style {
 
 ## Layout
 
-In the example I used stack views and [Yalta](https://github.com/kean/Yalta) to define layouts.
+In the example I used stack views and [Align](https://github.com/kean/Align) to define layouts.
 
-You can learn more about Yalta in its repository. Here I'm going to focus on `UIStackView` syntax sugar. It's just two lines of code, which enable concise and readable syntax. It can be used to easily create a hierarchy of stacks, which is a very common use case:
+You can learn more about Align in its repository. Here I'm going to focus on `UIStackView` syntax sugar. It's just two lines of code, which enable concise and readable syntax. It can be used to easily create a hierarchy of stacks, which is a very common use case:
 
 ```swift
 let stack = UIStackView(
@@ -109,7 +109,7 @@ What makes this work well is that styles are always defined upfront. If the list
 
 > Check out [Let's Build UIStackView](https://kean.github.io/post/lets-build-uistackview) to learn how stacks work under the hood.
 
-In the example [Yalta](https://github.com/kean/Yalta) is used very briefly. But you can definetly use an Auto Layout library of your choice instead (or no library at all and just stick with native layout anchors).
+In the example [Align](https://github.com/kean/Align) is used very briefly. But you can definetly use an Auto Layout library of your choice instead (or no library at all and just stick with native layout anchors).
 
 ```swift
 avatarView.al.size.set(CGSize(width: 40, height: 40))

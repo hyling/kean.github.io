@@ -1,23 +1,23 @@
 ---
 layout: post
-title: "Yalta: Intuitive Auto Layout"
-subtitle: "I'm thrilled to introduce a new intuitive and powerful Auto Layout library - <a href='https://github.com/kean/Yalta'>Yalta</a>"
+title: "Align: Intuitive Auto Layout"
+subtitle: "I'm thrilled to introduce a new intuitive and powerful Auto Layout library - <a href='https://github.com/kean/Align'>Align</a>"
 date: 2017-11-17 18:00:00 +0300
 category: programming
 tags: ios
-permalink: /post/yalta
+permalink: /post/align
 uuid: 00e90200-1ef8-479e-aea7-62b98a148c2e
 ---
 
 
-[Yalta](https://github.com/kean/Yalta) is an intuitive and powerful Auto Layout library. Designed to be simple and safe, Yalta is perfect for both new and seasoned developers.
+[Align](https://github.com/kean/Align) is an intuitive and powerful Auto Layout library. Designed to be simple and safe, Align is perfect for both new and seasoned developers.
 
-If you'd like to learn about *why it exists*, *who is it for*, and why it might be the best tool for you, please continue. The best place to start using it is in a Playground [available in the project](https://github.com/kean/Yalta). It's going to feel instantly familiar!
+If you'd like to learn about *why it exists*, *who is it for*, and why it might be the best tool for you, please continue. The best place to start using it is in a Playground [available in the project](https://github.com/kean/Align). It's going to feel instantly familiar!
 
 
 ## Why
 
-The primary motivation for releasing Yalta was [Chris Eidhof's article](http://chris.eidhof.nl/post/micro-autolayout-dsl/) in which he shares his concerns about the current state of Auto Layout tools in Swift. When I was deciding how to work with Auto Layout in my recent Swift project I came to the same conclusions as Chris did. Among the tools that I've investigated (and took the best ideas from) were:
+The primary motivation for releasing Align was [Chris Eidhof's article](http://chris.eidhof.nl/post/micro-autolayout-dsl/) in which he shares his concerns about the current state of Auto Layout tools in Swift. When I was deciding how to work with Auto Layout in my recent Swift project I came to the same conclusions as Chris did. Among the tools that I've investigated (and took the best ideas from) were:
 
 - [PureLayout](https://github.com/PureLayout/PureLayout) which I used in my Objective-C projects before. It was a great library in the Objective-C world, but even then it wasn't the one with the most concise syntax. In Swift it became even more apparent.
 - [Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit). Both are pretty large and complex libraries. Operator overloads come with a good chance of [increasing the app's compile time](https://github.com/robb/Cartography/issues/215).
@@ -26,17 +26,17 @@ The primary motivation for releasing Yalta was [Chris Eidhof's article](http://c
 So rather then pulling in a library I decided to write my own. The goal was to hit a balance between power and simplicity. I felt like I had a pretty good chance of achieving that. After all, I already had plenty of experience working with Auto Layout. The first time we adopted it in our projects was back in iOS 6 days. More recently I made [Arranged](https://github.com/kean/Arranged) (UIStackView backport) and wrote about [UIStackView under the hood](https://kean.github.io/post/lets-build-uistackview). I had a good idea of I wanted from this tool.
 
 
-## ⛵Yalta
+## ⛵Align
 
-Yalta has quite a few advantages over other frameworks.
+Align has quite a few advantages over other frameworks.
 
-- Yalta strives for clarity and simplicity by following [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Although most of the APIs are compact, it is a *non-goal* to enable the most concise syntax possible.
-- Yalta has a fluent API that makes use sites form grammatical English phrases. That's what makes Swift code really stand out for me.
+- Align strives for clarity and simplicity by following [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Although most of the APIs are compact, it is a *non-goal* to enable the most concise syntax possible.
+- Align has a fluent API that makes use sites form grammatical English phrases. That's what makes Swift code really stand out for me.
 - It's super small with less than 250 line of code (compare with 1000 lines and over 27 files in Cartography).
 - There are no custom operators and thus no unexpected surprises like an [increasing in your app's compile time](https://github.com/robb/Cartography/issues/215).
-- Yalta is designed to be approachable by new developers which benefit seasoned ones as well.
+- Align is designed to be approachable by new developers which benefit seasoned ones as well.
 
-> [Yalta](https://en.wikipedia.org/wiki/Yalta) is a beautiful port city on the Black Sea and a great name for *yet another layout tool* with *anchors*.
+> [Align](https://en.wikipedia.org/wiki/Align) is a beautiful port city on the Black Sea and a great name for *yet another layout tool* with *anchors*.
 
 ## Usage
 
@@ -93,4 +93,4 @@ All anchors are also accessible via `.al` proxy:
 title.al.top.pinToSuperview()
 ```
 
-> Yalta has full test coverage. If you'd like to learn about which constraints (`NSLayoutConstraint`) Yalta creates each time you call one of its methods, test cases are a great place to start.
+> Align has full test coverage. If you'd like to learn about which constraints (`NSLayoutConstraint`) Align creates each time you call one of its methods, test cases are a great place to start.

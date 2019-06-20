@@ -100,7 +100,7 @@ extension AuthorizedClient where Authorization == Scope.Customer {
 
 ## Layout Anchors
 
-The most recent and the most complex use case of phantom types for me was in [Yalta](https://github.com/kean/Yalta), a small Auto Layout library which implements custom layout anchors. I think this is most interesting one, so I'm going to focus on it a bit more. Similar to [`NSLayoutAnchor`](https://developer.apple.com/documentation/uikit/nslayoutanchor) each anchor in Yalta represents a layout attribute of a view. Unlike `NSLayoutAnchor` each kind of anchor has its own special set of methods which is part of Yalta's fluent API.
+The most recent and the most complex use case of phantom types for me was in [Align](https://github.com/kean/Align), a small Auto Layout library which implements custom layout anchors. I think this is most interesting one, so I'm going to focus on it a bit more. Similar to [`NSLayoutAnchor`](https://developer.apple.com/documentation/uikit/nslayoutanchor) each anchor in Align represents a layout attribute of a view. Unlike `NSLayoutAnchor` each kind of anchor has its own special set of methods which is part of Align's fluent API.
 
 First, let's take a quick look at how `NSLayoutAnchor` represents different kinds of anchors. There is a base class `NSLayoutAnchor` and there are three subclasses:
 
@@ -111,7 +111,7 @@ First, let's take a quick look at how `NSLayoutAnchor` represents different kind
 
 Their subclasses provide additional type checking, preventing you from creating invalid constraints. For example, you can't create a constraint between `left` and `top` anchors.
 
-Yalta needed more information about the kind of the attribute that the anchor was wrapping. Here's an anchor "taxonomy" that I've come up with:
+Align needed more information about the kind of the attribute that the anchor was wrapping. Here's an anchor "taxonomy" that I've come up with:
 
 ```swift
 // Each anchor is parameterized with a type and an axis.
