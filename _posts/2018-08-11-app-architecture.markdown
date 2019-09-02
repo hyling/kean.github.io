@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Let's Talk Architecture"
-subtitle: "<b>MVC</b> – The Past. <b>MVVM with RxSwift or ReactiveCocoa, MVP</b> – The Present. <b>Functional Architectures</b> – The Future."
+subtitle: "MVC – The Past. MVVM with RxSwift or ReactiveCocoa, MVP – The Present. Functional Architectures – The Future."
 date: 2018-08-11 18:00:00 +0300
 category: programming
 tags: programming

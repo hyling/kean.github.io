@@ -140,9 +140,9 @@ img.Screenshot {
     flex-flow: row wrap;
 
     .PostPreview {
-        margin-bottom: 0.5 * $spacing-unit;
+        margin-bottom: 1 * $spacing-unit;
 
-        width: 47.8%;
+        width: 46%;
         @include media-query($on-mobile) {
             width: 100%;
         }
