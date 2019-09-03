@@ -15,6 +15,12 @@ Ever wondered how regex works under the hood? How does it understand an incantat
 
 Now you might be wondering, why would you want to do that? Well, turns out, this is a fantastic learning opportunity. Parsers, compilers, finite automation, graphs, trees, extended grapheme clusters - it has everything! Last but not least, you get a chance to learn regex.
 
+> - [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex) (This article)
+> - [Regex, Part 1: Grammar]({{ site.url }}/post/regex-grammar)
+> - Regex, Part 2: Parser
+> - Regex, Part 3: Compiler
+> - Regex, Part 4: Matcher
+
 ## Regular Expressions
 
 Regular expression patterns can be as simple as "[`https?`](https://regex101.com/r/z6Lypq/1)" where "`?`" is a Zero or One [Quantifier](https://docs.microsoft.com/en-us/dotnet/standard/base-types/quantifiers-in-regular-expressions) and which matches either `http` or `https`. Or as complex as [this](https://regex101.com/r/95Clhd/1) which supposedly validates an email address, I think:
