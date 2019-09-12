@@ -33,7 +33,7 @@ Implementing an engine capable of matching patterns like "`https?`" is easy beca
 
 > For a refresher on regex features and syntax check out [this quick reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
-To make it more challenging, I also wanted it to have performance comparable to `NSRegularExpression` which uses [ICU regex engine](http://icu-project.org/apiref/icu4c/uregex_8h_source.html) under the hood. This engine is written in C and is highly optimized. And I wanted to build it in 2 weeks...
+To make it more challenging, I also wanted it to have performance comparable to `NSRegularExpression` which uses [ICU regex engine](http://icu-project.org/apiref/icu4c/uregex_8h_source.html) under the hood. This engine is written in C and is highly optimized.
 
 Do you want to see how it turned out? Take a red pill and I'll show you how deep the rabbit hole goes.
 
