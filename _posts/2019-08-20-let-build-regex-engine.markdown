@@ -17,7 +17,7 @@ Now you might be wondering, why would you want to do that? Well, turns out, this
 
 > - [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex) (This article)
 > - [Regex, Part 1: Grammar]({{ site.url }}/post/regex-grammar)
-> - Regex, Part 2: Parser
+> - [Regex, Part 2: Parser]({{ site.url }}/post/regex-parser)
 > - Regex, Part 3: Compiler
 > - Regex, Part 4: Matcher
 

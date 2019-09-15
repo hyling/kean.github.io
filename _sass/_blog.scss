@@ -40,9 +40,9 @@
 .PostContents {
     h2 {
         font-weight: 600;
-        font-size: 28px;
+        font-size: 34px;
         @include media-query($on-mobile) {
-            font-size: 26px;
+            font-size: 28px;
         }
 
         margin-top: $spacing-unit;
@@ -50,7 +50,10 @@
 
     h3 {
         font-weight: 700;
-        font-size: 18px;
+        font-size: 24px;
+        @include media-query($on-mobile) {
+            font-size: 20px;
+        }
         margin-top: $spacing-unit;
     }
 }

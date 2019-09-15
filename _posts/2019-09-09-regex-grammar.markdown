@@ -94,7 +94,7 @@ Adjective ::= "fast" | "blue"
 ModifiedNoun ::= Adjective Noun | Adjective, ModifiedNoun`
 ```
 
-> [**Chomsky Hierarchy**](https://en.wikipedia.org/wiki/Chomsky_hierarchy) (Additional Reading)
+> [**Chomsky Hierarchy**](https://en.wikipedia.org/wiki/Chomsky_hierarchy) *(Additional Reading)*
 >
 > In the 1950s, Noan Chomsky created a hierarchy of grammars. There are four categories of formal grammars in the *Chomsky Hierarchy*, spanning from Type 0, the most general, to Type 3, the most restrictive. Each layer is different in terms of the restriction applied to the production rules, the class of language it generates, the type of automation that recognizes it.
 >
@@ -110,7 +110,7 @@ There are several different styles of notations for context-free grammars. One o
 
 Unfortunately, there is no single EBNF standard. There is a [ISO/IEC 14977 standard](https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf) which defines EBNF, but some people [don't recommend using it](https://dwheeler.com/essays/dont-use-iso-14977-ebnf.html). Ultimately, it's up to which tools are available on your platform/language and which notation they support. I'm going to stick with a [W3C notation](https://www.w3.org/TR/2010/REC-xquery-20101214/#EBNFNotation) because it is supported by [the tool](https://www.bottlecaps.de/rr/ui) which I'm going to use to generate railroad diagrams.
 
-> **History of Backus-Naur Form** (Additional Reading)
+> **History of Backus-Naur Form** *(Additional Reading)*
 >
 > In the middle 1950s, computer scientists began to design high–level programming languages and build their compilers. The first two major successes were FORTRAN (FORmula TRANslator), developed by the IBM corporation in the United States, and ALGOL (ALGOrithmic Language), sponsored by a consortium of North American and European countries. John Backus led the effort to develop FORTRAN. He then became a member of the ALGOL design committee, where he studied the problem of describing the syntax of these programming languages simply and precisely.
 >
@@ -151,7 +151,7 @@ ExpressionItem
 
 I'm not going to go through all of the possible expression items but here are a few examples. Let's start with `Group`. Group is a recursive construct – a group may contain other groups, or actually any subexpression.
 
-<img src="{{ site.url }}/images/posts/regex/grammar_group.png" style="max-width:380px;">
+<img src="{{ site.url }}/images/posts/regex/grammar_group.png" style="max-width:500px;">
 
 ```swift
 Group ::= "(" GroupNonCapturingModifier? Expression ")" Quantifier?
