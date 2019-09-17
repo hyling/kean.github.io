@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<main class="Archive">
+<main>
 
 {% include site-header.html %}
 
@@ -17,7 +17,7 @@ layout: default
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
 
     {% if forloop.first %}
-    <h2 id="{{ this_year }}-ref">{{this_year}}</h2>
+    <h2 class="SectionTitle" id="{{ this_year }}-ref">{{this_year}}</h2>
     <ul class="ArchivePostList">
     {% endif %}
 
@@ -28,7 +28,7 @@ layout: default
     {% else %}
         {% if this_year != next_year %}
         </ul>
-        <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
+        <h2 class="SectionTitle" id="{{ next_year }}-ref">{{next_year}}</h2>
         <ul class="ArchivePostList">
         {% endif %}
     {% endif %}
@@ -37,10 +37,3 @@ layout: default
 </div> <!--home!-->
 
 </main>
-
-
-<aside class="Sidebar Any-card">
-
-{% include sidebar-home.html %}
-
-</aside>

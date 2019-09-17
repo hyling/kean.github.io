@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regex, Part 2: Parser"
-subtitle: Using parser combinators (or <i>monadic</i> parsers) to parse regex
+subtitle: Parser combinators (or <i>monadic</i> parsers) are a great example of functional programming used to bring practical benefits. In this article we introduce parser combinators and use them to parse regex.
 date: 2019-09-15 9:00:00 +0300
 category: programming
 tags: programming

@@ -7,6 +7,12 @@
             "description" : "A powerful image loading and caching system"
         },
         {
+            "title" : "Regex",
+            "link" : "https://github.com/kean/Regex",
+            "languages" : "Swift",
+            "description" : "Open source regex engine"
+        },
+        {
             "title" : "FutureX",
             "link" : "https://github.com/kean/FutureX",
             "languages" : "Swift",
@@ -23,12 +29,6 @@
             "link" : "https://github.com/kean/Arranged",
             "languages" : "Swift",
             "description" : "Open source replacement of UIStackView for iOS 8"
-        },
-        {
-            "title" : "Preheat",
-            "link" : "https://github.com/kean/Preheat",
-            "languages" : "Swift",
-            "description" : "Automates prefetching for table and collection views"
-        },
+        }
     ]
 }
