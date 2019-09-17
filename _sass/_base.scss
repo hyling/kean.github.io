@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 56px;
     @include media-query($on-laptop) {
         font-size: 44px;
     }
@@ -66,26 +66,12 @@ h1 {
 }
 
 main {
+    margin: auto;
     max-width: 740px;
-    float: right;
-
-    @include media-query($on-laptop) {
-        margin: auto;
-        max-width: 740px;
-        float: none;
-    }
+    float: none;
 
     @include media-query($on-mobile) {
         max-width: 100%;
-    }
-}
-
-aside {
-    width: 200px;
-    float: left;
-    
-    @include media-query($on-laptop) {
-        display: none;
     }
 }
 

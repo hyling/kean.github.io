@@ -25,12 +25,7 @@
 }
 
 .PageContents {
-    // FIXME: make it always 0
-    padding: $spacing-unit 0;
-
-    @include media-query($on-laptop) {
-        padding: 0;
-    }
+    padding: 0;
 }
 
 // SiteHeader
@@ -40,7 +35,7 @@
     background: $background-color-light-grey;
     border: 0.5px solid $grey-color-light;
 
-    padding: 0.75 * $spacing-unit 0;
+    padding: 0.5 * $spacing-unit 0;
 
     width: calc(100% - #{$spacing-unit * 2});
     
@@ -48,22 +43,22 @@
     // and "mobile"
 
     margin: $spacing-unit;
-    margin-top: -8px;
+    
     border-radius: 8px;
+
+    margin: 0.5 * $spacing-unit;
+    margin-top: -4px;
+    margin-bottom: 1.5 * $spacing-unit;
+
+    display: inline-block;
 
     @include media-query($on-mobile) {
         width: 100%;
 
         margin: 0;
         margin-bottom: 0.5 * $spacing-unit;
-        padding: 0.5 * $spacing-unit 0;
 
         border-radius: 0
-    }
-
-    display: none;
-    @include media-query($on-laptop) {
-        display: inline-block;
     }
 }
 
@@ -75,9 +70,10 @@
     flex-flow: row wrap;
 
     h2 {
-        margin-top: 0.5 * $spacing-unit;
+        margin-top: 0.75 * $spacing-unit;
         @include media-query($on-mobile) {
-            margin-top: 0.25 * $spacing-unit;
+            margin-top: 1px;
+            font-size: 24px;
         }
     }
 }
@@ -85,29 +81,26 @@
 .SiteHeaderProfile_Spacer {
     width: $spacing-unit;
     @include media-query($on-mobile) {
-        width: 0.5 * $spacing-unit;
+        width: 0.33 * $spacing-unit;
     }
 }
 
 .SiteHeaderProfile_Avatar {
     border-radius: 12px;
-    max-height: 120px;
+
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 
     @include media-query($on-mobile) {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-    }
-
-    @include media-query($on-mobile) {
-        width: 100px;
-        height: 100px;
+        border-radius: 8px;
+        width: 60px;
+        height: 60px;
     }
 }
 
 .SiteHeaderProfile_Contacts {
     p {
         margin-top: 0.2 * $spacing-unit;
-        font-size: 14px;
     }
 }

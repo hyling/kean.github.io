@@ -15,13 +15,17 @@ redirect_from: /blog/
 	{% for post in site.posts %}
 		{% if site.featured_posts contains post.uuid %}
 		<div class="PostPreview PostPreview-featured">
-		    {% include post-preview.html %}
+		    {% include post-featured.html %}
 		</div>
 		{% endif %}
 	{% endfor %}
 
+</div>
+<h2 class="PostLink SectionTitle">Recent Articles</h2>
+<div class="PostPreviewList">
+
 	<!-- Display the reset of the posts -->
-	{% for post in site.posts %}
+	{% for post in site.posts limit: 7 %}
 		{% unless site.featured_posts contains post.uuid %}
 		<div class="PostPreview">
 			{% include post-preview.html %}
@@ -31,13 +35,29 @@ redirect_from: /blog/
 
 </div> <!--PostPreviewList-->
 
+<p class="SectionFooter"><a href="{{ site.url }}/archive/index.html">See all articles »</a></p>
+
+<br/>
+
+<h2 class="PostLink SectionTitle">Open Source</h2>
+
+<div class="PostPreviewList">
+
+{% for project in site.data.open-source.projects %}
+  <div class="PostPreview">
+  	{% include project-preview.html %}
+  </div>
+{% endfor %}
+
+</div>  <!--PostPreviewList-->
+
+<p class="SectionFooter"><a href="https://github.com/kean">See all projects »</a></p>
+
 </div>
 
+<br/>
+<br/>
+<br/>
+<br/>
+
 </main>
-
-
-<aside class="Sidebar Any-card">
-
-{% include sidebar-home.html %}
-
-</aside>

@@ -1,3 +1,4 @@
 <li class="ArchivePostList_Item">
-	<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> <span class="PostMeta">{{ post.date | date: "%b %-d, %Y" }}</span>
+	<a class="ListItemTitle" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> <span class="PostMeta">{{ post.date | date: "%b %-d, %Y" }}</span>
+	<p class="PostPreview_Subtitle">{{ post.subtitle }}</p>
 </li>
