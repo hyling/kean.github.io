@@ -26,7 +26,7 @@ author: "Alexander Grebenyuk"
         <h1 class="PostTitle" itemprop="name headline">{{ page.title }}</h1>
     </header>
 
-    <div class="PostContents" itemprop="articleBody">
+    <div class="PostContents" onscroll="onScroll()" itemprop="articleBody">
         {% include anchor_headings.html html=content anchorBody='#' anchorClass='Link-subtle Anchor' %}
     </div>
 
@@ -69,3 +69,5 @@ author: "Alexander Grebenyuk"
 </div>
 
 </main>
+
+<script src="{{ site.url }}/assets/js/blog.js"></script>
