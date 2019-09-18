@@ -4,10 +4,6 @@
 
     margin-top: 2 * $spacing-unit;
 
-    @include media-query($on-laptop) {
-        margin-top: 2 * $spacing-unit;
-    }
-
     @include media-query($on-mobile) {
         margin-bottom: 0.33 * $spacing-unit;
         height: 160px;
