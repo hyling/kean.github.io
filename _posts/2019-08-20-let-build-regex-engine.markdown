@@ -113,7 +113,9 @@ Writing a matcher turned out to be the most challenging part. What if the input 
 
 > \* When you enter a state of a state machine, you need to be able to tell which part of the pattern it represents. You can do that by keeping "debug symbols" like what Xcode does for Swift code.
 
-I started with a classic [backtracking algorithm](https://en.wikipedia.org/wiki/Backtracking), realized it had limitations and unpredictable performance with potentially exponential complexity, especially on large inputs. Then, I switched to an approach which executes all possible transitions in "parallel". Optimizing ARC turned out to be challenging. It has visible overhead and it's very hard to reason about. I had to drop down to SIL (Swift Intermediate Language) to make sure my changes had a desired effect. But I had a blast profiling and optimizing it!
+There are a few different algorithms with different performance characteristics that I tried. They also depend on the type of the state machine that you produce during compilation. I'm going to describe and compare both of them.
+
+One of the major challenges was optimizing ARC. It has visible overhead but it's hard to predict and you can't easily see what it's doing. You had to drop down to SIL (Swift Intermediate Language) to make sure the changes you make have the desired effect. But I had a blast profiling and optimizing it!
 
 ## What's Next
 

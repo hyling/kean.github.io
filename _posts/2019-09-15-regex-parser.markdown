@@ -328,12 +328,12 @@ We can now omit explicit calls of `string` function:
 
 ```swift
 let rangeQuantifier = zip("{", number, ",", optional(number), "}")
-    .map { _, lowerBound, _, upperBound, _ in
-        RangeQuantifier(lowerBound: lowerBound, upperBound: upperBound)
-    }
+    .map { _, lhs, _, rhs, _ in RangeQuantifier(lhs, rhs) }
 ```
 
-Much better. But we can push it even further! Notice how we had to explicitly ignore some of the arguments in `map`? This is something we can address. How? With these three operators:
+Much better. Most people should probably stop on this version. The code already looks perfectly fine. But if you want to push it a little bit further, there is always a way! 
+
+Notice how we had to explicitly ignore some of the arguments in `map`? This is something we can address. How? With these three operators:
 
 ```swift
 infix operator *> : CombinatorPrecedence
