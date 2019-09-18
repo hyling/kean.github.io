@@ -4,6 +4,11 @@
 .SiteFooter {
     padding: $spacing-unit / 2 0;
     border-top: 1px solid #eee;
+    margin-top: 3 * $spacing-unit;
+
+    @include media-query($on-mobile) {
+        margin-top: 1.5 * $spacing-unit;    
+    }
 }
 
 .SiteFooter_Links {
