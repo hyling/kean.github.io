@@ -112,6 +112,13 @@
         margin-top: 0.2 * $spacing-unit;
     }
 
+    a {
+        margin-right: 21px;
+        @include media-query($on-mobile) {
+            margin-right: 0.33 * $spacing-unit;
+        }
+    }
+
     @include media-query($on-mobile) {
         font-size: 16px;
     }
