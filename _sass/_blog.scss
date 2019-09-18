@@ -241,6 +241,20 @@ img.Screenshot {
     h4 {
         margin-top: 0;
     }
+
+    a {
+        color: $text-color;
+        transition: all 0.075s linear;
+        text-decoration: none;
+
+        &:visited {
+            color: $text-color;
+        }
+        &:hover {
+            color: lighten($text-color, 25%);
+            text-decoration: none;
+        }
+    }
 }
 
 .TOCItem2 {

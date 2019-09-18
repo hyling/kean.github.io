@@ -73,10 +73,10 @@ main {
 }
 
 aside {    
-    //position: -webkit-sticky !important; /* added to make toc scroll with page */
-    //position: sticky !important; /* added to make toc scroll with page */
+    position: -webkit-sticky !important; /* added to make toc scroll with page */
+    position: sticky !important; /* added to make toc scroll with page */
     float: right !important; /* added to make toc scroll with page */
-    top: 0;
+    top: 1 * $spacing-unit;
     right: 0;
     width: 190px;
     margin-right: -1 * 120px;
