@@ -31,7 +31,7 @@
 
 .Link-subtle {
     color: $text-color;
-    transition: all 0.1s linear;
+    transition: all 0.075s linear;
     text-decoration: none;
 
     &:visited {
@@ -41,4 +41,26 @@
         color: lighten($text-color, 15%);
         text-decoration: none;
     }
+}
+
+.Anchor {
+    opacity: 0;
+
+    color: lighten($grey-color, 15%);
+
+    &:visited {
+        color: lighten($grey-color, 15%);
+    }
+    &:hover {
+        color: $grey-color;
+        text-decoration: none;
+    }
+}
+
+h2:hover .Anchor,
+h3:hover .Anchor,
+h4:hover .Anchor,
+h5:hover .Anchor,
+h6:hover .Anchor {
+  opacity: 1;
 }
