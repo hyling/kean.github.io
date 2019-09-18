@@ -42,7 +42,7 @@
 
     padding: 0.5 * $spacing-unit 0;
 
-    width: calc(100% - #{$spacing-unit * 2});
+    width: 100%;
     
     // It has slightly different design on "laptop"
     // and "mobile"
@@ -51,20 +51,20 @@
     
     border-radius: 8px;
 
-    margin: 0.5 * $spacing-unit;
-    margin-top: -4px;
-    margin-bottom: 1.5 * $spacing-unit;
-
     display: inline-block;
 
+    margin: 0;
+    margin-bottom: 1.5 * $spacing-unit;
+
     @include media-query($on-mobile) {
-        width: 100%;
-
-        margin: 0;
         margin-bottom: 0.5 * $spacing-unit;
-
         border-radius: 0
     }
+}
+
+.SiteHeaderContents {
+    max-width: 740px - $spacing-unit;
+    margin: 0 auto;
 }
 
 .SiteHeaderProfile {
