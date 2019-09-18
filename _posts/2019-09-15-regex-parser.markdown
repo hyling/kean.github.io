@@ -11,7 +11,7 @@ uuid: b1b60dba-0872-49ac-9120-dff4f4006f89
 
 The key for solving any problem is decomposition. [The grammar](https://kean.github.io/Regex/grammar-diagram.xhtml) defined in [the previous article]({{ site.url }}/post/regex-grammar) is composed of multiple tiny pieces chained together. The question is, how do we translate it into code?
 
-## Parsing
+## Parsing Ranges
 
 Let's start with a relatively simple non-terminal symbol - [Range Quantifier](https://docs.microsoft.com/en-us/dotnet/standard/base-types/quantifiers-in-regular-expressions). There are three versions of range quantifiers:
 
@@ -156,7 +156,7 @@ extension Parsers {
 
 > I introduced `Parsers` struct to nest parser definitions inside it so that they won't pollute the global namespace. I will omit it in the next code samples.
 
-### Introducing Parser Combinators
+### Parser Combinators
 
 Let's now deal with numbers. I think in this case we can do better than the original function. What is a number (natural and zero)? It is just one or more digits in a row (we ignore the starting 0 for now). Let's try to represent this idea as closely to the definition as possible.
 
@@ -247,7 +247,7 @@ let number = digit.oneOrMore.map { Int(String($0)) }
 let digit = char.filter(CharacterSet.decimalDigits.contains)
 ```
 
-### Bringing Everything Together
+### Bringing It Together
 
 We should now have everything to parse a range quantifier. There is one last missing piece of the puzzle - `zip`.
 
@@ -383,7 +383,7 @@ I will leave this as an exercise to the reader.
 
 We also allow numbers that start with zero, e.g. "012" or "0012". This is not great, not terrible – other [regex parsers](https://regex101.com/r/28EMPc/1) also do that.
 
-## Theory
+## Theory Break
 
 Unlike the [previous article]({{ site.url }}/post/regex-grammar), I haven't yet touched any of the theory behind parsing. 
 

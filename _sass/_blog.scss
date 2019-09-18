@@ -221,6 +221,52 @@ img.Screenshot {
     }
 }
 
+// Table of Contents
+// ================================================
+
+.TableOfContents {
+    margin-left: 0;
+    list-style: none;
+    list-style-type: none;
+
+    ul {
+        list-style: none;
+    }
+
+    > li:first-child {
+        margin-top: 0;
+        border-top: none;
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+}
+
+.TOCItem2 {
+    a {
+        font-size: 17px;
+        line-height: 17px;
+        font-weight: 500;
+    }
+
+    ul {
+        margin-left: 0.5 * $spacing-unit;
+    }
+}
+
+.TOCItem3 {
+    a {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 400;
+    }
+
+    li {
+        margin-left: 0;
+    }
+}
+
 // Post Specific
 // ================================================
 

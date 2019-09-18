@@ -72,6 +72,28 @@ main {
     }
 }
 
+aside {    
+    //position: -webkit-sticky !important; /* added to make toc scroll with page */
+    //position: sticky !important; /* added to make toc scroll with page */
+    float: right !important; /* added to make toc scroll with page */
+    top: 0;
+    right: 0;
+    width: 190px;
+    margin-right: -1 * 120px;
+    margin-top: 1.5 * $spacing-unit;
+    // margin: $spacing-unit;
+    // margin-top: 2 * $spacing-unit;
+    // margin-right: 0;
+
+    @include media-query(1260px) {
+        display: none;
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+}
+
 img {
     max-width: 100%;
     vertical-align: middle;

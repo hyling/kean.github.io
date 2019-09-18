@@ -3,6 +3,13 @@ layout: default
 author: "Alexander Grebenyuk"
 ---
 
+<aside class="Sidebar Any-card">
+    <div>
+        <h4>Contents</h4>
+        {% include toc.html html=content class='TableOfContents' item_class='TOCItem%level%' h_max=3 %}
+    </div>
+</aside>
+
 <main>
 
 {% if page.minutes %}
