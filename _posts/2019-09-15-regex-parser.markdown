@@ -513,9 +513,14 @@ In contrast with parser generators, this method of building parsers is fully ext
 
 The code from the article is available in a [playground]({{ site.url }}/playgrounds/parsers.zip). You can find the complete regex parser implementation in [kean/Regex](https://github.com/kean/Regex). With a parser completed, we can now produce a structured representation of the pattern and compile it. This will be the focus on the upcoming article. Stay tuned!
 
+<div class="References" markdown="1">
+
 ## References
 
-- [Graham Hutton and Erik Meijer, "Monadic Parser Combinators"](http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf)
-- [Point-Free, "Parser Combinators"](https://www.pointfree.co/episodes/ep62-parser-combinators-part-1)
-- [Dick Grune, Ceriel J.H. Jacobs, "Parsing Techniques"](https://dickgrune.com/Books/PTAPG_2nd_Edition/)
-- [Railroad Diagram Generator](https://www.bottlecaps.de/rr/ui)
+1. Brandon Williams, Stephen Celis (June 2019), [**Parser Combinators**](https://www.pointfree.co/episodes/ep62-parser-combinators-part-1), [Point-Free](https://www.pointfree.co), A video series exploring functional programming and Swift
+2. Graham Hutton, Erik Meijer (1996), [**Monadic Parser Combinators**](http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf), Department of Computer Science, University of Nottingham
+3. Dick Grune, Ceriel J.H. Jacobs (2008), [**Parsing Techniques**](https://dickgrune.com/Books/PTAPG_2nd_Edition/), VU University Amsterdam, Amsterdam, The Netherlands
+4. Scott Wlaschin (2016), [**Understanding Parser Combinators: A Deep Dive**](https://www.youtube.com/watch?v=RDalzi7mhdY) (Video), NDC Conferences
+5. Gunther Rademacher, [**Railroad Diagram Generator**](https://www.bottlecaps.de/rr/ui)
+
+</div>

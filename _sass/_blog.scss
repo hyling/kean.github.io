@@ -103,6 +103,20 @@ img.Screenshot {
     }
 }
 
+// References
+.References {
+    border-top: 2px solid $grey-color-light;
+    margin-top: $spacing-unit;
+
+    strong {
+        font-weight: 500;
+    }
+
+    li {
+        margin: 0.25 * $spacing-unit 0.25 * $spacing-unit;
+    }
+}
+
 // Post Footer
 // ================================================
 .PostFooter {
