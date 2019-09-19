@@ -68,3 +68,41 @@ h6:hover .Anchor {
 .Grayscale {
     filter: invert(87%) sepia(0%) saturate(58%) hue-rotate(246deg) brightness(77%) contrast(92%);
 }
+
+.PrimaryButton {
+    background: #fff;
+    border: 2px solid $brand-color;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: inline-block;
+    text-decoration: none;
+
+    @include media-query($on-iphone-se) {
+        padding: 4px 5px;
+        font-size: 16px;
+        letter-spacing: -0.5px;
+    }
+
+    p {
+        margin: 0;
+        color: $brand-color;
+
+        -webkit-user-select: none;  
+        -moz-user-select: none;    
+        -ms-user-select: none;      
+        user-select: none;
+    }
+}
+
+.PrimaryButton:hover, .PrimaryButton:active {
+  color: #fff;
+  background: lighten($brand-color, 10%);
+  a {
+    color: #fff;
+  }
+  p {
+    color: #fff;
+  }
+}

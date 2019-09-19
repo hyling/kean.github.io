@@ -94,6 +94,15 @@ img.Screenshot {
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.ShowCommentsSection {
+    margin-top: $spacing-unit;
+    display: flex;
+    justify-content: center;
+    @include media-query($on-mobile) {
+        margin: 0.5 * $spacing-unit 0;
+    }
+}
+
 // Post Footer
 // ================================================
 .PostFooter {

@@ -63,7 +63,14 @@ author: "Alexander Grebenyuk"
 
     <div class="Any-horInsets">
         <a name="comment-section"></a>
-        {% include comment-section.html %}
+
+        <div class="ShowCommentsSection" id="button-show-comments">
+            <div onclick="onClickShowComments()" class="PrimaryButton">
+                <p>Show Comments</p>
+            </div>
+        </div>
+
+        <div id="disqus_thread"></div>
     </div>
 
 </div>
@@ -71,3 +78,27 @@ author: "Alexander Grebenyuk"
 </main>
 
 <script src="{{ site.url }}/assets/js/blog.js"></script>
+
+<!-- This scripts handle button "Show Comments". It injects Disqus code _only_ if the user wants to show the comments. -->
+<script>
+    var disqus_shortname = "kean-blog";
+    var disqus_config = function () {
+        this.page.url = "{{ page.url }}"
+        this.page.identifier = "{{ page.uuid }}";
+    };
+    var is_disqus_loaded = false;
+
+    function onClickShowComments() {  
+      if (!is_disqus_loaded){
+        is_disqus_loaded = true;
+
+        document.getElementById("button-show-comments").remove();
+
+        var d = document, s = d.createElement('script');        
+        s.src = '//' + disqus_shortname +'.disqus.com/embed.js';        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.main).appendChild(s);
+      }
+        
+    };
+</script>
