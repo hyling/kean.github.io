@@ -75,12 +75,14 @@
     flex-flow: row nowrap;
 
     h2 {
+        font-weight: 500;
+        font-size: 25px;
         margin-top: 0.75 * $spacing-unit;
 
         @include media-query($on-mobile) {
             max-width: 200px; // force into two lines
-            margin-top: 0.25 * $spacing-unit;
-            font-size: 26px;
+            margin-top: 0.3 * $spacing-unit;
+            font-size: 24px;
         }
     }
 }
