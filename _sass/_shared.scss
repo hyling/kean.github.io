@@ -38,7 +38,7 @@
         color: $text-color;
     }
     &:hover {
-        color: lighten($text-color, 15%);
+        color: lighten($text-color, 20%);
         text-decoration: none;
     }
 }

@@ -1,6 +1,9 @@
-<div class="PostPreview_Header">
-	<p class="PostMeta">Newest Article</p>
-    <h2><a class="PostLink Link-subtle" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-</div>
-<p class="PostPreview_Subtitle">{{ post.subtitle }}</p>
+<a class="Link-subtle" href="{{ post.url | prepend: site.baseurl }}">
+	<div class="PostPreview_Header">
+		<p class="PostMeta">Newest Article</p>
+	    <h2 class="PostLink">{{ post.title }}</h2>
+	</div>
+	<p class="PostPreview_Subtitle">{{ post.subtitle }}</p>
+</a>
+
 <p><a href="{{ post.url | prepend: site.baseurl }}">Continue Reading »</a></p>

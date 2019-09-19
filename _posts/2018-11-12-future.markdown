@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Future&lt;Value, Error&gt;
-subtitle: <a href="https://github.com/kean/FutureX">FutureX</a> – a streamlined Future&lt;Value, Error&gt; implementation with functional interface
+subtitle: FutureX – a streamlined Future&lt;Value, Error&gt; implementation with functional interface
 date: 2018-11-12 9:00:00 +0300
 category: programming
 tags: programming
