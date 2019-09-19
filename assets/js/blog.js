@@ -10,15 +10,13 @@ function onScroll() {
     // currentScroll is the number of pixels the window has been scrolled
     var currentScroll = window.pageYOffset;
 
-    console.log(currentScroll)
-
     // currentSection is somewhere to place the section we must be looking at
     var currentSection
 
     // We check the position of each of the divs compared to the windows scroll positon
     sections.forEach(function(section) {
         // divPosition is the position down the page in px of the current section we are testing      
-        var divPosition = section.offsetTop;
+        var divPosition = section.offsetTop - 16;
 
         // If the divPosition is less the the currentScroll position the div we are testing has moved above the window edge.
         // the -1 is so that it includes the div 1px before the div leave the top of the window.
