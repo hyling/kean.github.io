@@ -119,6 +119,14 @@ One of the major challenges was optimizing ARC. It has visible overhead but it's
 
 ## What's Next
 
-I hope I got you excited! I think this series is going to be fun and useful, especially if you either don't have a formal CS education or you want a refresher. Or maybe you would like to see the concepts you had learned utilized to solve a challenging real world problem. I will keep it simple, focus on the core principles and how to apply them in practice.
+I hope I got you excited! I think this series is going to be fun and useful, especially if you either don't have a formal CS education or you want a refresher. Or maybe you would like to see the concepts you had learned utilized to solve a challenging real world problem.
 
-The implementation is [available on GitHub](https://github.com/kean/Regex), and next articles will to appear soon.
+The implementation is [available on GitHub](https://github.com/kean/Regex).
+
+<div class="Any-vertInsets">
+<a href="{{ site.url }}/post/regex-grammar">
+  <div class="PrimaryButton">
+    Continue Reading »
+  </div>
+</a>
+</div>

@@ -5,6 +5,11 @@
     }
 }
 
+.Any-vertInsets {
+    margin-top: 0.5 * $spacing-unit;
+    margin-bottom: 0.5 * $spacing-unit;
+}
+
 .HorDivider {
     margin: $spacing-unit * 0.5 0 $spacing-unit 0;
     border-top: 1px solid #e0e0e0;
