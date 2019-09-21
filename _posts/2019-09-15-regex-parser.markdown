@@ -411,7 +411,19 @@ We also didn't keep a **parse tree** around and only kept the semantics. This is
 
 ## Completing the Parser
 
-We wrote the first tiny piece of the regex parser and we just need to [finish the rest now](https://knowyourmeme.com/memes/how-to-draw-an-owl). It's not going to be easy and there are still more concepts to learn.
+We wrote the first tiny piece of the regex parser and we just need to [finish the rest now](https://knowyourmeme.com/memes/how-to-draw-an-owl). It's not going to be easy and there are still more concepts to learn. If you do everything right, you end up with a parser that can take a regex pattern like "`the ((red|blue) pill)`" and turn it into this (AST):
+
+```swift
+– Expression
+  – String("the ")
+  – Group(index: 1)
+    – Expression
+      – Group(index: 2)
+        – Alternation
+          – String("red")
+          – String("blue")
+      – String(" pill")
+```
 
 ### Throwing Errors
 
@@ -512,6 +524,14 @@ Parser combinators (or *monadic* parsers) are a great example of functional prog
 In contrast with parser generators, this method of building parsers is fully extensible. You can use the full power of Swift or any other programming language to define special combinators or special parsers of any kind. There is also very little you need to learn before you can start using parser combinators, especially if you are familiar with functional programming.
 
 The code from the article is available in a [playground]({{ site.url }}/playgrounds/parsers.zip). You can find the complete regex parser implementation in [kean/Regex](https://github.com/kean/Regex). With a parser completed, we can now produce a structured representation of the pattern and compile it. This will be the focus on the upcoming article. Stay tuned!
+
+<div class="Any-vertInsets">
+<a href="{{ site.url }}/post/regex-compiler">
+  <div class="PrimaryButton">
+    Continue Reading »
+  </div>
+</a>
+</div>
 
 <div class="References" markdown="1">
 

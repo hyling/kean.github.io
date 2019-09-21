@@ -137,6 +137,10 @@ a {
     }
 }
 
+table {
+    margin: 0.25 * $spacing-unit 0;
+}
+
 blockquote {
     background-color: $background-color-light-grey;
     border-left: 6px solid $grey-color-light;
