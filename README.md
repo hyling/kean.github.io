@@ -24,6 +24,8 @@ To run the server locally:
 
 This page is automatically deployed on each push into `master` branch.
 
+Unfortunately, GitHub Pages doesn't support Semantic Indexing (`--lsi`), so it will have to be run locally before deployment by running `./_sciprts/generate_related_posts.rb`.
+
 ## License
 
 There are many blogs but this one is mine.

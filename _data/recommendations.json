@@ -1,0 +1,164 @@
+{
+  "/post/trunk-based-development": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/app-architecture",
+    "/post/regex-compiler"
+  ],
+  "/post/interface-builder-ui-testing": [
+    "/post/regex-parser",
+    "/post/creating_views",
+    "/post/api-client",
+    "/post/app-architecture"
+  ],
+  "/post/image-preheating": [
+    "/post/api-client",
+    "/post/lets-build-uistackview",
+    "/post/regex-parser",
+    "/post/image-caching"
+  ],
+  "/post/resumable-downloads": [
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/image-caching",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/image-caching": [
+    "/post/api-client",
+    "/post/resumable-downloads",
+    "/post/regex-parser",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/immutability-and-builder-pattern": [
+    "/post/regex-compiler",
+    "/post/codable-tips-and-tricks",
+    "/post/cancellation-token",
+    "/post/app-architecture"
+  ],
+  "/post/codable-tips-and-tricks": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/core-data-progressive-migrations",
+    "/post/optionals"
+  ],
+  "/post/regex-compiler": [
+    "/post/regex-parser",
+    "/post/regex-grammar",
+    "/post/lets-build-regex",
+    "/post/api-client"
+  ],
+  "/post/cancellation-token": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/trunk-based-development",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/introducing-rxnuke": [
+    "/post/api-client",
+    "/post/image-caching",
+    "/post/regex-parser",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/future": [
+    "/post/regex-parser",
+    "/post/optionals",
+    "/post/api-client",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/core-data-progressive-migrations": [
+    "/post/regex-parser",
+    "/post/codable-tips-and-tricks",
+    "/post/api-client",
+    "/post/regex-compiler"
+  ],
+  "/post/lets-build-uistackview": [
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/regex-compiler",
+    "/post/app-architecture"
+  ],
+  "/post/navigation-problem": [
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/app-architecture",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/rxswift-testing": [
+    "/post/app-architecture",
+    "/post/smart-retry",
+    "/post/api-client",
+    "/post/regex-parser"
+  ],
+  "/post/naive-date-time": [
+    "/post/optionals",
+    "/post/codable-tips-and-tricks",
+    "/post/phantom-types",
+    "/post/trunk-based-development"
+  ],
+  "/post/align": [
+    "/post/lets-build-uistackview",
+    "/post/phantom-types",
+    "/post/api-client",
+    "/post/trunk-based-development"
+  ],
+  "/post/lets-build-regex": [
+    "/post/regex-compiler",
+    "/post/regex-parser",
+    "/post/regex-grammar",
+    "/post/optionals"
+  ],
+  "/post/creating_views": [
+    "/post/lets-build-uistackview",
+    "/post/interface-builder-ui-testing",
+    "/post/regex-parser",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/app-architecture": [
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/regex-compiler",
+    "/post/trunk-based-development"
+  ],
+  "/post/network-extensions-into": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/image-caching",
+    "/post/app-architecture"
+  ],
+  "/post/api-client": [
+    "/post/codable-tips-and-tricks",
+    "/post/regex-parser",
+    "/post/phantom-types",
+    "/post/regex-compiler"
+  ],
+  "/post/optionals": [
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/codable-tips-and-tricks",
+    "/post/regex-compiler"
+  ],
+  "/post/regex-parser": [
+    "/post/regex-compiler",
+    "/post/api-client",
+    "/post/optionals",
+    "/post/codable-tips-and-tricks"
+  ],
+  "/post/regex-grammar": [
+    "/post/regex-parser",
+    "/post/regex-compiler",
+    "/post/api-client",
+    "/post/lets-build-regex"
+  ],
+  "/post/smart-retry": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/codable-tips-and-tricks",
+    "/post/rxswift-testing"
+  ],
+  "/post/phantom-types": [
+    "/post/api-client",
+    "/post/regex-parser",
+    "/post/lets-build-uistackview",
+    "/post/codable-tips-and-tricks"
+  ]
+}

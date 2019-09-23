@@ -91,15 +91,20 @@ img.Screenshot {
 }
 
 .ShowCommentsSection {
-    margin-top: $spacing-unit;
+    margin: $spacing-unit 0;
     display: flex;
     justify-content: center;
-    @include media-query($on-mobile) {
+    /*@include media-query($on-mobile) {
         margin: 0.5 * $spacing-unit 0;
-    }
+    } */
 }
 
-// References
+// Post Footer
+// ================================================
+.PostFooter {
+
+}
+
 .References {
     border-top: 2px solid $grey-color-light;
     margin-top: $spacing-unit;
@@ -113,56 +118,16 @@ img.Screenshot {
     }
 }
 
-// Post Footer
-// ================================================
-.PostFooter {
+.RecentArticles {
+    border-top: 2px solid $grey-color-light;
+    margin-top: $spacing-unit;
 
-}
-
-.PostNavigation {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    margin: $spacing-unit 0;
-
-    padding: $spacing-unit;
-    @include media-query($on-mobile) {
-        padding: 0.5 * $spacing-unit;  
+    strong {
+        font-weight: 500;
     }
- }
 
-.PostNavigation_Button {
-    width: 44.333333%;
-}
-
-.PostNavigation_ButtonTitle {
-    h2 {
-        color: $grey-color;
-        margin-top: 0;
-        font-size: 22px;
-        @include media-query($on-mobile) {
-            font-size: 16px;
-        }
-    }
-}
-
-.PostNavigation_PostPreview {
-    .PostMiniPreview {
-        margin-top: $spacing-unit * 0.25;
-
-        .PostLink {
-            font-size: 26px;
-            @include media-query($on-mobile) {
-                font-size: 20px;
-            }
-        }
-
-        .PostMeta {
-            margin-top: 0;
-            @include media-query($on-mobile) {
-                margin-top: 6px;
-            }
-        }
+    .SectionTitle {
+        margin-top: $spacing-unit;
     }
 }
 

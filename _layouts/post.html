@@ -34,32 +34,20 @@ author: "Alexander Grebenyuk"
 
 <div class="PostFooter">
 
-    <div class="PostNavigation Any-responsiveCard">
-        {% if page.previous %}
-            {% assign post = page.previous %}
-            <div class="PostNavigation_Button">
-                <div class="PostNavigation_ButtonTitle">
-                    <h2>Previous</h2>
-                </div>
-                <div class="PostNavigation_PostPreview">
-                    {% include post-mini-preview.html %}
-                </div>
-            </div>
-        {% endif %}
+    <div class="RecentArticles Any-horInsets">
+        <h2 class="PostLink SectionTitle">More Articles</h2>
+        <div class="PostPreviewList">
 
-        {% if page.next %}
-            {% assign post = page.next %}
-            <div class="PostNavigation_Button">
-                <div class="PostNavigation_ButtonTitle">
-                    <h2>Next</h2>
+            <!-- Display the reset of the posts -->
+            {% for related_post in site.data.recommendations[page.permalink] %}
+                {% assign post = site.posts | where: "permalink", related_post | first %}
+                <div class="PostPreview">
+                    {% include post-preview.html %}
                 </div>
-                <div class="PostNavigation_PostPreview">
-                    {% include post-mini-preview.html %}
-                </div>
-            </div>
-        {% endif %}
+            {% endfor %}
 
-    </div>
+        </div> <!--PostPreviewList-->
+    </div> <!-- RecentArticles -->
 
     <div class="Any-horInsets">
         <a name="comment-section"></a>
