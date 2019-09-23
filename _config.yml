@@ -22,7 +22,7 @@ future: true
 featured_posts:
   - 65e6cd7b-0551-4ffc-987e-7e51cd38d81f
 
-gems:
+plugins:
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
