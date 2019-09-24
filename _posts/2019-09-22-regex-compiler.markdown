@@ -2,6 +2,7 @@
 layout: post
 title: "Regex, Part 3: Compiler"
 subtitle: What are Type-2 (or <i>regular</i>) languages? How can Finite State Automation be used to recognize them? Where do regex fit into all this?
+description: What are Type-2 (or <i>regular</i>) languages? How can Finite State Automation be used to recognize them? Where do regex fit into all this?
 date: 2019-09-22 9:00:00 +0300
 category: programming
 tags: programming

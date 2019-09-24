@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Trunk-Based Development"
-subtitle: Why <a href="https://nvie.com/posts/a-successful-git-branching-model/">feature branches</a> might prevent continuous integration and discourage refactoring and what other branching strategies are worth considering.
+description: Why <a href="https://nvie.com/posts/a-successful-git-branching-model/">feature branches</a> might prevent continuous integration and discourage refactoring and what other branching strategies are worth considering.
 date: 2018-03-23 18:00:00 +0300
 category: programming
 tags: programming

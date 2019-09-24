@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Let's Build a Regex Engine
-subtitle: How to understand the language of <code><\/?[\w\s]*>|<.+[\W]></code>
+description: How to understand the language of <code><\/?[\w\s]*>|<.+[\W]></code>
 date: 2019-08-20 9:00:00 +0300
 category: programming
 tags: programming

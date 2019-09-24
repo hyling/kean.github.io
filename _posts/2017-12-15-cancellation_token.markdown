@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cancellation Token"
-subtitle: "A unified model for cooperative cancellation of asynchronous operations"
+description: "A unified model for cooperative cancellation of asynchronous operations"
 date: 2017-12-15 18:00:00 +0300
 category: programming
 tags: ios

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Naive Date and Time"
-subtitle: "Foundation offers great APIs for manipulating dates with <i>time zones</i>, however, it might be missing a few things"
+description: "Foundation offers great APIs for manipulating dates with <i>time zones</i>, however, it might be missing a few things"
 date: 2017-12-01 18:00:00 +0300
 category: programming
 tags: ios

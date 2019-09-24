@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regex, Part 1: Grammar"
-subtitle: Using a formal grammar to describe a regular expression language
+description: Using a formal grammar to describe a regular expression language
 date: 2019-09-09 9:00:00 +0300
 category: programming
 tags: programming

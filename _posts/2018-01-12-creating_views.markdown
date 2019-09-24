@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Creating Views in Code"
-subtitle: "Tips and tricks to keep code in your views nice and readable"
+description: "Tips and tricks to keep code in your views nice and readable"
 date: 2018-01-12 18:00:00 +0300
 category: programming
 tags: ios

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Are Optionals Any Good?"
-subtitle: "Taking a step back to see what is good and bad about Optional type in Swift"
+description: "Taking a step back to see what is good and bad about Optional type in Swift"
 date: 2018-06-14 18:00:00 +0300
 category: programming
 tags: programming

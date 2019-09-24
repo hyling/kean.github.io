@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Three Use Cases of Phantom Types"
-subtitle: "Adding additional type safety using phantom types on the examples"
+description: "Adding additional type safety using phantom types on the examples"
 date: 2017-11-24 18:00:00 +0300
 category: programming
 tags: ios
