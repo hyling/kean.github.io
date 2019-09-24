@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Regex, Part 3: Compiler"
-subtitle: What are Type-2 (or <i>regular</i>) languages? How can Finite State Automation be used to recognize them? Where do regex fit into all this?
 description: What are Type-2 (or <i>regular</i>) languages? How can Finite State Automation be used to recognize them? Where do regex fit into all this?
 date: 2019-09-22 9:00:00 +0300
 category: programming
@@ -186,6 +185,18 @@ Here is as an example of the debug console logs produced by evaluating pattern `
 ## What's Next
 
 As usual, you can find the full compiler implementation at [kean/Regex](https://github.com/kean/Regex). In this article, we've learned about finite state machines and how they can be used to represent some (or most) of the regex constructs. There is only one part left – matcher!
+
+> **NFA vs DFA** *(Additional Reading)*
+>
+> Most of the state machines in the article were non-deterministic (or NFA). The moment you introduce epsilon transitions you add non-determinism. Non-determinism means that a state machine has multiple valid transitions from the same state and with the same input. Most of the regex engines use NFA but there are some that use DFA. I'm not covering the later in the series.
+
+<div class="Any-vertInsets">
+<a href="{{ site.url }}/post/regex-matcher">
+  <div class="PrimaryButton">
+    Continue Reading »
+  </div>
+</a>
+</div>
 
 <div class="References" markdown="1">
 

@@ -7,6 +7,8 @@ category: programming
 tags: programming
 permalink: /post/lets-build-regex
 uuid: ea30401f-f344-4dcc-830c-d513e2f52193
+disable_suggested_articles: true
+disable_comments: true
 ---
 
 > How to understand the language of <code><\/?[\w\s]*>|<.+[\W]></code>
@@ -19,11 +21,11 @@ Now you might be wondering, why would you want to do that? Well, turns out, this
 > - [Regex, Part 1: Grammar]({{ site.url }}/post/regex-grammar)
 > - [Regex, Part 2: Parser]({{ site.url }}/post/regex-parser)
 > - [Regex, Part 3: Compiler]({{ site.url }}/post/regex-compiler)
-> - Regex, Part 4: Matcher
+> - [Regex, Part 4: Matcher]({{ site.url }}/post/regex-matcher)
 
 ## Regular Expressions
 
-Regular expression patterns can be as simple as "[`https?`](https://regex101.com/r/z6Lypq/1)" where "`?`" is a Zero or One [Quantifier](https://docs.microsoft.com/en-us/dotnet/standard/base-types/quantifiers-in-regular-expressions) and which matches either `http` or `https`. Or as complex as [this](https://regex101.com/r/95Clhd/1), which supposedly validates an email address, I think:
+Regular expression patterns can be as simple as "[`https?`](https://regex101.com/r/z6Lypq/1)", where "`?`" is a [Zero or One Quantifier](https://docs.microsoft.com/en-us/dotnet/standard/base-types/quantifiers-in-regular-expressions) and which matches either `http` or `https`. Or as complex as [this](https://regex101.com/r/95Clhd/1), which validates an email address, I think:
 
 ```
 ((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:a(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
@@ -33,39 +35,35 @@ Implementing an engine capable of matching patterns like "`https?`" is easy beca
 
 > [**Quick Reference**](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
 >
-> If you are not familiar with regex or need a refresher, I would highly recommend going through this [Quick Reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) or any other tutorial on the subject. There is going to be no introduction into regex in this series! Make sure you are familiar with the basics (character classes, quantifiers, groups) before you continue.
+> If you are not familiar with regex or need a refresher, I would highly recommend going through this [Quick Reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) or any other tutorial on the subject. There is going to be no introduction into regex in this series. You only need to know the basics to continue.
 
-To make it more challenging, I also wanted it to have performance comparable to `NSRegularExpression` which uses [ICU regex engine](http://icu-project.org/apiref/icu4c/uregex_8h_source.html) under the hood. This engine is written in C and is highly optimized.
+To make it more challenging, I also wanted it to have performance comparable to `NSRegularExpression` which uses highly optimized [ICU regex engine](http://icu-project.org/apiref/icu4c/uregex_8h_source.html) written in C.
 
-Do you want to see how it turned out? Take a red pill and I'll show you how deep the rabbit hole goes.
+Do you want to see how it turned out? Then take the red pill.
 
 ## Overview
 
-There are three main pieces of the puzzle that needs to be solved to make it all work.
+There are four main pieces of the puzzle that needs to be solved to make it all work.
 
 ### Grammar
 
-Before writing a parser for a regular expression *language*, one needs to define the rules of the language, or *grammar*. This is what [**Regex, Part 1: Grammar**]({{ site.url }}/post/regex-grammar) is about. There will be theory. If you want to jump straight to the good stuff, you can skip it. But there are some concepts introduced in this part which will make it easier to understand the remaining parts.
+Before writing a parser for a regular expression *language*, one needs to define the rules of the language, or *grammar*. This is what [**Regex, Part 1: Grammar**]({{ site.url }}/post/regex-grammar) is about. This article outlines some of the theory behind languages and grammars. If that’s not what you are interested in, you can skip it and jump straight into [parsing](#parser). However, I would still recommend revisiting this article later.
 
 ### Parser
 
-Regular expressions have complicated syntax with many constructs, including recursive ones, like [Capture Groups](https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The pattern itself is just a raw string. To reason about it, you first need to parse it and create an abstract representation which you can easily manipulate – an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). [**Regex, Part 2: Parser**]({{ site.url }}/post/regex-parser) will be about parsing regex patterns using Parser Combinators (or *monadic* parsers).
+Regular expressions have complicated syntax with many constructs, including recursive ones, like [Capture Groups](https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The pattern itself is just a raw string. To reason about it, you first need to parse it and create an abstract representation which you can easily manipulate – an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). In [**Regex, Part 2: Parser**]({{ site.url }}/post/regex-parser) we will implement such parser using Parser Combinators (or *monadic* parsers) which are a fantastic example of functional programming used to bring practical benefits.
 
 ### Compiler
 
-You have an AST, now what? Turns out, every regular expression pattern can be represented using [Finite State Automation](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton). [**Regex, Part 3: Compiler**]({{ site.url }}/post/regex-compiler) will explain the concept and show how to use it.
+In [**Regex, Part 3: Compiler**]({{ site.url }}/post/regex-compiler) we will learn about [Finite State Automation](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) and how you can use it to represent regular expressions. In this part, some of the theory from [the part about grammars]({{ site.url }}/post/regex-grammar) will come in handy.
 
 ### Matcher
 
-Let's say you figured out how to parse the pattern, created an AST, and compiled it into a state machine. You have an initial state and a set of transitions from it. How do you execute it against an input string?
-
-Writing a matcher turned out to be the most challenging part. What if the input has 50000 lines of text? What if the expression has nested groups, alternations and quantifiers? What if there are multiple cycles in a state machine? How do you capture groups? What if there are multiple potential matches? How to debug it? How to optimize it? There are many interesting problems to solve, and we will solve them in **Regex, Part 4: Matcher**, the final article in the series.
+And finally, in [**Regex, Part 4: Matcher**]({{ site.url }}/post/regex-matcher) I will introduce two very different matcher algorithms. The first one uses backtracking and can be found in [.NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions) and other platforms. The second one guarantees linear time complexity and is used by [RE2](https://github.com/google/re2) created by Google.
 
 ## What's Next
 
-I hope I got you excited! I think this series is going to be fun and useful, especially if you either don't have a formal CS education or want a refresher. Or maybe you would like to see the concepts you had learned utilized to solve a challenging real world problem.
-
-The implementation is [available on GitHub](https://github.com/kean/Regex).
+I hope I got you excited! This is going to be a fun series packed with ideas and concepts. It will be useful for anyone, regardless of whether you have a CS background or not. You can find a complete implementation on [GitHub](https://github.com/kean/Regex) and if you have any comments or suggestions, please, feel free to hit me up on [Twitter](https://twitter.com/a_grebenyuk).
 
 <div class="Any-vertInsets">
 <a href="{{ site.url }}/post/regex-grammar">

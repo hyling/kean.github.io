@@ -33,6 +33,7 @@ author: "Alexander Grebenyuk"
 </article>
 
 <div class="PostFooter">
+    {% if page.disable_suggested_articles != true %}
 
     <div class="RecentArticles Any-horInsets">
         <h2 class="PostLink SectionTitle">More Articles</h2>
@@ -49,6 +50,10 @@ author: "Alexander Grebenyuk"
         </div> <!--PostPreviewList-->
     </div> <!-- RecentArticles -->
 
+    {% endif %}
+
+    {% if page.disable_comments != true %}
+
     <div class="Any-horInsets">
         <a name="comment-section"></a>
 
@@ -60,6 +65,8 @@ author: "Alexander Grebenyuk"
 
         <div id="disqus_thread"></div>
     </div>
+
+    {% endif %}
 
 </div>
 

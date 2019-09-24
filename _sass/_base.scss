@@ -94,6 +94,10 @@ aside {
     }
 }
 
+sup {
+    line-height: 1.0;
+}
+
 img {
     max-width: 100%;
     vertical-align: middle;
@@ -157,6 +161,7 @@ code {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height};
     font-family: 'SF Mono', Menlo, monospace, Courier, Consolas, "Liberation Mono", monospace;
     font-size: 17px;
+    letter-spacing: -0.5px;
 }
 
 strong code {
