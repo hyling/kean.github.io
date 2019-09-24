@@ -1,9 +1,9 @@
 {
   "/post/trunk-based-development": [
+    "/post/regex-matcher",
     "/post/api-client",
     "/post/regex-parser",
-    "/post/app-architecture",
-    "/post/regex-compiler"
+    "/post/app-architecture"
   ],
   "/post/interface-builder-ui-testing": [
     "/post/regex-parser",
@@ -33,7 +33,7 @@
     "/post/regex-compiler",
     "/post/codable-tips-and-tricks",
     "/post/cancellation-token",
-    "/post/app-architecture"
+    "/post/interface-builder-ui-testing"
   ],
   "/post/codable-tips-and-tricks": [
     "/post/api-client",
@@ -42,16 +42,16 @@
     "/post/optionals"
   ],
   "/post/regex-compiler": [
+    "/post/regex-matcher",
     "/post/regex-parser",
     "/post/regex-grammar",
-    "/post/lets-build-regex",
-    "/post/api-client"
+    "/post/lets-build-regex"
   ],
   "/post/cancellation-token": [
     "/post/api-client",
     "/post/regex-parser",
-    "/post/trunk-based-development",
-    "/post/codable-tips-and-tricks"
+    "/post/regex-matcher",
+    "/post/trunk-based-development"
   ],
   "/post/introducing-rxnuke": [
     "/post/api-client",
@@ -69,19 +69,19 @@
     "/post/regex-parser",
     "/post/codable-tips-and-tricks",
     "/post/api-client",
-    "/post/regex-compiler"
+    "/post/regex-matcher"
   ],
   "/post/lets-build-uistackview": [
+    "/post/regex-matcher",
     "/post/regex-parser",
     "/post/api-client",
-    "/post/regex-compiler",
-    "/post/app-architecture"
+    "/post/regex-compiler"
   ],
   "/post/navigation-problem": [
     "/post/regex-parser",
-    "/post/api-client",
     "/post/app-architecture",
-    "/post/codable-tips-and-tricks"
+    "/post/api-client",
+    "/post/regex-matcher"
   ],
   "/post/rxswift-testing": [
     "/post/app-architecture",
@@ -103,9 +103,9 @@
   ],
   "/post/lets-build-regex": [
     "/post/regex-compiler",
+    "/post/regex-matcher",
     "/post/regex-parser",
-    "/post/regex-grammar",
-    "/post/optionals"
+    "/post/regex-grammar"
   ],
   "/post/creating_views": [
     "/post/lets-build-uistackview",
@@ -117,43 +117,49 @@
     "/post/regex-parser",
     "/post/api-client",
     "/post/regex-compiler",
-    "/post/trunk-based-development"
+    "/post/regex-matcher"
   ],
   "/post/network-extensions-into": [
     "/post/api-client",
     "/post/regex-parser",
-    "/post/image-caching",
-    "/post/app-architecture"
+    "/post/app-architecture",
+    "/post/image-caching"
   ],
   "/post/api-client": [
     "/post/codable-tips-and-tricks",
     "/post/regex-parser",
     "/post/phantom-types",
-    "/post/regex-compiler"
+    "/post/regex-matcher"
   ],
   "/post/optionals": [
     "/post/regex-parser",
     "/post/api-client",
     "/post/codable-tips-and-tricks",
-    "/post/regex-compiler"
+    "/post/regex-matcher"
   ],
   "/post/regex-parser": [
     "/post/regex-compiler",
+    "/post/regex-matcher",
     "/post/api-client",
-    "/post/optionals",
-    "/post/codable-tips-and-tricks"
+    "/post/regex-grammar"
   ],
   "/post/regex-grammar": [
     "/post/regex-parser",
     "/post/regex-compiler",
-    "/post/api-client",
-    "/post/lets-build-regex"
+    "/post/regex-matcher",
+    "/post/api-client"
   ],
   "/post/smart-retry": [
     "/post/api-client",
     "/post/regex-parser",
     "/post/codable-tips-and-tricks",
     "/post/rxswift-testing"
+  ],
+  "/post/regex-matcher": [
+    "/post/regex-matcher",
+    "/post/regex-compiler",
+    "/post/regex-parser",
+    "/post/api-client"
   ],
   "/post/phantom-types": [
     "/post/api-client",
