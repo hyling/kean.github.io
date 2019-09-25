@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regex, Part 4: Matcher"
-description: Explore two different regex matching algorithms, one used by Microsoft, another designed by Google
+description: Explore two different regex matching algorithms, one used by Microsoft, another by Google
 date: 2019-09-25 9:00:00 +0300
 category: programming
 tags: programming
@@ -266,7 +266,7 @@ Both algorithms are designed to solve the same problem, but they are different i
 
 DFS can be very fast given when the pattern is well written. In many cases, it can return the result in [linear time](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions#linear-comparison-without-backtracking) and faster than the BFS version would. But it doesn't prevent [catastrophic backtracking](#catastrophic_backtracking). It places the responsibility on the developer to come up with the optimal regex pattern.
 
-BFS, on the other hand, is immune to catastrophic backtracking[^7]. One of the engines that uses a similar algorithm is [RE2](https://github.com/google/re2) designed by Google. Its [goal](https://github.com/google/re2/wiki/WhyRE2) is to be able to handle regular expressions from untrusted users.
+BFS, on the other hand, is immune to catastrophic backtracking[^7]. One of the engines that uses a similar algorithm is [RE2](https://github.com/google/re2) created by Google. Its [goal](https://github.com/google/re2/wiki/WhyRE2) is to be able to handle regular expressions from untrusted users.
 
 The BFS immunity to catastrophic backtracking comes at a performance cost. It performs an exhaustive search to guarantee that it finds the longest possible match. It also makes certain features like lazy quantification very tricky to implement – I personally didn't. And it makes implementing certain features like backreferences impossible.
 
