@@ -59,7 +59,7 @@ In [**Regex, Part 3: Compiler**]({{ site.url }}/post/regex-compiler) we will lea
 
 ### Matcher
 
-And finally, in [**Regex, Part 4: Matcher**]({{ site.url }}/post/regex-matcher) I will introduce two very different matcher algorithms. The first one uses backtracking and can be found in [.NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions) and other platforms. The second one guarantees linear time complexity and is used by [RE2](https://github.com/google/re2) created by Google.
+And finally, in [**Regex, Part 4: Matcher**]({{ site.url }}/post/regex-matcher) I will introduce two very different matcher algorithms. The first one uses backtracking and is similar to the algorithm found in [.NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions) and other platforms. The second one guarantees linear time complexity and is close to what is used by [RE2](https://github.com/google/re2) created by Google.
 
 ## What's Next
 

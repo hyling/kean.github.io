@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regex, Part 4: Matcher"
-description: Explore two different regex matching algorithms, one used by Microsoft, another by Google
+description: Explore two different regex matching algorithms
 date: 2019-09-25 9:00:00 +0300
 category: programming
 tags: programming
@@ -321,17 +321,15 @@ That's all folks! I hope you enjoyed this series as much as I did. I've learned 
 
 ## References
 
-- Microsoft (2018), [**Backtracking in Regular Expressions**](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions), Regular Expression in .NET
-- ICU, [**Regular Expressions**](http://userguide.icu-project.org/strings/regexp)
-- OWASP (2017), [**Regular Expression Denial of Service**](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS)
-- Jan Goyvaerts (2003-2019), [**Regular-Expressions.info**](https://www.regular-expressions.info/engine.html)
-- [**Regular Expression 101 (regex101.com)**](https://regex101.com)
-- The IEEE and The Open Group (2004), [**The Open Group Base Specifications Issue 6
+1. Microsoft (2018), [**Backtracking in Regular Expressions**](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions), Regular Expression in .NET
+2. ICU, [**Regular Expressions**](http://userguide.icu-project.org/strings/regexp)
+3. OWASP (2017), [**Regular Expression Denial of Service**](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS)
+4. Jan Goyvaerts (2003-2019), [**Regular-Expressions.info**](https://www.regular-expressions.info/engine.html)
+5. [**Regular Expression 101 (regex101.com)**](https://regex101.com)
+6. The IEEE and The Open Group (2004), [**The Open Group Base Specifications Issue 6
 IEEE Std 1003.1, Part 9, Regular Expressions**](https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap09.html)
 
-<div class="Footnotes" markdown="1">
-
-## Footnotes
+<div class="FootnotesSection" markdown="1">
 
 [^1]: To check whether the *entire* input string matches the regex you normally use Start of String and End of String [anchors](https://docs.microsoft.com/en-us/dotnet/standard/base-types/anchors-in-regular-expressions).
 [^2]: Epsilon transitions don't consume any input characters. We assume that the regex will never produce an NFA with loops which consist solely of epsilon transitions because that would lead to infinite recursion.
