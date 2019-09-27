@@ -28,4 +28,5 @@ Unfortunately, GitHub Pages doesn't support Semantic Indexing (`--lsi`), so it w
 
 ## License
 
-There are many blogs but this one is mine.
+All code is published under the [MIT License](https://opensource.org/licenses/MIT).<br/>
+All content © [Alexander Grebenyuk](https://github.com/kean), All Rights Reserved

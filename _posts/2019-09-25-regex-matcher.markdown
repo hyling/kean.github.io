@@ -311,7 +311,7 @@ ARC turned out to be one of the challenging parts to optimize. ARC has a huge im
 
 <img class="Screenshot" src="{{ site.url }}/images/posts/regex-matcher/sil.jpeg">
 
-Fortunately, Swift team is working hard on [optimizing ARC](https://github.com/apple/swift/blob/master/docs/ARCOptimization.rst). There are even more optimizations to come in the future, like [SIL ownership](https://forums.swift.org/t/proposal-sil-ownership-model-verifier/4665) model, and potentially [more control](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md) over memory management on the Swift code level. It looks like the primary goal is to make sure the compiler is smart enough to generate the most optimal ARC code in most of the basic scenarios. The current version of the compiler is quite generous in terms of how many `retain` and `release` calls it adds throughout your code. I can't wait to see more improvements in that area.
+Fortunately, Swift team is working hard on [optimizing ARC](https://github.com/apple/swift/blob/master/docs/ARCOptimization.rst). There are even more optimizations to come in the future, like [SIL ownership](https://forums.swift.org/t/proposal-sil-ownership-model-verifier/4665) model, and potentially [more control](https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md) over memory management on the Swift code level. The current version of the compiler is quite generous in terms of how many `retain` and `release` calls it adds throughout your code. I can't wait to see more improvements in that area.
 
 ## The End
 
