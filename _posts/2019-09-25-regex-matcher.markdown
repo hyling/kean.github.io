@@ -11,7 +11,7 @@ uuid: 0b507d56-2cd1-402f-be3e-f1f39645e3d3
 
 Previously on [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex), we learned about formal grammars and [defined]({{ site.url }}/post/regex-grammar) one for regex, [parsed]({{ site.url }}/post/regex-parser) the pattern, and [compiled]({{ site.url }}/post/regex-compiler) it to Nondeterministic Finite Automaton (NFA) There is now only one thing left to do – use NFA to find *matches* in the input strings.
 
-> **Warning**: Matcher is still Work in Progress
+> **Note**: Matcher is still work in progress.
 
 ## Matching
 
@@ -183,82 +183,15 @@ Catastrophic backtracking is not the end of the world as many people suggest it 
 
 Is there anything we can do about it? The answer is yes. And this is where the second algorithm comes in.
 
-## BFS
+## BFS (Lazy DFA)
 
-[Breadth-first search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) is another search algorithm which, unlike DFS, explores all the neighbor nodes prior to moving to the nodes at the next depth level.
+[Breadth-first search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) is another search algorithm which, unlike DFS, explores all the neighbor nodes prior to moving to the nodes at the next depth level. Just like with DFS, we won't simply use the BFS algorithm itself, but we can apply its principles.
 
-Just like with DFS, we won't simply use the BFS algorithm itself, but we can apply its principles. The idea behind this new regex matching algorithm is to take an input character and find all states reachable from the current state after consuming a single character.
+The idea behind this new regex matching algorithm is to take an input character and find all states reachable from the current state after consuming a single character. By doing so we might encounter multiple epsilon transitions in the NFA. If we remove all the epsilon transitions, and keep only the ones that consume a character, we essentially re-construct a single DFA state with all the possible transitions.
 
-### Implementing BFS
-
-This is a simplified implementation of BFS. The `func firstMatch(in string: String) -> Substring?` function is almost identical to the one used by DFS:
-
-```swift
-func firstMatch(in string: String) -> Substring? {
-    // Perform search starting from every possible index in the input string
-    for index in string.indices {
-        if let endIndex = endIndexOfFirstMatch(in: string[index...], index: index, fsm: <#compiled_regex#>) {
-            return string[index..<endIndex]
-        }
-    }
-
-    return nil
-}
-```
-
-But the actual search is completely different. The shape is very close to the actual BFS.
-
-```swift
-func endIndexOfFirstMatch(in string: Substring, index: String.Index, fsm: FSM) -> String.Index? {
-    var reachableStates = Set<State>(0)
-    var potentialMatchEndIndex: String.Index?
-
-    while !reachableStates.isEmpty, index < string.endIndex {
-        // Find new reachable states
-        var newReachableStates = Set<State>()
-        var encounteredStates = Set<State>()
-
-        for state in reachableStates {
-            var stack = [State](state) // Go through the graph using BFS
-            while let state = stack.popLast(), !encounteredStates.contains(state) {
-                encounteredStates.insert(state)
-
-                guard !fsm.isAcceptingState(state) else {
-                    potentialMatchEndIndex = index // Found a new match!
-                    continue
-                }
-
-                for transition in fsm.transitions(from: state) {
-                    guard transition.isTransitionPossible(string, index) else {
-                        continue // Reached dead-end, do nothing
-                    }
-                    if transition.isEpsilon {
-                        stack.append(transition.end)
-                    } else {
-                        newReachableStates.insert(transition.end)
-                    }
-                }
-            }
-        }
-        reachableStates = newReachableStates
-    }
-
-    return potentialMatchEndIndex
-}
-```
-
-Keep in mind, this is a simplified version. As usual, you can find the actual implementation on [GitHub](https://github.com/kean/Regex)
+The idea might seem straightforward but there is a lot nuance. Every engine, that implements this algorithm, does it slightly differently. I'm also currently in the process of implementing it. You can find the latest version on [GitHub](https://github.com/kean/Regex). If you want to see a complete version written by people who I smarter that I am, I would encourage you going through the code of some of the production-ready open source engines like [RE2](https://github.com/google/re2) or [Rust/Regex](https://github.com/rust-lang/regex/blob/master/src/dfa.rs).
 
 ### Longest Path
-
-One of the major departures from the previous algorithm is this line:
-
-```swift
-guard !fsm.isAcceptingState(state) else {
-    potentialMatchEndIndex = index // Found a new match!
-    continue
-}
-```
 
 When an algorithm finds a potential match, it doesn't stop the search immediately. Instead, it performs an exhaustive search to find the *longest match*. The requirement to always return the longest match is part of the [POSIX regex standard](https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap09.html)[^6]. It also happens to make sure that all quantifiers have greedy behavior which most users expect.
 
