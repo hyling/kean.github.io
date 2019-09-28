@@ -34,7 +34,7 @@
     line-height: 1.0;
     letter-spacing: -1px;
 
-    font-size: 32px;
+    font-size: 30px;
     @include media-query($on-mobile) {
         font-size: 28px;
     }
