@@ -11,6 +11,8 @@ uuid: 0b507d56-2cd1-402f-be3e-f1f39645e3d3
 
 Previously on [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex), we learned about formal grammars and [defined]({{ site.url }}/post/regex-grammar) one for regex, [parsed]({{ site.url }}/post/regex-parser) the pattern, and [compiled]({{ site.url }}/post/regex-compiler) it to Nondeterministic Finite Automaton (NFA) There is now only one thing left to do – use NFA to find *matches* in the input strings.
 
+> **Warning**: Matcher is still Work in Progress
+
 ## Matching
 
 What do we mean when we say "match"?
@@ -277,27 +279,6 @@ The BFS immunity to catastrophic backtracking comes at a performance cost. It pe
 Whether these trade-offs are significant or not is up to the developers who use these tools. I can see how for many of the possible usages they aren't. That's probably the reason why most of the popular engines, like the ones found in .NET, Foundation, Go, JavaScript, and Python, all use different algorithms.
 
 ## Optimizations
-
-My original goal was to make sure that my engine has a performance comparable to `NSRegularExpression`. Have I reached this goal? Partially, yes.
-
-I created a set of performance tests in which I compare my engine with `NSRegularExpression`. In most of them, `NSRegularExpression` outperforms my engine by two to four times. Which is not surprising. `NSRegularExpression` uses [ICU regex engine](http://icu-project.org/apiref/icu4c/uregex_8h_source.html) under the hood. This engine is written in C and is highly optimized, as I can imagine.
-
-I was focusing primarily on a BFS algorithm. And for certain regexes, it truly shines. For example, my implementation outperforms `NSRegularExpression` by quite a big margin. For example, it performs way better in the scenarios with a lof of potential backtracking, like this:
-
-```swift
-// NSRegularExpression: 0.336 seconds
-// Regex: 0.031 seconds
-func testNearlyMatchingPatternWithGreedyQuantifier() throws {
-    let regex = try Regex("a*c")
-    let string = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-
-    measure {
-        for _ in 0...2000 {
-            let _ = regex.matches(in: string)
-        }
-    }
-}
-```
 
 ### String-Searching
 
