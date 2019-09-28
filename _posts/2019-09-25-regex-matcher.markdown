@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Regex, Part 4: Matcher"
+title: "Regex, Part 3: Matcher"
 description: Explore two different regex matching algorithms
 date: 2019-09-25 9:00:00 +0300
 category: programming

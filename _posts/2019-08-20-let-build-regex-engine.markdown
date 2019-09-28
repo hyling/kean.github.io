@@ -17,11 +17,11 @@ Ever wondered how regex works under the hood? How does it understand an incantat
 
 Now you might be wondering, why would you want to do that? Well, turns out, this is a fantastic learning opportunity. Parsers, compilers, finite automation, graphs, trees, extended grapheme clusters - it has everything! Last but not least, you get a chance to learn regex.
 
-> - [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex) (This article)
-> - [Regex, Part 1: Grammar]({{ site.url }}/post/regex-grammar)
-> - [Regex, Part 2: Parser]({{ site.url }}/post/regex-parser)
-> - [Regex, Part 3: Compiler]({{ site.url }}/post/regex-compiler)
-> - [Regex, Part 4: Matcher]({{ site.url }}/post/regex-matcher)
+> - [Let's Build a Regex Engine]({{ site.url }}/post/lets-build-regex) (You are here)
+> - [Regex, Prologue: Grammar]({{ site.url }}/post/regex-grammar)
+> - [Regex, Part 1: Parser]({{ site.url }}/post/regex-parser)
+> - [Regex, Part 2: Compiler]({{ site.url }}/post/regex-compiler)
+> - [Regex, Part 3: Matcher]({{ site.url }}/post/regex-matcher)
 
 ## Regular Expressions
 
@@ -47,19 +47,19 @@ There are four main pieces of the puzzle that needs to be solved to make it all 
 
 ### Grammar
 
-Before writing a parser for a regular expression *language*, one needs to define the rules of the language, or *grammar*. This is what [**Regex, Part 1: Grammar**]({{ site.url }}/post/regex-grammar) is about. This article outlines some of the theory behind languages and grammars. If that’s not what you are interested in, you can skip it and jump straight into [parsing](#parser). However, I would still recommend revisiting this article later.
+Before writing a parser for a regular expression *language*, one needs to define the rules of the language, or *grammar*. This is what [**Regex, Prologue: Grammar**]({{ site.url }}/post/regex-grammar) is about. This article outlines some of the theory behind languages and grammars. If that’s not what you are interested in, you can skip it and jump straight into [parsing](#parser). However, I would still recommend revisiting this article later.
 
 ### Parser
 
-Regular expressions have complicated syntax with many constructs, including recursive ones, like [Capture Groups](https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The pattern itself is just a raw string. To reason about it, you first need to parse it and create an abstract representation which you can easily manipulate – an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). In [**Regex, Part 2: Parser**]({{ site.url }}/post/regex-parser) we will implement such parser using Parser Combinators (or *monadic* parsers) which are a fantastic example of functional programming used to bring practical benefits.
+Regular expressions have complicated syntax with many constructs, including recursive ones, like [Capture Groups](https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The pattern itself is just a raw string. To reason about it, you first need to parse it and create an abstract representation which you can easily manipulate – an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). In [**Regex, Part 1: Parser**]({{ site.url }}/post/regex-parser) we will implement such parser using Parser Combinators (or *monadic* parsers) which are a fantastic example of functional programming used to bring practical benefits.
 
 ### Compiler
 
-In [**Regex, Part 3: Compiler**]({{ site.url }}/post/regex-compiler) we will learn about [Finite State Automation](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) and how you can use it to represent regular expressions. In this part, some of the theory from [the part about grammars]({{ site.url }}/post/regex-grammar) will come in handy.
+In [**Regex, Part 2: Compiler**]({{ site.url }}/post/regex-compiler) we will learn about [Finite State Automation](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) and how you can use it to represent regular expressions. In this part, some of the theory from [the part about grammars]({{ site.url }}/post/regex-grammar) will come in handy.
 
 ### Matcher
 
-And finally, in [**Regex, Part 4: Matcher**]({{ site.url }}/post/regex-matcher) I will introduce two very different matcher algorithms. The first one uses backtracking and is similar to the algorithm found in [.NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions) and other platforms. The second one guarantees linear time complexity and is close to what is used by [RE2](https://github.com/google/re2) created by Google.
+And finally, in [**Regex, Part 3: Matcher**]({{ site.url }}/post/regex-matcher) I will introduce two very different matcher algorithms. The first one uses backtracking and is similar to the algorithm found in [.NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions) and other platforms. The second one guarantees linear time complexity and is close to what is used by [RE2](https://github.com/google/re2) created by Google.
 
 ## What's Next
 
