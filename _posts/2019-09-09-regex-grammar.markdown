@@ -23,7 +23,7 @@ The syntaxes of most programming languages in use today are defined through [*fo
 > <i>struct-members</i> → struct-member struct-members<i><sub>opt</sub></i><br>
 > <i>struct-member</i> → declaration | compiler-control-statement<br>
 
-This is an example of a formal grammar described using [a special notation](https://docs.swift.org/swift-book/ReferenceManual/AboutTheLanguageReference.html). It might seem a bit scary at first, like any unfamiliar mathematical notation does. But bare with me. By the end of this article you are going to learn what formal grammars are, why you need them, and how to read and write different formal grammar notations. Finally, we will define a subset of a regular expression language grammar using an [Extended Backus-Naur form](https://en.wikipedia.org/wiki/Backus–Naur_form) (EBNF).
+This is an example of a formal grammar described using [a special notation](https://docs.swift.org/swift-book/ReferenceManual/AboutTheLanguageReference.html). It might seem a bit scary at first, like any unfamiliar mathematical notation does. But bear with me. By the end of this article you are going to learn what formal grammars are, why you need them, and how to read and write different formal grammar notations. Finally, we will define a subset of a regular expression language grammar using an [Extended Backus-Naur form](https://en.wikipedia.org/wiki/Backus–Naur_form) (EBNF).
 
 ## Grammar
 

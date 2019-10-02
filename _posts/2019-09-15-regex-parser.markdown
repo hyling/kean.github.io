@@ -218,7 +218,7 @@ extension Parser {
 
 These two functions are a bread and butter of functional programming, or I would dare to say, programming in general. `Array` has them, `Optional` has them, [`Future`](https://github.com/kean/FutureX) has them, `Combine` and `RxSwift` primitives have them. And now `Parser` has them too, making it a proper [functor and monad](https://www.mokacoding.com/blog/functor-applicative-monads-in-pictures).
 
-We've already covered a lot of ground but bare with me, there is one more method that we need to finally define the number parser - `oneOrMore`.
+We've already covered a lot of ground but bear with me, there is one more method that we need to finally define the number parser - `oneOrMore`.
 
 ```swift
 extension Parser {
