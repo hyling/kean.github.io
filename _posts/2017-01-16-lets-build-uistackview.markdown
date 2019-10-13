@@ -10,9 +10,9 @@ redirect_from: /blog/lets-build-uistackview
 uuid: 89038ab2-a19b-4be3-9a3f-7ab2d58530d6
 ---
 
-[`UIStackView`](https://developer.apple.com/reference/uikit/uistackview) is a great showcase of Auto Layout. It's built using constraints which makes building an [open source replacement](https://github.com/kean/Arranged) easier. If you're not in business of building one this article will give you a better understanding of how `UIStackView` interacts with Auto Layout.
+[`UIStackView`](https://developer.apple.com/reference/uikit/uistackview) is a great showcase of Auto Layout. It is built entirely using constraints. Which makes it fairly straightforward to build an [open source replacement](https://github.com/kean/Arranged). Even if you're not in the business of building one, you may find this article useful. It will give you a better understanding of `UIStackView`.
 
-The plan is simple. I'm going to create an instance of `UIStackView`, try different configurations, take screenshots, and print all of the constraints that affect the stack view layout. I'm going to discuss each of those configurations a bit. After that implementing a replacement of `UIStackView` should be as simple as translating those constraints into code. In fact I've already done that in a library named [Arranged](https://github.com/kean/Arranged) (which I've built more than 10 months ago, this follow-up post is a bit late).
+Here is the plan. I will create an instance of `UIStackView`, try different configurations, take screenshots, and print all of the constraints that affect the stack view layout. With this information, implementing a replacement of `UIStackView` should be as easy as translating those constraints into code. In fact, I've already done that in a library named [Arranged](https://github.com/kean/Arranged) (which I've built more than 10 months ago, this follow-up post is a bit late).
 
 **Prerequisites:**
 
@@ -39,45 +39,15 @@ In most examples I'm going to use a single `UIStackView` with 3 arranged views w
  Subview2.height == 50 Hug:250 CompressionResistance:750
 </pre>
 
-Most of the configurations are going to have a `.horizontal` axis. If you'd like to jump to some specific configurations use a [contents table](#Contents) below.
+Most of the configurations are going to have a `.horizontal` axis.
 
-
-<a name="Contents"></a>
-
-## Contents
-
-#### Distribution
-
-- [.fill](#UIStackViewDistribution.fill)
-- [.fillEqually](#UIStackViewDistribution.fillEqually)
-- [.fillProportionally](#UIStackViewDistribution.fillProportionally)
-- [.equalSpacing](#UIStackViewDistribution.equalSpacing)
-- [.equalCentering](#UIStackViewDistribution.equalCentering)
-
-#### Alignment
-
-- [.fill](#UIStackViewAlignment.fill)
-- [.leading](#UIStackViewAlignment.leading)
-- [.firstBaseline](#UIStackViewAlignment.firstBaseline)
-- [.center](#UIStackViewAlignment.center)
-- [.trailing](#UIStackViewAlignment.trailing)
-- [.lastBaseline](#UIStackViewAlignment.lastBaseline)
-
-#### Other
-
-- [Hiding Subviews](#Misc.HidingSubviews)
-- [Margins Relative Layout](#Misc.MarginsRelativeLayout)
-- [Baseline Relative Layout](#Misc.BaselineRelativeLayout)
-- [Single Subview, Alignment: .center](#Misc.SingleSubviewCenterAlignment)
-
-
-## UIStackView Distribution
+## UIStackView.Distribution
 
 The distribution determines how the stack view lays out its arranged views along its axis. Let's start with a default `UIStackView` configuration, which is also one of the easiest to implement:
 
 <a name="UIStackViewDistribution.fill"></a>
 
-### 1.1 Distribution: .fill
+### .fill
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. When the arranged views do not fit within the stack view, it shrinks the views according to their compression resistance priority. If the arranged views do not fill the stack view, it stretches the views according to their hugging priority.
 
@@ -148,7 +118,7 @@ In the result we get a very simple but very useful layout. In terms of constrain
 
 <a name="UIStackViewDistribution.fillEqually"></a>
 
-### 1.2 Distribution: .fillEqually
+### .fillEqually
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. The views are resized so that they are all the same size along the stack view’s axis.
 
@@ -183,7 +153,7 @@ This distribution is almost the same as <a href="#UIStackViewDistribution.fill">
 
 <a name="UIStackViewDistribution.fillProportionally"></a>
 
-### 1.3 Distribution: .fillProportionally
+### .fillProportionally
 
 > A layout where the stack view resizes its arranged views so that they fill the available space along the stack view’s axis. Views are resized proportionally based on their intrinsic content size along the stack view’s axis.
 
@@ -237,7 +207,7 @@ Also notice that the priority of the constraints is higher then both content hug
 
 <a name="UIStackViewDistribution.equalSpacing"></a>
 
-### 1.4 Distribution: .equalSpacing
+### .equalSpacing
 
 > A layout where the stack view positions its arranged views so that they fill the available space along the stack view’s axis. When the arranged views do not fill the stack view, it pads the spacing between the views evenly. If the arranged views do not fit within the stack view, it shrinks the views according to their compression resistance priority.
 
@@ -277,7 +247,7 @@ This configuration requires extra spacers (`_UIOLAGapGuide`) [between subsequent
 
 <a name="UIStackViewDistribution.equalCentering"></a>
 
-### 1.5 Distribution: .equalCentering
+### .equalCentering
 
 > A layout that attempts to position the arranged views so that they have an equal center-to-center spacing along the stack view’s axis, while maintaining the spacing property’s distance between views. If the arranged views do not fit within the stack view, it shrinks the spacing until it reaches the minimum spacing defined by its spacing property. If the views still do not fit, the stack view shrinks the arranged views according to their compression resistance priority.
 
@@ -320,12 +290,12 @@ The minimum spacing is again achieved by **UISV-spacing** constraints which all 
 
 <p class="HorDivider"></p>
 
-## UIStackView Alignment
+## UIStackView.Alignment
 
 
 <a name="UIStackViewAlignment.fill"></a>
 
-### 2.1 Alignment: .fill
+### .fill
 
 > A layout where the stack view resizes its arranged views so that they fill the available space perpendicular to the stack view’s axis.
 
@@ -356,7 +326,7 @@ This configuration is exactly the same as the very first one: [fill distribution
 
 <a name="UIStackViewAlignment.leading"></a>
 
-### 2.2 Alignment: .leading
+### .leading
 
 > A layout for vertical stacks where the stack view aligns the leading edge of its arranged views along its leading edge.
 
@@ -409,7 +379,7 @@ Now why is that so complicated? Why is layout spacer necessary and is it necessa
 
 <a name="UIStackViewAlignment.center"></a>
 
-### 2.3 Alignment: .center
+### .center
 
 > A layout where the stack view aligns the center of its arranged views with its center along its axis.
 
@@ -455,7 +425,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
 
 <a name="UIStackViewAlignment.trailing"></a>
 
-### 2.4 Alignment: .trailing
+### .trailing
 
 > A layout for vertical stacks where the stack view aligns the trailing edge of its arranged views along its trailing edge.
 
@@ -498,7 +468,7 @@ This and the following alignment (.trailing) is very similar to a [leading align
 
 <a name="UIStackViewAlignment.firstBaseline"></a>
 
-### 2.5 Alignment: .firstBaseline
+### .firstBaseline
 
 > A layout where the stack view aligns its arranged views based on their first baseline. This alignment is only valid for horizontal stacks.
 
@@ -552,7 +522,7 @@ This alignment is again very similar to the previous ones. It uses an auxilary s
 
 <a name="UIStackViewAlignment.lastBaseline"></a>
 
-### 2.6 Alignment: .lastBaseline
+### .lastBaseline
 
 > A layout where the stack view aligns its arranged views based on their last baseline. This alignment is only valid for horizontal stacks.
 
@@ -601,12 +571,12 @@ This alignment is again very similar to the previous ones. It uses an auxilary s
 <p class="HorDivider"></p>
 
 
-## UIStackView Misc
+## Misc
 
 
 <a name="Misc.HidingSubviews"></a>
 
-### 3.1 Hiding Subviews
+### Hiding Subviews
 
 > The stack view automatically updates its layout whenever views are added, removed or inserted into the arrangedSubviews array, or whenever one of the arranged views's isHidden property changes.
 
@@ -661,7 +631,7 @@ This way some of the responsibilities gets delegated to the user of the library,
 
 <a name="Misc.MarginsRelativeLayout"></a>
 
-### 3.2 Margins Relative Layout
+### Margins Relative Layout
 
 > A Boolean value that determines whether the stack view lays out its arranged views relative to its layout margins. If true, the stack view will layout its arranged views relative to its layout margins. If false, it lays out the arranged views relative to its bounds.
 
@@ -698,7 +668,7 @@ UISV-alignment:
 
 <a name="Misc.BaselineRelativeLayout"></a>
 
-### 3.3 Baseline Relative Layout
+### Baseline Relative Layout
 
 > A Boolean value that determines whether the vertical spacing between views is measured from their baselines. If YES, the vertical space between views are measured from the last baseline of a text-based view, to the first baseline of the view below it. Top and bottom views are also positioned so that their closest baseline is the specified distance away from the stack view’s edge. This property is only used by vertical stack views.
 
@@ -729,7 +699,7 @@ The stack modifies **UISV-spacing** constraints by using `.firstBaseline` and `.
 
 <a name="Misc.SingleSubviewCenterAlignment"></a>
 
-### 3.4 Single Subview, Alignment: .Center
+### Single Subview, Alignment.Center
 
 <img src="{{ site.url }}/images/stack_view/14.png" class="PostStackView_Screenshot">
 
@@ -751,7 +721,7 @@ The stack modifies **UISV-spacing** constraints by using `.firstBaseline` and `.
 Compared to [center alignment](#UIStackViewAlignment.center) with multiple subviews this configuration optimizes constraints by removing auxiliary spacer (`_UILayoutSpacer`) which is not necessary when there is just single arranged view.
 
 
-## Implementing UIStackView
+## Implementation
 
 I'm not going to dive into too much detail as far as actual the implementation goes. You've probably already noticed that most of the configurations have something in common. All of the constraints are split into well-defined categories and follow specific rules. The only thing that remains is to translate those categories and rules into code (actually it was a bit challenging given the number of options and different scenarios).
 
