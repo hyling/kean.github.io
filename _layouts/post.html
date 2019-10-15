@@ -12,10 +12,11 @@ author: "Alexander Grebenyuk"
 
 <main>
 
+{% assign word_count = content | strip_html | number_of_words %}
 {% if page.minutes %}
   {% assign minutes = page.minutes %}
 {% else %}
-  {% assign minutes = content | strip_html | number_of_words | divided_by: 180 %}
+  {% assign minutes = word_count | divided_by: 180 %}
   {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
 {% endif %}
 
@@ -26,7 +27,7 @@ author: "Alexander Grebenyuk"
     </div>
 
     <header class="PostHeader">
-        <p class="PostMeta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time> &nbsp;&nbsp;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAAAmJLR0QA/4ePzL8AAAORSURBVFjDpZjPS1VBFMc/gj6hNvnU1LQ2pQWS9QcEFbTRItQks11gJv6kpDRa1MYy0F62jDZBobRpVeIuCDWNSqhFYEVZbfIHpZlp9k4L586773nfnbk2sxnmfs858+P8+M4Fc8vlJL0MMsEsyywzywSD9FJDLv/ZMmnhOeLTx2gmc33KC7jJgq9yp/8kQn4w5Wm0Mm+l3OkLXCHdVv1OxuOEVximk0qKySCNNDIoppJORvgbh3tFkY36Y3Frn6TdZ/sFdPDZhZ6jwqS+nhUN/0YdIeOCQtQz5dptnb/62GruE074uoFDHKLA09v6XJJ1yQ/HWf0ytR7f9yAI55JIn2FZ76Lc+2rntUeUeqrYhyBcTrr/Mu3WcxSuPclxvfrSpAoEodvniA/rXbwkLf5Thz7B2qTiJxCE29jd4nn3dD4/1fQ9H+E6BKHP4FX9StM8ebHJm2pymiwf0TYE4ZHBQFg7bU/MyRZMDgbAFQThqTEyGnSOUmmwRU18NoTVDQRh3CL0PimNjasTTkJuNwjeQRA+WKQbx2VGAfKIIgh/PWPU3R4gCFMWBvJVyEbJgRplbdgoNoAgLFll5FGltRp61bDTKDSkkDZ5/5rCRmBQDY2JltcKmW1hoEphH8N7NSw2Cn1UyO0WBnYr7ATMqGHYKDSrkHstDGQp7BQsqaG5tPxRyP0WBtIV9re9gRQWFXKIjUEM2B/RG50pB43LcR3RO+tLLmZSm3hIqu0l27spbHERmruk2LmpE2hXrSJ0E0+0iVs+uK5YoDmpYsSSlqW7GMSlpKgxhTgOOTrZbbU0kcJ1beKsJ2Kb4nxRctzWOgKw11at4pTH14vxp9JsWXASWdSiYkGVaw7xi9LY4JRMp+TXB+LgB/mOIPziQNx8U2LJhIiamvEt+mtbCV8RhB/sctFIp+h3e9GWPoK11ch47KoRDzS7i3tgXdB+cSagiQyuuu6uUetpS3zTvNTUsWzdb7ojOuO+SKSOUMScJr9l61Tv8Ksf7PACVLjoe31g9Y169Ssc9Wefq70/gEdl66sVopzGl+DGnlDTNFgwiHSadE0RVvzVA5TruxCEL3T45KitXNRRu3r2R202XKg9SlQaHOUaVewmTIgQYUqooouxhGfsC++r9WqptMbtw+4hHgrmFXnc0PFt+pXQs97fIpk08UzVC68eZYRGC7pgaJupJsIAb5lhiSVmeMsAEarZbBb+B1/0l/yGss7SAAAAAElFTkSuQmCC" width="15" height="15" class="Grayscale"> {{ minutes }} mins</p>
+        <p class="PostMeta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time> &nbsp;&nbsp;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAAAmJLR0QA/4ePzL8AAAORSURBVFjDpZjPS1VBFMc/gj6hNvnU1LQ2pQWS9QcEFbTRItQks11gJv6kpDRa1MYy0F62jDZBobRpVeIuCDWNSqhFYEVZbfIHpZlp9k4L586773nfnbk2sxnmfs858+P8+M4Fc8vlJL0MMsEsyywzywSD9FJDLv/ZMmnhOeLTx2gmc33KC7jJgq9yp/8kQn4w5Wm0Mm+l3OkLXCHdVv1OxuOEVximk0qKySCNNDIoppJORvgbh3tFkY36Y3Frn6TdZ/sFdPDZhZ6jwqS+nhUN/0YdIeOCQtQz5dptnb/62GruE074uoFDHKLA09v6XJJ1yQ/HWf0ytR7f9yAI55JIn2FZ76Lc+2rntUeUeqrYhyBcTrr/Mu3WcxSuPclxvfrSpAoEodvniA/rXbwkLf5Thz7B2qTiJxCE29jd4nn3dD4/1fQ9H+E6BKHP4FX9StM8ebHJm2pymiwf0TYE4ZHBQFg7bU/MyRZMDgbAFQThqTEyGnSOUmmwRU18NoTVDQRh3CL0PimNjasTTkJuNwjeQRA+WKQbx2VGAfKIIgh/PWPU3R4gCFMWBvJVyEbJgRplbdgoNoAgLFll5FGltRp61bDTKDSkkDZ5/5rCRmBQDY2JltcKmW1hoEphH8N7NSw2Cn1UyO0WBnYr7ATMqGHYKDSrkHstDGQp7BQsqaG5tPxRyP0WBtIV9re9gRQWFXKIjUEM2B/RG50pB43LcR3RO+tLLmZSm3hIqu0l27spbHERmruk2LmpE2hXrSJ0E0+0iVs+uK5YoDmpYsSSlqW7GMSlpKgxhTgOOTrZbbU0kcJ1beKsJ2Kb4nxRctzWOgKw11at4pTH14vxp9JsWXASWdSiYkGVaw7xi9LY4JRMp+TXB+LgB/mOIPziQNx8U2LJhIiamvEt+mtbCV8RhB/sctFIp+h3e9GWPoK11ch47KoRDzS7i3tgXdB+cSagiQyuuu6uUetpS3zTvNTUsWzdb7ojOuO+SKSOUMScJr9l61Tv8Ksf7PACVLjoe31g9Y169Ssc9Wefq70/gEdl66sVopzGl+DGnlDTNFgwiHSadE0RVvzVA5TruxCEL3T45KitXNRRu3r2R202XKg9SlQaHOUaVewmTIgQYUqooouxhGfsC++r9WqptMbtw+4hHgrmFXnc0PFt+pXQs97fIpk08UzVC68eZYRGC7pgaJupJsIAb5lhiSVmeMsAEarZbBb+B1/0l/yGss7SAAAAAElFTkSuQmCC" width="15" height="15" class="Grayscale"> {{ minutes }} mins, {{ word_count }} words</p>
         <h1 class="PostTitle" itemprop="name headline">{{ page.title }}</h1>
     </header>
 
