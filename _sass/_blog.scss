@@ -90,6 +90,12 @@ img.Screenshot {
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+@media (prefers-color-scheme: dark) {
+    img.Screenshot {
+        box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 1);
+    }
+}
+
 .ShowCommentsSection {
     margin: $spacing-unit 0;
     display: flex;
@@ -106,7 +112,7 @@ img.Screenshot {
 }
 
 .References {
-    border-top: 2px solid $grey-color-light;
+    border-top: 2px solid var(--separator-color);
     margin-top: $spacing-unit;
 
     strong {
@@ -119,7 +125,7 @@ img.Screenshot {
 }
 
 .RecentArticles {
-    border-top: 2px solid $grey-color-light;
+    border-top: 2px solid var(--separator-color);
     margin-top: $spacing-unit;
 
     strong {
@@ -132,14 +138,14 @@ img.Screenshot {
 }
 
 .FootnotesSection {
-    border-top: 2px solid $grey-color-light;
+    border-top: 2px solid var(--separator-color);
     margin-top: $spacing-unit;
 }
 
 .footnotes {
     p {
         font-size: 16px;
-        color: $grey-color-dark;
+        color: var(--text-color-lighten-secondary);
     }
 
     code {
@@ -148,7 +154,7 @@ img.Screenshot {
 
     ol {
         font-size: 16px;
-        color: $grey-color-dark;
+        color: var(--text-color-lighten-secondary);
     }
 }
 
@@ -248,15 +254,15 @@ img.Screenshot {
     }
 
     a {
-        color: $text-color;
+        color: var(--text-color);
         transition: all 0.075s linear;
         text-decoration: none;
 
         &:visited {
-            color: $text-color;
+            color: var(--text-color);
         }
         &:hover {
-            color: lighten($text-color, 25%);
+            color: var(--text-color-lighten);
             text-decoration: none;
         }
     }
@@ -267,7 +273,7 @@ img.Screenshot {
     }
 
     a.active {
-        color: $brand-color;
+        color: var(--tint-color);
     }
 }
 

@@ -76,7 +76,7 @@ You can find many different names and descriptions of both of these algorithms. 
 
 Let's revisit an NFA from the [previous article]({{ site.url }}/post/regex-compiler#one-or-more-quantifier):
 
-<img src="{{ site.url }}/images/posts/regex-compiler/one-ore-more-extended.png" style="max-height:170px;">
+<img class="AdaptiveImage" src="{{ site.url }}/images/posts/regex-compiler/one-ore-more-extended.png" style="max-height:170px;">
 
 Does it remind you of something? There are nodes – states. There are edges which connect nodes – transitions. Yes, it is a [directed graph](https://en.wikipedia.org/wiki/Directed_graph) (or *digraph*). Which means that *any* algorithm that can be performed on a graph can also be performed on this state machine! Or does it?
 
@@ -96,7 +96,7 @@ DFS would normally keep track of the already encountered nodes. This works when 
 
 Let's take the NFA from the example above and the input string "aaab".
 
-<img src="{{ site.url }}/images/posts/regex-compiler/one-ore-more-extended.png" style="max-height:170px;">
+<img class="AdaptiveImage" src="{{ site.url }}/images/posts/regex-compiler/one-ore-more-extended.png" style="max-height:170px;">
 
 If you were to use DFS search, you would end performing the following steps:
 

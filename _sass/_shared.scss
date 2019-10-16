@@ -19,14 +19,14 @@
 
 .Any-card {
     padding: $spacing-unit * 0.75 $spacing-unit * 0.5;
-    background: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
+    background: var(--background-color-secondary);
+    border: 0.5px solid var(--separator-color);
     border-radius: 8px;
 }
 
 .Any-responsiveCard {
-    background: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
+    background: var(--background-color-secondary);
+    border: 0.5px solid var(--separator-color);
     border-radius: 8px;
 
     @include media-query($on-mobile) {
@@ -35,15 +35,15 @@
 }
 
 .Link-subtle {
-    color: $text-color;
+    color: var(--text-color);
     transition: all 0.075s linear;
     text-decoration: none;
 
     &:visited {
-        color: $text-color;
+        color: var(--text-color);
     }
     &:hover {
-        color: lighten($text-color, 20%);
+        color: var(--text-color-lighten);
         text-decoration: none;
     }
 }
@@ -75,8 +75,8 @@ h6:hover .Anchor {
 }
 
 .PrimaryButton {
-    background: #fff;
-    border: 2px solid $brand-color;
+    background: var(--background-color);
+    border: 2px solid var(--tint-color);
     border-radius: 8px;
     padding: 5px 10px;
     font-weight: 500;
@@ -92,7 +92,7 @@ h6:hover .Anchor {
 
     p {
         margin: 0;
-        color: $brand-color;
+        color: var(--tint-color);
 
         -webkit-user-select: none;  
         -moz-user-select: none;    
@@ -103,7 +103,8 @@ h6:hover .Anchor {
 
 .PrimaryButton:hover, .PrimaryButton:active {
   color: #fff;
-  background: lighten($brand-color, 10%);
+  border: 2px solid var(--tint-color-lighten);
+  background: var(--tint-color-lighten);
   a {
     color: #fff;
   }
@@ -111,3 +112,25 @@ h6:hover .Anchor {
     color: #fff;
   }
 }
+
+.AdaptiveImage {}
+.AdaptiveImage2 {}
+
+@media (prefers-color-scheme: dark) {
+    /* Makes SVG images at least usable on Dark Mode */
+    .AdaptiveImage {
+        border-radius: 8px;
+        padding: 0.5 * $spacing-unit;
+        margin: 0.25 * $spacing-unit 0;
+        background-color: var(--text-color);
+    }
+
+    /* Specific for regex-parser and regex-grammar posts */
+    .AdaptiveImage2 {
+        border-radius: 8px;
+        padding: 0.5 * $spacing-unit;
+        margin: 0.25 * $spacing-unit 0;
+        background-color: #FFF;
+    }
+}
+

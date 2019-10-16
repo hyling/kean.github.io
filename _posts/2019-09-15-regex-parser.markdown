@@ -27,7 +27,7 @@ This is the grammar for the range quantifier defined in [the previous article]({
 RangeQuantifier ::= "{" Number ( "," Number? )? "}"
 ```
 
-<img src="{{ site.url }}/images/posts/regex/grammar_range_quantifier.png" style="max-height: 114px;">
+<img class="AdaptiveImage2" src="{{ site.url }}/images/posts/regex/grammar_range_quantifier.png" style="max-height: 114px;">
 
 ### Start with a Function
 
@@ -479,7 +479,7 @@ func oneOf<A>(_ parsers: Parser<A>...) -> Parser<A> {
 
 Some constructs are defined recursively. For example, a group can contain other groups among other subexpressions.
 
-<img src="{{ site.url }}/images/posts/regex/grammar_group.png" style="max-height:115px;">
+<img class="AdaptiveImage2" src="{{ site.url }}/images/posts/regex/grammar_group.png" style="max-height:115px;">
 
 ```swift
 Group ::= "(" GroupNonCapturingModifier? Expression ")" Quantifier?

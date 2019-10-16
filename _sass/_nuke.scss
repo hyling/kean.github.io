@@ -10,6 +10,13 @@
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .NukeLogo {
+        background-color: #fff;
+        border-radius: 45px;
+    }
+}
+
 .NukeDescription {
     font-size: 48px;
     max-width: 520px;
@@ -19,7 +26,7 @@
     }
     line-height: 1.1;
     letter-spacing: -1px;
-    color: $grey-color-dark;
+    color: var(--text-color);
     text-align: center;
     margin-top: 0.5 * $spacing-unit;
     margin-bottom: $spacing-unit;
@@ -100,7 +107,7 @@
     video {
         width: 100%;
         height: auto;
-        border: 0.5px solid $grey-color-light;
+        border: 0.5px solid var(--separator-color);
         border-radius: 8px;
 
         @include media-query($on-mobile) {

@@ -3,7 +3,7 @@
 
 .SiteFooter {
     padding: $spacing-unit / 2 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--separator-color);
     margin-top: 3 * $spacing-unit;
 
     @include media-query($on-mobile) {
@@ -25,7 +25,7 @@
     }
 
     a {
-        color: lighten($brand-color, 20%)
+        color: var(--tint-color-lighten);
     }
 }
 
@@ -37,8 +37,8 @@
 // =============================================
 
 .SiteHeader {
-    background: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
+    background: var(--background-color-secondary);
+    border: 0.5px solid var(--separator-color);
 
     padding: 0.5 * $spacing-unit 0;
 

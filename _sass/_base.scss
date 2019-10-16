@@ -1,3 +1,26 @@
+:root {
+  --tint-color: #1A25FB;
+  --tint-color-lighten: #3C45FB;
+  --text-color: #353535;
+  --text-color-lighten: #737373;
+  --text-color-lighten-secondary: #424242;
+  --background-color: #FDFDFD;
+  --background-color-secondary: #F7F7F7;
+  --separator-color: #DDDDDD;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tint-color: #579df8; 
+        --tint-color-lighten: #7199FF;
+        --text-color: #DDD;
+        --text-color-lighten-secondary: #C4C4C4;
+        --background-color: #2C2A28;
+        --background-color-secondary: #211f1e;
+        --separator-color: #3C3A38; /* #0C0A08; */
+    }
+}
+
 /**
  * Reset some basic elements
  */
@@ -13,8 +36,8 @@ dl, dd, ol, ul, figure, main, aside {
  */
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-    color: $text-color;
-    background-color: $background-color;
+    color: var(--text-color);
+    background-color: var(--background-color);
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -130,11 +153,11 @@ li {
 }
 
 a {
-    color: $brand-color;
+    color: var(--tint-color);
     text-decoration: none;
 
     &:visited {
-        color: $brand-color;
+        color: var(--tint-color);
     }
     &:hover {
         text-decoration: underline;
@@ -146,8 +169,8 @@ table {
 }
 
 blockquote {
-    background-color: $background-color-light-grey;
-    border-left: 6px solid $grey-color-light;
+    background-color: var(--background-color-secondary);
+    border-left: 6px solid var(--separator-color);
     border-radius: 4px;
 
     padding: 0.4 * $spacing-unit 0.5 * $spacing-unit;
@@ -172,8 +195,8 @@ pre {
     font-size: 15px;
     line-height: 18px;
     border-radius: 8px;
-    background-color: $background-color-light-grey;
-    border: 0.5px solid $grey-color-light;
+    background-color: var(--background-color-secondary);
+    border: 0.5px solid var(--separator-color);
 
     padding: 0.5 * $spacing-unit;
     overflow-x: auto;
