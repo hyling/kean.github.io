@@ -310,3 +310,183 @@ img.PostStackView_Screenshot {
     height: auto;
     width: 405px;
 }
+
+.SwiftUIExampleWithScreenshot {
+    margin: $spacing-unit 0;
+    padding-left: 0.5 * $spacing-unit;
+
+    margin-right: -(0.5 * $spacing-unit);
+    margin-left: -(0.5 * $spacing-unit);
+
+    background-color: var(--background-color-secondary);
+
+    pre {
+        background-color: var(--background-color-secondary);
+        border: 0;
+    }
+
+    img {
+        border-left: 6px solid black;
+    }
+
+    overflow: hidden;
+
+    @include media-query(680px) {
+        padding: 0;
+
+        img {
+            border-left: 0px;
+            border-top: 6px solid black;
+        }
+    }
+}
+
+.SwiftUIPost_ExampleWithTabs {
+    margin-top: 0;
+}
+
+.SwiftUIExampleWithScreenshot_Flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.SwiftUIExampleWithScreenshot_FlexItem {
+    
+}
+
+.SwiftUIExampleWithScreenshot_Left {
+    width: 50%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+
+    overflow: hidden;
+
+    @include media-query(680px) {
+        padding: 0.5 * $spacing-unit;
+    }
+}
+
+.SwiftUIExampleWithScreenshot_Right {
+    width: 50%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+}
+
+.SwiftUIExampleWithScreenshot_Left2 {
+    width: 60%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+
+    overflow: hidden;
+
+    @include media-query(680px) {
+        padding: 0.5 * $spacing-unit;
+    }
+}
+
+.SwiftUIExampleWithScreenshot_Right2 {
+    width: 40%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+}
+
+.SwiftUIExampleWithScreenshot_Left3 {
+    width: 53%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+
+    figure {
+        margin-top: 0;
+    }
+
+    pre {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    overflow: hidden;
+
+    @include media-query(680px) {
+        padding: 0.5 * $spacing-unit;
+    }
+}
+
+.SwiftUIExampleWithScreenshot_Right3 {
+    width: 47%;
+    @include media-query(680px) {
+        width: 100%;
+    }
+}
+
+.SwiftUIBlockquote {
+    margin-top: $spacing-unit;
+    margin-bottom: $spacing-unit;
+}
+
+.SwiftUIPostHighlightedCode {
+    border-radius: 8px;
+    background-color: var(--background-highlighted-color);
+    border: 0.5px solid var(--tint-color);
+    padding: 0.1 * $spacing-unit 0.2 * $spacing-unit;
+}
+
+/* Style the tab */
+.SwiftUITab {
+    overflow: hidden;
+    border: 0.5px solid var(--separator-color);
+    border-bottom: none;
+    background-color: var(--background-color-secondary);
+    margin: 0;
+    margin-top: $spacing-unit;
+    margin-left: -(0.5 * $spacing-unit);
+    @include media-query($on-mobile) {
+        margin-left: 0;
+    }
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    display: inline-block;
+}
+
+/* Style the buttons that are used to open the tab content */
+.SwiftUITab button {
+    background-color: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0.25 * $spacing-unit 0.5 * $spacing-unit;
+    margin: 0;
+    transition: 0.3s;
+
+    @include media-query($on-mobile) {
+        font-size: 16px;
+        font-weight: 500;
+        padding: 0.25 * $spacing-unit 0.25 * $spacing-unit;
+    }
+}
+
+/* Change background color of buttons on hover */
+.SwiftUITab button:hover {
+    background-color: var(--background-highlighted-color);
+}
+
+/* Create an active/current tablink class */
+.SwiftUITab button.active {
+    background-color: var(--background-highlighted-color);
+}
+
+/* Style the tab content */
+.SwiftUITabContent {
+    margin-top: -(0.25 * $spacing-unit);
+    border-top-left-radius: 0;
+}
