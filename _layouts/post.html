@@ -12,10 +12,12 @@ author: "Alexander Grebenyuk"
 
 <main>
 
+{% assign number_of_words = content | strip_html | number_of_words %}
+
 {% if page.minutes %}
   {% assign minutes = page.minutes %}
 {% else %}
-  {% assign minutes = content | strip_html | number_of_words | divided_by: 180 %}
+  {% assign minutes = number_of_words | divided_by: 180 | divided_by:5 | plus:1 | round | times:5 %}
   {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
 {% endif %}
 

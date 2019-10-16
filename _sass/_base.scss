@@ -6,6 +6,7 @@
   --text-color-lighten-secondary: #424242;
   --background-color: #FDFDFD;
   --background-color-secondary: #F7F7F7;
+  --background-highlighted-color: rgba(87, 157, 248, 0.25);
   --separator-color: #DDDDDD;
 }
 
@@ -17,6 +18,7 @@
         --text-color-lighten-secondary: #C4C4C4;
         --background-color: #2C2A28;
         --background-color-secondary: #211f1e;
+        --background-highlighted-color: rgba(87, 157, 248, 0.25);
         --separator-color: #3C3A38; /* #0C0A08; */
     }
 }
@@ -104,9 +106,6 @@ aside {
     width: 190px;
     margin-right: -1 * 120px;
     margin-top: 1.5 * $spacing-unit;
-    // margin: $spacing-unit;
-    // margin-top: 2 * $spacing-unit;
-    // margin-right: 0;
 
     @include media-query(1260px) {
         display: none;
@@ -177,6 +176,11 @@ blockquote {
     padding-top: 2.5px;
 
     margin: $spacing-unit * 0.5 0;
+
+    pre {
+        border: 0;
+        margin: 0;
+    }
 }
 
 pre,
