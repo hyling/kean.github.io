@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interface Builder: Previews"
-description: "Using <a href='https://developer.apple.com/xcode/interface-builder/'>Interface Builder</a> to quickly preview features on different screen sizes and in different orientations"
+description: "Using Interface Builder to quickly preview features on different screen sizes and in different orientations"
 date: 2017-05-01 10:00:00 +0300
 category: programming
 tags: ios
@@ -10,7 +10,7 @@ redirect_from: /blog/interface-builder-ui-testing
 uuid: 5236b644-6093-4896-9318-def1e4ffaf80
 ---
 
-The recent changes to Interface Builder made me change my mind about it. I was sold on the _Preview_ feature which allows to test the UI on different screen sizes and in different orientations. Let's see how to make the best use of this feature.
+The recent changes to <a href='https://developer.apple.com/xcode/interface-builder/'>Interface Builder</a> made me change my mind about it. I was sold on the _Preview_ feature which allows to test the UI on different screen sizes and in different orientations. Let's see how to make the best use of this feature.
 
 <img src="{{ site.url }}/images/ib_designable/ib_screen_01.png" class="Screenshot">
 

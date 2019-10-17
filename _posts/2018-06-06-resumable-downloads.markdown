@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Resumable Downloads"
-description: 'Exploring how resumable downloads - one of my favorite new features in <a href="https://github.com/kean/Nuke/releases/tag/7.0">Nuke 7</a> - are implemented using <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>'
+description: Exploring how resumable downloads - one of my favorite new features in Nuke 7 - are implemented using HTTP range requests
 date: 2018-06-06 18:00:00 +0300
 category: programming
 tags: programming
