@@ -74,6 +74,12 @@ h6:hover .Anchor {
     filter: invert(87%) sepia(0%) saturate(58%) hue-rotate(246deg) brightness(77%) contrast(92%);
 }
 
+.HideOnMobile {
+    @include media-query($on-mobile) {
+        display: none;
+    }
+}
+
 .PrimaryButton {
     background: var(--background-color);
     border: 2px solid var(--tint-color);
