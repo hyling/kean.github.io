@@ -187,6 +187,13 @@ code {
     letter-spacing: -0.5px;
 }
 
+code.highlighter-rouge {
+    padding: 0.1 * $spacing-unit 0.2 * $spacing-unit;
+    border-radius: 8px;
+    background-color: var(--background-color-secondary);
+    border: 0.5px solid var(--separator-color);
+}
+
 strong code {
     font-weight: 600;
 }
