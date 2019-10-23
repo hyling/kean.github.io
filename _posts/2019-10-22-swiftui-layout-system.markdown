@@ -52,7 +52,7 @@ Text("Hello World")
 ```
 </blockquote>
 
-The top layer of any custom view, like `ContentView`, is *layout neutral*. Its bounds are defined by the bounds of its body, in this case, `Text`. For the purposes of layout, you can treat our custom `ContentView` and `Text` as the same view. Now how did SwiftUI establish the bounds of the `ContentView` and why did it it position it in the center of the root view? To understand this, we need to understand how SwiftUI layout system works.
+The top layer of any custom view, like `ContentView`, is *layout neutral*. Its bounds are defined by the bounds of its body, in this case, `Text`. For the purposes of layout, you can treat the custom `ContentView` and `Text` as the same view. Now how did SwiftUI establish the bounds of the `ContentView` and why did it it position it in the center of the root view? To understand this, we need to understand how SwiftUI layout system works.
 
 ### Layout Process
 
@@ -227,9 +227,9 @@ struct Frame: View {
     </div>
 </div>
 
-Like every other view, the child ultimately chooses its own size. It is important to understand this property of the SwiftUI layout system.
+Like any other view, the child ultimately chooses its own size. It is important to understand this property of the SwiftUI layout system.
 
-We used `alignment` to position the child inside the frame. Other instruments can be used to position the child in its parent's coordinate space, like [`position(x:y:)`](https://developer.apple.com/documentation/swiftui/view/3278632-position) and [`offset(x:y:)`](https://developer.apple.com/documentation/swiftui/view/3278608-offset). And [`frame(width:height:alignment:)`](https://developer.apple.com/documentation/swiftui/view/3278572-frame) is not the only way to specify create a frame for the view. There is another variation that allows you to specify [minimum, maximum and ideal width and/or height](https://developer.apple.com/documentation/swiftui/view/3278571-frame).
+We used `alignment` to position the child inside the frame. Other instruments can be used to position the child in its parent's coordinate space, like [`position(x:y:)`](https://developer.apple.com/documentation/swiftui/view/3278632-position) and [`offset(x:y:)`](https://developer.apple.com/documentation/swiftui/view/3278608-offset). And [`frame(width:height:alignment:)`](https://developer.apple.com/documentation/swiftui/view/3278572-frame) is not the only way to specify a frame for the view. There is another variation that allows you to specify [minimum, maximum and ideal width and/or height](https://developer.apple.com/documentation/swiftui/view/3278571-frame) which I not cover in this post.
 
 ## Stacks
 
@@ -514,13 +514,15 @@ struct ContentView: View {
 
 ## Final Thoughts
 
-With Auto Layout, Apple took a solution – a layout engine named [Cassowary](https://en.wikipedia.org/wiki/Cassowary_(software)), and tried to make it to fit the problem – building adaptive user interfaces. It was powerful, but it was lacking in many important aspects. It had performance issues, it was complex, debugging it was hard. Apple tried to make it better by introducing more and more Auto Layout APIs over the years: anchors, stack view, safe area. But they never fixed the core problems with the technology.
+> This article is largely based on the fantastic [Building Custom Views with SwiftUI](https://developer.apple.com/videos/play/wwdc2019/237/) WWDC 2019 session. I would highly recommend watching it.
+
+With Auto Layout, Apple took a solution – a layout engine [Cassowary](https://en.wikipedia.org/wiki/Cassowary_(software)), and tried to make it to fit the problem – building adaptive user interfaces. It was powerful, but it was lacking in many important areas. It had performance issues, it was complex, debugging it was hard. Apple tried to make it better by introducing more and more Auto Layout APIs over the years: anchors, stack view, safe area. But they never fixed the core problems with the technology.
 
 In Auto Layout one rogue constraint could lead to completely unpredictable results far from the view where it was defined. SwiftUI, on the other hand, is simple and predictable. It should be always possible to understand at a glance why the layout system produces certain results.
 
 You can feel that SwiftUI was created with a completely different mindset than Auto Layout. It is not an academic exercise to efficiently solve systems of linear equalities and inequalities. It is a pragmatic tool designed to solve the real problems that app developers face when creating adaptive cross-platform apps for Apple platforms. And it solves them in a beautiful way by providing a set of small and simple tools which are easy to combine – the [Unix way](https://en.wikipedia.org/wiki/Unix_philosophy).
 
-Swift dominance didn't come from the server. It just might from the UI.
+Swift dominance didn't come from the server, it just might from the UI.
 
 <div class="References" markdown="1">
 
@@ -539,7 +541,7 @@ Swift dominance didn't come from the server. It just might from the UI.
 
 [^4]: It feels that when you talk about stacks, you must mention [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox). This is a technology that supposedly inspired [`UIStackView`](https://developer.apple.com/documentation/uikit/uistackview) and stacks in SwiftUI. I don't know if it's true, but Flexbox is indeed a similar tool. The previews that you see in this post are [powered by Flexbox](https://github.com/kean/kean.github.io). Flexbox is somewhat more powerful than stacks in SwiftUI with support for overflow, etc. However, I find Flexbox to be much more cumbersome to use that stacks in SwiftUI.
 
-[^5]: Stacks in SwiftUI are extremely simple, especially compared to `UIStackView` which has a lot of options, some of which I doubt anyone even uses. One of the examples is `.fillProprtionally` distribution. I've personally never used it. I did [partially implement it]({{ site.url }}post/lets-build-uistackview#fillproportionally) when building a `UIStackView` replacement. One of the limitations was the fact that `UIStackView` uses a neat private method `_intrinsicContentSize` `invalidatedForChildView` to monitor when one of its children updates its intrinsic content size. How Apple decided that this distribution needed to be built in the first is unclear.
+[^5]: Stacks in SwiftUI are extremely simple, especially compared to `UIStackView` which has a lot of options, some of which I doubt anyone even uses. One of the examples is `.fillProprtionally` distribution. I've personally never used it. I did [partially implement it]({{ site.url }}/post/lets-build-uistackview#fillproportionally) when building a `UIStackView` replacement. One of the limitations was the fact that `UIStackView` uses a neat private method `_intrinsicContentSize` `invalidatedForChildView` to monitor when one of its children updates its intrinsic content size. How Apple decided that this distribution needed to be built in the first is unclear.
 
 <!-- All of this stuff is currently specific for this invividual post. I will make it part of the intrastructure later. -->
 <script type="text/javascript">
