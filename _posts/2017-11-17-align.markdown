@@ -14,6 +14,7 @@ uuid: 00e90200-1ef8-479e-aea7-62b98a148c2e
 
 If you'd like to learn about *why it exists*, *who is it for*, and why it might be the best tool for you, please continue. The best place to start using it is in a Playground [available in the project](https://github.com/kean/Align). It's going to feel instantly familiar!
 
+{% include ad-hor.html %}
 
 ## Why
 

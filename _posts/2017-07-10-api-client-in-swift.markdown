@@ -15,6 +15,8 @@ Consuming a web service API was a major part of almost all the projects that I w
 - The next major project that I've worked on used [AFNetworking](https://github.com/AFNetworking/AFNetworking) which was just recently introduced. We've later wrapped the API calls in our in-house [Promises/A+](https://promisesaplus.com) to make things like chaining requests easier. This was well before [PromiseKit](https://github.com/mxcl/PromiseKit) first appeared on GitHub. The JSON responses were parsed manually with a help of a simple [safe_cast](https://gist.github.com/kean/3600ad35c818a6b28caa3e0fa026d478) macro.
 - The latest project that I've worked on had a custom API layer written on top of `NSURLSession`. It supported things like [batch HTTP requests](https://tools.ietf.org/id/draft-snell-http-batch-00.html#http-batch). The JSON responses were parsed using our in-house Objective-C JSON wrapper which was similar in terms of features to one of the first Swift JSON wrappers [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON).
 
+{% include ad-hor.html %}
+
 Each of those had its own good and bad parts. I'm not going to do a full retrospect, but I'd like to stress out that the majority of the problems in those different implementations *were not caused but some intrinsic flaws* of the technologies being used. It's always about how we were using those tools.
 
 In this article, I'd like to share my latest networking stack. It has a minimalistic yet powerful API, type-safe authorization scopes, endpoints are modeled in a type-safe, declarative and concise way, support for OAuth 2 "refresh access token" dance. And it takes full advantage of the open source frameworks to achieve all of those powerful features 

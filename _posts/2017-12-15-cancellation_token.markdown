@@ -11,6 +11,8 @@ uuid: f6bfea67-880f-462f-a08c-5b065a70f573
 
 The cancellation tokens have recently (turns out actually not so recently!) [surfaced in Swift Evolution](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170821/039226.html) in a conversation about async/await. I've been using this cancellation model in [Nuke](https://github.com/kean/Nuke) for more than a year now, so I decided to share some of my experiences with it.
 
+{% include ad-hor.html %}
+
 ## Cancellation Token
 
 Nuke has to manage cancellation of lots of chained asynchronous operations. In the earlier versions cancellation was implemented using a few different ad-hoc mechanisms, including `Foundation.Operation` cancellation, some ad-hoc tasks responsible for cancelling multiple underlying operations, and more. It was a mess. In an effort to simplify cancellation I've looked at some ideas outside of the Swift world.

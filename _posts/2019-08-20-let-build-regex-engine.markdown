@@ -23,6 +23,8 @@ Now you might be wondering, why would you want to do that? Well, turns out, this
 > - [Regex, Part 2: Compiler]({{ site.url }}/post/regex-compiler)
 > - [Regex, Part 3: Matcher]({{ site.url }}/post/regex-matcher)
 
+{% include ad-hor.html %}
+
 ## Regular Expressions
 
 Regular expression patterns can be as simple as "[`https?`](https://regex101.com/r/z6Lypq/1)", where "`?`" is a [Zero or One Quantifier](https://docs.microsoft.com/en-us/dotnet/standard/base-types/quantifiers-in-regular-expressions) and which matches either `http` or `https`. Or as complex as [this](https://regex101.com/r/95Clhd/1), which validates an email address, I think:

@@ -13,6 +13,8 @@ When Swift was first announced, one of its defining features was [optionals](htt
 
 > Swift is a great language (#pleaseImproveTooling) and I love using it - you can probably tell by my [GitHub page](https://github.com/kean). But optionals have always been something that many people don't seem to be happy about. I'd like to take a step back and look at why that might be the case.
 
+{% include ad-hor.html %}
+
 ## Benefits
 
 The best thing about optionals is when there aren't any. If a parameter or a property isn't optional, you have a guarantee that the value is always going to be there. In Objective-C you never had this guarantee. Though in many cases this wasn't a big deal - in Objective-C, famously, you could send messages to `nil`. But sometimes you did have to write asserts here and there, sometimes your app would crash.

@@ -14,6 +14,8 @@ Preheating (prefetching/precaching) resources is an effective way to improve use
 
 One of the resources that you might want to prefetch for your users is images. In this post I'm going to be talking about prefetching images in a `UICollectionView`. More specifically, dynamically prefetching images when the user is scrolling the content.
 
+{% include ad-hor.html %}
+
 **Warning: this post is a bit outdated because of the [Nuke](http://kean.github.io/Nuke/) and [Preheat](https://github.com/kean/Preheat) changes.** 
 
 > ## TL;DR

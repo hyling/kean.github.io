@@ -12,6 +12,8 @@ uuid: 944811d2-f3f0-425c-8178-e317873e74cf
 
 We all know about the [advantages of immutable objects](https://www.objc.io/issues/7-foundation/value-objects/). Most of the immutable objects that we use are model objects that tend to have a lot or properties. The question is how to initialize those properties without creating a telescoping initializer.
 
+{% include ad-hor.html %}
+
 ## Immutable Objects in Cocoa
 
 First idea that comes to mind is to follow the steps of the platform. `Cocoa` objects are either mutable or immutable. A good example of such object might be a `NSURLRequest` which has quite a lot of properties. We use its mutable counterpart `NSMutableURLRequest` to change the values of those properties. `NSMutableURLRequest` is a subclass of `NSURLRequest` which in turn implements `NSCopying` and `NSMutableCopying` protocols. We could do the same with our own classes.

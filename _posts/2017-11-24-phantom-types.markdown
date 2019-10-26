@@ -17,6 +17,7 @@ With phantom types, you can add extra information to your types and use it to re
 - [Authentication Scopes](#authentication-scopes)
 - [Layout Anchors](#layout-anchors)
 
+{% include ad-hor.html %}
 
 ## Id Type
 

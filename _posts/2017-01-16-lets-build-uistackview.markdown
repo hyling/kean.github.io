@@ -14,6 +14,8 @@ uuid: 89038ab2-a19b-4be3-9a3f-7ab2d58530d6
 
 Here is the plan. I will create an instance of `UIStackView`, try different configurations, take screenshots, and print all of the constraints that affect the stack view layout. With this information, implementing a replacement of `UIStackView` should be as easy as translating those constraints into code. In fact, I've already done that in a library named [Arranged](https://github.com/kean/Arranged) (which I've built more than 10 months ago, this follow-up post is a bit late).
 
+{% include ad-hor.html %}
+
 **Prerequisites:**
 
 - [Auto Layout Guide](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/)
