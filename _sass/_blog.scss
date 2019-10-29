@@ -90,6 +90,10 @@ img.Screenshot {
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.WithCorners {
+    border-radius: 8px;
+}
+
 @media (prefers-color-scheme: dark) {
     img.Screenshot {
         box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 1);
