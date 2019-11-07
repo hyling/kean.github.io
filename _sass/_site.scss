@@ -73,6 +73,7 @@
     display: flex;
     justify-content: flex-start;
     flex-flow: row nowrap;
+    position: relative;
 
     h2 {
         font-weight: 500;
@@ -81,7 +82,7 @@
 
         @include media-query($on-mobile) {
             max-width: 200px; // force into two lines
-            margin-top: 0.3 * $spacing-unit;
+            margin-top: 0;
             font-size: 24px;
         }
     }
@@ -92,6 +93,10 @@
 
     @include media-query($on-mobile) {
         width: 0.5 * $spacing-unit;
+    }
+
+    @include media-query($on-iphone-se) {
+        display: none;
     }
 }
 
@@ -104,8 +109,12 @@
 
     @include media-query($on-mobile) {
         border-radius: 10px;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    @include media-query($on-iphone-se) {
+        display: none;
     }
 }
 
@@ -123,5 +132,34 @@
 
     @include media-query($on-mobile) {
         font-size: 16px;
+    }
+}
+
+/* Sponsor */
+
+.SponsorButton {
+    color: rgb(217, 89, 167);
+    border: 2px solid rgb(217, 89, 167);
+
+
+    @include media-query($on-mobile) {
+        font-size: 16px;
+    }
+}
+
+.SponsorButtonHeaderContainer {
+    position: absolute;
+    right: 0;
+}
+
+.SponsorButton:hover, .SponsorButton:active {
+    color: #fff;
+    border: 2px solid rgb(217, 89, 167);
+    background: rgb(217, 89, 167);
+    a {
+        color: #fff;
+    }
+    p {
+        color: #fff;
     }
 }
