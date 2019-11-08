@@ -151,24 +151,28 @@ h6:hover .Anchor {
     border-radius: 8px;
 }
 
-.cf-wrapper {
-    a {
-        color: var(--text-color);
-        transition: all 0.075s linear;
-        text-decoration: none;
+.cf-wrapper {}
 
-        &:visited {
-            color: var(--text-color);
-        }
-        &:hover {
-            color: var(--text-color-lighten);
-            text-decoration: none;
-        }
+.cf-text {
+    span {
+        color: var(--text-color);
     }
 }
 
 .cf-powered-by {
-    color: var(--text-color-lighten) !important;
+    color: var(--text-color-lighten);
+    transition: all 0.075s linear;
+    text-decoration: none;
+
+    &:visited {
+        color: var(--text-color-lighten);
+    }
+    &:hover {
+        color: var(--text-color);
+        text-decoration: none;
+    }
+
+    /*color: var(--text-color-lighten) !important;*/
     font-weight: 400;
     margin-left: $spacing-unit * 0.25;
 }
