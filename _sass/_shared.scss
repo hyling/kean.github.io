@@ -147,8 +147,9 @@ h6:hover .Anchor {
     margin-bottom: $spacing-unit * 0.5;
     padding: $spacing-unit * 0.5 $spacing-unit * 0.5;
     background: var(--background-color-secondary);
-    border: 0.5px solid var(--separator-color);
     border-radius: 8px;
+    border: 0.5px solid var(--separator-color);
+    border-left: 6px solid var(--tint-color);
 }
 
 .cf-wrapper {}
@@ -174,5 +175,5 @@ h6:hover .Anchor {
 
     /*color: var(--text-color-lighten) !important;*/
     font-weight: 400;
-    margin-left: $spacing-unit * 0.25;
+    margin-left: $spacing-unit * 0.1;
 }

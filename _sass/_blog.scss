@@ -42,7 +42,6 @@
 
 .PostMeta {
     color: lighten($grey-color, 15%);
-    //font-size: 18px;
     font-weight: 400;
 
     img {
@@ -229,6 +228,35 @@ img.Screenshot {
         font-size: 15px;
         line-height: 1.2;
         margin-top: 0 * $spacing-unit;
+    }
+}
+
+// Quotation
+// ================================================
+
+.quotation {
+    padding-top: $spacing-unit * 0.5;
+    font-size: 22px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.quotation:before {
+    content: open-quote;
+    display: inline;
+    height: 0;
+    line-height: 0;
+    left: -10px;
+    position: relative;
+    top: 30px;
+    color: #ccc;
+    font-size: 3em;
+}
+
+.quotation {
+    footer {
+        text-align: right;
+        /*font-size: 1em;*/
+        font-style: italic;
     }
 }
 
@@ -423,11 +451,6 @@ img.PostStackView_Screenshot {
     @include media-query(680px) {
         width: 100%;
     }
-}
-
-.SwiftUIBlockquote {
-    margin-top: $spacing-unit;
-    margin-bottom: $spacing-unit;
 }
 
 .SwiftUIPostHighlightedCode {
