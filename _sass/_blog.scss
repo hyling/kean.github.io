@@ -91,7 +91,7 @@ img.Screenshot {
 
 @media (prefers-color-scheme: dark) {
     img.Screenshot {
-        box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 1);
+        box-shadow: 0 9px 20px 0 rgba(0, 0, 0, 0.7);
     }
 }
 
@@ -99,9 +99,6 @@ img.Screenshot {
     margin: $spacing-unit 0;
     display: flex;
     justify-content: center;
-    /*@include media-query($on-mobile) {
-        margin: 0.5 * $spacing-unit 0;
-    } */
 }
 
 // Post Footer
