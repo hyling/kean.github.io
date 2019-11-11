@@ -56,14 +56,14 @@
   "/post/introducing-rxnuke": [
     "/post/api-client",
     "/post/swiftui-layout-system",
-    "/post/regex-parser",
-    "/post/image-caching"
+    "/post/image-caching",
+    "/post/regex-parser"
   ],
   "/post/future": [
     "/post/regex-parser",
     "/post/optionals",
-    "/post/api-client",
-    "/post/swiftui-layout-system"
+    "/post/swiftui-layout-system",
+    "/post/api-client"
   ],
   "/post/core-data-progressive-migrations": [
     "/post/regex-parser",
@@ -85,9 +85,9 @@
   ],
   "/post/swiftui-layout-system": [
     "/post/lets-build-uistackview",
-    "/post/align",
     "/post/regex-parser",
-    "/post/api-client"
+    "/post/api-client",
+    "/post/regex-compiler"
   ],
   "/post/rxswift-testing": [
     "/post/app-architecture",
