@@ -12,7 +12,7 @@ redirect_from:
 uuid: cdddbe85-b27a-4ba3-8336-340919e3cf04
 ---
 
-One of my favorite features of RxSwift is its testing infrastructure, RxTest. And it's an undersold one too, it's not even mentioned on a [Why RxSwift](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) page. Let's take a look at it on a real-world example - paging in a scroll view.
+One of my favorite features of RxSwift is its testing infrastructure, RxTest. It is an undersold one too, it's not even mentioned on the [Why RxSwift](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) page. Let's take a look at it on a real-world example - paging in a scroll view.
 
 > Requirements: Xcode 8.3, Swift 3.1, RxSwift 3.5
 
@@ -20,7 +20,7 @@ One of my favorite features of RxSwift is its testing infrastructure, RxTest. An
 
 ## Paging
 
-One of the main components responsible for paging in our app is `PagingScrollViewModel` which is defined like this:
+One of the main components responsible for paging in our app is `PagingScrollViewModel`.
 
 ```swift
 final class PagingScrollViewModel<Page> {
@@ -36,17 +36,17 @@ enum PagingIndicatorState {
 }
 ```
 
-As you can see it is initialized with a paging service and two observable sequences that represent user *input* (`retryTap` and scroll view `didReachBottom`). The *outputs* are two other observable sequences: `pages` and `indicator`.
+The key for [engineering for testability](https://developer.apple.com/videos/play/wwdc2017/414) is being able to inject the *inputs* and record the *outputs*. `PagingScrollViewModel` is initialized with a paging service and two observable sequences that represent user input: `retryTap` and scroll view `didReachBottom`. The outputs are two other observable sequences: `pages` and `indicator`.
 
-One of the scenarios that I'd like to capture by unit tests is this:
+Here is one of the scenarios that I'd like to capture in my unit tests:
 
 > When the user scrolls to the bottom of the scroll view automatically start loading the next page and display a footer view with an activity indicator. If the request for the next page fails, show a footer view with an error message and a "Retry" button.
 
-It's a relatively complex scenario which would normally seem hard to test. But it's actually really easy using RxTest. Let's first take a quick look at RxTest and then jump right into the test file.
+It's a relatively complex scenario which would typically be hard to test. RxTest makes it easy. Let's first take a quick look at RxTest and then jump right into the test file.
 
 ## RxTest
 
-The main component of RxTest is a `TestScheduler` class. It is a "virtual time scheduler" which allows you to control time. You can use it to:
+The main component of RxTest is a `TestScheduler` class. It is a "virtual time scheduler" which allows you to "control time". You can use it to:
 
 - Create test observables which emit specific events at specific points in virtual time. For example, you can mock "Retry" button tap like this:
 
@@ -153,13 +153,15 @@ extension TestScheduler {
 
 ## Conclusion
 
-Because RxSwift is such a generic abstraction which provides a unified interface for all kinds of events (user input, async operations, data changing over time) we can also have such a simple yet powerful unified testing infrastructure.
+RxSwift is a powerful generic abstraction that provides a unified interface for all kinds of events: user input, async operations, data changing over time. This power is what enables RxTest – a unified testing infrastructure.
 
-There are other ways to write RxSwift tests one of which is called "[marble tests](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/UnitTests.md#testing-operator-compositions-view-models-components)". The idea is to use "marble notation" to define expected events. There is an example of marble tests in a RxSwift repo.
+There are other ways to write RxSwift tests one of which is called [*marble tests*](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/UnitTests.md#testing-operator-compositions-view-models-components). The idea is to use *marble notation* to define expected events. You can find an example of marble tests in the RxSwift repo.
 
-The downside of this approach is that you have to make sure that everything happens on a `TestScheduler`. And if there is any "uncontrolled" asynchronous code which gets executed as part of your tests then you'll still [end up writing asynchronous tests](http://rx-marin.com/post/rxswift-rxtests-unit-tests-part-2/).
+RxTest can control time, but it is no magic. If there is any uncontrolled asynchronous code in the systems you are covering with unit tests, you will still [end up writing asynchronous tests](http://rx-marin.com/post/rxswift-rxtests-unit-tests-part-2/). However, RxTest has a variety of use cases and you should consider using it to write your unit tests.
 
-# Links
+<div class="References" markdown="1">
+
+## References
 
 - [RxSwift](https://github.com/ReactiveX/RxSwift)
 - [RxSwift: Unit Tests](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/UnitTests.md)
