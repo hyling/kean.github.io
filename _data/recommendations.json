@@ -1,15 +1,15 @@
 {
   "/post/trunk-based-development": [
+    "/post/ci-for-frameworks",
     "/post/swiftui-layout-system",
     "/post/regex-matcher",
-    "/post/api-client",
-    "/post/regex-parser"
+    "/post/api-client"
   ],
   "/post/interface-builder-ui-testing": [
     "/post/swiftui-layout-system",
+    "/post/ci-for-frameworks",
     "/post/regex-parser",
-    "/post/api-client",
-    "/post/creating_views"
+    "/post/api-client"
   ],
   "/post/image-preheating": [
     "/post/swiftui-layout-system",
@@ -26,14 +26,14 @@
   "/post/image-caching": [
     "/post/api-client",
     "/post/swiftui-layout-system",
-    "/post/resumable-downloads",
-    "/post/regex-parser"
+    "/post/ci-for-frameworks",
+    "/post/resumable-downloads"
   ],
   "/post/immutability-and-builder-pattern": [
     "/post/regex-compiler",
     "/post/codable-tips-and-tricks",
     "/post/cancellation-token",
-    "/post/interface-builder-ui-testing"
+    "/post/app-architecture"
   ],
   "/post/codable-tips-and-tricks": [
     "/post/api-client",
@@ -45,25 +45,31 @@
     "/post/regex-matcher",
     "/post/regex-parser",
     "/post/swiftui-layout-system",
-    "/post/regex-grammar"
+    "/post/ci-for-frameworks"
+  ],
+  "/post/ci-for-frameworks": [
+    "/post/swiftui-layout-system",
+    "/post/trunk-based-development",
+    "/post/regex-parser",
+    "/post/regex-matcher"
   ],
   "/post/cancellation-token": [
     "/post/api-client",
     "/post/regex-parser",
-    "/post/swiftui-layout-system",
-    "/post/regex-matcher"
+    "/post/ci-for-frameworks",
+    "/post/swiftui-layout-system"
   ],
   "/post/introducing-rxnuke": [
     "/post/api-client",
     "/post/swiftui-layout-system",
-    "/post/image-caching",
-    "/post/regex-parser"
+    "/post/ci-for-frameworks",
+    "/post/image-caching"
   ],
   "/post/future": [
     "/post/regex-parser",
     "/post/optionals",
-    "/post/swiftui-layout-system",
-    "/post/api-client"
+    "/post/api-client",
+    "/post/swiftui-layout-system"
   ],
   "/post/core-data-progressive-migrations": [
     "/post/regex-parser",
@@ -74,20 +80,20 @@
   "/post/lets-build-uistackview": [
     "/post/swiftui-layout-system",
     "/post/regex-parser",
-    "/post/regex-matcher",
-    "/post/api-client"
+    "/post/ci-for-frameworks",
+    "/post/regex-matcher"
   ],
   "/post/navigation-problem": [
     "/post/swiftui-layout-system",
     "/post/regex-parser",
-    "/post/app-architecture",
-    "/post/api-client"
+    "/post/api-client",
+    "/post/app-architecture"
   ],
   "/post/swiftui-layout-system": [
     "/post/lets-build-uistackview",
     "/post/regex-parser",
-    "/post/api-client",
-    "/post/regex-compiler"
+    "/post/ci-for-frameworks",
+    "/post/api-client"
   ],
   "/post/rxswift-testing": [
     "/post/app-architecture",
@@ -99,13 +105,13 @@
     "/post/optionals",
     "/post/swiftui-layout-system",
     "/post/codable-tips-and-tricks",
-    "/post/phantom-types"
+    "/post/ci-for-frameworks"
   ],
   "/post/align": [
     "/post/swiftui-layout-system",
     "/post/lets-build-uistackview",
-    "/post/api-client",
-    "/post/phantom-types"
+    "/post/phantom-types",
+    "/post/api-client"
   ],
   "/post/lets-build-regex": [
     "/post/regex-compiler",
@@ -120,22 +126,22 @@
     "/post/regex-parser"
   ],
   "/post/app-architecture": [
+    "/post/ci-for-frameworks",
     "/post/swiftui-layout-system",
     "/post/regex-parser",
-    "/post/api-client",
-    "/post/regex-compiler"
+    "/post/api-client"
   ],
   "/post/network-extensions-into": [
+    "/post/ci-for-frameworks",
     "/post/swiftui-layout-system",
     "/post/api-client",
-    "/post/regex-parser",
-    "/post/app-architecture"
+    "/post/regex-parser"
   ],
   "/post/api-client": [
     "/post/codable-tips-and-tricks",
     "/post/regex-parser",
     "/post/swiftui-layout-system",
-    "/post/phantom-types"
+    "/post/ci-for-frameworks"
   ],
   "/post/optionals": [
     "/post/regex-parser",
@@ -164,8 +170,8 @@
   "/post/regex-matcher": [
     "/post/regex-compiler",
     "/post/regex-parser",
-    "/post/swiftui-layout-system",
-    "/post/api-client"
+    "/post/ci-for-frameworks",
+    "/post/swiftui-layout-system"
   ],
   "/post/phantom-types": [
     "/post/api-client",
