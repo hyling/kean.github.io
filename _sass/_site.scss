@@ -124,7 +124,7 @@
     }
 
     a {
-        margin-right: 21px;
+        margin-right: 0.5 * $spacing-unit;
         @include media-query($on-mobile) {
             margin-right: 0.33 * $spacing-unit;
         }
