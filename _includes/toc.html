@@ -67,8 +67,13 @@
             {% continue %}
         {% endif %}
 
+    
         {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
+
+        {% if header == "References" %}
+            {% continue %}
+        {% endif %}
 
         {% assign space = '' %}
         {% for i in (1..indentAmount) %}
