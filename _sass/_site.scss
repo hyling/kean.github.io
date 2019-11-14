@@ -130,6 +130,10 @@
         }
     }
 
+    .PrimaryButton {
+        border: 0px solid rgb(217, 89, 167);
+    }
+
     @include media-query($on-mobile) {
         font-size: 16px;
     }
@@ -139,8 +143,7 @@
 
 .SponsorButton {
     color: rgb(217, 89, 167);
-    border: 2px solid rgb(217, 89, 167);
-
+    border: 0px solid rgb(217, 89, 167);
 
     @include media-query($on-mobile) {
         font-size: 16px;
@@ -154,7 +157,7 @@
 
 .SponsorButton:hover, .SponsorButton:active {
     color: #fff;
-    border: 2px solid rgb(217, 89, 167);
+    border: 0px solid rgb(217, 89, 167);
     background: rgb(217, 89, 167);
     a {
         color: #fff;
