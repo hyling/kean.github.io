@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Continuous Integration for Swift Frameworks"
+title: "CI for Swift Frameworks"
 description: How I went from manually testing my frameworks to having hundreds of unit tests and multiple automatic checks running on every change
 date: 2019-11-13 10:00:00 -0500
 category: programming
