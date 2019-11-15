@@ -1,6 +1,5 @@
 :root {
   --tint-color: #1A25FB;
-  --tint-color-lighten: #3C45FB;
   --text-color: #353535;
   --text-color-lighten: #737373;
   --text-color-lighten-secondary: #424242;
@@ -38,6 +37,9 @@ dl, dd, ol, ul, figure, main, aside {
  */
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    @include media-query($on-mobile) {
+        font-size: $base-font-size - 1;
+    }
     color: var(--text-color);
     background-color: var(--background-color);
     -webkit-text-size-adjust: 100%;
@@ -70,9 +72,6 @@ p,
 h1, h2, h3
 %vertical-rhythm {
     margin-top: $spacing-unit * 1;
-    @include media-query($on-mobile) {
-        margin-top: $spacing-unit * 1;
-    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -81,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 56px;
+    font-size: 58px;
     @include media-query($on-mobile) {
         font-size: 40px;
     }

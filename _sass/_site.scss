@@ -57,8 +57,8 @@
     margin-bottom: 1.5 * $spacing-unit;
 
     @include media-query($on-mobile) {
-        margin-bottom: 0.5 * $spacing-unit;
-        border-radius: 0
+        margin-bottom: 1 * $spacing-unit;
+        border-radius: 0;
     }
 }
 
@@ -78,12 +78,12 @@
     h2 {
         font-weight: 700;
         font-size: 25px;
-        margin-top: 5px;
+        margin-top: 4px;
 
         @include media-query($on-mobile) {
             max-width: 200px; // force into two lines
             margin-top: 0px;
-            font-size: 24px;
+            font-size: 22px;
         }
     }
 }
@@ -162,7 +162,7 @@
 .SponsorButtonHeaderContainer {
     position: absolute;
     right: 0;
-    margin-top: 2.5px;
+    margin-top: 1px;
 
     @include media-query($on-mobile) {
         margin-top: -1.5px;

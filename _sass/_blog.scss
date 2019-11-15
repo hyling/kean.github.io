@@ -16,18 +16,18 @@
 
 .PostHeader {
     margin: 0.5 * $spacing-unit 0;
+    margin-top: 0;
+    margin-bottom: $spacing-unit;
+
+    .PostMeta {
+        margin-top: 0.25 * $spacing-unit;
+    }
 }
 
 .PostTitle {
     letter-spacing: -1px;
     line-height: 1.0;
     margin: 0;
-    margin-top: 6px;
-    margin-bottom: $spacing-unit;
-
-    @include media-query($on-mobile) {
-        margin-bottom: 0.5 * $spacing-unit;
-    }
 }
 
 .PostLink {
@@ -43,6 +43,7 @@
 .PostMeta {
     color: lighten($grey-color, 15%);
     font-weight: 400;
+    font-size: 17px;
 
     img {
         margin-bottom: 3px;
@@ -196,10 +197,12 @@ img.Screenshot {
 
 .PostPreview_Subtitle {
     margin: 0px;
+    font-size: 17px;
+    color: var(--text-color-lighten-secondary);
 }
 
 .PostPreview-featured .PostLink {
-    font-size: 56px;
+    font-size: 58px;
     @include media-query($on-mobile) {
         font-size: 44px;
     }
@@ -235,6 +238,10 @@ img.Screenshot {
     padding-top: $spacing-unit * 0.5;
     font-size: 22px;
     quotes: "\201C""\201D""\2018""\2019";
+
+    @include media-query($on-mobile) {
+        font-size: 20px;
+    }
 }
 
 .quotation:before {
