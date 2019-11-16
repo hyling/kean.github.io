@@ -119,6 +119,26 @@ h6:hover .Anchor {
   }
 }
 
+.FullscreenImage {
+    margin: 0.66 * $spacing-unit 0;
+
+    @include media-query($on-mobile) {
+        margin-right: -(0.5 * $spacing-unit);
+        margin-left: -(0.5 * $spacing-unit);
+    }
+
+    img {
+        background: var(--background-color-secondary);
+        border: 0.5px solid var(--separator-color);
+        border-radius: 8px;
+
+        @include media-query($on-mobile) {
+            border-radius: 0px;
+        }
+    }
+}
+
+
 .AdaptiveImage {}
 .AdaptiveImage2 {}
 
