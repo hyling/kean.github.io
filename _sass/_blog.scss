@@ -517,3 +517,63 @@ img.PostStackView_Screenshot {
     margin-top: -(0.25 * $spacing-unit);
     border-top-left-radius: 0;
 }
+
+/* Home page */
+
+.FeaturedFramework {
+    img {
+        width: 100%;
+        height: auto;
+
+        @include media-query($on-mobile) {
+            width: 80%;
+        }
+    }
+
+    margin-top: $spacing-unit;
+    margin-bottom: $spacing-unit;
+
+    padding: 1.25 * $spacing-unit $spacing-unit;
+
+    @include media-query($on-mobile) {
+        padding: 0.5 * $spacing-unit;
+
+        margin-right: -(0.5 * $spacing-unit);
+        margin-left: -(0.5 * $spacing-unit);
+    }
+}
+
+.FeaturedFramework_Flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.FeaturedFramework_FlexItem {
+    width: 47.8%;
+    @include media-query($on-mobile) {
+        width: 100%;
+    }
+
+    .NukeLogo {
+        margin: 0;
+        @include media-query($on-mobile) {
+            margin: 0.5 * $spacing-unit;
+        }
+    }
+
+    .NukeShare_Icon {
+        margin-top: 0.66 * $spacing-unit;
+    }
+
+    .NukeDescription {
+        margin: 0;
+        font-size: 34px;
+
+        @include media-query($on-mobile) {
+            margin: 0.5 * $spacing-unit;
+            font-size: 30px;
+        }
+    }
+}

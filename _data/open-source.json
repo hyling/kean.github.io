@@ -1,12 +1,6 @@
 {
     "projects" : [
         {
-            "title" : "Nuke",
-            "link" : "https://kean.github.io/nuke",
-            "languages" : "Swift",
-            "description" : "Powerful image loading and caching system"
-        },
-        {
             "title" : "Regex",
             "link" : "https://github.com/kean/Regex",
             "languages" : "Swift",
