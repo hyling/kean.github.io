@@ -63,7 +63,7 @@
     margin-bottom: 0.5 * $spacing-unit;
 
     @include media-query($on-mobile) {
-        font-size: 34px;
+        font-size: 32px;
     }
 }
 
@@ -145,5 +145,17 @@
     width: 47.8%;
     @include media-query($on-mobile) {
         width: 100%;
+    }
+}
+
+.NukeFeaturesList {
+    color: var(--text-color-lighten);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+
+    @include media-query($on-mobile) {
+        font-size: 30px;
     }
 }
