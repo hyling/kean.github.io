@@ -218,7 +218,7 @@ extension Parser {
 - **`map`** takes a value produced by the given parser and returns a new parser which produces a transformed value
 - **`flatMap`** returns a parser which produces the result of the parser returned by the `transform` closure. The `transform` closure is called when the current parser matches a value.
 
-These two functions are a bread and butter of functional programming, or I would dare to say, programming in general. `Array` has them, `Optional` has them, [`Future`](https://github.com/kean/FutureX) has them, `Combine` and `RxSwift` primitives have them. And now `Parser` has them too, making it a proper [functor and monad](https://www.mokacoding.com/blog/functor-applicative-monads-in-pictures).
+These two functions are a bread and butter of functional programming, or I would dare to say, programming in general. `Array` has them, `Optional` has them, [`Future`](https://github.com/kean/Future) has them, `Combine` and `RxSwift` primitives have them. And now `Parser` has them too, making it a proper [functor and monad](https://www.mokacoding.com/blog/functor-applicative-monads-in-pictures).
 
 We've already covered a lot of ground but bear with me, there is one more method that we need to finally define the number parser - `oneOrMore`.
 

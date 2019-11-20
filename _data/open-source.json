@@ -7,8 +7,8 @@
             "description" : "Open source regex engine"
         },
         {
-            "title" : "FutureX",
-            "link" : "https://github.com/kean/FutureX",
+            "title" : "Future",
+            "link" : "https://github.com/kean/Future",
             "languages" : "Swift",
             "description" : "Streamlined Future&lt;Value, Error&gt; implementation"
         },
