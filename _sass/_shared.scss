@@ -165,14 +165,12 @@ h6:hover .Anchor {
 .Any-card-cf {
     margin-top: $spacing-unit * 0.5;
     margin-bottom: $spacing-unit * 0.5;
-    padding: $spacing-unit * 0.5 $spacing-unit * 0.5;
+    padding: 0 $spacing-unit * 0.5;
     background: var(--background-color-secondary);
     border-radius: 8px;
     border: 0.5px solid var(--separator-color);
     border-left: 6px solid var(--tint-color);
 }
-
-.cf-wrapper {}
 
 .cf-text {
     span {
