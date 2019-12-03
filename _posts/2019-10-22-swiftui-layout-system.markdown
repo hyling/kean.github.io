@@ -518,11 +518,11 @@ struct ContentView: View {
 
 > This article is largely based on the fantastic [Building Custom Views with SwiftUI](https://developer.apple.com/videos/play/wwdc2019/237/) WWDC 2019 session. I would highly recommend watching it.
 
-With Auto Layout, Apple took a solution – a layout engine [Cassowary](https://en.wikipedia.org/wiki/Cassowary_(software)), and tried to make it to fit the problem – building adaptive user interfaces. It was powerful, but it was lacking in many important areas. It had performance issues, it was complex, debugging it was hard. Apple tried to make it better by introducing more and more Auto Layout APIs over the years: anchors, stack view, safe area. But they never fixed the core problems with the technology.
+With Auto Layout, Apple took a solution – a layout engine [Cassowary](https://en.wikipedia.org/wiki/Cassowary_(software)), and tried to make it fit the problem – building adaptive user interfaces. It was powerful, but it was lacking in many important areas. It had performance issues, it was complex, debugging it was hard. Apple tried to make it better by introducing more and more Auto Layout APIs over the years: anchors, stack view, safe area. But they never fixed the core problems with the technology.
 
 In Auto Layout one rogue constraint could lead to completely unpredictable results far from the view where it was defined. SwiftUI, on the other hand, is simple and predictable. It should be always possible to understand at a glance why the layout system produces certain results.
 
-You can feel that SwiftUI was created with a completely different mindset than Auto Layout. It is not an academic exercise to efficiently solve systems of linear equalities and inequalities. It is a pragmatic tool designed to solve the real problems that app developers face when creating adaptive cross-platform apps for Apple platforms. And it solves them in a beautiful way by providing a set of small and simple tools which are easy to combine – the [Unix way](https://en.wikipedia.org/wiki/Unix_philosophy).
+You can feel that SwiftUI was created with a completely different mindset than Auto Layout. It is not an academic exercise to efficiently solve systems of linear equalities and inequalities. It is a pragmatic tool designed to solve the real problems that app developers face when creating adaptive cross-platform apps for Apple platforms. And it solves them in a beautiful way by providing a set of small and simple tools which are easy to combine – the [Unix way](https://en.wikipedia.org/wiki/Unix_philosophy)[^6].
 
 Swift dominance didn't come from the server, it just might from the UI.
 
@@ -544,6 +544,8 @@ Swift dominance didn't come from the server, it just might from the UI.
 [^4]: It feels that when you talk about stacks, you must mention [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox). This is a technology that supposedly inspired [`UIStackView`](https://developer.apple.com/documentation/uikit/uistackview) and stacks in SwiftUI. I don't know if it's true, but Flexbox is indeed a similar tool. The previews that you see in this post are [powered by Flexbox](https://github.com/kean/kean.github.io). Flexbox is somewhat more powerful than stacks in SwiftUI with support for overflow, etc. However, I find Flexbox to be much more cumbersome to use that stacks in SwiftUI.
 
 [^5]: Stacks in SwiftUI are extremely simple, especially compared to `UIStackView` which has a lot of options, some of which I doubt anyone even uses. One of the examples is `.fillProprtionally` distribution. I've personally never used it. I did [partially implement it]({{ site.url }}/post/lets-build-uistackview#fillproportionally) when building a `UIStackView` replacement. One of the limitations was the fact that `UIStackView` uses a neat private method `_intrinsicContentSize` `invalidatedForChildView` to monitor when one of its children updates its intrinsic content size. How Apple decided that this distribution needed to be built in the first is unclear.
+
+[^6]: This Is The Way.
 
 <!-- All of this stuff is currently specific for this invividual post. I will make it part of the intrastructure later. -->
 <script type="text/javascript">
