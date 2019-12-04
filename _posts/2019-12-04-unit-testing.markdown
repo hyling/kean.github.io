@@ -93,13 +93,13 @@ There is also an unintendend consequence of creating too many unit tests for Vie
 
 ## High Quality Tests
 
-I'm not going to focus too much on the nitty gritty details of how to actually write the unit tests. It's all comes with the experience. But I would still like to share a couple of tips:
+I'm not going to focus too much on the nitty gritty details of how to actually write the unit tests. It all comes with the experience. But I would still like to share a couple of tips:
 
 - Treat test code as well as you treat your app's code. Apply all of the good engineering principles that you know. Avoid duplication, refactor, strive for readability. Have a plan for how you are going to mantain your tests.
 - Follow the [FIRST principles](https://pragprog.com/magazines/2012-01/unit-tests-are-first), they are universally applicable
 - Before even writing tests, you must first think about the surface area of your APIs. You can't write good tests on top of a poorly designed API. And, on the other hand, a well-designed API makes it much easier to write good unit tests. This is a reinforcing cycle.
 
-If you want to learn more about unit and UI testing with XCTest, I would recomment going through the WWDC videos, including:
+If you want to learn more about unit and UI testing with XCTest, I would recommend going through the WWDC videos, including:
 
 - [WWDC 2019, **Testing with Xcode**](https://developer.apple.com/videos/play/wwdc2019/413/)
 - [WWDC 2018, **Engineering for Testability**](https://developer.apple.com/videos/play/wwdc2017/414)
