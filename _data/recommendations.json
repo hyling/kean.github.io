@@ -178,5 +178,11 @@
     "/post/swiftui-layout-system",
     "/post/regex-parser",
     "/post/lets-build-uistackview"
+  ],
+  "/post/unit-testing": [
+    "/post/swiftui-layout-system",
+    "/post/ci-for-frameworks",
+    "/post/api-client",
+    "/post/rxswift-testing"
   ]
 }
