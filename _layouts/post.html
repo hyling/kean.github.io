@@ -17,8 +17,8 @@ author: "Alexander Grebenyuk"
 {% if page.minutes %}
   {% assign minutes = page.minutes %}
 {% else %}
-  {% assign minutes = number_of_words | divided_by: 180 | divided_by:5 | plus:1 | round | times:5 %}
-  {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+  {% assign minutes = number_of_words | divided_by: 180 | divided_by:5 | round | times:5 %}
+  {% if minutes < 5 %}{% assign minutes = 5 %}{% endif %}
 {% endif %}
 
 <article class="Any-horInsets" itemscope itemtype="http://schema.org/BlogPosting">
