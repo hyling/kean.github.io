@@ -133,7 +133,7 @@ The image has not changed its size. Why is that? A frame in SwiftUI is not a con
 
 By calling `Image("swiftui").frame(width: 80, height: 80)`, SwiftUI creates a new invisible container view with the specified size and positions the image view inside it. The layout process then performs the same steps as we [just described previously]({{ site.url }}/post/swiftui-layout-system#layout-process). The new container view proposes its child, `Image`, the size 80x80. Image view responds that it is only this big – 60x60, but thank you anyway. The `Frame` needs to put the image somewhere, so it puts the image in the center – it uses `.center` alignment by default.
 
-If this view is smaller than the resulting frame in either dimension, `alignment` specifies this view’s alignment within the frame. The default one is `.center`, but you can select any of the other [available ones](https://developer.apple.com/documentation/swiftui/alignment):
+The `alignment` parameter specifies this view’s alignment within the frame. The default one is `.center`, but you can select any of the other [available ones](https://developer.apple.com/documentation/swiftui/alignment):
 
 <div class="SwiftUIExampleWithScreenshot Any-responsiveCard">
     <div class="SwiftUIExampleWithScreenshot_Flex">
