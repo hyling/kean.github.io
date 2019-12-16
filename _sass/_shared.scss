@@ -163,13 +163,31 @@ h6:hover .Anchor {
 /* CodeFund */
 
 .Any-card-cf {
-    margin-top: $spacing-unit * 0.5;
-    margin-bottom: $spacing-unit * 0.5;
-    padding: 0 $spacing-unit * 0.5;
+    margin-top: $spacing-unit * 0.75;
+    margin-bottom: $spacing-unit * 0.75;
+    padding: $spacing-unit * 0.5;
     background: var(--background-color-secondary);
     border-radius: 8px;
     border: 0.5px solid var(--separator-color);
     border-left: 6px solid var(--tint-color);
+}
+
+.cf-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+
+    span {
+        font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family !important;
+        @include media-query($on-mobile) {
+            font-size: $base-font-size - 1 !important;
+        }
+    }
+    a {
+        font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family !important;
+        @include media-query($on-mobile) {
+            font-size: $base-font-size - 1 !important;
+        }
+    }
 }
 
 .cf-text {
