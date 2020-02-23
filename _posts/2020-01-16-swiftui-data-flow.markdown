@@ -1,0 +1,179 @@
+---
+layout: post
+title: "SwiftUI Data Flow"
+description: Everything that you need to know about the data flow in SwiftUI
+date: 2020-01-16 10:00:00 -0500
+category: programming
+tags: programming
+permalink: /post/swiftui-data-flow
+uuid: c5358288-8c59-41e0-a790-521b52f89921
+---
+
+<blockquote class="quotation">
+<p>SwiftUI is the shortest path to a great app.</p>
+<a href="https://developer.apple.com/videos/play/wwdc2019/226/">WWDC 2019</a>
+</blockquote>
+
+What makes SwiftUI different from UIKit? One of the primary differences[^1] is that SwiftUI provides a rich set of tools for propagating data changes across the app. This is something that every developer had to come up with on their own in UIKit. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI has answers to all of these questions.
+
+TBD
+<!-- {% include ad-hor.html %} -->
+
+## @Published
+
+Let's go over all of the new tools that we have at our disposal. The first and most basic one is [`@Published`](https://developer.apple.com/documentation/combine/published). `@Published` is technically part of the [Combine](https://developer.apple.com/documentation/combine) framework but you don't have to import it because SwiftUI has its `typealias`.
+
+Let's say you are implementing a search functionality for your app, and you defined a view model which you are planning to populate with the search results[^2] and get the UI to update when the results do.
+
+```swift
+final class SearchViewModel {
+    private(set) var songs: [Song] = []
+}
+```
+
+Now, how do you propagate the changes to the `songs` array to the view? If you were using [`ReactiveSwift`](https://github.com/ReactiveCocoa/ReactiveSwift)[^3], you would typically use [`Property`](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/ReactivePrimitives.md#property-an-observable-box-that-always-holds-a-value) type to make `songs` property *observable* and then *bind* it to the UI:
+
+```swift
+// ReactiveSwift
+
+final class SearchViewModel {
+    private(set) lazy var songs = Property<[Song]>(_songs)
+    private let _songs = MutableProperty<[Song]>([])
+}
+```
+
+This works, but it's not very nice. You have to create[^4] a `MutableProperty` to back a user-facing `Property` to prevent users from modifying the values of the property. Fortunately, SwiftUI provides a more elegant solution:
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span> <span class="p">{</span>
+    <span class="SwiftUIPostHighlightedCode kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+`@Published` is a [Property Wrapper](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617) which creates a Publisher which publishes a value every time the property is updated.
+
+> [**Property Wrappes**](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617)
+>
+> Property wrappers were introduced in Swift 5.1 to allow users to add additional behavior to properties, like what `lazy` modifier does. You can read more about property wrappers in the [documentation](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617), and the Swift Evolution [proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md).
+
+The beauty of `@Published` as a property wrapper is that it composes well with the existing Swift access control modifiers. By marking `songs` with `private(set)` we were able to restrict write access to this property. Another advantage of property wrappers is that to access the current value you can simply write `viewModel.songs` using the basic property syntax. Compare it to `viewModel.songs.value` in ReactiveSwift.
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span> <span class="p">{</span>
+    <span class="kd">@Published</span> <span class="SwiftUIPostHighlightedCode kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+Here is what Apple documentation says about `@Published`:
+
+> Properties annotated with `@Published` contain both the stored value and a publisher which sends any new values after the property value has been sent. New subscribers will receive the current value of the property first. Note that the `@Published` property is class-constrained. Use it with properties of classes, not with non-class types like structures.
+
+Now, what this all means is that by making a property `@Published`, we are now able to observe the changes made to it.
+
+<div class="SwiftUIExampleWithScreenshot Any-responsiveCard">
+    <div class="SwiftUIExampleWithScreenshot_Flex">
+        <!-- To the left: title, subtitle, etc -->
+        <div class="SwiftUIExampleWithScreenshot_FlexItem SwiftUIExampleWithScreenshot_Left3">
+        	There are two ways to acess property wrappers: as a regular property and as a "projection".
+        </div>
+        <!-- To the right: image -->
+        <div class="SwiftUIExampleWithScreenshot_FlexItem SwiftUIExampleWithScreenshot_Right3">
+			<img src="{{ site.url }}/images/posts/swiftui-data-flow/published.png">
+        </div>
+    </div>
+</div>
+
+By using `$` you are able to access a *projection* of the property which in case of `@Published` returns a Combine `Publisher`. This is just a regular `Publisher`, so far no compiler magic.
+
+```swift
+@propertyWrapper public struct Published<Value> {
+    public init(wrappedValue: Value)
+    public init(initialValue: Value)
+
+    /// A publisher for properties marked with the `@Published` attribute.
+    public struct Publisher : Combine.Publisher {
+        public typealias Output = Value
+        public typealias Failure = Never
+        public func receive<S>(subscriber: S) where Value == S.Input, S : Subscriber, S.Failure == Published<Value>.Publisher.Failure
+    }
+
+    /// The property that can be accessed with the `$` syntax and allows access to the `Publisher`
+    public var projectedValue: Published<Value>.Publisher { mutating get }
+}
+```
+
+Because the `projectedValue` conforms to `Combine.Publisher` protocol, you can use `map`, `sink`, `filter` and other Combine facilities to manipulate it.
+
+
+```swift
+viewModel.$songs
+	.map { $0.filter { $0.style == .mathRock } }
+    .map { $0.map(\.name) }
+    .sink { names in
+        print(names)
+    }
+```
+
+But this is not how you update views in SwiftUI. So how do we do that? Welcome, `@ObservedObject`.
+
+## @ObservedObject
+
+```swift
+final class SearchView: UIView {
+    let tableView = UITableView()
+
+    init(viewModel: SearchViewModel) {
+        super.init(frame: .zero)
+
+        // Unlike RxSwift, there is no `UITableView` binding provided by `ReactiveSwift`,
+        // so unless you build/add one, you end-up just reloading table view.
+        viewModel.users.producer
+            .take(during: reactive.lifetime)
+            .startWithValues { [unowned self] _ in
+                self.tableView.reloadData()
+            }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
+
+}
+```
+
+
+
+
+
+## @State
+
+[`@State`](https://developer.apple.com/documentation/swiftui/state) is a [Property Wrapper](https://nshipster.com/propertywrapper/).
+
+
+## ObservableObject and @Published
+
+## @Binding
+
+## @FetchRequest
+
+
+<div class="References" markdown="1">
+
+## Temp Resources
+
+https://nalexn.github.io/stranger-things-swiftui-state/?utm_source=tw
+https://nalexn.github.io/swiftui-observableobject/
+
+## References
+
+- WWDC 2019, [**Testing with Xcode**](https://developer.apple.com/videos/play/wwdc2019/413/)
+- WWDC 2018, [**Engineering for Testability**](https://developer.apple.com/videos/play/wwdc2017/414)
+- WWDC 2016, [**UI Testing in Xcode**](https://developer.apple.com/videos/play/wwdc2015/406/)
+- Martin Fowler (2019), [**Software Testing Guide**](https://martinfowler.com/testing/)
+
+<div class="FootnotesSection" markdown="1">
+
+[^1]: Another one being a completely new layout system which I covered in [one of my previous articles]({{ site.url }}/post/post/swiftui-layout-system).
+[^2]: Property Wrappers are not an exclusive feature of SwiftUI and can be introduced in ReactiveSwift. There is already a [pull request](https://github.com/ReactiveCocoa/ReactiveSwift/pull/762) with a proposed changed. It introduces a new `@Observable` property wrapper. In reality, I think it should completely replace the existing `Property` and `MutableProperty` types.
+[^3]: I'm using ReactiveSwift for comparison with Combine/SwiftUI because I find it be the closest thing to Combine: it has typed errors, is has `Property` type. You don't need to know ReactiveSwift to continue with this article.
+[^4]: For simpliciy, I'm exposing model objects (`Song`) from the view model. If you are closely following MVVM, you would typically want to to create a separate view model for each song.
