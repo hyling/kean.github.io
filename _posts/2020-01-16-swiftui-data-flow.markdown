@@ -31,7 +31,7 @@ final class SearchViewModel {
 }
 ```
 
-Now, how do you propagate the changes to the `songs` array to the view? If you were using [`ReactiveSwift`](https://github.com/ReactiveCocoa/ReactiveSwift)[^3], you would typically use [`Property`](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/ReactivePrimitives.md#property-an-observable-box-that-always-holds-a-value) type to make `songs` property *observable* and then *bind* it to the UI:
+Now, how do you propagate the changes to the `songs` array to the view? If you were using [`ReactiveSwift`](https://github.com/ReactiveCocoa/ReactiveSwift)[^3], you would typically use [`Property`](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/ReactivePrimitives.md#property-an-observable-box-that-always-holds-a-value) type to make `songs` property *observable*.
 
 ```swift
 // ReactiveSwift
@@ -42,31 +42,33 @@ final class SearchViewModel {
 }
 ```
 
-This works, but it's not very nice. You have to create[^4] a `MutableProperty` to back a user-facing `Property` to prevent users from modifying the values of the property. Fortunately, SwiftUI provides a more elegant solution:
+This works, but it's not very nice. You have to create[^4] a `MutableProperty` to back a user-facing `Property` to prevent users from modifying it. Fortunately, SwiftUI provides a more elegant solution:
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span> <span class="p">{</span>
     <span class="SwiftUIPostHighlightedCode kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-`@Published` is a [Property Wrapper](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617) which creates a Publisher which publishes a value every time the property is updated.
+`@Published` is a [Property Wrapper](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617) which creates a Combine `Publisher` to make property observable.
 
 > [**Property Wrappes**](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617)
 >
 > Property wrappers were introduced in Swift 5.1 to allow users to add additional behavior to properties, like what `lazy` modifier does. You can read more about property wrappers in the [documentation](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617), and the Swift Evolution [proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md).
 
-The beauty of `@Published` as a property wrapper is that it composes well with the existing Swift access control modifiers. By marking `songs` with `private(set)` we were able to restrict write access to this property. Another advantage of property wrappers is that to access the current value you can simply write `viewModel.songs` using the basic property syntax. Compare it to `viewModel.songs.value` in ReactiveSwift.
+The beauty of `@Published` as a property wrapper is that it composes well with the existing Swift access control modifiers. By marking `songs` with `private(set)` we are able to restrict write access to the property.
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span> <span class="p">{</span>
     <span class="kd">@Published</span> <span class="SwiftUIPostHighlightedCode kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
+Another advantage of property wrappers is that to access the current value you can simply write `viewModel.songs` using the basic property syntax. Compare it to `viewModel.songs.value` in ReactiveSwift.
+
 Here is what Apple documentation says about `@Published`:
 
 > Properties annotated with `@Published` contain both the stored value and a publisher which sends any new values after the property value has been sent. New subscribers will receive the current value of the property first. Note that the `@Published` property is class-constrained. Use it with properties of classes, not with non-class types like structures.
 
-Now, what this all means is that by making a property `@Published`, we are now able to observe the changes made to it.
+Now, what this all means is that by making property `@Published`, you are able to observe the changes made to it.
 
 <div class="SwiftUIExampleWithScreenshot Any-responsiveCard">
     <div class="SwiftUIExampleWithScreenshot_Flex">
@@ -81,38 +83,66 @@ Now, what this all means is that by making a property `@Published`, we are now a
     </div>
 </div>
 
-By using `$` you are able to access a *projection* of the property which in case of `@Published` returns a Combine `Publisher`. This is just a regular `Publisher`, so far no compiler magic.
+By using `$` you access a *projection* of the property which in case of `@Published` returns a Combine `Publisher`. This is just a regular `Publisher`, no compiler magic in sight.
 
-```swift
-@propertyWrapper public struct Published<Value> {
-    public init(wrappedValue: Value)
-    public init(initialValue: Value)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span> <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Published</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="nv">initialValue</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
 
-    /// A publisher for properties marked with the `@Published` attribute.
-    public struct Publisher : Combine.Publisher {
-        public typealias Output = Value
-        public typealias Failure = Never
-        public func receive<S>(subscriber: S) where Value == S.Input, S : Subscriber, S.Failure == Published<Value>.Publisher.Failure
-    }
+    <span class="c1">/// A publisher for properties marked with the `@Published` attribute.</span>
+    <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Publisher</span> <span class="p">:</span> <span class="kt">Combine</span><span class="o">.</span><span class="kt">Publisher</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Output</span> <span class="o">=</span> <span class="kt">Value</span>
+        <span class="kd">public</span> <span class="kd">typealias</span> <span class="SwiftUIPostHighlightedCode"><span class="kt">Failure</span> <span class="o">=</span> <span class="kt">Never</span></span> <span class="c1">// Never produces an error</span>
+        <span class="kd">public</span> <span class="kd">func</span> <span class="n">receive</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Value</span> <span class="o">==</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Input</span><span class="p">,</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Subscriber</span><span class="p">,</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Failure</span> <span class="o">==</span> <span class="kt">Published</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;.</span><span class="kt">Publisher</span><span class="o">.</span><span class="kt">Failure</span>
+    <span class="p">}</span>
 
-    /// The property that can be accessed with the `$` syntax and allows access to the `Publisher`
-    public var projectedValue: Published<Value>.Publisher { mutating get }
-}
-```
+    <span class="c1">/// The property that can be accessed with the `$` syntax and allows access to the `Publisher`</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="SwiftUIPostHighlightedCode"><span class="nv">projectedValue</span><span class="p">:</span> <span class="kt">Published</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;.</span><span class="kt">Publisher</span></span> <span class="p">{</span> <span class="k">mutating</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 Because the `projectedValue` conforms to `Combine.Publisher` protocol, you can use `map`, `sink`, `filter` and other Combine facilities to manipulate it.
 
 
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">Player</span> <span class="p">{</span>
+    <span class="kd">@Published</span> <span class="k">var</span> <span class="nv">currentSong</span><span class="p">:</span> <span class="kt">Song</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="n">player</span><span class="o">.</span><span class="SwiftUIPostHighlightedCode"><span class="kt">$</span><span class="kt">currentSong</span></span>
+    <span class="o">.</span><span class="nf">compactMap</span> <span class="p">{</span> <span class="nv">$0</span> <span class="p">}</span>
+    <span class="o">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="kt">style</span> <span class="o">==</span> <span class="kt">.</span><span class="kt">metal</span> <span class="p">}</span>
+    <span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="kt">\</span><span class="kt">.</span><span class="kt">name</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">sink</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Playing: </span><span class="se">\(</span><span class="nv">$0</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+Let's see how it works in action.
+
 ```swift
-viewModel.$songs
-	.map { $0.filter { $0.style == .mathRock } }
-    .map { $0.map(\.name) }
-    .sink { names in
-        print(names)
-    }
+let player = Player()
+
+print("Will subscribe")
+
+player.$currentSong.sink {
+    print("Received value: \($0?.name ?? "not playing")")
+}
+
+print("Did subscribe")
+
+player.currentSong = Song(name: "Civilization Collapse", style: .metal)
 ```
 
-But this is not how you update views in SwiftUI. So how do we do that? Welcome, `@ObservedObject`.
+```
+Will subscribe
+Received value: not playing
+Did subscrive
+Received value: Civilization Collapse
+```
+
+The `currentSong` publisher delivers the current value of the property synchronously the moment you subscribe to it.
+
+Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`.
 
 ## @ObservedObject
 
@@ -174,6 +204,6 @@ https://nalexn.github.io/swiftui-observableobject/
 <div class="FootnotesSection" markdown="1">
 
 [^1]: Another one being a completely new layout system which I covered in [one of my previous articles]({{ site.url }}/post/post/swiftui-layout-system).
-[^2]: Property Wrappers are not an exclusive feature of SwiftUI and can be introduced in ReactiveSwift. There is already a [pull request](https://github.com/ReactiveCocoa/ReactiveSwift/pull/762) with a proposed changed. It introduces a new `@Observable` property wrapper. In reality, I think it should completely replace the existing `Property` and `MutableProperty` types.
+[^2]: For simpliciy, I'm exposing model objects (`Song`) from the view model. If you are closely following MVVM, you would typically want to to create a separate view model for each song.
 [^3]: I'm using ReactiveSwift for comparison with Combine/SwiftUI because I find it be the closest thing to Combine: it has typed errors, is has `Property` type. You don't need to know ReactiveSwift to continue with this article.
-[^4]: For simpliciy, I'm exposing model objects (`Song`) from the view model. If you are closely following MVVM, you would typically want to to create a separate view model for each song.
+[^4]: Property Wrappers are not an exclusive feature of SwiftUI and can be introduced in ReactiveSwift. There is already a [pull request](https://github.com/ReactiveCocoa/ReactiveSwift/pull/762) with a proposed changed. It introduces a new `@Observable` property wrapper. In reality, I think it should completely replace the existing `Property` and `MutableProperty` types.
