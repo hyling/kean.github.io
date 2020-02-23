@@ -142,34 +142,36 @@ Received value: Civilization Collapse
 
 The `currentSong` publisher delivers the current value of the property synchronously the moment you subscribe to it.
 
-Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`.
+Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`. This is where magic begins 🎩✨.
 
 ## @ObservedObject
 
-```swift
-final class SearchView: UIView {
-    let tableView = UITableView()
+We learned about `@Published` and Property Wrappers in general, but it's nearly not enough to know how to update views in SwiftUI.
 
-    init(viewModel: SearchViewModel) {
-        super.init(frame: .zero)
+Let's start with how you would typically *bind* the state to the views using a reactive programming framework like ReactiveSwift. In ReactiveSwift, you either observe the changes and reload the UI, or, in case of simple properties, bind them directly to the UI elements.
 
-        // Unlike RxSwift, there is no `UITableView` binding provided by `ReactiveSwift`,
-        // so unless you build/add one, you end-up just reloading table view.
-        viewModel.users.producer
-            .take(during: reactive.lifetime)
-            .startWithValues { [unowned self] _ in
-                self.tableView.reloadData()
-            }
-    }
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ReactiveSwift</span><br/><br/><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">spinner</span> <span class="o">=</span> <span class="kt">UIActivityIndicatorView</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">tableView</span> <span class="o">=</span> <span class="kt">UITableView</span><span class="p">()</span>
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    <span class="kd">init</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="kd">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span>
 
+        <span class="c1">// Unlike RxSwift, there is no `UITableView` binding provided by ReactiveSwift,</span>
+        <span class="c1">// so unless you build/add one, you end-up just reloading the table view.</span>
+        <span class="n">viewModel</span><span class="o">.</span><span class="kt">users</span><span class="o">.</span><span class="kt">producer</span>
+            <span class="o">.</span><span class="kt">take</span><span class="p">(</span><span class="nv">during</span><span class="p">:</span> <span class="kt">reactive</span><span class="o">.</span><span class="kt">lifetime</span><span class="p">)</span>
+            <span class="SwiftUIPostHighlightedCode"><span class="o">.</span><span class="kt">startWithValues</span></span> <span class="p">{</span> <span class="p">[</span><span class="k">unowned</span> <span class="k">self</span><span class="p">]</span> <span class="n">_</span> <span class="k">in</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">reloadData</span><span class="p">()</span>
+            <span class="p">}</span>
 
+        <span class="c1">// You can bind simple properties directly to the UI elements</span>
+        <span class="n">spinner</span><span class="o">.</span><span class="kt">reactive</span><span class="o">.</span><span class="kt">isAnimating</span> <span class="SwiftUIPostHighlightedCode"><span class="kt">&lt;~</span></span> <span class="n">viewModel</span><span class="o">.</span><span class="kt">isLoading</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
-}
-```
+This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims at doing. Now, how do you do the same thing in SwiftUI?
 
 
 
