@@ -142,7 +142,7 @@ Received value: Civilization Collapse
 
 The `currentSong` publisher delivers the current value of the property synchronously the moment you subscribe to it.
 
-Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`. This is where magic begins 🎩✨.
+Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`.
 
 ## @ObservedObject
 
@@ -150,9 +150,9 @@ We learned about `@Published` and Property Wrappers in general, but it's nearly 
 
 Let's start with how you would typically *bind* the state to the views using a reactive programming framework like ReactiveSwift. In ReactiveSwift, you either observe the changes and reload the UI, or, in case of simple properties, bind them directly to the UI elements.
 
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ReactiveSwift</span><br/><br/><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="k">let</span> <span class="nv">spinner</span> <span class="o">=</span> <span class="kt">UIActivityIndicatorView</span><span class="p">()</span>
-    <span class="kd">private</span> <span class="k">let</span> <span class="nv">tableView</span> <span class="o">=</span> <span class="kt">UITableView</span><span class="p">()</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ReactiveSwift</span><br/><br/><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="nf">UIView</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">spinner</span> <span class="o">=</span> <span class="nf">UIActivityIndicatorView</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">tableView</span> <span class="o">=</span> <span class="nf">UITableView</span><span class="p">()</span>
 
     <span class="kd">init</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">super</span><span class="o">.</span><span class="kd">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span>
@@ -171,9 +171,30 @@ Let's start with how you would typically *bind* the state to the views using a r
 <span class="p">}</span>
 </code></pre></div></div>
 
-This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims at doing. Now, how do you do the same thing in SwiftUI?
+This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims at doing. How do you do the same thing in SwiftUI?
+
+To start observing the changes to the model, you use [`@ObservedObject`](https://developer.apple.com/documentation/swiftui/observedobject) property wrapper. And the `@ObservedObject` must be in turn initialized with a value confirming to [`ObservableObject`](https://developer.apple.com/documentation/combine/observableobject) protocol.
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="nf">View</span> <span class="p">{</span>
+    <span class="SwiftUIPostHighlightedCode kd">@ObservedObject</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span>
+
+    <span class="k">var</span> <span class="nf">body</span><span class="p">:</span> <span class="kd">some</span> <span class="nf">View</span> <span class="p">{</span>
+        <span class="nf">List</span><span class="p">(</span><span class="n">viewModel</span><span class="o">.</span><span class="kt">songs</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">Text</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="kt">name</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span><span class="p">:</span> <span class="SwiftUIPostHighlightedCode nf">ObservableObject</span> <span class="p">{</span>
+    <span class="kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+Now every time the `sons` property changes, the `SearchView` is going to be updated. Now, how does any of this actually work?
 
 
+
+This is where magic begins 🎩✨.
 
 
 
