@@ -87,7 +87,6 @@ By using `$` you access a *projection* of the property which in case of `@Publis
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span> <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Published</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
-    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="nv">initialValue</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
 
     <span class="c1">/// A publisher for properties marked with the `@Published` attribute.</span>
     <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Publisher</span> <span class="p">:</span> <span class="kt">Combine</span><span class="o">.</span><span class="kt">Publisher</span> <span class="p">{</span>
@@ -173,7 +172,7 @@ Let's start with how you would typically *bind* the state to the views using a r
 
 This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims at doing. How do you do the same thing in SwiftUI?
 
-To start observing the changes to the model, you use [`@ObservedObject`](https://developer.apple.com/documentation/swiftui/observedobject) property wrapper. And the `@ObservedObject` must be in turn initialized with a value confirming to [`ObservableObject`](https://developer.apple.com/documentation/combine/observableobject) protocol.
+To start observing the changes to the model, you use [`@ObservedObject`](https://developer.apple.com/documentation/swiftui/observedobject) property wrapper. An `@ObservedObject` must be initialized with a value confirming to [`ObservableObject`](https://developer.apple.com/documentation/combine/observableobject) protocol.
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="nf">View</span> <span class="p">{</span>
     <span class="SwiftUIPostHighlightedCode kd">@ObservedObject</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span>
@@ -190,11 +189,94 @@ To start observing the changes to the model, you use [`@ObservedObject`](https:/
 <span class="p">}</span>
 </code></pre></div></div>
 
-Now every time the `sons` property changes, the `SearchView` is going to be updated. Now, how does any of this actually work?
+Now every time the `songs` property changes, the `SearchView` is updated. Now, how does any of this actually work?
+
+`ObservableObject` is a simple protocol with a single requirement:
+
+```swift
+public protocol ObservableObject: AnyObject {
+
+    /// The type of publisher that emits before the object has changed.
+    associatedtype ObjectWillChangePublisher: Publisher = ObservableObjectPublisher
+    	where Self.ObjectWillChangePublisher.Failure == Never
+
+    /// A publisher that emits before the object has changed.
+    var objectWillChange: Self.ObjectWillChangePublisher { get }
+}
+```
+
+And now this is where a bit of compiler magic begins 🎩✨. By default, Swift compiler synthesizes an `objectWillChange` publisher that emits the value before any of its `@Published` properties changes 🤯.
+
+If you didn't want to rely on the compiler magic, all you had to do is to implement `objectWillChange` manually.
+
+```swift
+final class SearchViewModel: ObservableObject {
+    let objectWillChange = PassthroughSubject<Void, Never>()
+
+    private(set) var songs: [Song] = [] {
+        didSet { objectWillChange.send() }
+    }
+}
+```
+
+Where did `@Published` go? Turns out, the views in SwiftUI don't actually subscribe the publishers projectected by `@Published`. All they needs is `objectWillChange` publisher from `ObservableObject`.
+
+The final piece of the puzzle is `@ObservedObject` property wrapper. All it does is subscribe to a `ObservableObject` automatically invalidating the view when it changes. That's it! No magic involved. Except for one small thing... How does SwiftUI actually know when to update the view?
+
+Unfortunately, we don't know for sure, this is SwiftUI internal implementation details. However, we can speculate. If you look into `@ObservedObject` declaration, you can find out that is conforms to [`DynamicProperty`](https://developer.apple.com/documentation/swiftui/dynamicproperty) protocol. Turns out, all other SwiftUI property wrappers related to data flow do.
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span> <span class="kd">@frozen</span> 
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ObservedObject</span><span class="o">&lt;</span><span class="kt">ObjectType</span><span class="o">&gt;</span><span class="p">:</span> <span class="SwiftUIPostHighlightedCode kt">DynamicProperty</span> <span class="k">where</span> <span class="kt">ObjectType</span><span class="p">:</span> <span class="kt">ObservableObject</span>
+</code></pre></div></div>
+
+As a thought experiment, I implemented a `_ViewRendererHost` class which uses Swift relection ([`Mirror`](https://developer.apple.com/documentation/swift/mirror)) to find all of the dynamic properties  including observed objects, subscribe to changes to these properties and automatically refresh the view.
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WARNING: This is not the actual implementation</span>
+
+<span class="kd">protocol</span> <span class="kt">_DynamicProperty</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">objectWillChange</span><span class="p">:</span> <span class="nf">AnyPublisher</span><span class="o">&lt;</span><span class="nf">Void</span><span class="p">,</span> <span class="nf">Never</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">ObservedObject</span><span class="p">:</span> <span class="kt">_DynamicProperty</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">objectWillChange</span><span class="p">:</span> <span class="nf">AnyPublisher</span><span class="o">&lt;</span><span class="nf">Void</span><span class="p">,</span> <span class="nf">Never</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="nv">wrappedValue</span><span class="o">.</span><span class="nf">objectWillChange</span><span class="o">.</span><span class="nf">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="p">()</span> <span class="p">}</span><span class="o">.</span><span class="nf">eraseToAnyPublisher</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">final</span> <span class="kd">class</span> <span class="n">_ViewRendederHost</span><span class="o">&lt;</span><span class="kt">View</span><span class="p">:</span> <span class="nf">SwiftUI</span><span class="o">.</span><span class="nf">View</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">View</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">bag</span> <span class="o">=</span> <span class="p">[</span><span class="nf">AnyCancellable</span><span class="p">]()</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">View</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
+
+        <span class="nf">Mirror</span><span class="p">(</span><span class="nv">reflecting</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span><span class="o">.</span><span class="nf">children</span>
+            <span class="o">.</span><span class="nf">compactMap</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">value</span> <span class="k">as?</span> <span class="kt">_DynamicProperty</span> <span class="p">}</span>
+            <span class="o">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kt">subscribe</span><span class="p">(</span><span class="kt">to</span><span class="p">:))</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="p">subscribe</span><span class="p">(</span><span class="n">to</span> <span class="nv">property</span><span class="p">:</span> <span class="kt">_DynamicProperty</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">property</span><span class="o">.</span><span class="kt">objectWillChange</span>
+            <span class="o">.</span><span class="nf">sink</span> <span class="p">{</span> <span class="p">[</span><span class="k">unowned</span> <span class="k">self</span><span class="p">]</span> <span class="n">_</span> <span class="k">in</span> <span class="k">self</span><span class="o">.</span><span class="nf">update</span><span class="p">()</span> <span class="p">}</span>
+            <span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">bag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="p">update</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="n">body</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="nf">body</span> <span class="c1">// Create a new body with the updated values</span>
+
+        <span class="c1">// TODO: render body using some internal SwiftUI mechanism</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 
 
-This is where magic begins 🎩✨.
+## @Binding
+
+
+
+
+
 
 
 
@@ -202,8 +284,6 @@ This is where magic begins 🎩✨.
 
 [`@State`](https://developer.apple.com/documentation/swiftui/state) is a [Property Wrapper](https://nshipster.com/propertywrapper/).
 
-
-## ObservableObject and @Published
 
 ## @Binding
 
@@ -216,6 +296,7 @@ This is where magic begins 🎩✨.
 
 https://nalexn.github.io/stranger-things-swiftui-state/?utm_source=tw
 https://nalexn.github.io/swiftui-observableobject/
+https://vmanot.com/data-flow-through-swiftui
 
 ## References
 
