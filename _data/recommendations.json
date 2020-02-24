@@ -184,5 +184,11 @@
     "/post/ci-for-frameworks",
     "/post/api-client",
     "/post/rxswift-testing"
-  ]
+  ],
+  "/post/swiftui-data-flow": [
+    "/post/swiftui-layout-system",
+    "/post/regex-parser",
+    "/post/api-client",
+    "/post/ci-for-frameworks"
+  ],
 }
