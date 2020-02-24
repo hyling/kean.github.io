@@ -425,35 +425,29 @@ struct ContentView: View {
 
 What you need to know about `@State` is that SwiftUI automatically manages the storage for your state properties. When the state value changes, the view invalidates its appearance and recomputes the body. You must only access a state property from inside the view’s body (or from functions called by it). For this reason, you should declare your state properties as private, to prevent clients of your view from accessing it. You can get a binding from a state with the `binding` property, or by using the `$` prefix operator.
 
-
-
-
-
 ## @EnvironmentObject
+
+
 
 ## Final Thoughts
 
-TBD: onReceive
+I missed you, `@`. I'm glad SwiftUI finally brings you back, and in a big way.
 
-TODO: - Performance of observing? Generally shouldn’t be a concern.
+On a more serious note, I think data flow together with the [layout system]({{ site.url }}/post/post/swiftui-layout-system) are clearly the strongest sides of SwiftUI. Both systems are powerful, elegant, and robust.
+
+Most of the current complains about SwiftUI come with regards to its incomplete components library. There are some glarying gaps there. I with Apple was more clear in their communication. In 2014, Swift 1.0 was presented as a complete production ready language (spoiler alert: it wasn’t, it was more of a proof of concept). The same thing is happening with SwiftUI.
+
+SwiftUI in its current from is a proof of concept that shows that Apple's platonic ideal of a UI framework can be brough to reality. It has the best syntax, the best data flow, the best layout system. The only thing that is missing is the components library. What we currently have is just a few basic wrappers on top of the existing components in UIKit and the respective frameworks on other platforms.
+
+Sometimes it seems mind boggling how many language features were needed to make SwiftUI possible: metaprogramming, property wrappers, function builders, dynamic member lookup. All of these things come together in beautiful ways which rubs just the right spots and make me extremly excited for the future of development for Apple platforms.
 
 <div class="References" markdown="1">
 
-## Temp Resources
-
-https://nalexn.github.io/stranger-things-swiftui-state/?utm_source=tw
-https://nalexn.github.io/swiftui-observableobject/
-https://vmanot.com/data-flow-through-swiftui
-
 ## References
 
+- WWDC 2019, [**Data Flow Throught SwiftUI**](https://developer.apple.com/videos/play/wwdc2019/226/)
 - Swift Evolution, [**Dynamic Member Lookup**](https://github.com/apple/swift-evolution/blob/master/proposals/0252-keypath-dynamic-member-lookup.md)
-
-
-- WWDC 2019, [**Testing with Xcode**](https://developer.apple.com/videos/play/wwdc2019/413/)
-- WWDC 2018, [**Engineering for Testability**](https://developer.apple.com/videos/play/wwdc2017/414)
-- WWDC 2016, [**UI Testing in Xcode**](https://developer.apple.com/videos/play/wwdc2015/406/)
-- Martin Fowler (2019), [**Software Testing Guide**](https://martinfowler.com/testing/)
+- Swift Evolution, [**Property Wrappers**](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
 
 <div class="FootnotesSection" markdown="1">
 
