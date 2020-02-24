@@ -430,6 +430,27 @@ If you think about how `@State` might be implemented, you will notice that the w
 
 Again, we don't know how it is actually implemented, but we can easily extend the [`_ViewRendererHost`](#_ViewRendererHost) prototype to support `@State`. The moment SwiftUI creates an instance of `_ViewRendererHost` to represent a view in a view graph, it scans through the view's properties using reflection to find the ones which are `@State`. For each of the properties, it creates a storage that probably also implements `ObservableObject` protocol. It then subscribes to the changes to the newly created observable objects.
 
+In fact, if you use reflection to inspect what stored properties `@State` has, you can see it does have some reference-type `StoredLocation` type:
+
+```swift
+(lldb) po Mirror(reflecting: $isShown).children.map { $0 }
+▿ 3 elements
+  ▿ 0 : 2 elements
+    ▿ label : Optional<String>
+      - some : "transaction"
+    ▿ value : Transaction
+      ▿ plist : []
+        - elements : nil
+  ▿ 1 : 2 elements
+    ▿ label : Optional<String>
+      - some : "location"
+    ▿ value : <StoredLocation<Bool>: 0x600001d299f0>
+  ▿ 2 : 2 elements
+    ▿ label : Optional<String>
+      - some : "_value"
+    - value : false
+```
+
 This implementation (WARNING: this is just speculation) also explains the rules behind how long SwiftUI persists the `@State`. The `@State` is held in memory until you remove the view from the view hierarchy. At this point, SwiftUI most likely destroys the respective `_ViewRendererHost` along with all of its subscriptions and storages for `@State`. But if you simply hide the view using [`hidden()`](https://developer.apple.com/documentation/swiftui/view/3278576-hidden), the state persists.
 
 ## @Environment
