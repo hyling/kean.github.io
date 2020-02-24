@@ -14,20 +14,20 @@ uuid: c5358288-8c59-41e0-a790-521b52f89921
 <a href="https://developer.apple.com/videos/play/wwdc2019/226/">WWDC 2019</a>
 </blockquote>
 
-What makes SwiftUI different from UIKit? One of the primary differences[^1] is that SwiftUI provides a rich set of tools for propagating data changes across the app. This is something that every developer had to come up with on their own in UIKit.
+What makes SwiftUI different from UIKit? For one, it's the *layout system* which I covered in one of my [previous articles]({{ site.url }}/post/post/swiftui-layout-system). Another, probably even more dramatic change is the *data flow*. 
 
-Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI has answers to all of these questions.
 
-This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
+In UIKit, this is something that every developer typically had to decide on their own. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI is an opinionated framework, it has answers to all of these questions.
 
-TBD
-<!-- {% include ad-hor.html %} -->
+SwiftUI provides a rich set of tools for propagating data changes across the app. This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
+
+{% include ad-hor.html %}
 
 ## @Published
 
 Let's go over all of the new tools that we have at our disposal. The first and most basic one is [`@Published`](https://developer.apple.com/documentation/combine/published). `@Published` is technically part of the [Combine](https://developer.apple.com/documentation/combine) framework but you don't have to import it because SwiftUI has its `typealias`.
 
-Let's say you are implementing a search functionality for your app, and you defined a view model which you are planning to populate with the search results[^2] and get the UI to update when the results do.
+Let's say you are implementing a search functionality for your app, and you defined a view model which you are planning to populate with the search results[^1] and get the UI to update when the results do.
 
 ```swift
 final class SearchViewModel {
@@ -35,7 +35,7 @@ final class SearchViewModel {
 }
 ```
 
-Now, how do you propagate the changes to the `songs` array to the view? If you were using [`ReactiveSwift`](https://github.com/ReactiveCocoa/ReactiveSwift)[^3], you would typically use [`Property`](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/ReactivePrimitives.md#property-an-observable-box-that-always-holds-a-value) type to make `songs` property *observable*.
+Now, how do you propagate the changes to the `songs` array to the view? If you were using [`ReactiveSwift`](https://github.com/ReactiveCocoa/ReactiveSwift)[^1], you would typically use [`Property`](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/ReactivePrimitives.md#property-an-observable-box-that-always-holds-a-value) type to make `songs` property *observable*.
 
 ```swift
 // ReactiveSwift
@@ -46,7 +46,7 @@ final class SearchViewModel {
 }
 ```
 
-This works, but it's not very nice. You have to create[^4] a `MutableProperty` to back a user-facing `Property` to prevent users from modifying it. Fortunately, SwiftUI provides a more elegant solution:
+This works, but it's not very nice. You have to create[^1] a `MutableProperty` to back a user-facing `Property` to prevent users from modifying it. Fortunately, SwiftUI provides a more elegant solution:
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span> <span class="p">{</span>
     <span class="SwiftUIPostHighlightedCode kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -55,7 +55,7 @@ This works, but it's not very nice. You have to create[^4] a `MutableProperty` t
 
 `@Published` is a [Property Wrapper](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617) which creates a Combine `Publisher` to make property observable.
 
-> [**Property Wrappes**](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617)
+> [**Property Wrappers**](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617)
 >
 > Property wrappers were introduced in Swift 5.1 to allow users to add additional behavior to properties, like what `lazy` modifier does. You can read more about property wrappers in the [documentation](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617), and the Swift Evolution [proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md).
 
@@ -78,7 +78,7 @@ Now, what this all means is that by making property `@Published`, you are able t
     <div class="SwiftUIExampleWithScreenshot_Flex">
         <!-- To the left: title, subtitle, etc -->
         <div class="SwiftUIExampleWithScreenshot_FlexItem SwiftUIExampleWithScreenshot_Left3">
-        	There are two ways to acess property wrappers: as a regular property and as a "projection".
+        	There are two ways to access property wrappers: as a regular property and as a "projection".
         </div>
         <!-- To the right: image -->
         <div class="SwiftUIExampleWithScreenshot_FlexItem SwiftUIExampleWithScreenshot_Right3">
@@ -139,7 +139,7 @@ player.currentSong = Song(name: "Civilization Collapse", style: .metal)
 ```
 Will subscribe
 Received value: not playing
-Did subscrive
+Did subscribe
 Received value: Civilization Collapse
 ```
 
@@ -223,7 +223,7 @@ final class SearchViewModel: ObservableObject {
 }
 ```
 
-Where did `@Published` go? Turns out, the views in SwiftUI don't actually subscribe the publishers projectected by `@Published`. All they needs is `objectWillChange` publisher from `ObservableObject`.
+Where did `@Published` go? Turns out, the views in SwiftUI don't actually subscribe the publishers projected by `@Published`. All they needs is `objectWillChange` publisher from `ObservableObject`.
 
 The final piece of the puzzle is `@ObservedObject` property wrapper. All it does is subscribe to a `ObservableObject` automatically invalidating the view when it changes. That's it! No magic involved. Except for one small thing... How does SwiftUI actually know when to update the view?
 
@@ -233,7 +233,7 @@ Unfortunately, we don't know for sure, this is SwiftUI internal implementation d
 <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ObservedObject</span><span class="o">&lt;</span><span class="kt">ObjectType</span><span class="o">&gt;</span><span class="p">:</span> <span class="SwiftUIPostHighlightedCode kt">DynamicProperty</span> <span class="k">where</span> <span class="kt">ObjectType</span><span class="p">:</span> <span class="kt">ObservableObject</span>
 </code></pre></div></div>
 
-As a thought experiment, I implemented a `_ViewRendererHost` class which uses Swift relection ([`Mirror`](https://developer.apple.com/documentation/swift/mirror)) to find all of the dynamic properties  including observed objects, subscribe to changes to these properties and automatically refresh the view.
+As a thought experiment, I implemented a `_ViewRendererHost` class which uses Swift reflection ([`Mirror`](https://developer.apple.com/documentation/swift/mirror)) to find all of the dynamic properties  including observed objects, subscribe to changes to these properties and automatically refresh the view.
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WARNING: This is not the actual implementation</span>
 
@@ -425,9 +425,36 @@ struct ContentView: View {
 
 What you need to know about `@State` is that SwiftUI automatically manages the storage for your state properties. When the state value changes, the view invalidates its appearance and recomputes the body. You must only access a state property from inside the view’s body (or from functions called by it). For this reason, you should declare your state properties as private, to prevent clients of your view from accessing it. You can get a binding from a state with the `binding` property, or by using the `$` prefix operator.
 
-## @EnvironmentObject
+## @Environment
 
+[`@Environment`](https://developer.apple.com/documentation/swiftui/environment) provides access to the "environment" of the view. SwiftUI provides a variety of [environment values](https://developer.apple.com/documentation/swiftui/environmentvalues) that you can observe. Here are just some of the examples:
 
+```swift
+@Environment(\.horizontalSizeClass) var horizontalSizeClass
+@Environment(\.accessibilityReduceMotion) var reduceMotion
+@Environment(\.accessibilityReduceTransparency) var reduceTransparency
+@Environment(\.accessibilityEnabled) var accessibilityEnabled
+```
+
+The view is automatically invalidated when one of the observed environment value change.
+
+You can also manually modify the environment which comes in handy in previews:
+
+```swift
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+		Group {
+            SearchView()
+            SearchView()
+                .environment(\.colorScheme, .dark)
+        }
+    }
+}
+```
+
+<b style="text-decoration: line-through;">@EnvironmentObject</b>
+
+In addition to `@Environment` there is an [`@EnvironmentObject`](https://developer.apple.com/documentation/swiftui/environmentobject) property wrapper which has absolutely nothing to do with the `@Environment`. The environment object is a way to pass all sorts of data indirectly down through your view hierarchy. This is probably the only part of SwiftUI which I strongly disagree with so I'm not going to cover it. I know that I'm never going to use it because introducing implicit dependencies to my views which will crash if the value is not provided just doesn't sound like a great idea to me. And the value that `@EnvironmentObject` brings is questionable.
 
 ## Final Thoughts
 
@@ -435,23 +462,22 @@ I missed you, `@`. I'm glad SwiftUI finally brings you back, and in a big way.
 
 On a more serious note, I think data flow together with the [layout system]({{ site.url }}/post/post/swiftui-layout-system) are clearly the strongest sides of SwiftUI. Both systems are powerful, elegant, and robust.
 
-Most of the current complains about SwiftUI come with regards to its incomplete components library. There are some glarying gaps there. I with Apple was more clear in their communication. In 2014, Swift 1.0 was presented as a complete production ready language (spoiler alert: it wasn’t, it was more of a proof of concept). The same thing is happening with SwiftUI.
+Most of the current complains about SwiftUI come with regards to its incomplete components library. There are some glaring gaps there. I with Apple was more clear in their communication. In 2014, Swift 1.0 was presented as a complete production ready language (spoiler alert: it wasn’t, it was more of a proof of concept). The same thing is happening with SwiftUI.
 
-SwiftUI in its current from is a proof of concept that shows that Apple's platonic ideal of a UI framework can be brough to reality. It has the best syntax, the best data flow, the best layout system. The only thing that is missing is the components library. What we currently have is just a few basic wrappers on top of the existing components in UIKit and the respective frameworks on other platforms.
+SwiftUI in its current from is a proof of concept that shows that Apple's platonic ideal of a UI framework can be brought to reality. It has the best syntax, the best data flow, the best layout system. The only thing that is missing is the components library. What we currently have is just a few basic wrappers on top of the existing components in UIKit and the respective frameworks on other platforms.
 
-Sometimes it seems mind boggling how many language features were needed to make SwiftUI possible: metaprogramming, property wrappers, function builders, dynamic member lookup. All of these things come together in beautiful ways which rubs just the right spots and make me extremly excited for the future of development for Apple platforms.
+Sometimes it seems mind boggling how many language features were needed to make SwiftUI possible: meta-programming, property wrappers, function builders, dynamic member lookup. All of these things come together in beautiful ways which rubs just the right spots and make me extremely excited for the future of development for Apple platforms.
 
 <div class="References" markdown="1">
 
 ## References
 
-- WWDC 2019, [**Data Flow Throught SwiftUI**](https://developer.apple.com/videos/play/wwdc2019/226/)
+- WWDC 2019, [**Data Flow Through SwiftUI**](https://developer.apple.com/videos/play/wwdc2019/226/)
 - Swift Evolution, [**Dynamic Member Lookup**](https://github.com/apple/swift-evolution/blob/master/proposals/0252-keypath-dynamic-member-lookup.md)
 - Swift Evolution, [**Property Wrappers**](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)
 
 <div class="FootnotesSection" markdown="1">
 
-[^1]: Another one being a completely new layout system which I covered in [one of my previous articles]({{ site.url }}/post/post/swiftui-layout-system).
-[^2]: For simpliciy, I'm exposing model objects (`Song`) from the view model. If you are closely following MVVM, you would typically want to to create a separate view model for each song.
-[^3]: I'm using ReactiveSwift for comparison with Combine/SwiftUI because I find it be the closest thing to Combine: it has typed errors, is has `Property` type. You don't need to know ReactiveSwift to continue with this article.
-[^4]: Property Wrappers are not an exclusive feature of SwiftUI and can be introduced in ReactiveSwift. There is already a [pull request](https://github.com/ReactiveCocoa/ReactiveSwift/pull/762) with a proposed changed. It introduces a new `@Observable` property wrapper. In reality, I think it should completely replace the existing `Property` and `MutableProperty` types.
+[^1]: For simplicity, I'm exposing model objects (`Song`) from the view model. If you are closely following MVVM, you would typically want to to create a separate view model for each song.
+[^1]: I'm using ReactiveSwift for comparison with Combine/SwiftUI because I find it be the closest thing to Combine: it has typed errors, is has `Property` type. You don't need to know ReactiveSwift to continue with this article.
+[^1]: Property Wrappers are not an exclusive feature of SwiftUI and can be introduced in ReactiveSwift. There is already a [pull request](https://github.com/ReactiveCocoa/ReactiveSwift/pull/762) with a proposed changed. It introduces a new `@Observable` property wrapper. In reality, I think it should completely replace the existing `Property` and `MutableProperty` types.
