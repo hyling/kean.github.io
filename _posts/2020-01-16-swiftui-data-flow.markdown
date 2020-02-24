@@ -18,7 +18,7 @@ What makes SwiftUI different from UIKit? One of the primary differences[^1] is t
 
 Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI has answers to all of these questions.
 
-This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing gorgeous SwiftUI code like [this](#full-listing-search).
+This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
 
 TBD
 <!-- {% include ad-hor.html %} -->
@@ -405,7 +405,29 @@ Isn't it absolutely gorgeous?
 
 ## @State
 
-[`@State`](https://developer.apple.com/documentation/swiftui/state) is a [Property Wrapper](https://nshipster.com/propertywrapper/).
+I left [`@State`](https://developer.apple.com/documentation/swiftui/state) until the very end because it is probably the most situational property wrapper of the bunch. You will only use it if you have some transient state local to a particular view. You might use it more often if your views talk directly to the model, but as long as you are using MVVM (and I think you should), you won't find a lot of use case for `@State`.
+
+One of the most common scenarios for using `@State` is to present some temporary screens like alerts. SwiftUI insists that you do that declaratively.
+
+```swift
+struct ContentView: View {
+    @State var isAlertShown = false
+
+    var body: some View {
+        Button(action: { self.isAlertShown = true }) {
+            Text("Show alert")
+        }.alert(isPresented: $isAlertShown) {
+            Alert(title: Text("Hello"))
+        }
+    }
+}
+```
+
+What you need to know about `@State` is that SwiftUI automatically manages the storage for your state properties. When the state value changes, the view invalidates its appearance and recomputes the body. You must only access a state property from inside the view’s body (or from functions called by it). For this reason, you should declare your state properties as private, to prevent clients of your view from accessing it. You can get a binding from a state with the `binding` property, or by using the `$` prefix operator.
+
+
+
+
 
 ## @EnvironmentObject
 
