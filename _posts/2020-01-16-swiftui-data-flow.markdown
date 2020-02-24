@@ -391,7 +391,7 @@ And now, to complete our classic search example, let's make `query` observable a
                 <span class="p">}</span>
             <span class="p">}</span>
             <span class="o">.</span><span class="nf">receive</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="nf">DispatchQueue</span><span class="o">.</span><span class="nf">main</span><span class="p">)</span>
-            <span class="o">.</span><span class="nf">assign</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">\</span><span class="kt">.</span><span class="kt">songs</span><span class="p">,</span> <span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+            <span class="o">.sink</span> <span class="p">{</span> <span class="p">[</span><span class="k">unowned</span> <span class="k">self</span><span class="p">]</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="kt">songs</span> <span class="p">=</span> <span class="p">$0</span> <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
