@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SwiftUI Data Flow"
-description: Everything that you need to know about the data flow in SwiftUI
+description: Everything you need to know about data flow in SwiftUI
 date: 2020-01-16 10:00:00 -0500
 category: programming
 tags: programming
@@ -14,7 +14,11 @@ uuid: c5358288-8c59-41e0-a790-521b52f89921
 <a href="https://developer.apple.com/videos/play/wwdc2019/226/">WWDC 2019</a>
 </blockquote>
 
-What makes SwiftUI different from UIKit? One of the primary differences[^1] is that SwiftUI provides a rich set of tools for propagating data changes across the app. This is something that every developer had to come up with on their own in UIKit. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI has answers to all of these questions.
+What makes SwiftUI different from UIKit? One of the primary differences[^1] is that SwiftUI provides a rich set of tools for propagating data changes across the app. This is something that every developer had to come up with on their own in UIKit.
+
+Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI has answers to all of these questions.
+
+This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing gorgeous SwiftUI code like [this](#full-listing-search).
 
 TBD
 <!-- {% include ad-hor.html %} -->
@@ -269,26 +273,147 @@ As a thought experiment, I implemented a `_ViewRendererHost` class which uses Sw
 <span class="p">}</span>
 </code></pre></div></div>
 
-
-
 ## @Binding
 
+Let's finish our search example. We need a search field. Unfortunately, at the moment of writing this, SwiftUI didn't provide one, but we can use an existing `TextField` for now.
 
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span>
 
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="k">some</span> <span class="nf">View</span> <span class="p">{</span>
+        <span class="nf">VStack</span> <span class="p">{</span>
+            <span class="nf">TextField</span><span class="p">(</span><span class="s">"Search"</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="SwiftUIPostHighlightedCode"><span class="p">Binding</span><span class="o">&lt;</span><span class="p">String</span><span class="o">&gt;</span></span><span class="p">)</span>
+            <span class="nf">List</span><span class="p">(</span><span class="kt">viewModel</span><span class="o">.</span><span class="kt">songs</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">Text</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="kt">name</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
+Binding creates two-way connection between a view and its underlying model. This is something that you won't find in ReactiveSwift or RxSwift. It is also relatively complicated compared to other SwiftUI property wrappers.
 
+How do you create a binding? One way to do it is by using the *projected value* of the `@ObservedObject`.
 
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span><span class="p">:</span> <span class="nf">ObservableObject</span> <span class="p">{</span>
+    <span class="SwiftUIPostHighlightedCode"><span class="k">var</span> <span class="nv">query</span><span class="p">:</span> <span class="nf">String</span> <span class="o">=</span> <span class="s">""</span></span>
+    <span class="kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
 
+<span class="kd">struct</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="nf">View</span> <span class="p">{</span>
+    <span class="kd">@ObservedObject</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="nf">View</span> <span class="p">{</span>
+        <span class="nf">VStack</span> <span class="p">{</span>
+            <span class="nf">TextField</span><span class="p">(</span><span class="s">"Search"</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="SwiftUIPostHighlightedCode"><span class="kt">$</span><span class="kt">viewModel</span><span class="o">.</span><span class="kt">query</span></span><span class="p">)</span>
+            <span class="nf">List</span><span class="p">(</span><span class="kt">viewModel</span><span class="o">.</span><span class="kt">songs</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">Text</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+This feature takes advantage of multiple new Swift language features including [`@dynamicMemberLookup`](https://github.com/apple/swift-evolution/blob/master/proposals/0252-keypath-dynamic-member-lookup.md). If you look at the `@ObserverObject` declaration, its projected value has a special `Wrapper` type.
+
+```swift
+@propertyWrapper @frozen
+public struct ObservedObject<ObjectType>: DynamicProperty where ObjectType: ObservableObject {
+    /// A wrapper of the underlying `ObservableObject` that can create
+    /// `Binding`s to its properties using dynamic member lookup.
+    @dynamicMemberLookup @frozen public struct Wrapper {
+
+        /// Creates a `Binding` to a value semantic property of a
+        /// reference type.
+        public subscript<Subject>(
+            dynamicMember keyPath: ReferenceWritableKeyPath<ObjectType, Subject>
+        ) -> Binding<Subject> { get }
+    }
+
+    public var projectedValue: ObservedObject<ObjectType>.Wrapper { get }
+}
+```
+
+Interestingly enough, `@Binding` itself also support `@dynamicMemberLookup`. The reason is does is to allow you to reach to properties nested in other types. For example, if you had a more complicated search criteria, you could do the following:
+
+```swift
+struct SearchCriteria {
+    var query: String = ""
+    var filters: [SearchFilter] = []
+}
+
+final class SearchViewModel: ObservableObject {
+    var searchCriteria = SearchCriteria()
+    @Published private(set) var songs: [Song] = []
+}
+
+struct SearchView: View {
+    @ObservedObject var viewModel: SearchViewModel
+
+    var body: some View {
+        ...
+        TextField("Search", text: $viewModel.searchCriteria.query)
+        ...
+    }
+}
+```
+
+Really nice. However, there are even more ways to create bindings. What you can also do is to pass a constant value as a binding: `.constant("term")`. This is useful for testing. Or you could create a completely custom binding using a special initializer which takes `getter` and `setter` as input. I couldn't come up with any use cases for it yet, but it's nice to know this option exists.
+
+And now, to complete our classic search example, let's make `query` observable and sprinkle a bit more Combine on top of what we already have:
+
+<a name="full-listing-search"></a> 
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SearchView</span><span class="p">:</span> <span class="nf">View</span> <span class="p">{</span>
+    <span class="kd">@ObservedObject</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">SearchViewModel</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="nf">View</span> <span class="p">{</span>
+        <span class="nf">VStack</span> <span class="p">{</span>
+            <span class="nf">TextField</span><span class="p">(</span><span class="s">"Search"</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span><span class="kt">$</span><span class="kt">viewModel</span><span class="o">.</span><span class="kt">query</span></span><span class="p">)</span>
+            <span class="nf">List</span><span class="p">(</span><span class="kt">viewModel</span><span class="o">.</span><span class="kt">songs</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">Text</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="kt">name</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchViewModel</span><span class="p">:</span> <span class="nf">ObservableObject</span> <span class="p">{</span>
+    <span class="kd">@Published</span> <span class="k">var</span> <span class="nv">query</span><span class="p">:</span> <span class="nf">String</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="kd">@Published</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">songs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Song</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="nf">AnyCancellable</span><span class="p">?</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="nv">service</span><span class="p">:</span> <span class="kt">SearchService</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">cancellable</span> <span class="o">=</span> <span class="kt">$</span><span class="kt">query</span>
+            <span class="o">.</span><span class="nf">throttle</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="nf">milliseconds</span><span class="p">(</span><span class="mi">300</span><span class="p">),</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="nf">DispatchQueue</span><span class="o">.</span><span class="nf">main</span><span class="p">,</span> <span class="nv">latest</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">removeDuplicates</span><span class="p">()</span>
+            <span class="o">.</span><span class="nf">flatMap</span> <span class="p">{</span>
+                <span class="n">service</span><span class="o">.</span><span class="nf">searchSongs</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span><span class="o">.</span><span class="k">catch</span> <span class="p">{</span>
+                    <span class="n">_</span> <span class="k">in</span> <span class="nf">Just</span><span class="p">([])</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="o">.</span><span class="nf">receive</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="nf">DispatchQueue</span><span class="o">.</span><span class="nf">main</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">assign</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">\</span><span class="kt">.</span><span class="kt">songs</span><span class="p">,</span> <span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">SearchService</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nv">searchSongs</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="nf">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nf">Future</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Song</span><span class="p">],</span> <span class="nf">Error</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+Isn't it absolutely gorgeous?
 
 ## @State
 
 [`@State`](https://developer.apple.com/documentation/swiftui/state) is a [Property Wrapper](https://nshipster.com/propertywrapper/).
 
+## @EnvironmentObject
 
-## @Binding
+## Final Thoughts
 
-## @FetchRequest
+TBD: onReceive
 
+TODO: - Performance of observing? Generally shouldn’t be a concern.
 
 <div class="References" markdown="1">
 
@@ -299,6 +424,9 @@ https://nalexn.github.io/swiftui-observableobject/
 https://vmanot.com/data-flow-through-swiftui
 
 ## References
+
+- Swift Evolution, [**Dynamic Member Lookup**](https://github.com/apple/swift-evolution/blob/master/proposals/0252-keypath-dynamic-member-lookup.md)
+
 
 - WWDC 2019, [**Testing with Xcode**](https://developer.apple.com/videos/play/wwdc2019/413/)
 - WWDC 2018, [**Engineering for Testability**](https://developer.apple.com/videos/play/wwdc2017/414)
