@@ -14,10 +14,9 @@ uuid: c5358288-8c59-41e0-a790-521b52f89921
 <a href="https://developer.apple.com/videos/play/wwdc2019/226/">WWDC 2019</a>
 </blockquote>
 
-What makes SwiftUI different from UIKit? For one, it's the *layout system* which I covered in one of my [previous articles]({{ site.url }}/post/swiftui-layout-system). Another, probably even more dramatic change is the *data flow*. 
+What makes SwiftUI different from UIKit? For one, it's the *layout system*, I covered it in one of my [previous articles]({{ site.url }}/post/swiftui-layout-system). Another, probably an even more dramatic difference, is the *data flow*. 
 
-
-In UIKit, this is something that every developer had to decide on their own. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI is an opinionated framework, it has answers to all of these questions.
+In UIKit, you have a of decisions to make. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI is an opinionated framework, it has answers to all of these questions.
 
 SwiftUI provides a rich set of tools for propagating data changes across the app. This article will get you from zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
 
