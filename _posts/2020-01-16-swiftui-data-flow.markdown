@@ -432,7 +432,7 @@ Again, we don't know how it is actually implemented, but we can easily extend th
 
 In fact, if you use reflection to inspect what stored properties `@State` has, you can see it does have some reference-type `StoredLocation` type:
 
-```swift
+```
 (lldb) po Mirror(reflecting: $isShown).children.map { $0 }
 ▿ 3 elements
   ▿ 0 : 2 elements
