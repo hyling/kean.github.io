@@ -14,12 +14,12 @@ uuid: c5358288-8c59-41e0-a790-521b52f89921
 <a href="https://developer.apple.com/videos/play/wwdc2019/226/">WWDC 2019</a>
 </blockquote>
 
-What makes SwiftUI different from UIKit? For one, it's the *layout system* which I covered in one of my [previous articles]({{ site.url }}/post/post/swiftui-layout-system). Another, probably even more dramatic change is the *data flow*. 
+What makes SwiftUI different from UIKit? For one, it's the *layout system* which I covered in one of my [previous articles]({{ site.url }}/post/swiftui-layout-system). Another, probably even more dramatic change is the *data flow*. 
 
 
-In UIKit, this is something that every developer typically had to decide on their own. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI is an opinionated framework, it has answers to all of these questions.
+In UIKit, this is something that every developer had to decide on their own. Are you going to observe changes to data to refresh the UI (aka *views as a function of state*) or update the UI after performing an update (aka *views as a sequence of events*)? Are you going to set-up bindings using your favorite reactive programming framework or use a target-action mechanism? SwiftUI is an opinionated framework, it has answers to all of these questions.
 
-SwiftUI provides a rich set of tools for propagating data changes across the app. This article will get you form zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
+SwiftUI provides a rich set of tools for propagating data changes across the app. This article will get you from zero to fully understanding how data flow works in SwiftUI, and to writing *gorgeous* SwiftUI code like [this](#full-listing-search).
 
 {% include ad-hor.html %}
 
@@ -145,7 +145,7 @@ Received value: Civilization Collapse
 
 The `currentSong` publisher delivers the current value of the property synchronously the moment you subscribe to it.
 
-Great, now we have a way to observe changes to the state. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`.
+Great, now we have a way to observe changes to the model. But this is not how you update views in SwiftUI. So what do we do? Welcome to `@ObservedObject`.
 
 ## @ObservedObject
 
@@ -174,7 +174,7 @@ Let's start with how you would typically *bind* the state to the views using a r
 <span class="p">}</span>
 </code></pre></div></div>
 
-This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims at doing. How do you do the same thing in SwiftUI?
+This gets the job done, and in case of `<~` binding in an elegant way – the syntax is minimal, the observation lifetime is automatically taken care of for you. As a result, the views always reflect the latest state of the model – something that SwiftUI also aims to do. How do you do the same thing in SwiftUI?
 
 To start observing the changes to the model, you use [`@ObservedObject`](https://developer.apple.com/documentation/swiftui/observedobject) property wrapper. An `@ObservedObject` must be initialized with a value confirming to [`ObservableObject`](https://developer.apple.com/documentation/combine/observableobject) protocol.
 
@@ -223,9 +223,9 @@ final class SearchViewModel: ObservableObject {
 }
 ```
 
-Where did `@Published` go? Turns out, the views in SwiftUI don't actually subscribe the publishers projected by `@Published`. All they needs is `objectWillChange` publisher from `ObservableObject`.
+Where did `@Published` go? Turns out, the views in SwiftUI don't subscribe to the publishers projected by `@Published`. All they need is `objectWillChange` publisher from `ObservableObject`.
 
-The final piece of the puzzle is `@ObservedObject` property wrapper. All it does is subscribe to a `ObservableObject` automatically invalidating the view when it changes. That's it! No magic involved. Except for one small thing... How does SwiftUI actually know when to update the view?
+The final piece of the puzzle is `@ObservedObject` property wrapper. All it does is subscribe to a `ObservableObject` automatically invalidating the view when it changes. That's it! No magic involved. Except for one small thing... How does SwiftUI know when to update the view?
 
 Unfortunately, we don't know for sure, this is SwiftUI internal implementation details. However, we can speculate. If you look into `@ObservedObject` declaration, you can find out that is conforms to [`DynamicProperty`](https://developer.apple.com/documentation/swiftui/dynamicproperty) protocol. Turns out, all other SwiftUI property wrappers related to data flow do.
 
@@ -334,7 +334,7 @@ public struct ObservedObject<ObjectType>: DynamicProperty where ObjectType: Obse
 }
 ```
 
-Interestingly enough, `@Binding` itself also support `@dynamicMemberLookup`. The reason is does is to allow you to reach to properties nested in other types. For example, if you had a more complicated search criteria, you could do the following:
+Interestingly, `@Binding` itself also supports `@dynamicMemberLookup`. The reason it does is to allow you to reach properties nested in other types. For example, if you had more complicated search criteria, you could do the following:
 
 ```swift
 struct SearchCriteria {
@@ -358,7 +358,7 @@ struct SearchView: View {
 }
 ```
 
-Really nice. However, there are even more ways to create bindings. What you can also do is to pass a constant value as a binding: `.constant("term")`. This is useful for testing. Or you could create a completely custom binding using a special initializer which takes `getter` and `setter` as input. I couldn't come up with any use cases for it yet, but it's nice to know this option exists.
+Nice. And there is more. You can create bindings with a constant value like this `.constant("term")` which is useful for testing. Or you could create a completely custom binding using a special initializer which takes `getter` and `setter` as input. I couldn't come up with any use cases for it yet, but it's nice to know this option exists.
 
 And now, to complete our classic search example, let's make `query` observable and sprinkle a bit more Combine on top of what we already have:
 
@@ -405,7 +405,7 @@ Isn't it absolutely gorgeous?
 
 ## @State
 
-I left [`@State`](https://developer.apple.com/documentation/swiftui/state) until the very end because it is probably the most situational property wrapper of the bunch. You will only use it if you have some transient state local to a particular view. You might use it more often if your views talk directly to the model, but as long as you are using MVVM (and I think you should), you won't find a lot of use case for `@State`.
+I left [`@State`](https://developer.apple.com/documentation/swiftui/state) until the very end because it is probably the most situational property wrapper of the bunch. You will only use it if you have some transient state local to a particular view. You might use it more often if your views talk directly to the model, but as long as you are using MVVM (and I think you should), you won't find a lot of use cases for `@State`.
 
 One of the most common scenarios for using `@State` is to present some temporary screens like alerts. SwiftUI insists that you do that declaratively.
 
@@ -423,7 +423,11 @@ struct ContentView: View {
 }
 ```
 
-What you need to know about `@State` is that SwiftUI automatically manages the storage for your state properties. When the state value changes, the view invalidates its appearance and recomputes the body. You must only access a state property from inside the view’s body (or from functions called by it). For this reason, you should declare your state properties as private, to prevent clients of your view from accessing it. You can get a binding from a state with the `binding` property, or by using the `$` prefix operator.
+What you need to know about `@State` is that SwiftUI automatically manages the storage for your state properties. When the state value changes, the view invalidates its appearance and recomputes the body.
+
+You must only access a state property from inside the view’s body (or from functions called by it). For this reason, you should declare your state properties as private, to prevent clients of your view from accessing it.
+
+You can get a binding from a state with the `binding` property, or by using the `$` prefix operator.
 
 ## @Environment
 
@@ -443,7 +447,7 @@ You can also manually modify the environment which comes in handy in previews:
 ```swift
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-		Group {
+        Group {
             SearchView()
             SearchView()
                 .environment(\.colorScheme, .dark)
@@ -460,13 +464,13 @@ In addition to `@Environment` there is an [`@EnvironmentObject`](https://develop
 
 I missed you, `@`. I'm glad SwiftUI finally brings you back, and in a big way.
 
-On a more serious note, I think data flow together with the [layout system]({{ site.url }}/post/post/swiftui-layout-system) are clearly the strongest sides of SwiftUI. Both systems are powerful, elegant, and robust.
+On a more serious note, I think data flow together with the [layout system]({{ site.url }}/post/post/swiftui-layout-system) is clearly the strongest side of SwiftUI. Both systems are powerful, elegant, and robust.
 
-Most of the current complains about SwiftUI come with regards to its incomplete components library. There are some glaring gaps there. I with Apple was more clear in their communication. In 2014, Swift 1.0 was presented as a complete production ready language (spoiler alert: it wasn’t, it was more of a proof of concept). The same thing is happening with SwiftUI.
+Most of the current complaints about SwiftUI come with regards to its incomplete components library. There are some glaring gaps there. I wish Apple was more clear in their communication. In 2014, Swift 1.0 was presented as a complete production-ready language (spoiler alert: it wasn’t, it was more of a proof of concept). The same thing is happening with SwiftUI.
 
-SwiftUI in its current from is a proof of concept that shows that Apple's platonic ideal of a UI framework can be brought to reality. It has the best syntax, the best data flow, the best layout system. The only thing that is missing is the components library. What we currently have is just a few basic wrappers on top of the existing components in UIKit and the respective frameworks on other platforms.
+SwiftUI in its current form is a proof of concept that shows that Apple's platonic ideal of a UI framework can be brought to reality. It has the best syntax, the best data flow, the best layout system. The only thing that is lacking is the components library. What we currently have is just a few basic wrappers on top of the existing components in UIKit and the respective frameworks on other platforms.
 
-Sometimes it seems mind boggling how many language features were needed to make SwiftUI possible: meta-programming, property wrappers, function builders, dynamic member lookup. All of these things come together in beautiful ways which rubs just the right spots and make me extremely excited for the future of development for Apple platforms.
+Sometimes it seems mind-boggling just how many language features were needed to make SwiftUI possible: meta-programming, complex generics system, property wrappers, function builders, dynamic member lookup. All of these things come together in beautiful ways which rub just the right spots and make me extremely excited for the future of development for Apple platforms.
 
 <div class="References" markdown="1">
 
