@@ -215,7 +215,7 @@ final class SearchViewModel: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
 
     private(set) var songs: [Song] = [] {
-        didSet { objectWillChange.send() }
+        willSet { objectWillChange.send() }
     }
 }
 ```
@@ -399,6 +399,8 @@ And now, to complete our classic search example, let's make `query` observable a
     <span class="kd">func</span> <span class="nv">searchSongs</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="nf">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nf">Future</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Song</span><span class="p">],</span> <span class="nf">Error</span><span class="o">&gt;</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
+Isn't 
 
 ## @State
 
