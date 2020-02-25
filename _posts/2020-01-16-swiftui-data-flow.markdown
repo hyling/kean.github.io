@@ -400,7 +400,6 @@ And now, to complete our classic search example, let's make `query` observable a
 <span class="p">}</span>
 </code></pre></div></div>
 
-Isn't 
 
 ## @State
 
